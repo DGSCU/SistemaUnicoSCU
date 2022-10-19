@@ -1,0 +1,133 @@
+﻿@using static RegistrazioneSistemaUnico.Helpers.Helper;
+@{
+
+	ViewData["Title"] = "Home Page";
+	@model Registrazione
+	string warning = TempData["warning"]?.ToString();
+	bool variazione = Model.VariazioneRappresentanteLegale == true;
+}
+
+@if (variazione)
+{
+	@* VARIAZIONE RAPPRESENTANTE LEGALE *@
+	<div class="alert alert-warning" role="warning">
+		Attenzione, per questo Ente risulta un Rappresentante Legale diverso. Si sta procedendo alla variazione del Rappresentente Legale.
+	</div>
+	@Html.Sommario("Si sono verificati i seguenti errori:")
+
+	<h3>Inserimento dei dati del nuovo Rappresentante Legale</h3>
+	<br />
+	<form enctype="multipart/form-data" action="@Url.Action("Riepilogo")" method="post">
+
+		@Html.HiddenFor(x => x.Albo)
+		@Html.HiddenFor(x => x.VariazioneRappresentanteLegale)
+		@Html.HiddenFor(x => x.Email)
+		@Html.HiddenFor(x => x.EnteTitolare)
+
+
+		<div class="row">
+			@Html.InputFor(x => x.CodiceFiscaleEnte, "col-md-6", readOnly: true, showRequiredOnLabel: false)
+			@Html.InputFor(x => x.Denominazione, "col-md-6", readOnly: true, showRequiredOnLabel: false)
+		</div>
+		<div class="row">
+			@Html.InputFor(x => x.CodiceFiscaleRappresentanteLegale, cssClass: "col-md-6")
+			@Html.InputFor(x => x.DataNominaRappresentanteLegale, cssClass: "col-md-6")
+		</div>
+		<div class="row">
+			@Html.InputFor(x => x.DocumentoNomina, cssClass: "col-md-12")
+		</div>
+
+		<a href="@Url.Action("Index","Accesso")" class="btn btn-link btn-primary col-md-3 col-sm-6">Indietro</a>
+		<button type="submit" class="btn btn-primary col-md-3 col-sm-6">Avanti</button>
+	</form>
+}
+else
+{
+	@* REGISTRAZINE ENTE *@
+
+	<h3>Inserimento dei dati dell'Ente @Model.TipoEnte</h3>
+	<br />
+	@if (!string.IsNullOrEmpty(warning))
+	{
+		<div class="alert alert-warning" role="warning">
+			@warning
+		</div>
+	}
+	@Html.Sommario("Errori:")
+	<form enctype="multipart/form-data" action="@Url.Action("Riepilogo")" method="post">
+		@Html.HiddenFor(x => x.Albo)
+		@Html.HiddenFor(x => x.VariazioneRappresentanteLegale)
+
+		@Html.HiddenFor(x => x.IdCategoriaEnte)
+		@Html.HiddenFor(x => x.EnteTitolare)
+		<div class="row">
+			@Html.InputFor(x => x.CodiceFiscaleEnte, "col-md-6", readOnly: true)
+			@Html.InputFor(x => x.CodiceFiscaleRappresentanteLegale, "col-md-6")
+		</div>
+		<div class="row">
+			@Html.InputFor(x => x.DataNominaRappresentanteLegale, cssClass: "col-md-6")
+			@Html.InputFor(x => x.Denominazione, cssClass: "col-md-6")
+		</div>
+		@if (Model.EnteTitolare==true)
+		{
+		<div class="row">
+			@Html.InputFor(x => x.DocumentoNomina, cssClass: "col-md-12")
+		</div>
+		}
+		<div class="row">
+			@Html.ComboboxFor(x => x.IdTipologiaEnte, cssClass: "col-md-12")
+		</div>
+		<h5>Sede Legale dell'Ente @Model.TipoEnte</h5>
+		<br />
+		<div class="row">
+			@Html.ComboboxFor(x => x.IdProvinciaEnte, cssClass: "col-md-6", ricerca: true)
+			@Html.ComboboxFor(x => x.IdComuneEnte, cssClass: "col-md-6", ricerca: true, disabled: !Model.IdProvinciaEnte.HasValue)
+		</div>
+		<div class="row">
+			@Html.InputFor(x => x.Via, cssClass: "col-md-10")
+			@Html.InputFor(x => x.Civico, cssClass: "col-md-2")
+		</div>
+		<div class="row">
+			@Html.InputFor(x => x.CAP, cssClass: "col-md-6")
+			@Html.InputFor(x => x.Telefono, cssClass: "col-md-6")
+		</div>
+		<div class="row">
+			@Html.InputFor(x => x.Email, cssClass: "col-md-6")
+			@Html.InputFor(x => x.PEC, cssClass: "col-md-6", label: Model.EnteTitolare==true? "PEC*": "PEC")
+		</div>
+		<div class="row">
+			@Html.InputFor(x => x.Sito, cssClass: "col-md-12")
+		</div>
+		<a href="@Url.Action("Index","Accesso")" class="btn btn-primary col-md-3 col-sm-6">Indietro</a>
+		<button type="submit" class="btn btn-primary col-md-3 col-sm-6">Avanti</button>
+	</form>
+}
+@section Scripts{
+	<script type="text/javascript">
+		$("#IdProvinciaEnte").change(function (e) {
+			var jqxhr = $.post("@Url.Action("GetComuni")",
+				{ idProvincia: $(e.currentTarget).val() })
+				.done(function (data) {
+					$("#IdComuneEnte_Wrapper").setOptionsToSelect(data);
+					if ($("#IdProvinciaEnte").val()) {
+						$("#IdComuneEnte_Wrapper").removeAttr("disabled");
+						$("#IdComuneEnte_Wrapper").find(".dropdown-toggle").removeClass("disabled");
+						$("#IdComuneEnte_Wrapper").find(".bootstrap-select").removeAttr("disabled");
+						$("#IdComuneEnte").removeAttr("disabled");
+
+					} else {
+						$("#IdComuneEnte_Wrapper").find(".dropdown-toggle").addClass('disabled');
+						$("#IdComuneEnte_Wrapper").find(".bootstrap-select").prop('disabled', true);
+						$("#IdComuneEnte_Wrapper").prop('disabled', true);
+						$("#IdComuneEnte").prop('disabled', true);
+					}
+				})
+				.fail(function () {
+					alert("error");
+				});
+
+		});
+
+	</script>
+
+}

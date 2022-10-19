@@ -1,0 +1,22 @@
+﻿@using static RegistrazioneSistemaUnico.Helpers.Helper;
+@using RegistrazioneSistemaUnico.Models.Forms;
+@{
+
+	ViewData["Title"] = "Home Page";
+	Dictionary<string, string> categorie = (Dictionary<string, string>)ViewData["IdCategoriaEnte"];
+	@model VariazioneRappresentanteForm
+}
+@Html.Sommario("Si sono verificati i seguenti errori:")
+
+
+@using (Html.BeginForm())
+{
+
+		<h2>Variazione Rappresentante Legale Ente Titolare del Servizio Civile Nazionale</h2>
+		<br />
+		@Html.InputFor(x => x.CodiceFiscaleEnte)
+		<a href="@Url.Action("Index","Accesso")" class="btn btn-link btn-primary col-md-3 col-sm-6">Indietro</a>
+
+		<button class="btn btn-primary col-md-3 col-sm-6" type="submit" >Registra</button>
+
+}

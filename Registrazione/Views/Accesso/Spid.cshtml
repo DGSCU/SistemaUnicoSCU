@@ -1,0 +1,21 @@
+﻿@using static RegistrazioneSistemaUnico.Helpers.Helper;
+@{
+	ViewData["Title"] = "Accesso SSPID";
+}
+@model Accesso
+<div class="text-center">
+	<h1 class="display-4">Accesso con SPID</h1>
+	<p>Simulazione accesso tramite SPID</p>
+	@using (Html.BeginForm("LoginSpid", "Accesso", FormMethod.Post))
+	{
+	<div class="row">
+		@Html.InputFor(x => x.CodiceFiscale, cssClass: "col-md-6")
+		@Html.InputFor(x => x.DataNascita, cssClass: "col-md-6")
+	</div>
+	<div class="row">
+		@Html.InputFor(x => x.Nome, cssClass: "col-md-6")
+		@Html.InputFor(x => x.Cognome, cssClass: "col-md-6")
+	</div>
+	<input class="btn btn-primary col-md-3 col-sm-6" type="submit" value="Accesso">
+	}
+</div>

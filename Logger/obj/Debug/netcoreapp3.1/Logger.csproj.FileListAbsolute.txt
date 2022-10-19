@@ -1,0 +1,10 @@
+C:\temp\SistemaUnico\Logger\bin\Debug\netcoreapp3.1\Logger.deps.json
+C:\temp\SistemaUnico\Logger\bin\Debug\netcoreapp3.1\Logger.dll
+C:\temp\SistemaUnico\Logger\bin\Debug\netcoreapp3.1\Logger.pdb
+C:\temp\SistemaUnico\Logger\obj\Debug\netcoreapp3.1\Logger.csproj.AssemblyReference.cache
+C:\temp\SistemaUnico\Logger\obj\Debug\netcoreapp3.1\Logger.GeneratedMSBuildEditorConfig.editorconfig
+C:\temp\SistemaUnico\Logger\obj\Debug\netcoreapp3.1\Logger.AssemblyInfoInputs.cache
+C:\temp\SistemaUnico\Logger\obj\Debug\netcoreapp3.1\Logger.AssemblyInfo.cs
+C:\temp\SistemaUnico\Logger\obj\Debug\netcoreapp3.1\Logger.csproj.CoreCompileInputs.cache
+C:\temp\SistemaUnico\Logger\obj\Debug\netcoreapp3.1\Logger.dll
+C:\temp\SistemaUnico\Logger\obj\Debug\netcoreapp3.1\Logger.pdb

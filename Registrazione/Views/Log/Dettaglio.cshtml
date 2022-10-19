@@ -1,0 +1,27 @@
+﻿@using static RegistrazioneSistemaUnico.Helpers.Helper;
+@using RegistrazioneSistemaUnico.Models.Forms;
+@{
+	string error = ViewData["Error"] as string;
+	FileForm formModel = ViewData["ModelFileForm"] as FileForm;
+	ViewData["Title"] = "Home Page";
+	@model Registrazione
+}
+<h2>Riepilogo dati inseriti Ente @Model.TipoEnte</h2>
+<p>Denominazione: <strong>@Model.Denominazione</strong></p>
+<p>Codice Fiscale Ente: <strong>@Model.CodiceFiscaleEnte</strong></p>
+<p>Codice Fiscale Rappresentente Legale: <strong>@Model.CodiceFiscaleRappresentanteLegale</strong></p>
+<p>Data Nomina Rappresentante Legale: <strong>@Model.DataNominaRappresentanteLegale?.ToString("dd/MM/yyyy")</strong></p>
+<p>Tipologia Ente: <strong>@Model.Categoria?.Descrizione - @Model.TipologiaEnte?.Descrizione</strong></p>
+<p>Indirizzo sede Legale: <strong>@Model.Indirizzo</strong></p>
+<p>E-mail: <strong>@Model.Email</strong></p>
+<p>PEC: <strong>@Model.PEC</strong></p>
+<p>Telefono: <strong>@Model.Telefono</strong></p>
+<p>Sito: <strong>@Model.Sito</strong></p>
+<p></p>
+
+<br />
+<p>Registrazione effettuata il @Model.DataInserimento</p>
+<br />
+<br />
+<a class="btn btn-primary col-2" href="@Url.Action("Index")">Indietro</a>
+

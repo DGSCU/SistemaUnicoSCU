@@ -1,0 +1,249 @@
+﻿@using RegistrazioneSistemaUnico.Helpers;
+@using RegistrazioneSistemaUnico.Models.Forms;
+@{
+	ViewData["Title"] = "Home Page";
+
+	string errorMessage = TempData["Error"]?.ToString();
+	Statistiche statistiche = ViewData["Statistiche"] as Statistiche;
+}
+@model StatisticheForm
+<h3>Statistiche</h3>
+<br />
+<form id="frmStatistiche" action="@Url.Action("Index","Statistiche")" onsubmit="return OnSubmitCheck();" method="post">
+	<input type="hidden" id="hdCheck" />
+	<div class="row">
+		<div class="col-4">
+			@Html.InputFor(x => x.DataDa)
+		</div>
+		<div class="col-2">
+			@Html.InputFor(x => x.OrarioDa, tooltip: "hh:mm")
+		</div>
+		<div class="col-4">
+			@Html.InputFor(x => x.DataA)
+		</div>
+		<div class="col-2">
+			@Html.InputFor(x => x.OrarioA, tooltip: "hh:mm")
+		</div>
+		<div class="col-4">
+			<button type="submit" onclick="SubmitOk();" class="btn btn-primary col-12">Filtra</button>
+
+		</div>
+	</div>
+</form>
+
+<hr />
+
+<h4>Statistiche registrazioni</h4>
+<br />
+<div class="row">
+	<div class="col-6">
+		<canvas id="diagrammaTorta" height="300"></canvas>
+	</div>
+	<div class="col-6">
+		<canvas id="diagrammaTorta2" height="300"></canvas>
+	</div>
+</div>
+<br />
+<p>Registrazioni effettuate: <strong>@statistiche.TotaleRegistrazioni</strong></p>
+
+<div class="row">
+	<div class="col-12">
+		<canvas id="diagrammaAndamento" height="400"></canvas>
+	</div>
+
+</div>
+<hr />
+<h3>Statistiche accessi</h3>
+<p>Accessi effettuati: <strong>@statistiche.Accessi</strong></p>
+<p>Utenti distinti: <strong>@statistiche.UtentiDistinti</strong></p>
+
+
+
+@section Scripts{
+	<script src="~/Chartjs/dist/Chart.js"></script>
+
+	<script type="text/javascript">
+		function OnSubmitCheck() {
+			if (!$("#hdCheck").val()) {
+				return false;
+			}
+
+		}
+		function SubmitOk() {
+			$("#hdCheck").val("OK");
+			$("#frmStatistiche").submit();
+
+		}
+		$(document).ready(function () {
+		@*Torta1*@
+			var datiTorta = {
+				datasets: [{
+					label: 'Registrazioni Enti',
+					data: [	@statistiche.EntiRegistrati,
+							@statistiche.EntiNonRegistrati,
+							@statistiche.NuoviEntiRegistrati,
+							@statistiche.VariazioniRappresentanteLegale],
+					backgroundColor: [
+						'rgba(54, 235, 162, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(255, 99, 132, 0.2)',
+
+					],
+					borderColor: [
+						'rgba(54, 235, 162, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(255,99,132,1)',
+
+					],
+					borderWidth: 1,
+
+				}],
+				labels: [
+					'Enti Registrati',
+					'Enti Non Registrati',
+					'Nuovi Enti Registrati',
+					'Variazioni Rapp. Leg.'
+				]
+			};
+			var ChartTorta = $('#diagrammaTorta');
+			var myPieChart = new Chart(ChartTorta, {
+				type: 'pie',
+				data: datiTorta,
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					title: {
+						display: true,
+						text: 'Registrazioni Totali'
+					},
+					legend: {
+						display: true,
+						position : 'right'
+					}
+				}
+			});
+
+		@*Torta2*@
+			var datiTorta2 = {
+				datasets: [
+				{
+					label: 'Registrazioni Enti',
+					data: [	@statistiche.EntiTitolariPubbliciRegistrati,
+							@statistiche.EntiTitolariPrivatiRegistrati,
+							@statistiche.EntiAccoglienzaPubbliciRegistrati,
+							@statistiche.EntiAccoglienzaPrivatiRegistrati,
+					],
+					backgroundColor: [
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(54, 162, 235, 0.4)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(255, 206, 86, 0.4)'
+
+					],
+					borderColor: [
+						'rgba(54, 162, 235, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(255, 206, 86, 1)'
+
+					],
+					borderWidth: 1,
+
+				}],
+				labels: [
+					'Enti Titolari Pubblici',
+					'Enti Titolari Privati',
+					'Enti Di Accoglienza Pubblici',
+					'Enti Di Accoglienza Privati',
+				]
+			};
+			var ChartTorta2 = $('#diagrammaTorta2');
+			var myPieChart = new Chart(ChartTorta2, {
+				type: 'pie',
+				data: datiTorta2,
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					title: {
+						display: true,
+						text: 'Tipolgia Enti Registrati'
+					},
+					legend: {
+						display: true,
+						position: 'right'
+					}
+				}
+			});
+
+
+		/*Grafico Lineare*/
+
+
+
+
+			var ChartAndamento = $('#diagrammaAndamento');
+
+			var myLineChart = new Chart(ChartAndamento, {
+				type: 'line',
+				data: {
+					labels: [@Html.Raw(ViewData["AndamentoX"])],
+					datasets: [{
+						label: 'Registrazioni',
+
+						data: [@Html.Raw(ViewData["Andamento"])],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)'
+
+						],
+						borderColor: [
+							'rgba(54, 162, 235, 1)'
+						],
+						fill: false,
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					title: {
+						display: true,
+						text: 'Andamento Registrazioni'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false,
+					},
+					hover: {
+						mode: 'nearest',
+						intersect: true
+					},
+					scales: {
+						xAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: '@ViewData["AndamentoXLabel"]'
+							}
+						}],
+						yAxes: [{
+
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: 'N° Registrazioni'
+							},
+							ticks: {
+								beginAtZero: true
+							}
+
+						}]
+					}
+				}
+			});
+
+		});
+	</script>
+
+
+}

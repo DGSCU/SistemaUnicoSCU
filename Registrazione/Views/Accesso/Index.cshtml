@@ -1,0 +1,267 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+	string message = TempData["message"]?.ToString();
+	string warning = TempData["warning"]?.ToString();
+	bool rigaPari = false;
+}
+@model List<UtenteEnte>
+
+@if (!string.IsNullOrEmpty(message))
+{
+	<div class="alert alert-success" role="success">
+		@message
+	</div>
+}
+@if (!string.IsNullOrEmpty(warning))
+{
+	<div class="alert alert-warning" role="warning">
+		@warning
+	</div>
+}
+
+@* Enti Titolari*@
+<div class="container border rounded p-3">
+	<h4>Enti titolari di Servizio Civile Universale</h4>
+
+	@* Se sono presenti Enti registrati*@
+	@if (Model.Where(x => x.Username != null && x.CodiceFiscaleEntePadre == null && x.Albo == "SCU").Any())
+	{
+		<h5>Accesso Sistema Unico</h5>
+		<div class="container grid">
+			@using (Html.BeginForm("Accedi", "Accesso", FormMethod.Post))
+			{
+				<input type="hidden" name="Albo" value="SCU" />
+
+				@foreach (UtenteEnte item in Model.Where(x => x.Username != null && x.CodiceFiscaleEntePadre == null && x.Albo == "SCU"))
+				{
+					string tipoUtente = "";
+					if (item.RappresentanteLegale == true)
+					{
+						tipoUtente = "come Rappresentante Legale";
+					}
+					else if (item.UtenzaSede ==0)
+					{
+						tipoUtente = "come Delegato";
+					}
+					else if (item.UtenzaSede == 2)
+					{
+						tipoUtente = "come Utente";
+					}
+					string denominazione = $"Ente \"{item.Denominazione}\"";
+					if (item.UtenzaSede == 1)
+					{
+						denominazione = item.Denominazione;
+					}
+					<div class="row @(rigaPari?"alternate":"")">
+						<div class="col-sm">@denominazione</div>
+						<div class="col-sm"> <button type="submit" name="Username" value="@item.Username" class="btn btn-primary col-md-12">Accesso @tipoUtente</button> </div>
+					</div>
+					rigaPari = !rigaPari;
+				}
+			}
+		</div>
+		<br />
+	}
+
+	<h5>Registrazione</h5>
+	<div class="container grid">
+		@if (Model.Where(x => x.Username == null && x.CodiceFiscaleEntePadre == null && x.Albo == "SCU").Any())
+		{
+
+			@using (Html.BeginForm("RegistraEnte", "Registrazione", FormMethod.Post))
+			{
+				<input type="hidden" name="albo" value="SCU" />
+				@foreach (UtenteEnte item in Model.Where(x => x.Username == null && x.CodiceFiscaleEntePadre == null && x.Albo == "SCU"))
+				{
+					<div class="row @(rigaPari?"alternate":"")">
+						<div class="col-sm">Ente "@item.Denominazione"</div>
+						<div class="col-sm">
+							@*<button type="submit" name="CodiceFiscaleEnte" value="@item.CodiceFiscaleEnte" class="btn btn-primary">Accedi come @tipoUtente</button>*@
+							<button type="submit" class="btn btn-primary col-md-12" name="CodiceFiscaleEnte" value="@item.CodiceFiscaleEnte">Registrazione del Rappresentante Legale</button>
+						</div>
+					</div>
+					rigaPari = !rigaPari;
+				}
+			}
+		}
+
+
+		@using (Html.BeginForm("SelezionaTipologia", "Registrazione", FormMethod.Post))
+		{
+			<input type="hidden" name="fromAccesso" value="true" />
+			<input type="hidden" name="Albo" value="SCU" />
+
+			<div class="row @(rigaPari?"alternate":"")">
+				<div class="col-sm">Nuovo Ente Titolare</div>
+				<div class="col-sm">
+					<button type="submit" class="btn btn-primary col-md-12" name="EnteTitolare" value="true">Registrazione del Rappresentante Legale</button>
+				</div>
+			</div>
+			rigaPari = !rigaPari;
+		}
+	</div>
+</div>
+<br />
+@* Enti di Accoglienza*@
+@if (Model.Where(x => x.CodiceFiscaleEntePadre != null).Any())
+{
+
+	<div class="container border rounded p-3">
+		<h4>Enti di Accoglienza</h4>
+
+		@* Se sono presenti Enti registrati*@
+		@if (Model.Where(x => x.Username != null && x.CodiceFiscaleEntePadre != null).Any())
+		{
+			<h5>Accesso Sistema Unico</h5>
+			<div class="container grid">
+				@using (Html.BeginForm("Accedi", "Accesso", FormMethod.Post))
+				{
+
+					<input type="hidden" name="Albo" value="SCU" />
+					@foreach (UtenteEnte item in Model.Where(x => x.Username != null && x.CodiceFiscaleEntePadre != null))
+					{
+						string tipoUtente = "Delegato";
+						if (item.RappresentanteLegale == true)
+						{
+							tipoUtente = "Rappresentante Legale";
+						}
+						else if (item.UtenzaSede == 2)
+						{
+							tipoUtente = "Utente";
+						}
+						<div class="row @(rigaPari?"alternate":"")">
+							<div class="col-sm">Ente "@item.Denominazione"</div>
+							<div class="col-sm"> <button type="submit" name="Username" value="@item.Username" class="btn btn-primary col-md-12">Accesso come @tipoUtente</button> </div>
+						</div>
+						rigaPari = !rigaPari;
+					}
+				}
+			</div>
+			<br />
+		}
+
+		@if (Model.Where(x => x.Username == null && x.CodiceFiscaleEntePadre != null).Any())
+		{
+
+			<h5>Registrazione</h5>
+			<div class="container grid">
+				@using (Html.BeginForm("RegistraEnte", "Registrazione", FormMethod.Post))
+				{
+					<input type="hidden" name="Albo" value="SCU" />
+					<input type="hidden" name="fromAccesso" value="true" />
+					@foreach (UtenteEnte item in Model.Where(x => x.Username == null && x.CodiceFiscaleEntePadre != null && x.IdCategoriaEnte != null))
+					{
+						<div class="row @(rigaPari ? "alternate" : "")">
+							<div class="col-sm">Ente "@item.Denominazione"</div>
+							<div class="col-sm">
+								@*<button type="submit" name="CodiceFiscaleEnte" value="@item.CodiceFiscaleEnte" class="btn btn-primary">Accedi come @tipoUtente</button>*@
+								<button type="submit" class="btn btn-primary col-md-12" name="CodiceFiscaleEnte" value="@item.CodiceFiscaleEnte">Registrazione del Rappresentante Legale</button>
+							</div>
+						</div>
+						rigaPari = !rigaPari;
+					}
+				}
+				@using (Html.BeginForm("SelezionaTipologia", "Registrazione", FormMethod.Post))
+				{
+					<input type="hidden" name="EnteTitolare" value="false" />
+					<input type="hidden" name="fromAccesso" value="true" />
+					@foreach (UtenteEnte item in Model.Where(x => x.Username == null && x.CodiceFiscaleEntePadre != null && x.IdCategoriaEnte == null))
+					{
+
+						<div class="row @(rigaPari ? "alternate" : "")">
+							<div class="col-sm">@item.Denominazione</div>
+							<div class="col-sm">
+								<button type="submit" class="btn btn-primary col-md-12" name="CodiceFiscaleEnte" value="@item.CodiceFiscaleEnte">Registrazione del Rappresentante Legale</button>
+							</div>
+						</div>
+						rigaPari = !rigaPari;
+					}
+				}
+			</div>
+
+		}
+
+		@*@using (Html.BeginForm("SelezionaTipologia", "Registrazione", FormMethod.Post))
+			{
+				<input type="hidden" name="fromAccesso" value="true" />
+				<div class="row @(rigaPari?"alternate":"")">
+					<div class="col-sm">Ente di Accoglienza</div>
+					<div class="col-sm">
+						<button type="submit" class="btn btn-primary col-md-12" name="EnteTitolare" value="false">Registrazione del Rappresentante Legale</button>
+					</div>
+				</div>
+
+			}*@
+	</div>
+}
+
+@* Enti SCN
+<div class="container border rounded p-3">
+	<h4>Enti Titolari di Servizio Civile Nazionale</h4>
+
+	@if (Model.Where(x => x.Username != null && x.CodiceFiscaleEntePadre == null && x.Albo == "SCN").Any())
+	{
+		<h5>Accesso Sistema Unico</h5>
+		<div class="container grid">
+			@using (Html.BeginForm("Accedi", "Accesso", FormMethod.Post))
+			{
+				<input type="hidden" name="Albo" value="SCN" />
+
+				@foreach (UtenteEnte item in Model.Where(x => x.Username != null && x.CodiceFiscaleEntePadre == null && x.Albo == "SCN"))
+				{
+					string tipoUtente = "Delegato";
+					if (item.RappresentanteLegale == true)
+					{
+						tipoUtente = "Rappresentante Legale";
+					}
+					string denominazione = $"Ente \"{item.Denominazione}\"";
+					if (item.UtenzaSede == 1)
+					{
+						denominazione = item.Denominazione;
+					}
+					<div class="row @(rigaPari?"alternate":"")">
+						<div class="col-sm">@denominazione</div>
+						<div class="col-sm"> <button type="submit" name="CodiceFiscaleEnte" value="@item.CodiceFiscaleEnte" class="btn btn-primary col-md-12">Accesso come @tipoUtente</button> </div>
+					</div>
+					rigaPari = !rigaPari;
+				}
+			}
+		</div>
+		<br />
+
+	}
+	<h5>Registrazione</h5>
+	<div class="container grid">
+		@using (Html.BeginForm("RegistraEnte", "Registrazione", FormMethod.Post))
+		{
+			<input type="hidden" name="albo" value="SCN" />
+			@foreach (UtenteEnte item in Model.Where(x => x.Username == null && x.CodiceFiscaleEntePadre == null && x.Albo == "SCN"))
+			{
+				<div class="row @(rigaPari?"alternate":"")">
+					<div class="col-sm">Ente "@item.Denominazione" (Albo SCN)</div>
+					<div class="col-sm">
+
+						<button type="submit" class="btn btn-primary col-md-12" name="CodiceFiscaleEnte" value="@item.CodiceFiscaleEnte">Registrazione del Rappresentante Legale</button>
+					</div>
+				</div>
+				rigaPari = !rigaPari;
+			}
+		}
+		@using (Html.BeginForm("VariazioneRappresentante", "Registrazione", FormMethod.Post))
+		{
+			<input type="hidden" name="fromAccesso" value="true" />
+
+			<div class="row @(rigaPari?"alternate":"")">
+				<div class="col-sm">Ente Titolare Esistente</div>
+				<div class="col-sm">
+					<button type="submit" class="btn btn-primary col-md-12" name="EnteTitolare" value="true">Variazione del Rappresentante Legale</button>
+				</div>
+			</div>
+			rigaPari = !rigaPari;
+		}
+
+	</div>
+
+</div>
+
+*@

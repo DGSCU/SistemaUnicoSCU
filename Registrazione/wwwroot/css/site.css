@@ -1,0 +1,260 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+	white-space: normal;
+	text-align: center;
+	word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+	color: #0366d6;
+}
+
+footer a {
+	color: white;
+	font-weight: 200;
+}
+
+	footer a:hover {
+		color: #06c;
+		font-weight: 200;
+	}
+
+.btn-primary {
+	color: #fff;
+	background-color: #1b6ec2;
+	border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	color: #fff;
+	background-color: #1b6ec2;
+	border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+	font-size: 14px;
+}
+
+
+@media (min-width: 768px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+.border-top {
+	border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+	box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+	font-size: 1rem;
+	line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+
+.footer {
+	width: 100%;
+	white-space: nowrap;
+	line-height: 60px; /* Vertically center the text there */
+}
+
+.input-validation-error {
+	border-color: #a31f33;
+}
+
+.bootstrap-select-wrapper {
+	margin-bottom: 1.78em;
+}
+
+.alert {
+	margin-bottom: 2em;
+}
+
+.btn {
+	margin-bottom: .5em;
+}
+
+.alert-list li a {
+	text-decoration: none;
+}
+
+	.alert-list li a:hover {
+		text-decoration: underline;
+	}
+
+.text-danger .alert-list li a {
+	color: #a31f33 !important;
+}
+
+.input-group,
+.bootstrap-select-wrapper button.dropdown-toggle:hover,
+.btn.dropdown-toggle,
+.alert {
+	background-color: white;
+}
+
+.upload {
+	height: auto;
+	width: auto;
+	opacity: 1;
+}
+
+	.upload[type=file] + label {
+		opacity: 0;
+		margin: 0;
+	}
+
+.file-name + small {
+	margin-top: 0;
+}
+
+.file-name {
+	font-weight: bold;
+	display: inline;
+	vertical-align: top;
+	padding-left: 10px;
+	line-height: 53px;
+}
+
+.file-group {
+	padding-bottom: 10px;
+}
+
+	.file-group .btn-icon {
+		padding: 0 5px 0 5px;
+		vertical-align: top;
+		margin-top: 17px;
+	}
+
+	.file-group label.active {
+		-webkit-transform: none;
+		transform: none;
+		font-size: initial;
+	}
+
+.bootstrap-select-wrapper button.dropdown-toggle.disabled:hover, .btn.dropdown-toggle.disabled {
+	background-color: rgb(230, 233, 242);
+}
+
+.LogoTitle {
+	font-weight: 600;
+}
+
+@media (min-width: 400px) {
+	.LogoTitle {
+		font-size: 10px;
+	}
+}
+
+@media (max-width: 575.98px) {
+	.LogoSubitle {
+		display: none;
+	}
+}
+
+@media (min-width: 575.98px) {
+	.LogoTitle {
+		font-size: 12px;
+	}
+}
+
+
+@media (min-width: 768px) {
+	.LogoTitle {
+		font-size: 18px;
+	}
+
+	.LogoSubitle {
+		font-size: 15px;
+	}
+}
+
+@media (min-width: 992px) {
+	.LogoTitle {
+		font-size: 25px;
+	}
+
+	.LogoSubitle {
+		font-size: 20px;
+	}
+}
+
+.container.grid {
+	border: solid 1px lightgray;
+	border-radius: 5px;
+	background: #eee;
+}
+
+.container.grid {
+}
+
+	.container.grid .alternate {
+		background: #fff;
+		border-radius: 5px;
+	}
+
+	.container.grid .btn {
+		padding: 0 5px 0 5px;
+		margin: 0;
+	}
+
+	.container.grid .col-sm {
+		vertical-align: middle;
+		line-height: 32px;
+	}
+
+main {
+	min-height: 70vh;
+}
+
+.tooltip {
+	font-size: 1rem;
+}
+
+.upload[type=file] + label.disabled {
+	cursor: default;
+	color: #bfc2c9;
+	background-color: #e6e9f2;
+	border-color: #dfe4f2;
+}
+
+.upload[type=file] + label {
+	position: initial;
+}
+
+legend {
+	margin-bottom: 0;
+}
+
+.clearfix .it-brand-wrapper {
+	padding: 25px 0 10px 0;
+}
+
+footer h6 {
+	margin-top: 8px;
+	margin-bottom: 0;
+}
+
+	footer h6 + a {
+		margin-left: 8px;
+	}

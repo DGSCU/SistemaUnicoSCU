@@ -1,0 +1,55 @@
+﻿@using System.IO
+@{
+	ViewData["Title"] = "RiepilogoRegistrazione";
+	Layout = "_LayoutStampa";
+}
+@model Registrazione
+
+<div>
+	<div class="hidePrint">
+		<br />
+		<br />
+	</div>
+
+
+	<div class="text-center">
+		@{
+			var bytes = File.ReadAllBytes($"{System.IO.Directory.GetCurrentDirectory()}/wwwroot/Images/Logo-circolare.png");
+		}
+		<img class="logo" alt="Servizio Civile" src="data:image/png;base64,@Convert.ToBase64String(bytes)" />
+	
+
+	<br />
+
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<p>Al Dipartimento per le Politiche Giovanili e il Servizio Civile Universale</p>
+			<p>Via della Ferratella in Laterano, 51 - 00184 Roma</p>
+		</div>
+	</div>
+	<h3 class="text-center">Registrazione al Sistema Unico</h3>
+	<p>@(Model.Genere == "F" ? "La sottoscritta" : "Il sottoscritto"): @Model.Cognome @Model.Nome identificato dal C.F. @Model.CodiceFiscaleRappresentanteLegale</p>
+	<p>In qualità di Rappresentante Legale dell'Ente  "@Model.Denominazione" (Codice Fiscale @Model.CodiceFiscaleEnte)</p>
+	<h3 class="text-center">CHIEDE</h3>
+	<p>
+		- l’accesso al Sistema Unico al fine di poter presentare la richiesta di accreditamento.
+	</p>
+
+	<h3 class="text-center">DICHIARA</h3>
+	<p>- di essere il Rappresentante Legale dell'Ente "@Model.Denominazione" dal @Model.DataNominaRappresentanteLegale?.ToString("dd/MM/yyyy")</p>
+	<p>- che l'Ente ha sede legale in @Model.Indirizzo</p>
+	<p>- l'Ente è @Model.Categoria?.Descrizione.ToLower() ed è della seguente tipologia: @Model.TipologiaEnte?.Descrizione</p>
+	<p>- che l'Ente ha i seguenti contatti:</p>
+	<ul>
+		<li>Telefono: @Model.Telefono</li>
+		<li>E-mail: @Model.Email</li>
+		<li>PEC: @Model.PEC</li>
+		<li>Sito web: @Model.Sito</li>
+	</ul>
+	<p>- di aver dato il proprio consenso alla trattazione dei dati personali ai sensi del Regolamento U.E n.679/2016</p>
+
+</div>
+
+
+

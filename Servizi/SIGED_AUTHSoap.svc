@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SIGED_AUTHSoap.SIGED_AUTHSoap" CodeBehind="SIGED_AUTHSoap.svc.cs" %>

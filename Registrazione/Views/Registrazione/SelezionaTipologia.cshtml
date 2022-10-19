@@ -1,0 +1,42 @@
+﻿@using static RegistrazioneSistemaUnico.Helpers.Helper;
+@using RegistrazioneSistemaUnico.Models.Forms;
+@{
+
+	ViewData["Title"] = "Home Page";
+	Dictionary<string, string> categorie = (Dictionary<string, string>)ViewData["IdCategoriaEnte"];
+	@model SelezionaEnteForm
+}
+@Html.Sommario("Si sono verificati i seguenti errori:")
+
+
+@using (Html.BeginForm())
+{
+
+	@if (Model.EnteTitolare == true)
+	{
+		<h2>Registrazione Rappresentante Legale nuovo Ente Titolare</h2>
+		<br />
+		@Html.InputFor(x => x.CodiceFiscaleEnte)
+
+		foreach (var categoria in categorie)
+		{
+			<button class="btn btn-primary col-md-3 col-sm-6" type="submit" name="IdCategoriaEnte" value="@categoria.Key">Ente @categoria.Value</button>
+			<br />
+		}
+	}
+	else
+	{
+		<h2>Registrazione Rappresentante Legale Ente di Accoglienza</h2>
+		<br />
+		@Html.HiddenFor(x => x.CodiceFiscaleEnte)
+
+		foreach (var categoria in categorie)
+		{
+			<button class="btn btn-primary col-md-3 col-sm-6" type="submit" name="IdCategoriaEnte" value="@categoria.Key">Ente @categoria.Value</button>
+			<br />
+		}
+
+	}
+
+	@Html.HiddenFor(x => x.EnteTitolare);
+}

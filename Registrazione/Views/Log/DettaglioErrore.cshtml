@@ -1,0 +1,26 @@
+﻿@using static RegistrazioneSistemaUnico.Helpers.Helper;
+@using RegistrazioneSistemaUnico.Data;
+@{
+	string error = ViewData["Error"] as string;
+	ViewData["Title"] = "Home Page";
+	@model Log
+}
+<h2>Dettagli log</h2>
+<p>Ora Evento: <strong>@Model.TimeStamp</strong></p>
+<p>Utente: <strong>@Model.Name</strong></p>
+<p>Codice Fiscale Utente: <strong>@Model.Username</strong></p>
+@if (@Model.Ente != null)
+{
+	<p>Ente: <strong>@Model.Ente</strong></p>
+}
+else if (@Model.CodiceFiscaleEnte != null)
+{
+	<p>Codcie Fiscale Ente: <strong>@Model.Ente</strong></p>
+}
+<p>Messaggio: <strong>@Model.Message</strong></p>
+<p>Dettaglio Errore: <strong>@Model.Exception</strong></p>
+<p></p>
+
+<br />
+<a class="btn btn-primary col-2" href="@Url.Action("Index")">Indietro</a>
+

@@ -1,0 +1,164 @@
+﻿@using static RegistrazioneSistemaUnico.Helpers.Helper;
+@using RegistrazioneSistemaUnico.Models.Forms;
+@{
+	string error = ViewData["Error"] as string;
+	FileForm formModel = ViewData["ModelFileForm"] as FileForm;
+	ViewData["Title"] = "Home Page";
+	@model Registrazione
+	bool variazione = Model.VariazioneRappresentanteLegale == true;
+
+}
+@if (!string.IsNullOrEmpty(error))
+{
+	<div class="alert alert-danger" role="danger">
+		Non è stato possibile presentare la domanda: @error
+	</div>
+}
+@if (!variazione)
+{
+
+	<h2>Riepilogo dati inseriti Ente @Model.TipoEnte</h2>
+	<p>Denominazione: <strong>@Model.Denominazione</strong></p>
+	<p>Codice Fiscale Ente: <strong>@Model.CodiceFiscaleEnte</strong></p>
+	<p>Codice Fiscale Rappresentente Legale: <strong>@Model.CodiceFiscaleRappresentanteLegale</strong></p>
+	<p>Data Nomina Rappresentante Legale: <strong>@Model.DataNominaRappresentanteLegale?.ToString("dd/MM/yyyy")</strong></p>
+	@if (Model?.DocumentoNomina?.Blob != null)
+	{
+		<p>Atto Nomina/Altro identificato con hash: <strong>@Model.DocumentoNomina?.Hash</strong></p>
+	}
+	<p>Tipologia Ente: <strong>@Model.Categoria?.Descrizione - @Model.TipologiaEnte.Descrizione</strong></p>
+	<p>Indirizzo sede Legale: <strong>@Model.Indirizzo</strong></p>
+	<p>E-mail: <strong>@Model.Email</strong></p>
+	<p>PEC: <strong>@Model.PEC</strong></p>
+	<p>Telefono: <strong>@Model.Telefono</strong></p>
+	<p>Sito: <strong><a href="@Model.Sito">@Model.Sito</a></strong></p>
+	<br />
+	<a class="btn btn-primary col-2" href="@Url.Action("Index")">Modifica</a>
+	<a class="btn btn-primary col-2" href="@Url.Action("Cancella")">Cancella</a>
+	<hr />
+	<h3 id="Presentazione">Completamento Registrazione Ente @Model.TipoEnte</h3>
+}
+else
+{
+	<h2>Riepilogo variazione Rappresentante Legale</h2>
+	<p>Denominazione Ente: <strong>@Model.Denominazione</strong></p>
+	<p>Codice Fiscale Ente: <strong>@Model.CodiceFiscaleEnte</strong></p>
+	<p>Codice Fiscale Nuovo Rappresentente Legale: <strong>@Model.CodiceFiscaleRappresentanteLegale</strong></p>
+	<p>Data Nomina Nuovo Rappresentante Legale: <strong>@Model.DataNominaRappresentanteLegale?.ToString("dd/MM/yyyy")</strong></p>
+	@if (Model?.DocumentoNomina?.Blob != null)
+	{
+<p>Atto Nomina/Altro identificato con hash: <strong>@Model.DocumentoNomina?.Hash</strong></p>
+	}
+	<br />
+	<a class="btn btn-primary col-2" href="@Url.Action("Index")">Modifica</a>
+	<a class="btn btn-primary col-2" href="@Url.Action("Cancella")">Cancella</a>
+	<hr />
+	<h3 id="Presentazione">Completamento Registrazione</h3>
+}
+
+
+@*@if (!string.IsNullOrEmpty(error))
+	{
+		<div id="alertMessage" class="alert alert-danger" role="danger">
+			@Html.Raw(error)
+		</div>
+	}*@
+@Html.Sommario(formModel)
+<div class="row">
+	<div class="col-12">
+		<div class="card-wrapper card-space">
+			<div class="card card-bg">
+				<div class="card-body">
+					<h5 class="card-title">Informativa Privacy</h5>
+					<div id="PrivacyText" class="card-text" style="max-height:10em; overflow-y:scroll;" tabindex="0">
+						<partial name="InformativaPrivacy" />
+					</div>
+					<a id="PrivacyReadMore" class="read-more" href="@Url.Action("Privacy","Home")" target="_blank" title="Dettaglio Privacy (Si apre in un'altra finestra)">
+						<span class="text">Leggi di più</span>
+						<svg class="icon">
+							<use xlink:href="#"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<form enctype="multipart/form-data" action="@Url.Action("Presenta")" method="post">
+
+	@Html.InputFor(formModel, x => x.DichiarazionePrivacy, tooltip: "Per abilitare occorre leggere completamente l'informativa della privacy")
+
+	@*@Html.InputFor(formModel, x => x.Consenso)*@
+
+	@Html.InputFor(formModel, x => x.DichiarazioneRappresentanteLegale)
+	<div id="tooltipWrapper" data-toggle="tooltip" title="È necessario accettare tutte le dichiarazioni per procedere">
+		<p>È necessario scaricare il documento, apporre la firma digitale e caricare il documento firmato.</p>
+		@*<form action="@Url.Action("Download")" method="get">
+				<button type="submit" id="ScaricaDocumento" class="btn btn-primary">Scarica Documento</button>
+
+			</form>*@
+		<button class="btn btn-primary col-md-3 col-sm-6" Id="Download" name="Download" value="true" type="submit">Scarica Documento</button>
+
+		<p>Selezione e caricamento documento</p>
+		@Html.InputFor(formModel, x => x.Documento)
+		<br />
+		<button id="InviaDocumento" class="btn btn-primary col-md-3 col-sm-6" type="submit">Invio Documento Firmato</button>
+
+	</div>
+
+	<input type="file" name="Documento2" id="Documento2" class="upload" />
+
+
+</form>
+@section Scripts{
+	<script type="text/javascript">
+		$("#Documento").change(function (e) {
+			var filename = $(e.currentTarget).val().split('\\').pop();
+			$("#Documento_Filename").text(filename);
+		});
+		$(document).ready(function () {
+			if ($('.summary').get(0)) {
+				$('#Presentazione').get(0).scrollIntoView();
+				window.scrollBy(0, -60);
+			}
+			if (!$("#DichiarazionePrivacy").is(":checked")) {
+				$("#DichiarazionePrivacy").prop("disabled", true);
+			}
+			$("#Consenso").change(Abilita);
+			$("#DichiarazionePrivacy").change(Abilita);
+			$("#DichiarazioneRappresentanteLegale").change(Abilita);
+			Abilita();
+
+		})
+		$("#PrivacyText").scroll(function (e) {
+			e.preventDefault();
+			var elem = $(this);
+			if (elem.scrollTop() > 0 &&
+				(elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight() + 2)) {
+				$("#DichiarazionePrivacy").prop("disabled", false);
+				$("#DichiarazionePrivacy").parent().tooltip('disable');
+
+			}
+		});
+		$("#PrivacyReadMore").click(function () {
+			$("#DichiarazionePrivacy").prop("disabled", false);
+			$("#DichiarazionePrivacy").parent().tooltip('disable');
+		});
+		function Abilita() {
+			if ($("#DichiarazionePrivacy").is(":checked") && $("#DichiarazioneRappresentanteLegale").is(":checked")) {
+				$("#Download").prop("disabled", false);
+				$("#Documento").prop("disabled", false);
+				$("#Documento_Label").removeClass("disabled");
+				$("#InviaDocumento").prop("disabled", false);
+				$("#tooltipWrapper").tooltip('disable');
+
+			} else {
+				$("#Download").prop("disabled", true);
+				$("#Documento").prop("disabled", true);
+				$("#Documento_Label").addClass("disabled");
+				$("#InviaDocumento").prop("disabled", true);
+				$("#tooltipWrapper").tooltip('enable');
+			}
+		}
+	</script>
+}

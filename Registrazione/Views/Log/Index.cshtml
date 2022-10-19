@@ -1,0 +1,99 @@
+﻿@using RegistrazioneSistemaUnico.Helpers;
+@using RegistrazioneSistemaUnico.Helpers.Grid;
+@using RegistrazioneSistemaUnico.Data;
+@using RegistrazioneSistemaUnico.Models.Forms;
+@{
+	ViewData["Title"] = "Home Page";
+	string LogDetail(object item)
+	{
+		if (item is Log log)
+		{
+			if (log.IdEventType == LogEvent.ERRORE)
+			{
+				return $"<a href=\"{@Url.Action("DettaglioErrore", "Log", new { Id = log.Id })}\"><svg class=\"icon icon-primary\"><use xlink:href=\"/bootstrap-italia/dist/svg/sprite.svg#it-search\"></use></svg></a>";
+			}
+			if (log.IdEventType == LogEvent.REGISTRAZIONE_EFFETTUATA)
+			{
+				return $"<a href=\"{@Url.Action("Dettaglio", "Log", new { Id = log.Id })}\"><svg class=\"icon icon-primary\"><use xlink:href=\"/bootstrap-italia/dist/svg/sprite.svg#it-search\"></use></svg></a>";
+			}
+			if (log.IdEventType == LogEvent.ERRORE_FIRMA && log.EntityId!=null)
+			{
+				return $"<a href=\"{@Url.Action("DettaglioDocumento", "Log", new { Id = log.EntityId })}\"><svg class=\"icon icon-primary\"><use xlink:href=\"/bootstrap-italia/dist/svg/sprite.svg#it-search\"></use></svg></a>";
+			}
+		}
+		return "";
+	}
+	string Nome(object item)
+	{
+		if (item is Log log)
+		{
+			return $"<div title=\"{log.Username}\">{log.Name}</div>";
+		}
+		return "";
+	}
+
+	string Ente(object item)
+	{
+		if (item is Log log)
+		{
+			if (log.Ente == null)
+			{
+				return log.CodiceFiscaleEnte;
+			}
+			else
+			{
+				return $"<div title=\"{log.CodiceFiscaleEnte}\">{log.Ente.Denominazione}</div>";
+			}
+		}
+		return "";
+	}
+
+	string errorMessage = TempData["Error"]?.ToString();
+	List<Column> customColums = new List<Column>(){
+		new Column(){
+			Name="Detail",
+			HeaderName="",
+			CustomResult=LogDetail
+		},
+		new Column(){
+			Name="Nome",
+			HeaderName="Utente",
+			CustomResult=Nome
+		},
+		new Column(){
+			Name="NomeEnte",
+			HeaderName="Ente",
+			CustomResult=Ente
+		}
+	};
+	GridOptions options = new GridOptions()
+	{
+		ColumnNames = "Detail,TimeStamp,Nome,NomeEnte,Voce",
+		CustomColumns = customColums
+	};
+
+	ResultList<Log> list = (ResultList<Log>)ViewData["List"];
+
+}
+@model LogForm
+
+<h4>Log delle attività sul Sistema Unico</h4>
+<br />
+@using (Html.BeginForm("Index", "Log"))
+{
+	<div class="row">
+		@Html.InputFor(x => x.DataDa, cssClass: "col-md-6")
+		@Html.InputFor(x => x.DataA, cssClass: "col-md-6")
+	</div>
+	<div class="row">
+		@Html.InputFor(x => x.NomeUtente, cssClass: "col-md-6")
+		@Html.InputFor(x => x.NomeEnte, cssClass: "col-md-6")
+	</div>
+	<div class="row">
+		@Html.ComboboxFor(x => x.IdEventType, cssClass: "col-md-6")
+	</div>
+	<button type="submit" class="btn btn-primary col-md-3 col-sm-6">Cerca</button>
+	<hr />
+	@Html.Grid(list, options);
+
+}

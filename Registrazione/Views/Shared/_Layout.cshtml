@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="it">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Accesso al Sistema Unico - @ViewData["Title"]</title>
+	<link href="~/bootstrap-italia/dist/css/bootstrap-italia.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="~/Chartjs/dist/Chart.css" />
+</head>
+<body>
+	<header class="it-header-wrapper it-header-sticky">
+		<div class="it-header-slim-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="it-header-slim-wrapper-content">
+							<a class="d-lg-block navbar-brand" href="https://www.politichegiovanili.gov.it/">Dipartimento per le Politiche Giovanili e il Servizio Civile Universale</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="it-nav-wrapper">
+			<div class="it-header-center-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="it-header-center-content-wrapper">
+								<div class="it-brand-wrapper">
+									<a href="@Url.Action("Index","Home")">
+										<img alt="Repubblica Italiana" src="~/Images/Logo.svg" class="icon"/>
+										<div class="it-brand-text">
+											<span class="LogoTitle">Dipartimento per le Politiche Giovanili e il Servizio Civile Universale</span>
+											<br />
+											<span class="LogoSubitle">Presidenza del Consiglio dei Ministri</span>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="it-header-navbar-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<nav class="navbar navbar-expand-lg has-megamenu">
+								<button aria-controls="nav10" aria-expanded="false" aria-label="Toggle navigation" class="custom-navbar-toggler" data-target="#nav10" type="button">
+									<svg class="icon">
+										<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-burger"></use>
+									</svg>
+								</button>
+								<div class="navbar-collapsable" id="nav10" style="display: none;">
+									<div class="overlay" style="display: none;"></div>
+									<div class="close-div sr-only">
+										<button class="btn close-menu" type="button">
+											<span class="it-close"></span>close
+										</button>
+									</div>
+									<div class="menu-wrapper">
+										<ul class="navbar-nav">
+											@if(User.Identity.IsAuthenticated)
+											{
+											<li class="nav-item ">
+												<a class="nav-link " href="@Url.Action("Index","Accesso")">
+													<span>Accesso</span>
+												</a>
+											</li>
+											}else{
+											<li class="nav-item ">
+												<a class="nav-link " href="@Url.Action("Index","Home")">
+													<span>Home</span>
+												</a>
+											</li>
+											}
+											<li class="nav-item ">
+												<a class="nav-link " href="@Url.Action("Privacy","Home")">
+													<span>Privacy</span>
+
+												</a>
+											</li>
+											@if (User.Identity.IsAuthenticated)
+											{
+											<li class="nav-item ">
+												<a class="nav-link " href="@Url.Action("Logoff","Accesso")">
+													<span>Esci</span>
+
+												</a>
+											</li>
+											}
+										</ul>
+
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			<br />
+			<br />
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="it-footer">
+		<div class="it-footer-main">
+			<div class="container">
+				<section>
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="it-brand-wrapper">
+								<a href="@Url.Action("Index","Home")">
+									<img alt="Repubblica Italiana" src="~/Images/Logo.svg" class="icon" />
+
+									<div class="it-brand-text">
+										<h2 class="no_toc">Dipartimento per le Politiche Giovanili e il Servizio Civile Universale</h2>
+										<h3 class="no_toc d-none d-md-block">Presidenza del Consiglio dei Ministri</h3>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="py-2 border-white border-top">
+					<div class="row">
+
+						<div class="col-lg-4 col-md-4 pb-4">
+							<h4>
+								Contatti
+							</h4>
+							<p>
+								Via della Ferratella in Laterano, 51<br />
+								00184 Roma
+							</p>
+							<h5>E-mail</h5>
+							<a class="list-item" href="mailto:urp@serviziocivile.it ">urp@serviziocivile.it</a>
+							
+							<h6>PEC</h6>
+							<a class="list-item" href="mailto:giovaniserviziocivilie@pec.governo.it">giovanieserviziocivile@pec.governo.it</a>
+
+						</div>
+						<div class="col-lg-4 col-md-4 pb-4">
+							<h4>
+								Assistenza Tecnica
+							</h4>
+							<h5>E-mail</h5>
+							<a class="list-item" href="mailto:heliosweb@serviziocivile.it ">heliosweb@serviziocivile.it</a>
+							<h6>Telefono</h6>
+							<a class="list-item" href="tel:+390667796175">+39 06 67796175</a>
+						</div>
+						<div class="col-lg-4 col-md-4 pb-4">
+							<h4>
+								Seguici su
+							</h4>
+							<ul class="list-inline text-left social">
+								<li class="list-inline-item">
+									<a class="p-2 text-white" href="#" target="_blank">
+										<svg class="icon icon-sm icon-white align-top">
+											<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-designers-italia"></use>
+										</svg>
+										<span class="sr-only">Designers Italia</span>
+									</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="p-2 text-white" href="#" target="_blank">
+										<svg class="icon icon-sm icon-white align-top">
+											<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-twitter"></use>
+										</svg>
+										<span class="sr-only">Twitter</span>
+									</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="p-2 text-white" href="#" target="_blank">
+										<svg class="icon icon-sm icon-white align-top">
+											<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-medium"></use>
+										</svg>
+										<span class="sr-only">Medium</span>
+									</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="p-2 text-white" href="#" target="_blank">
+										<svg class="icon icon-sm icon-white align-top">
+											<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-behance"></use>
+										</svg>
+										<span class="sr-only">Behance</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+		@*<div class="it-footer-small-prints clearfix">
+			<div class="container">
+				<h3 class="sr-only">Sezione Link Utili</h3>
+				<ul class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
+					<li class="list-inline-item">
+						<a href="#" title="Note Legali">Media policy</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="#" title="Note Legali">Note legali</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="#" title="Privacy-Cookies">Privacy policy</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="#" title="Mappa del sito">Mappa del sito</a>
+					</li>
+				</ul>
+			</div>
+		</div>*@
+	</footer>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js"></script>
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

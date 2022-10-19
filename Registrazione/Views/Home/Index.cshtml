@@ -1,0 +1,29 @@
+﻿@using RegistrazioneSistemaUnico.Data
+@{
+	ViewData["Title"] = "Home Page";
+
+	string errorMessage = TempData["Error"]?.ToString();
+}
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+	<div class="alert alert-warning" role="warning">
+		@errorMessage
+	</div>
+}
+
+<h1>Servizio civile universale - Accesso al Sistema Unico</h1>
+<p>Benvenuto nella piattaforma per l'accesso al Sistema Unico. L’accesso alla piattaforma deve avvenire <strong>esclusivamente con SPID</strong>, il Sistema Pubblico di Identità Digitale.</p>
+<a href="@Parametri.SpidPageUrl" class="btn btn-primary col-md-3 col-sm-6">Accesso con SPID</a>
+@if (Parametri.SimulazioneSPID=="true")
+{
+	<a href="@Url.Action("Spid","Accesso")" class="btn btn-primary col-md-3 col-sm-6">Simulazione SPID</a>
+}
+
+@*<form enctype="multipart/form-data" action="@Url.Action("CheckFirma")" method="post">
+		<input type="file" name="documento" id="documento" class="upload" />
+		<label for="documento">
+			<svg class="icon icon-sm" aria-hidden="true"><use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-upload"></use></svg>
+			<span>Carica file</span>
+		</label>
+		<button class="btn btn-primary" type="submit">Carica Documento Firmato</button>
+	</form>*@

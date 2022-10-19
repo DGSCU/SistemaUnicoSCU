@@ -1,0 +1,28 @@
+﻿@using static RegistrazioneSistemaUnico.Helpers.Helper;
+@using RegistrazioneSistemaUnico.Models.Forms;
+@{
+
+	ViewData["Title"] = "Home Page";
+	Dictionary<string, string> categorie = (Dictionary<string, string>)ViewData["IdCategoriaEnte"];
+	@model VariazioneRappresentanteLegale
+}
+<div class="alert alert-warning" role="warning">
+	Attenzione, per questo Ente risulta un Rappresentante Legale diverso. Si sta procedendo alla variazione del Rappresentente Legale.
+</div>
+@Html.Sommario("Si sono verificati i seguenti errori:")
+
+<h3>Inserimento dei dati del nuovo Rappresentante Legale</h3>
+<br />
+@using (Html.BeginForm())
+{
+	<div class="row">
+		@Html.InputFor(x => x.CodiceFiscaleEnte, "col-md-6", readOnly: true, showRequiredOnLabel: false)
+		@Html.InputFor(x => x.Denominazione, "col-md-6", readOnly: true, showRequiredOnLabel: false)
+	</div>
+	<div class="row">
+		@Html.InputFor(x => x.CodiceFiscaleRappresentanteLegale, cssClass: "col-md-6")
+		@Html.InputFor(x => x.DataNominaRappresentanteLegale, cssClass: "col-md-6")
+	</div>
+	<a href="@Url.Action("Index","Accesso")" class="btn btn-primary col-md-3 col-sm-6">Indietro</a>
+	<button type="submit" class="btn btn-primary col-md-3 col-sm-6">Avanti</button>
+}
