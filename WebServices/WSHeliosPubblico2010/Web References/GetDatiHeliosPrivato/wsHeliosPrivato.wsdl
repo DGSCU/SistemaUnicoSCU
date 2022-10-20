@@ -1,0 +1,2965 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="EseguiAutenticazioneVolontario_NEW">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strTipoAutenticazione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strUserid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiAutenticazioneVolontario_NEWResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiAutenticazioneVolontario_NEWResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiModificaPasswordDOL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUsernameCrypt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPasswordCrypt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVecchiaPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovaPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiModificaPasswordDOLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiModificaPasswordDOLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiResetPasswordDOL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strReturnUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiResetPasswordDOLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiResetPasswordDOLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaEnti">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strRegione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strProvincia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strComune" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTipoEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCompentenza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strClasse" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDenominazioneEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceEnte" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaEntiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaEntiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaEntiSCU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strRegione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strProvincia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strComune" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTipoEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCompentenza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strClasse" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDenominazioneEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceEnte" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaEntiSCUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaEntiSCUResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaEntiSCU_NEW">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strLocalizzazione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNazione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strRegione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strProvincia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strComune" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strSezione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDenominazioneEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTitolareAccoglienza" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaEntiSCU_NEWResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaEntiSCU_NEWResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiElencoSediEnteSCU_NEW">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strLocalizzazione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNazione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strRegione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strProvincia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strComune" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceEnte" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiElencoSediEnteSCU_NEWResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiElencoSediEnteSCU_NEWResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiElencoEntiAccoglienzaEnteSCU_NEW">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strLocalizzazione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNazione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strRegione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strProvincia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strComune" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceEnteTitolare" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiElencoEntiAccoglienzaEnteSCU_NEWResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiElencoEntiAccoglienzaEnteSCU_NEWResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaSezioni_NEW">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaSezioni_NEWResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaSezioni_NEWResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaClassi">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaClassiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaClassiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaClassiSCU">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaClassiSCUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaClassiSCUResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaSettoreDiIntervento">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaSettoreDiInterventoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaSettoreDiInterventoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaNazioniAccreditamentoSCU_NEW">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaNazioniAccreditamentoSCU_NEWResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaNazioniAccreditamentoSCU_NEWResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaGeografico">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaGeograficoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaGeograficoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaGeograficoDomicilio">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaGeograficoDomicilioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaGeograficoDomicilioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaContatori">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaContatoriResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaContatoriResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiAutenticazioneVolontario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiAutenticazioneVolontarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiAutenticazioneVolontarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaCandidatiPerEvento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="annoEvento" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaCandidatiPerEventoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaCandidatiPerEventoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaVotiPerEvento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="annoEvento" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaVotiPerEventoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaVotiPerEventoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiModificaPwdVolontario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVecchiaPWD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovaPWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiModificaPwdVolontarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiModificaPwdVolontarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaStatiAttestato">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaStatiAttestatoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRichiestaStatiAttestatoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaAttestato">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaAttestatoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRichiestaAttestatoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaProgetto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTitolo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strRegione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strProvincia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strComune" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strSettore" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strArea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGazzetta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCompetenzaEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCompetenzaProgetto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTipoProgetto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strMisure" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDurata" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGiovaniMinoriOpportunita" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strEsteroUE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTutoraggio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strFAMI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceProgetto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDigitale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAmbientale" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaProgettoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaProgettoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaDettaglioEnte">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strRegione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strProvincia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strComune" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaDettaglioEnteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaDettaglioEnteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaDatiVolontario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaDatiVolontarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRichiestaDatiVolontarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRecuperoPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCodiceVol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRecuperoPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRecuperoPasswordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaModificaDatiVolontario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovaEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovoTelefono" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovoIBAN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovoSWIFT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovaProvinciaDomicilio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovoComuneDomicilio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovoIndirizzoDomicilio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovoCivicoDomicilio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNuovoCAPDomicilio" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaModificaDatiVolontarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRichiestaModificaDatiVolontarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaPagamenti">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaPagamentiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaPagamentiResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiModificaStatoQuestionario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCodVol" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="intStatoQuestionario" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiModificaStatoQuestionarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiModificaStatoQuestionarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaContratto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaContrattoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRichiestaContrattoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiUploadContrattoVolontario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="File" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NomeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiUploadContrattoVolontarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiUploadContrattoVolontarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaObiettiviProgrammi">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaObiettiviProgrammiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaObiettiviProgrammiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRicercaAmbitiProgrammi">
+        <s:complexType />
+      </s:element>
+      <s:element name="EseguiRicercaAmbitiProgrammiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRicercaAmbitiProgrammiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaCertificatoServizioSvolto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPWD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strSoloVerifica" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EseguiRichiestaCertificatoServizioSvoltoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EseguiRichiestaCertificatoServizioSvoltoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="EseguiAutenticazioneVolontario_NEWSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiAutenticazioneVolontario_NEW" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontario_NEWSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiAutenticazioneVolontario_NEWResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPasswordDOLSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiModificaPasswordDOL" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPasswordDOLSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiModificaPasswordDOLResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiResetPasswordDOLSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiResetPasswordDOL" />
+  </wsdl:message>
+  <wsdl:message name="EseguiResetPasswordDOLSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiResetPasswordDOLResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaEnti" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaEntiResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCUSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaEntiSCU" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCUSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaEntiSCUResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCU_NEWSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaEntiSCU_NEW" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCU_NEWSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaEntiSCU_NEWResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoSediEnteSCU_NEWSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiElencoSediEnteSCU_NEW" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoSediEnteSCU_NEWSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiElencoSediEnteSCU_NEWResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoEntiAccoglienzaEnteSCU_NEWSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiElencoEntiAccoglienzaEnteSCU_NEW" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoEntiAccoglienzaEnteSCU_NEWSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiElencoEntiAccoglienzaEnteSCU_NEWResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaSezioni_NEWSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaSezioni_NEW" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaSezioni_NEWSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaSezioni_NEWResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaClassiSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaClassi" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaClassiSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaClassiResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaClassiSCUSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaClassiSCU" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaClassiSCUSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaClassiSCUResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaSettoreDiInterventoSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaSettoreDiIntervento" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaSettoreDiInterventoSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaSettoreDiInterventoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaNazioniAccreditamentoSCU_NEWSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaNazioniAccreditamentoSCU_NEW" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaNazioniAccreditamentoSCU_NEWSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaNazioniAccreditamentoSCU_NEWResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaGeograficoSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaGeografico" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaGeograficoSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaGeograficoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaGeograficoDomicilioSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaGeograficoDomicilio" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaGeograficoDomicilioSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaGeograficoDomicilioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaContatoriSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaContatori" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaContatoriSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaContatoriResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontarioSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiAutenticazioneVolontario" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontarioSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiAutenticazioneVolontarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaCandidatiPerEventoSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaCandidatiPerEvento" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaCandidatiPerEventoSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaCandidatiPerEventoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaVotiPerEventoSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaVotiPerEvento" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaVotiPerEventoSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaVotiPerEventoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPwdVolontarioSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiModificaPwdVolontario" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPwdVolontarioSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiModificaPwdVolontarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaStatiAttestatoSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaStatiAttestato" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaStatiAttestatoSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaStatiAttestatoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaAttestatoSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaAttestato" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaAttestatoSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaAttestatoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaProgettoSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaProgetto" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaProgettoSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaProgettoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaDettaglioEnteSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaDettaglioEnte" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaDettaglioEnteSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaDettaglioEnteResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaDatiVolontarioSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaDatiVolontario" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaDatiVolontarioSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaDatiVolontarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRecuperoPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRecuperoPassword" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRecuperoPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRecuperoPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaModificaDatiVolontarioSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaModificaDatiVolontario" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaModificaDatiVolontarioSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaModificaDatiVolontarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaPagamentiSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaPagamenti" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaPagamentiSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaPagamentiResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaStatoQuestionarioSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiModificaStatoQuestionario" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaStatoQuestionarioSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiModificaStatoQuestionarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaContrattoSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaContratto" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaContrattoSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaContrattoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiUploadContrattoVolontarioSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiUploadContrattoVolontario" />
+  </wsdl:message>
+  <wsdl:message name="EseguiUploadContrattoVolontarioSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiUploadContrattoVolontarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaObiettiviProgrammiSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaObiettiviProgrammi" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaObiettiviProgrammiSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaObiettiviProgrammiResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaAmbitiProgrammiSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaAmbitiProgrammi" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaAmbitiProgrammiSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRicercaAmbitiProgrammiResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaCertificatoServizioSvoltoSoapIn">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaCertificatoServizioSvolto" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaCertificatoServizioSvoltoSoapOut">
+    <wsdl:part name="parameters" element="tns:EseguiRichiestaCertificatoServizioSvoltoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontario_NEWHttpGetIn">
+    <wsdl:part name="strTipoAutenticazione" type="s:string" />
+    <wsdl:part name="strToken" type="s:string" />
+    <wsdl:part name="strUserid" type="s:string" />
+    <wsdl:part name="strPassword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontario_NEWHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPasswordDOLHttpGetIn">
+    <wsdl:part name="strUsernameCrypt" type="s:string" />
+    <wsdl:part name="strPasswordCrypt" type="s:string" />
+    <wsdl:part name="strVecchiaPassword" type="s:string" />
+    <wsdl:part name="strNuovaPassword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPasswordDOLHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiResetPasswordDOLHttpGetIn">
+    <wsdl:part name="strCodiceFiscale" type="s:string" />
+    <wsdl:part name="strReturnUrl" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiResetPasswordDOLHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiHttpGetIn">
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strTipoEnte" type="s:string" />
+    <wsdl:part name="strCompentenza" type="s:string" />
+    <wsdl:part name="strClasse" type="s:string" />
+    <wsdl:part name="strDenominazioneEnte" type="s:string" />
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCUHttpGetIn">
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strTipoEnte" type="s:string" />
+    <wsdl:part name="strCompentenza" type="s:string" />
+    <wsdl:part name="strClasse" type="s:string" />
+    <wsdl:part name="strDenominazioneEnte" type="s:string" />
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCUHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCU_NEWHttpGetIn">
+    <wsdl:part name="strLocalizzazione" type="s:string" />
+    <wsdl:part name="strNazione" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strSezione" type="s:string" />
+    <wsdl:part name="strDenominazioneEnte" type="s:string" />
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+    <wsdl:part name="strTitolareAccoglienza" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCU_NEWHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoSediEnteSCU_NEWHttpGetIn">
+    <wsdl:part name="strLocalizzazione" type="s:string" />
+    <wsdl:part name="strNazione" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoSediEnteSCU_NEWHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoEntiAccoglienzaEnteSCU_NEWHttpGetIn">
+    <wsdl:part name="strLocalizzazione" type="s:string" />
+    <wsdl:part name="strNazione" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strCodiceEnteTitolare" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoEntiAccoglienzaEnteSCU_NEWHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaSezioni_NEWHttpGetIn" />
+  <wsdl:message name="EseguiRicercaSezioni_NEWHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaClassiHttpGetIn" />
+  <wsdl:message name="EseguiRicercaClassiHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaClassiSCUHttpGetIn" />
+  <wsdl:message name="EseguiRicercaClassiSCUHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaSettoreDiInterventoHttpGetIn" />
+  <wsdl:message name="EseguiRicercaSettoreDiInterventoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaNazioniAccreditamentoSCU_NEWHttpGetIn" />
+  <wsdl:message name="EseguiRicercaNazioniAccreditamentoSCU_NEWHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaGeograficoHttpGetIn" />
+  <wsdl:message name="EseguiRicercaGeograficoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaGeograficoDomicilioHttpGetIn" />
+  <wsdl:message name="EseguiRicercaGeograficoDomicilioHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaContatoriHttpGetIn" />
+  <wsdl:message name="EseguiRicercaContatoriHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontarioHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaCandidatiPerEventoHttpGetIn">
+    <wsdl:part name="annoEvento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaCandidatiPerEventoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaVotiPerEventoHttpGetIn">
+    <wsdl:part name="annoEvento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaVotiPerEventoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPwdVolontarioHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strVecchiaPWD" type="s:string" />
+    <wsdl:part name="strNuovaPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPwdVolontarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaStatiAttestatoHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaStatiAttestatoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaAttestatoHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaAttestatoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaProgettoHttpGetIn">
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+    <wsdl:part name="strEnte" type="s:string" />
+    <wsdl:part name="strTitolo" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strSettore" type="s:string" />
+    <wsdl:part name="strArea" type="s:string" />
+    <wsdl:part name="strGazzetta" type="s:string" />
+    <wsdl:part name="strCompetenzaEnte" type="s:string" />
+    <wsdl:part name="strCompetenzaProgetto" type="s:string" />
+    <wsdl:part name="strTipoProgetto" type="s:string" />
+    <wsdl:part name="strMisure" type="s:string" />
+    <wsdl:part name="strDurata" type="s:string" />
+    <wsdl:part name="strGiovaniMinoriOpportunita" type="s:string" />
+    <wsdl:part name="strEsteroUE" type="s:string" />
+    <wsdl:part name="strTutoraggio" type="s:string" />
+    <wsdl:part name="strFAMI" type="s:string" />
+    <wsdl:part name="strCodiceProgetto" type="s:string" />
+    <wsdl:part name="strDigitale" type="s:string" />
+    <wsdl:part name="strAmbientale" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaProgettoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaDettaglioEnteHttpGetIn">
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaDettaglioEnteHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaDatiVolontarioHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaDatiVolontarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRecuperoPasswordHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strCodiceVol" type="s:string" />
+    <wsdl:part name="strEmail" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRecuperoPasswordHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaModificaDatiVolontarioHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+    <wsdl:part name="strNuovaEmail" type="s:string" />
+    <wsdl:part name="strNuovoTelefono" type="s:string" />
+    <wsdl:part name="strNuovoIBAN" type="s:string" />
+    <wsdl:part name="strNuovoSWIFT" type="s:string" />
+    <wsdl:part name="strNuovaProvinciaDomicilio" type="s:string" />
+    <wsdl:part name="strNuovoComuneDomicilio" type="s:string" />
+    <wsdl:part name="strNuovoIndirizzoDomicilio" type="s:string" />
+    <wsdl:part name="strNuovoCivicoDomicilio" type="s:string" />
+    <wsdl:part name="strNuovoCAPDomicilio" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaModificaDatiVolontarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaPagamentiHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaPagamentiHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaStatoQuestionarioHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+    <wsdl:part name="strCodVol" type="s:string" />
+    <wsdl:part name="intStatoQuestionario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaStatoQuestionarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaContrattoHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaContrattoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiUploadContrattoVolontarioHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+    <wsdl:part name="File" type="s:string" />
+    <wsdl:part name="NomeFile" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiUploadContrattoVolontarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaObiettiviProgrammiHttpGetIn" />
+  <wsdl:message name="EseguiRicercaObiettiviProgrammiHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaAmbitiProgrammiHttpGetIn" />
+  <wsdl:message name="EseguiRicercaAmbitiProgrammiHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaCertificatoServizioSvoltoHttpGetIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+    <wsdl:part name="strSoloVerifica" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaCertificatoServizioSvoltoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontario_NEWHttpPostIn">
+    <wsdl:part name="strTipoAutenticazione" type="s:string" />
+    <wsdl:part name="strToken" type="s:string" />
+    <wsdl:part name="strUserid" type="s:string" />
+    <wsdl:part name="strPassword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontario_NEWHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPasswordDOLHttpPostIn">
+    <wsdl:part name="strUsernameCrypt" type="s:string" />
+    <wsdl:part name="strPasswordCrypt" type="s:string" />
+    <wsdl:part name="strVecchiaPassword" type="s:string" />
+    <wsdl:part name="strNuovaPassword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPasswordDOLHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiResetPasswordDOLHttpPostIn">
+    <wsdl:part name="strCodiceFiscale" type="s:string" />
+    <wsdl:part name="strReturnUrl" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiResetPasswordDOLHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiHttpPostIn">
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strTipoEnte" type="s:string" />
+    <wsdl:part name="strCompentenza" type="s:string" />
+    <wsdl:part name="strClasse" type="s:string" />
+    <wsdl:part name="strDenominazioneEnte" type="s:string" />
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCUHttpPostIn">
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strTipoEnte" type="s:string" />
+    <wsdl:part name="strCompentenza" type="s:string" />
+    <wsdl:part name="strClasse" type="s:string" />
+    <wsdl:part name="strDenominazioneEnte" type="s:string" />
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCUHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCU_NEWHttpPostIn">
+    <wsdl:part name="strLocalizzazione" type="s:string" />
+    <wsdl:part name="strNazione" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strSezione" type="s:string" />
+    <wsdl:part name="strDenominazioneEnte" type="s:string" />
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+    <wsdl:part name="strTitolareAccoglienza" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaEntiSCU_NEWHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoSediEnteSCU_NEWHttpPostIn">
+    <wsdl:part name="strLocalizzazione" type="s:string" />
+    <wsdl:part name="strNazione" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoSediEnteSCU_NEWHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoEntiAccoglienzaEnteSCU_NEWHttpPostIn">
+    <wsdl:part name="strLocalizzazione" type="s:string" />
+    <wsdl:part name="strNazione" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strCodiceEnteTitolare" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiElencoEntiAccoglienzaEnteSCU_NEWHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaSezioni_NEWHttpPostIn" />
+  <wsdl:message name="EseguiRicercaSezioni_NEWHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaClassiHttpPostIn" />
+  <wsdl:message name="EseguiRicercaClassiHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaClassiSCUHttpPostIn" />
+  <wsdl:message name="EseguiRicercaClassiSCUHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaSettoreDiInterventoHttpPostIn" />
+  <wsdl:message name="EseguiRicercaSettoreDiInterventoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaNazioniAccreditamentoSCU_NEWHttpPostIn" />
+  <wsdl:message name="EseguiRicercaNazioniAccreditamentoSCU_NEWHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaGeograficoHttpPostIn" />
+  <wsdl:message name="EseguiRicercaGeograficoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaGeograficoDomicilioHttpPostIn" />
+  <wsdl:message name="EseguiRicercaGeograficoDomicilioHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaContatoriHttpPostIn" />
+  <wsdl:message name="EseguiRicercaContatoriHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontarioHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiAutenticazioneVolontarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaCandidatiPerEventoHttpPostIn">
+    <wsdl:part name="annoEvento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaCandidatiPerEventoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaVotiPerEventoHttpPostIn">
+    <wsdl:part name="annoEvento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaVotiPerEventoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPwdVolontarioHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strVecchiaPWD" type="s:string" />
+    <wsdl:part name="strNuovaPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaPwdVolontarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaStatiAttestatoHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaStatiAttestatoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaAttestatoHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaAttestatoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaProgettoHttpPostIn">
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+    <wsdl:part name="strEnte" type="s:string" />
+    <wsdl:part name="strTitolo" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+    <wsdl:part name="strSettore" type="s:string" />
+    <wsdl:part name="strArea" type="s:string" />
+    <wsdl:part name="strGazzetta" type="s:string" />
+    <wsdl:part name="strCompetenzaEnte" type="s:string" />
+    <wsdl:part name="strCompetenzaProgetto" type="s:string" />
+    <wsdl:part name="strTipoProgetto" type="s:string" />
+    <wsdl:part name="strMisure" type="s:string" />
+    <wsdl:part name="strDurata" type="s:string" />
+    <wsdl:part name="strGiovaniMinoriOpportunita" type="s:string" />
+    <wsdl:part name="strEsteroUE" type="s:string" />
+    <wsdl:part name="strTutoraggio" type="s:string" />
+    <wsdl:part name="strFAMI" type="s:string" />
+    <wsdl:part name="strCodiceProgetto" type="s:string" />
+    <wsdl:part name="strDigitale" type="s:string" />
+    <wsdl:part name="strAmbientale" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaProgettoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaDettaglioEnteHttpPostIn">
+    <wsdl:part name="strCodiceEnte" type="s:string" />
+    <wsdl:part name="strRegione" type="s:string" />
+    <wsdl:part name="strProvincia" type="s:string" />
+    <wsdl:part name="strComune" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaDettaglioEnteHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaDatiVolontarioHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaDatiVolontarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRecuperoPasswordHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strCodiceVol" type="s:string" />
+    <wsdl:part name="strEmail" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRecuperoPasswordHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaModificaDatiVolontarioHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+    <wsdl:part name="strNuovaEmail" type="s:string" />
+    <wsdl:part name="strNuovoTelefono" type="s:string" />
+    <wsdl:part name="strNuovoIBAN" type="s:string" />
+    <wsdl:part name="strNuovoSWIFT" type="s:string" />
+    <wsdl:part name="strNuovaProvinciaDomicilio" type="s:string" />
+    <wsdl:part name="strNuovoComuneDomicilio" type="s:string" />
+    <wsdl:part name="strNuovoIndirizzoDomicilio" type="s:string" />
+    <wsdl:part name="strNuovoCivicoDomicilio" type="s:string" />
+    <wsdl:part name="strNuovoCAPDomicilio" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaModificaDatiVolontarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaPagamentiHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaPagamentiHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaStatoQuestionarioHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+    <wsdl:part name="strCodVol" type="s:string" />
+    <wsdl:part name="intStatoQuestionario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiModificaStatoQuestionarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaContrattoHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaContrattoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiUploadContrattoVolontarioHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+    <wsdl:part name="File" type="s:string" />
+    <wsdl:part name="NomeFile" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiUploadContrattoVolontarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaObiettiviProgrammiHttpPostIn" />
+  <wsdl:message name="EseguiRicercaObiettiviProgrammiHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRicercaAmbitiProgrammiHttpPostIn" />
+  <wsdl:message name="EseguiRicercaAmbitiProgrammiHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaCertificatoServizioSvoltoHttpPostIn">
+    <wsdl:part name="strUserName" type="s:string" />
+    <wsdl:part name="strPWD" type="s:string" />
+    <wsdl:part name="strSoloVerifica" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EseguiRichiestaCertificatoServizioSvoltoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="wsHeliosPrivatoSoap">
+    <wsdl:operation name="EseguiAutenticazioneVolontario_NEW">
+      <wsdl:input message="tns:EseguiAutenticazioneVolontario_NEWSoapIn" />
+      <wsdl:output message="tns:EseguiAutenticazioneVolontario_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPasswordDOL">
+      <wsdl:input message="tns:EseguiModificaPasswordDOLSoapIn" />
+      <wsdl:output message="tns:EseguiModificaPasswordDOLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiResetPasswordDOL">
+      <wsdl:input message="tns:EseguiResetPasswordDOLSoapIn" />
+      <wsdl:output message="tns:EseguiResetPasswordDOLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEnti">
+      <wsdl:input message="tns:EseguiRicercaEntiSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaEntiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU">
+      <wsdl:input message="tns:EseguiRicercaEntiSCUSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaEntiSCUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU_NEW">
+      <wsdl:input message="tns:EseguiRicercaEntiSCU_NEWSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaEntiSCU_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoSediEnteSCU_NEW">
+      <wsdl:input message="tns:EseguiElencoSediEnteSCU_NEWSoapIn" />
+      <wsdl:output message="tns:EseguiElencoSediEnteSCU_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoEntiAccoglienzaEnteSCU_NEW">
+      <wsdl:input message="tns:EseguiElencoEntiAccoglienzaEnteSCU_NEWSoapIn" />
+      <wsdl:output message="tns:EseguiElencoEntiAccoglienzaEnteSCU_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSezioni_NEW">
+      <wsdl:input message="tns:EseguiRicercaSezioni_NEWSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaSezioni_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassi">
+      <wsdl:input message="tns:EseguiRicercaClassiSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaClassiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassiSCU">
+      <wsdl:input message="tns:EseguiRicercaClassiSCUSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaClassiSCUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSettoreDiIntervento">
+      <wsdl:input message="tns:EseguiRicercaSettoreDiInterventoSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaSettoreDiInterventoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaNazioniAccreditamentoSCU_NEW">
+      <wsdl:input message="tns:EseguiRicercaNazioniAccreditamentoSCU_NEWSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaNazioniAccreditamentoSCU_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeografico">
+      <wsdl:input message="tns:EseguiRicercaGeograficoSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaGeograficoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeograficoDomicilio">
+      <wsdl:input message="tns:EseguiRicercaGeograficoDomicilioSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaGeograficoDomicilioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaContatori">
+      <wsdl:input message="tns:EseguiRicercaContatoriSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaContatoriSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiAutenticazioneVolontario">
+      <wsdl:input message="tns:EseguiAutenticazioneVolontarioSoapIn" />
+      <wsdl:output message="tns:EseguiAutenticazioneVolontarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaCandidatiPerEvento">
+      <wsdl:input message="tns:EseguiRicercaCandidatiPerEventoSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaCandidatiPerEventoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaVotiPerEvento">
+      <wsdl:input message="tns:EseguiRicercaVotiPerEventoSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaVotiPerEventoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPwdVolontario">
+      <wsdl:input message="tns:EseguiModificaPwdVolontarioSoapIn" />
+      <wsdl:output message="tns:EseguiModificaPwdVolontarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaStatiAttestato">
+      <wsdl:input message="tns:EseguiRichiestaStatiAttestatoSoapIn" />
+      <wsdl:output message="tns:EseguiRichiestaStatiAttestatoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaAttestato">
+      <wsdl:input message="tns:EseguiRichiestaAttestatoSoapIn" />
+      <wsdl:output message="tns:EseguiRichiestaAttestatoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaProgetto">
+      <wsdl:input message="tns:EseguiRicercaProgettoSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaProgettoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaDettaglioEnte">
+      <wsdl:input message="tns:EseguiRicercaDettaglioEnteSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaDettaglioEnteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaDatiVolontario">
+      <wsdl:input message="tns:EseguiRichiestaDatiVolontarioSoapIn" />
+      <wsdl:output message="tns:EseguiRichiestaDatiVolontarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRecuperoPassword">
+      <wsdl:input message="tns:EseguiRecuperoPasswordSoapIn" />
+      <wsdl:output message="tns:EseguiRecuperoPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaModificaDatiVolontario">
+      <wsdl:input message="tns:EseguiRichiestaModificaDatiVolontarioSoapIn" />
+      <wsdl:output message="tns:EseguiRichiestaModificaDatiVolontarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaPagamenti">
+      <wsdl:input message="tns:EseguiRicercaPagamentiSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaPagamentiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaStatoQuestionario">
+      <wsdl:input message="tns:EseguiModificaStatoQuestionarioSoapIn" />
+      <wsdl:output message="tns:EseguiModificaStatoQuestionarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaContratto">
+      <wsdl:input message="tns:EseguiRichiestaContrattoSoapIn" />
+      <wsdl:output message="tns:EseguiRichiestaContrattoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiUploadContrattoVolontario">
+      <wsdl:input message="tns:EseguiUploadContrattoVolontarioSoapIn" />
+      <wsdl:output message="tns:EseguiUploadContrattoVolontarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaObiettiviProgrammi">
+      <wsdl:input message="tns:EseguiRicercaObiettiviProgrammiSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaObiettiviProgrammiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaAmbitiProgrammi">
+      <wsdl:input message="tns:EseguiRicercaAmbitiProgrammiSoapIn" />
+      <wsdl:output message="tns:EseguiRicercaAmbitiProgrammiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaCertificatoServizioSvolto">
+      <wsdl:input message="tns:EseguiRichiestaCertificatoServizioSvoltoSoapIn" />
+      <wsdl:output message="tns:EseguiRichiestaCertificatoServizioSvoltoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="wsHeliosPrivatoHttpGet">
+    <wsdl:operation name="EseguiAutenticazioneVolontario_NEW">
+      <wsdl:input message="tns:EseguiAutenticazioneVolontario_NEWHttpGetIn" />
+      <wsdl:output message="tns:EseguiAutenticazioneVolontario_NEWHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPasswordDOL">
+      <wsdl:input message="tns:EseguiModificaPasswordDOLHttpGetIn" />
+      <wsdl:output message="tns:EseguiModificaPasswordDOLHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiResetPasswordDOL">
+      <wsdl:input message="tns:EseguiResetPasswordDOLHttpGetIn" />
+      <wsdl:output message="tns:EseguiResetPasswordDOLHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEnti">
+      <wsdl:input message="tns:EseguiRicercaEntiHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaEntiHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU">
+      <wsdl:input message="tns:EseguiRicercaEntiSCUHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaEntiSCUHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU_NEW">
+      <wsdl:input message="tns:EseguiRicercaEntiSCU_NEWHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaEntiSCU_NEWHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoSediEnteSCU_NEW">
+      <wsdl:input message="tns:EseguiElencoSediEnteSCU_NEWHttpGetIn" />
+      <wsdl:output message="tns:EseguiElencoSediEnteSCU_NEWHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoEntiAccoglienzaEnteSCU_NEW">
+      <wsdl:input message="tns:EseguiElencoEntiAccoglienzaEnteSCU_NEWHttpGetIn" />
+      <wsdl:output message="tns:EseguiElencoEntiAccoglienzaEnteSCU_NEWHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSezioni_NEW">
+      <wsdl:input message="tns:EseguiRicercaSezioni_NEWHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaSezioni_NEWHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassi">
+      <wsdl:input message="tns:EseguiRicercaClassiHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaClassiHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassiSCU">
+      <wsdl:input message="tns:EseguiRicercaClassiSCUHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaClassiSCUHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSettoreDiIntervento">
+      <wsdl:input message="tns:EseguiRicercaSettoreDiInterventoHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaSettoreDiInterventoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaNazioniAccreditamentoSCU_NEW">
+      <wsdl:input message="tns:EseguiRicercaNazioniAccreditamentoSCU_NEWHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaNazioniAccreditamentoSCU_NEWHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeografico">
+      <wsdl:input message="tns:EseguiRicercaGeograficoHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaGeograficoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeograficoDomicilio">
+      <wsdl:input message="tns:EseguiRicercaGeograficoDomicilioHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaGeograficoDomicilioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaContatori">
+      <wsdl:input message="tns:EseguiRicercaContatoriHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaContatoriHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiAutenticazioneVolontario">
+      <wsdl:input message="tns:EseguiAutenticazioneVolontarioHttpGetIn" />
+      <wsdl:output message="tns:EseguiAutenticazioneVolontarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaCandidatiPerEvento">
+      <wsdl:input message="tns:EseguiRicercaCandidatiPerEventoHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaCandidatiPerEventoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaVotiPerEvento">
+      <wsdl:input message="tns:EseguiRicercaVotiPerEventoHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaVotiPerEventoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPwdVolontario">
+      <wsdl:input message="tns:EseguiModificaPwdVolontarioHttpGetIn" />
+      <wsdl:output message="tns:EseguiModificaPwdVolontarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaStatiAttestato">
+      <wsdl:input message="tns:EseguiRichiestaStatiAttestatoHttpGetIn" />
+      <wsdl:output message="tns:EseguiRichiestaStatiAttestatoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaAttestato">
+      <wsdl:input message="tns:EseguiRichiestaAttestatoHttpGetIn" />
+      <wsdl:output message="tns:EseguiRichiestaAttestatoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaProgetto">
+      <wsdl:input message="tns:EseguiRicercaProgettoHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaProgettoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaDettaglioEnte">
+      <wsdl:input message="tns:EseguiRicercaDettaglioEnteHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaDettaglioEnteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaDatiVolontario">
+      <wsdl:input message="tns:EseguiRichiestaDatiVolontarioHttpGetIn" />
+      <wsdl:output message="tns:EseguiRichiestaDatiVolontarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRecuperoPassword">
+      <wsdl:input message="tns:EseguiRecuperoPasswordHttpGetIn" />
+      <wsdl:output message="tns:EseguiRecuperoPasswordHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaModificaDatiVolontario">
+      <wsdl:input message="tns:EseguiRichiestaModificaDatiVolontarioHttpGetIn" />
+      <wsdl:output message="tns:EseguiRichiestaModificaDatiVolontarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaPagamenti">
+      <wsdl:input message="tns:EseguiRicercaPagamentiHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaPagamentiHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaStatoQuestionario">
+      <wsdl:input message="tns:EseguiModificaStatoQuestionarioHttpGetIn" />
+      <wsdl:output message="tns:EseguiModificaStatoQuestionarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaContratto">
+      <wsdl:input message="tns:EseguiRichiestaContrattoHttpGetIn" />
+      <wsdl:output message="tns:EseguiRichiestaContrattoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiUploadContrattoVolontario">
+      <wsdl:input message="tns:EseguiUploadContrattoVolontarioHttpGetIn" />
+      <wsdl:output message="tns:EseguiUploadContrattoVolontarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaObiettiviProgrammi">
+      <wsdl:input message="tns:EseguiRicercaObiettiviProgrammiHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaObiettiviProgrammiHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaAmbitiProgrammi">
+      <wsdl:input message="tns:EseguiRicercaAmbitiProgrammiHttpGetIn" />
+      <wsdl:output message="tns:EseguiRicercaAmbitiProgrammiHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaCertificatoServizioSvolto">
+      <wsdl:input message="tns:EseguiRichiestaCertificatoServizioSvoltoHttpGetIn" />
+      <wsdl:output message="tns:EseguiRichiestaCertificatoServizioSvoltoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="wsHeliosPrivatoHttpPost">
+    <wsdl:operation name="EseguiAutenticazioneVolontario_NEW">
+      <wsdl:input message="tns:EseguiAutenticazioneVolontario_NEWHttpPostIn" />
+      <wsdl:output message="tns:EseguiAutenticazioneVolontario_NEWHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPasswordDOL">
+      <wsdl:input message="tns:EseguiModificaPasswordDOLHttpPostIn" />
+      <wsdl:output message="tns:EseguiModificaPasswordDOLHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiResetPasswordDOL">
+      <wsdl:input message="tns:EseguiResetPasswordDOLHttpPostIn" />
+      <wsdl:output message="tns:EseguiResetPasswordDOLHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEnti">
+      <wsdl:input message="tns:EseguiRicercaEntiHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaEntiHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU">
+      <wsdl:input message="tns:EseguiRicercaEntiSCUHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaEntiSCUHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU_NEW">
+      <wsdl:input message="tns:EseguiRicercaEntiSCU_NEWHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaEntiSCU_NEWHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoSediEnteSCU_NEW">
+      <wsdl:input message="tns:EseguiElencoSediEnteSCU_NEWHttpPostIn" />
+      <wsdl:output message="tns:EseguiElencoSediEnteSCU_NEWHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoEntiAccoglienzaEnteSCU_NEW">
+      <wsdl:input message="tns:EseguiElencoEntiAccoglienzaEnteSCU_NEWHttpPostIn" />
+      <wsdl:output message="tns:EseguiElencoEntiAccoglienzaEnteSCU_NEWHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSezioni_NEW">
+      <wsdl:input message="tns:EseguiRicercaSezioni_NEWHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaSezioni_NEWHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassi">
+      <wsdl:input message="tns:EseguiRicercaClassiHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaClassiHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassiSCU">
+      <wsdl:input message="tns:EseguiRicercaClassiSCUHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaClassiSCUHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSettoreDiIntervento">
+      <wsdl:input message="tns:EseguiRicercaSettoreDiInterventoHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaSettoreDiInterventoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaNazioniAccreditamentoSCU_NEW">
+      <wsdl:input message="tns:EseguiRicercaNazioniAccreditamentoSCU_NEWHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaNazioniAccreditamentoSCU_NEWHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeografico">
+      <wsdl:input message="tns:EseguiRicercaGeograficoHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaGeograficoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeograficoDomicilio">
+      <wsdl:input message="tns:EseguiRicercaGeograficoDomicilioHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaGeograficoDomicilioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaContatori">
+      <wsdl:input message="tns:EseguiRicercaContatoriHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaContatoriHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiAutenticazioneVolontario">
+      <wsdl:input message="tns:EseguiAutenticazioneVolontarioHttpPostIn" />
+      <wsdl:output message="tns:EseguiAutenticazioneVolontarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaCandidatiPerEvento">
+      <wsdl:input message="tns:EseguiRicercaCandidatiPerEventoHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaCandidatiPerEventoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaVotiPerEvento">
+      <wsdl:input message="tns:EseguiRicercaVotiPerEventoHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaVotiPerEventoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPwdVolontario">
+      <wsdl:input message="tns:EseguiModificaPwdVolontarioHttpPostIn" />
+      <wsdl:output message="tns:EseguiModificaPwdVolontarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaStatiAttestato">
+      <wsdl:input message="tns:EseguiRichiestaStatiAttestatoHttpPostIn" />
+      <wsdl:output message="tns:EseguiRichiestaStatiAttestatoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaAttestato">
+      <wsdl:input message="tns:EseguiRichiestaAttestatoHttpPostIn" />
+      <wsdl:output message="tns:EseguiRichiestaAttestatoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaProgetto">
+      <wsdl:input message="tns:EseguiRicercaProgettoHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaProgettoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaDettaglioEnte">
+      <wsdl:input message="tns:EseguiRicercaDettaglioEnteHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaDettaglioEnteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaDatiVolontario">
+      <wsdl:input message="tns:EseguiRichiestaDatiVolontarioHttpPostIn" />
+      <wsdl:output message="tns:EseguiRichiestaDatiVolontarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRecuperoPassword">
+      <wsdl:input message="tns:EseguiRecuperoPasswordHttpPostIn" />
+      <wsdl:output message="tns:EseguiRecuperoPasswordHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaModificaDatiVolontario">
+      <wsdl:input message="tns:EseguiRichiestaModificaDatiVolontarioHttpPostIn" />
+      <wsdl:output message="tns:EseguiRichiestaModificaDatiVolontarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaPagamenti">
+      <wsdl:input message="tns:EseguiRicercaPagamentiHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaPagamentiHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaStatoQuestionario">
+      <wsdl:input message="tns:EseguiModificaStatoQuestionarioHttpPostIn" />
+      <wsdl:output message="tns:EseguiModificaStatoQuestionarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaContratto">
+      <wsdl:input message="tns:EseguiRichiestaContrattoHttpPostIn" />
+      <wsdl:output message="tns:EseguiRichiestaContrattoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiUploadContrattoVolontario">
+      <wsdl:input message="tns:EseguiUploadContrattoVolontarioHttpPostIn" />
+      <wsdl:output message="tns:EseguiUploadContrattoVolontarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaObiettiviProgrammi">
+      <wsdl:input message="tns:EseguiRicercaObiettiviProgrammiHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaObiettiviProgrammiHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaAmbitiProgrammi">
+      <wsdl:input message="tns:EseguiRicercaAmbitiProgrammiHttpPostIn" />
+      <wsdl:output message="tns:EseguiRicercaAmbitiProgrammiHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaCertificatoServizioSvolto">
+      <wsdl:input message="tns:EseguiRichiestaCertificatoServizioSvoltoHttpPostIn" />
+      <wsdl:output message="tns:EseguiRichiestaCertificatoServizioSvoltoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsHeliosPrivatoSoap" type="tns:wsHeliosPrivatoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EseguiAutenticazioneVolontario_NEW">
+      <soap:operation soapAction="http://tempuri.org/EseguiAutenticazioneVolontario_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPasswordDOL">
+      <soap:operation soapAction="http://tempuri.org/EseguiModificaPasswordDOL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiResetPasswordDOL">
+      <soap:operation soapAction="http://tempuri.org/EseguiResetPasswordDOL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEnti">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaEnti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaEntiSCU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU_NEW">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaEntiSCU_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoSediEnteSCU_NEW">
+      <soap:operation soapAction="http://tempuri.org/EseguiElencoSediEnteSCU_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoEntiAccoglienzaEnteSCU_NEW">
+      <soap:operation soapAction="http://tempuri.org/EseguiElencoEntiAccoglienzaEnteSCU_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSezioni_NEW">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaSezioni_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassi">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaClassi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassiSCU">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaClassiSCU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSettoreDiIntervento">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaSettoreDiIntervento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaNazioniAccreditamentoSCU_NEW">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaNazioniAccreditamentoSCU_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeografico">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaGeografico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeograficoDomicilio">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaGeograficoDomicilio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaContatori">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaContatori" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiAutenticazioneVolontario">
+      <soap:operation soapAction="http://tempuri.org/EseguiAutenticazioneVolontario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaCandidatiPerEvento">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaCandidatiPerEvento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaVotiPerEvento">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaVotiPerEvento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPwdVolontario">
+      <soap:operation soapAction="http://tempuri.org/EseguiModificaPwdVolontario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaStatiAttestato">
+      <soap:operation soapAction="http://tempuri.org/EseguiRichiestaStatiAttestato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaAttestato">
+      <soap:operation soapAction="http://tempuri.org/EseguiRichiestaAttestato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaProgetto">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaProgetto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaDettaglioEnte">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaDettaglioEnte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaDatiVolontario">
+      <soap:operation soapAction="http://tempuri.org/EseguiRichiestaDatiVolontario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRecuperoPassword">
+      <soap:operation soapAction="http://tempuri.org/EseguiRecuperoPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaModificaDatiVolontario">
+      <soap:operation soapAction="http://tempuri.org/EseguiRichiestaModificaDatiVolontario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaPagamenti">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaPagamenti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaStatoQuestionario">
+      <soap:operation soapAction="http://tempuri.org/EseguiModificaStatoQuestionario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaContratto">
+      <soap:operation soapAction="http://tempuri.org/EseguiRichiestaContratto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiUploadContrattoVolontario">
+      <soap:operation soapAction="http://tempuri.org/EseguiUploadContrattoVolontario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaObiettiviProgrammi">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaObiettiviProgrammi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaAmbitiProgrammi">
+      <soap:operation soapAction="http://tempuri.org/EseguiRicercaAmbitiProgrammi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaCertificatoServizioSvolto">
+      <soap:operation soapAction="http://tempuri.org/EseguiRichiestaCertificatoServizioSvolto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsHeliosPrivatoSoap12" type="tns:wsHeliosPrivatoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EseguiAutenticazioneVolontario_NEW">
+      <soap12:operation soapAction="http://tempuri.org/EseguiAutenticazioneVolontario_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPasswordDOL">
+      <soap12:operation soapAction="http://tempuri.org/EseguiModificaPasswordDOL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiResetPasswordDOL">
+      <soap12:operation soapAction="http://tempuri.org/EseguiResetPasswordDOL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEnti">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaEnti" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaEntiSCU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU_NEW">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaEntiSCU_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoSediEnteSCU_NEW">
+      <soap12:operation soapAction="http://tempuri.org/EseguiElencoSediEnteSCU_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoEntiAccoglienzaEnteSCU_NEW">
+      <soap12:operation soapAction="http://tempuri.org/EseguiElencoEntiAccoglienzaEnteSCU_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSezioni_NEW">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaSezioni_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassi">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaClassi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassiSCU">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaClassiSCU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSettoreDiIntervento">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaSettoreDiIntervento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaNazioniAccreditamentoSCU_NEW">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaNazioniAccreditamentoSCU_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeografico">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaGeografico" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeograficoDomicilio">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaGeograficoDomicilio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaContatori">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaContatori" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiAutenticazioneVolontario">
+      <soap12:operation soapAction="http://tempuri.org/EseguiAutenticazioneVolontario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaCandidatiPerEvento">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaCandidatiPerEvento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaVotiPerEvento">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaVotiPerEvento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPwdVolontario">
+      <soap12:operation soapAction="http://tempuri.org/EseguiModificaPwdVolontario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaStatiAttestato">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRichiestaStatiAttestato" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaAttestato">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRichiestaAttestato" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaProgetto">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaProgetto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaDettaglioEnte">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaDettaglioEnte" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaDatiVolontario">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRichiestaDatiVolontario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRecuperoPassword">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRecuperoPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaModificaDatiVolontario">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRichiestaModificaDatiVolontario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaPagamenti">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaPagamenti" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaStatoQuestionario">
+      <soap12:operation soapAction="http://tempuri.org/EseguiModificaStatoQuestionario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaContratto">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRichiestaContratto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiUploadContrattoVolontario">
+      <soap12:operation soapAction="http://tempuri.org/EseguiUploadContrattoVolontario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaObiettiviProgrammi">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaObiettiviProgrammi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaAmbitiProgrammi">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRicercaAmbitiProgrammi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaCertificatoServizioSvolto">
+      <soap12:operation soapAction="http://tempuri.org/EseguiRichiestaCertificatoServizioSvolto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsHeliosPrivatoHttpGet" type="tns:wsHeliosPrivatoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="EseguiAutenticazioneVolontario_NEW">
+      <http:operation location="/EseguiAutenticazioneVolontario_NEW" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPasswordDOL">
+      <http:operation location="/EseguiModificaPasswordDOL" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiResetPasswordDOL">
+      <http:operation location="/EseguiResetPasswordDOL" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEnti">
+      <http:operation location="/EseguiRicercaEnti" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU">
+      <http:operation location="/EseguiRicercaEntiSCU" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU_NEW">
+      <http:operation location="/EseguiRicercaEntiSCU_NEW" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoSediEnteSCU_NEW">
+      <http:operation location="/EseguiElencoSediEnteSCU_NEW" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoEntiAccoglienzaEnteSCU_NEW">
+      <http:operation location="/EseguiElencoEntiAccoglienzaEnteSCU_NEW" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSezioni_NEW">
+      <http:operation location="/EseguiRicercaSezioni_NEW" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassi">
+      <http:operation location="/EseguiRicercaClassi" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassiSCU">
+      <http:operation location="/EseguiRicercaClassiSCU" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSettoreDiIntervento">
+      <http:operation location="/EseguiRicercaSettoreDiIntervento" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaNazioniAccreditamentoSCU_NEW">
+      <http:operation location="/EseguiRicercaNazioniAccreditamentoSCU_NEW" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeografico">
+      <http:operation location="/EseguiRicercaGeografico" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeograficoDomicilio">
+      <http:operation location="/EseguiRicercaGeograficoDomicilio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaContatori">
+      <http:operation location="/EseguiRicercaContatori" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiAutenticazioneVolontario">
+      <http:operation location="/EseguiAutenticazioneVolontario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaCandidatiPerEvento">
+      <http:operation location="/EseguiRicercaCandidatiPerEvento" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaVotiPerEvento">
+      <http:operation location="/EseguiRicercaVotiPerEvento" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPwdVolontario">
+      <http:operation location="/EseguiModificaPwdVolontario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaStatiAttestato">
+      <http:operation location="/EseguiRichiestaStatiAttestato" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaAttestato">
+      <http:operation location="/EseguiRichiestaAttestato" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaProgetto">
+      <http:operation location="/EseguiRicercaProgetto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaDettaglioEnte">
+      <http:operation location="/EseguiRicercaDettaglioEnte" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaDatiVolontario">
+      <http:operation location="/EseguiRichiestaDatiVolontario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRecuperoPassword">
+      <http:operation location="/EseguiRecuperoPassword" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaModificaDatiVolontario">
+      <http:operation location="/EseguiRichiestaModificaDatiVolontario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaPagamenti">
+      <http:operation location="/EseguiRicercaPagamenti" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaStatoQuestionario">
+      <http:operation location="/EseguiModificaStatoQuestionario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaContratto">
+      <http:operation location="/EseguiRichiestaContratto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiUploadContrattoVolontario">
+      <http:operation location="/EseguiUploadContrattoVolontario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaObiettiviProgrammi">
+      <http:operation location="/EseguiRicercaObiettiviProgrammi" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaAmbitiProgrammi">
+      <http:operation location="/EseguiRicercaAmbitiProgrammi" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaCertificatoServizioSvolto">
+      <http:operation location="/EseguiRichiestaCertificatoServizioSvolto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsHeliosPrivatoHttpPost" type="tns:wsHeliosPrivatoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="EseguiAutenticazioneVolontario_NEW">
+      <http:operation location="/EseguiAutenticazioneVolontario_NEW" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPasswordDOL">
+      <http:operation location="/EseguiModificaPasswordDOL" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiResetPasswordDOL">
+      <http:operation location="/EseguiResetPasswordDOL" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEnti">
+      <http:operation location="/EseguiRicercaEnti" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU">
+      <http:operation location="/EseguiRicercaEntiSCU" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaEntiSCU_NEW">
+      <http:operation location="/EseguiRicercaEntiSCU_NEW" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoSediEnteSCU_NEW">
+      <http:operation location="/EseguiElencoSediEnteSCU_NEW" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiElencoEntiAccoglienzaEnteSCU_NEW">
+      <http:operation location="/EseguiElencoEntiAccoglienzaEnteSCU_NEW" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSezioni_NEW">
+      <http:operation location="/EseguiRicercaSezioni_NEW" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassi">
+      <http:operation location="/EseguiRicercaClassi" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaClassiSCU">
+      <http:operation location="/EseguiRicercaClassiSCU" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaSettoreDiIntervento">
+      <http:operation location="/EseguiRicercaSettoreDiIntervento" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaNazioniAccreditamentoSCU_NEW">
+      <http:operation location="/EseguiRicercaNazioniAccreditamentoSCU_NEW" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeografico">
+      <http:operation location="/EseguiRicercaGeografico" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaGeograficoDomicilio">
+      <http:operation location="/EseguiRicercaGeograficoDomicilio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaContatori">
+      <http:operation location="/EseguiRicercaContatori" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiAutenticazioneVolontario">
+      <http:operation location="/EseguiAutenticazioneVolontario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaCandidatiPerEvento">
+      <http:operation location="/EseguiRicercaCandidatiPerEvento" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaVotiPerEvento">
+      <http:operation location="/EseguiRicercaVotiPerEvento" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaPwdVolontario">
+      <http:operation location="/EseguiModificaPwdVolontario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaStatiAttestato">
+      <http:operation location="/EseguiRichiestaStatiAttestato" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaAttestato">
+      <http:operation location="/EseguiRichiestaAttestato" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaProgetto">
+      <http:operation location="/EseguiRicercaProgetto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaDettaglioEnte">
+      <http:operation location="/EseguiRicercaDettaglioEnte" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaDatiVolontario">
+      <http:operation location="/EseguiRichiestaDatiVolontario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRecuperoPassword">
+      <http:operation location="/EseguiRecuperoPassword" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaModificaDatiVolontario">
+      <http:operation location="/EseguiRichiestaModificaDatiVolontario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaPagamenti">
+      <http:operation location="/EseguiRicercaPagamenti" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiModificaStatoQuestionario">
+      <http:operation location="/EseguiModificaStatoQuestionario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaContratto">
+      <http:operation location="/EseguiRichiestaContratto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiUploadContrattoVolontario">
+      <http:operation location="/EseguiUploadContrattoVolontario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaObiettiviProgrammi">
+      <http:operation location="/EseguiRicercaObiettiviProgrammi" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRicercaAmbitiProgrammi">
+      <http:operation location="/EseguiRicercaAmbitiProgrammi" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EseguiRichiestaCertificatoServizioSvolto">
+      <http:operation location="/EseguiRichiestaCertificatoServizioSvolto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsHeliosPrivato">
+    <wsdl:port name="wsHeliosPrivatoSoap" binding="tns:wsHeliosPrivatoSoap">
+      <soap:address location="http://www1/SistemaUnicoSCN/WSHeliosPrivato/wsHeliosPrivato.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsHeliosPrivatoSoap12" binding="tns:wsHeliosPrivatoSoap12">
+      <soap12:address location="http://www1/SistemaUnicoSCN/WSHeliosPrivato/wsHeliosPrivato.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsHeliosPrivatoHttpGet" binding="tns:wsHeliosPrivatoHttpGet">
+      <http:address location="http://www1/SistemaUnicoSCN/WSHeliosPrivato/wsHeliosPrivato.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsHeliosPrivatoHttpPost" binding="tns:wsHeliosPrivatoHttpPost">
+      <http:address location="http://www1/SistemaUnicoSCN/WSHeliosPrivato/wsHeliosPrivato.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

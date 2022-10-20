@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="Futuro_WSHeliosUtility_WSHeliosUtility" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www1/sistemaunicoscn/WSHeliosUtility/WSHeliosUtility.asmx</Value>
+    </Setting>
+    <Setting Name="Futuro_WS_Editor_WSMetodiDocumentazione" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www1/sistemaunicoscn/WSDocumentazione/WSMetodiDocumentazione.asmx</Value>
+    </Setting>
+    <Setting Name="Futuro_WS_Autenticazione_wsAutenticazione" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www1/sistemaunicoscn/WSAutenticazione/WSAutenticazione.asmx</Value>
+    </Setting>
+    <Setting Name="Futuro_WS_SIGeD_Auth_SIGED_AUTH" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.1.175/WLWS/SIGeD_Auth.asmx</Value>
+    </Setting>
+    <Setting Name="Futuro_WS_SIGeD_SIGED_WS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.1.175/WLWS/SIGeD_WS.ASMX</Value>
+    </Setting>
+    <Setting Name="Futuro_WSHeliosInterno_HeliosInterno" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www1/sistemaunicoscn/WSHeliosInterno/wsheliosinterno.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

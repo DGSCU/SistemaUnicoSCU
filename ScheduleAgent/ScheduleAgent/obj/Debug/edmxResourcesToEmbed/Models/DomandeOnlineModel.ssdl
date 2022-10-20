@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DomandeOnlineContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DomandaPartecipazione">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodiceFiscale" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="GruppoBando" Type="int" Nullable="false" />
+    <Property Name="UserIdInserimento" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="DataInserimento" Type="datetime" Nullable="false" />
+    <Property Name="UserIdModifica" Type="nvarchar" MaxLength="128" />
+    <Property Name="DataModifica" Type="datetime" />
+    <Property Name="CodiceProgettoSelezionato" Type="nvarchar" MaxLength="22" />
+    <Property Name="CodiceSedeSelezionata" Type="int" />
+    <Property Name="UserIdPresentazione" Type="nvarchar" MaxLength="128" />
+    <Property Name="DataPresentazione" Type="datetime" />
+    <Property Name="DataAnnullamento" Type="datetime" />
+    <Property Name="AllegatoCV" Type="varbinary(max)" />
+    <Property Name="NomeFileCV" Type="nvarchar" MaxLength="200" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="100" />
+    <Property Name="Cognome" Type="nvarchar" MaxLength="100" />
+    <Property Name="Genere" Type="nvarchar" MaxLength="7" />
+    <Property Name="DataNascita" Type="date" />
+    <Property Name="LuogoNascita" Type="nvarchar" MaxLength="200" />
+    <Property Name="NazioneNascita" Type="nvarchar" MaxLength="200" />
+    <Property Name="Cittadinanza" Type="nvarchar" MaxLength="200" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="200" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" />
+    <Property Name="ComuneResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProvinciaResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="ViaResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="CivicoResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="CapResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="ComuneRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProvinciaRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="ViaRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="CivicoRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="CapRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="CodiceMinoriOpportunita" Type="nvarchar" MaxLength="5" />
+    <Property Name="IdMotivazione" Type="int" />
+    <Property Name="CodiceDichiarazioneCittadinanza" Type="nvarchar" MaxLength="5" />
+    <Property Name="NonCondanneOk" Type="bit" />
+    <Property Name="TrasferimentoSedeOk" Type="bit" />
+    <Property Name="TrasferimentoProgettoOk" Type="bit" />
+    <Property Name="AltreDichiarazioniOk" Type="bit" />
+    <Property Name="IdTitoloStudio" Type="int" />
+    <Property Name="PrivacyPresaVisione" Type="bit" />
+    <Property Name="PrivacyConsenso" Type="bit" />
+    <Property Name="PrecedentiEnte" Type="bit" />
+    <Property Name="PrecedentiEnteDescrizione" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PrecedentiAltriEnti" Type="bit" />
+    <Property Name="PrecedentiAltriEntiDescrizione" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PrecedentiImpiego" Type="bit" />
+    <Property Name="PrecedentiImpiegoDescrizione" Type="nvarchar" MaxLength="1000" />
+    <Property Name="IdTitoloStudioEsperienze" Type="int" />
+    <Property Name="FormazioneDisciplina" Type="nvarchar" MaxLength="200" />
+    <Property Name="FormazioneAnno" Type="int" />
+    <Property Name="FormazioneData" Type="date" />
+    <Property Name="FormazioneItalia" Type="bit" />
+    <Property Name="FormazioneIstituto" Type="nvarchar" MaxLength="200" />
+    <Property Name="FormazioneEnte" Type="nvarchar" MaxLength="200" />
+    <Property Name="IscrizioneSuperioreAnno" Type="int" />
+    <Property Name="IscrizioneSuperioreIstituto" Type="nvarchar" MaxLength="200" />
+    <Property Name="IscrizioneLaureaAnno" Type="int" />
+    <Property Name="IscrizioneLaureaCorso" Type="nvarchar" MaxLength="200" />
+    <Property Name="IscrizioneLaureaIstituto" Type="nvarchar" MaxLength="200" />
+    <Property Name="CorsiEffettuati" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Specializzazioni" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Competenze" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Altro" Type="nvarchar" MaxLength="1000" />
+    <Property Name="FileDomanda" Type="varbinary(max)" />
+    <Property Name="DataInvioEmailAnnullamento" Type="datetime" />
+    <Property Name="NazioneResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="IndirizzoCompletoResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="ResidenzaEstera" Type="bit" />
+    <Property Name="ConfermaResidenza" Type="bit" />
+    <Property Name="IdZip" Type="int" />
+    <Property Name="DataRichiestaAnnullamento" Type="datetime" />
+    <Property Name="IdMotivazioneAnnullamento" Type="int" />
+    <Property Name="FormazioneAnagraficaDisciplina" Type="nvarchar" MaxLength="200" />
+    <Property Name="FormazioneAnagraficaAnno" Type="int" />
+    <Property Name="FormazioneAnagraficaItalia" Type="bit" />
+    <Property Name="FormazioneAnagraficaIstituto" Type="nvarchar" MaxLength="200" />
+    <Property Name="FormazioneAnagraficaEnte" Type="nvarchar" MaxLength="200" />
+    <Property Name="DichiarazioneResidenzaOK" Type="bit" />
+    <Property Name="DichiarazioneRequisitiGaranziaGiovani" Type="bit" />
+    <Property Name="DataPresaInCaricoGaranziaGiovani" Type="date" />
+    <Property Name="LuogoPresaInCaricoGaranziaGiovani" Type="nvarchar" MaxLength="200" />
+    <Property Name="DataDIDGaranziaGiovani" Type="date" />
+    <Property Name="LuogoDIDGaranziaGiovani" Type="nvarchar" MaxLength="200" />
+    <Property Name="AlternativaRequisitiGaranziaGiovani" Type="bit" />
+    <Property Name="DichiarazioneMinoriOpportunita" Type="bit" />
+  </EntityType>
+  <EntityType Name="SUSCN_DOL_BANDOGRUPPO">
+    <Key>
+      <PropertyRef Name="Gruppo" />
+    </Key>
+    <Property Name="Gruppo" Type="int" Nullable="false" />
+    <Property Name="Descrizione" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Scadenza" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DataScadenza" Type="datetime" Nullable="false" />
+    <Property Name="DataScadenzaGraduatorie" Type="datetime" />
+    <Property Name="GiorniPostScadenza" Type="int" />
+    <Property Name="programmi" Type="bit" />
+    <Property Name="DataFineAnnullamento" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SUSCN_DOL_PROGETTI_DISPONIBILI">
+    <Key>
+      <PropertyRef Name="CodiceProgetto" />
+      <PropertyRef Name="CodiceSede" />
+    </Key>
+    <Property Name="CodiceEnte" Type="nvarchar" MaxLength="10" />
+    <Property Name="NomeEnte" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Sito" Type="nvarchar" MaxLength="100" />
+    <Property Name="CodiceProgetto" Type="nvarchar" MaxLength="22" Nullable="false" />
+    <Property Name="TitoloProgetto" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="TipoProgetto" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="CodiceSede" Type="int" Nullable="false" />
+    <Property Name="IndirizzoSede" Type="nvarchar" MaxLength="306" />
+    <Property Name="Regione" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Provincia" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Comune" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Settore" Type="nvarchar" MaxLength="500" />
+    <Property Name="Area" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="NumeroPostiDisponibili" Type="smallint" />
+    <Property Name="Gruppo" Type="int" Nullable="false" />
+    <Property Name="Misure" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="DurataProgettoMesi" Type="tinyint" Nullable="false" />
+    <Property Name="NumeroGiovaniMinoriOpportunità" Type="smallint" Nullable="false" />
+    <Property Name="EsteroUE" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="Tutoraggio" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="DataAnnullamento" Type="datetime" />
+    <Property Name="IDParticolaritàEntità" Type="int" />
+    <Property Name="IdProgramma" Type="int" />
+    <Property Name="LinkSintesi" Type="nvarchar" MaxLength="1000" />
+    <Property Name="EnteAttuatore" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK_DomandaProgetto">
+    <End Role="SUSCN_DOL_PROGETTI_DISPONIBILI" Type="Self.SUSCN_DOL_PROGETTI_DISPONIBILI" Multiplicity="0..1" />
+    <End Role="DomandaPartecipazione" Type="Self.DomandaPartecipazione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUSCN_DOL_PROGETTI_DISPONIBILI">
+        <PropertyRef Name="CodiceProgetto" />
+        <PropertyRef Name="CodiceSede" />
+      </Principal>
+      <Dependent Role="DomandaPartecipazione">
+        <PropertyRef Name="CodiceProgettoSelezionato" />
+        <PropertyRef Name="CodiceSedeSelezionata" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GruppoProgetti">
+    <End Role="SUSCN_DOL_BANDOGRUPPO" Type="Self.SUSCN_DOL_BANDOGRUPPO" Multiplicity="1" />
+    <End Role="SUSCN_DOL_PROGETTI_DISPONIBILI" Type="Self.SUSCN_DOL_PROGETTI_DISPONIBILI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUSCN_DOL_BANDOGRUPPO">
+        <PropertyRef Name="Gruppo" />
+      </Principal>
+      <Dependent Role="SUSCN_DOL_PROGETTI_DISPONIBILI">
+        <PropertyRef Name="Gruppo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_AggiornamentoDati" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_AnnullaDomanda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDomanda" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="DomandeOnlineContextStoreContainer">
+    <EntitySet Name="DomandaPartecipazione" EntityType="Self.DomandaPartecipazione" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUSCN_DOL_BANDOGRUPPO" EntityType="Self.SUSCN_DOL_BANDOGRUPPO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUSCN_DOL_PROGETTI_DISPONIBILI" EntityType="Self.SUSCN_DOL_PROGETTI_DISPONIBILI" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DomandaProgetto" Association="Self.FK_DomandaProgetto">
+      <End Role="SUSCN_DOL_PROGETTI_DISPONIBILI" EntitySet="SUSCN_DOL_PROGETTI_DISPONIBILI" />
+      <End Role="DomandaPartecipazione" EntitySet="DomandaPartecipazione" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GruppoProgetti" Association="Self.FK_GruppoProgetti">
+      <End Role="SUSCN_DOL_BANDOGRUPPO" EntitySet="SUSCN_DOL_BANDOGRUPPO" />
+      <End Role="SUSCN_DOL_PROGETTI_DISPONIBILI" EntitySet="SUSCN_DOL_PROGETTI_DISPONIBILI" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

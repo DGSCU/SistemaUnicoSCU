@@ -1,0 +1,5 @@
+C:\temp\HeliosEsercizio\DiffMatchPatch\bin\Debug\DiffMatchPatch.dll
+C:\temp\HeliosEsercizio\DiffMatchPatch\bin\Debug\DiffMatchPatch.pdb
+C:\temp\HeliosEsercizio\DiffMatchPatch\obj\Debug\DiffMatchPatch.csprojResolveAssemblyReference.cache
+C:\temp\HeliosEsercizio\DiffMatchPatch\obj\Debug\DiffMatchPatch.dll
+C:\temp\HeliosEsercizio\DiffMatchPatch\obj\Debug\DiffMatchPatch.pdb

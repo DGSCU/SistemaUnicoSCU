@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="WSHeliosInterno_WsPostProtocolloCAD_ServiceProt" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://intranet/WsPostProtocolloCAD/ServiceProt.asmx</Value>
+    </Setting>
+    <Setting Name="WSHeliosInterno_WS_SIGeD_SIGeD_WS_service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://testing2008/WSWL/SIGED_WS.asmx</Value>
+    </Setting>
+    <Setting Name="WSHeliosInterno_WS_SIGeD_Auth_SIGeD_Auth_service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://testing2008/WSWL/SIGED_AUTH.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

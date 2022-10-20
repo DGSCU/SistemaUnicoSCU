@@ -1,0 +1,57 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+WSHeliosUtility
+</name>
+</assembly>
+<members>
+<member name="P:WSHeliosUtility.My.Resources.Resources.ResourceManager">
+	<summary>
+  Restituisce l'istanza di ResourceManager nella cache utilizzata da questa classe.
+</summary>
+</member><member name="P:WSHeliosUtility.My.Resources.Resources.Culture">
+	<summary>
+  Esegue l'override della proprietà CurrentUICulture del thread corrente per tutte le
+  ricerche di risorse eseguite utilizzando questa classe di risorse fortemente tipizzata.
+</summary>
+</member><member name="T:WSHeliosUtility.My.Resources.Resources">
+	<summary>
+  Classe di risorse fortemente tipizzata per la ricerca di stringhe localizzate e così via.
+</summary>
+</member><member name="P:WSHeliosUtility.My.MyWebExtension.Application">
+	<summary>
+ Restituisce informazioni sull'applicazione corrente.
+ </summary>
+</member><member name="P:WSHeliosUtility.My.MyWebExtension.Computer">
+	<summary>
+ Restituisce le informazioni sul computer host.
+ </summary>
+</member><member name="P:WSHeliosUtility.My.MyWebExtension.User">
+	<summary>
+ Restituisce le informazioni per l'utente Web corrente.
+ </summary>
+</member><member name="P:WSHeliosUtility.My.MyWebExtension.Request">
+	<summary>
+ Restituisce l'oggetto Request.
+ </summary>
+</member><member name="P:WSHeliosUtility.My.MyWebExtension.Response">
+	<summary>
+ Restituisce l'oggetto Response.
+ </summary>
+</member><member name="P:WSHeliosUtility.My.MyWebExtension.Log">
+	<summary>
+ Restituisce l'oggetto AspLog.
+ </summary>
+</member><member name="P:WSHeliosUtility.My.MyWebExtension.WebServices">
+	<summary>
+ Fornisce accesso ai servizi Web aggiunti al progetto.
+ </summary>
+</member><member name="T:WSHeliosUtility.My.MyWebExtension">
+	<summary>
+ Modulo utilizzato per definire le proprietà disponibili nello spazio dei nomi My per i progetti Web.
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

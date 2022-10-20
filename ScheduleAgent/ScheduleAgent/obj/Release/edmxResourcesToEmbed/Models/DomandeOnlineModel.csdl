@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DomandeOnlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DomandeOnlineContext" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="SP_AggiornamentoDati" />
+    <EntitySet Name="DomandaPartecipazione" EntityType="DomandeOnlineModel.DomandaPartecipazione" />
+    <EntitySet Name="SUSCN_DOL_PROGETTI_DISPONIBILI" EntityType="DomandeOnlineModel.Progetto" />
+    <AssociationSet Name="FK_DomandaProgetto" Association="DomandeOnlineModel.FK_DomandaProgetto">
+      <End Role="SUSCN_DOL_PROGETTI_DISPONIBILI" EntitySet="SUSCN_DOL_PROGETTI_DISPONIBILI" />
+      <End Role="DomandaPartecipazione" EntitySet="DomandaPartecipazione" />
+    </AssociationSet>
+    <FunctionImport Name="SP_AnnullaDomanda">
+      <Parameter Name="IdDomanda" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Bando" EntityType="DomandeOnlineModel.Bando" />
+    <AssociationSet Name="FK_GruppoProgetti" Association="DomandeOnlineModel.FK_GruppoProgetti">
+      <End Role="SUSCN_DOL_BANDOGRUPPO" EntitySet="Bando" />
+      <End Role="Progetto" EntitySet="SUSCN_DOL_PROGETTI_DISPONIBILI" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DomandaPartecipazione">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodiceFiscale" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="GruppoBando" Type="Int32" Nullable="false" />
+    <Property Name="UserIdInserimento" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="DataInserimento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserIdModifica" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="DataModifica" Type="DateTime" Precision="3" />
+    <Property Name="CodiceProgettoSelezionato" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
+    <Property Name="CodiceSedeSelezionata" Type="Int32" />
+    <Property Name="UserIdPresentazione" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="DataPresentazione" Type="DateTime" Precision="3" />
+    <Property Name="DataAnnullamento" Type="DateTime" Precision="3" />
+    <Property Name="AllegatoCV" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="NomeFileCV" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Cognome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Genere" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="DataNascita" Type="DateTime" Precision="0" />
+    <Property Name="LuogoNascita" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NazioneNascita" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Cittadinanza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ComuneResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinciaResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ViaResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CivicoResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CapResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ComuneRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinciaRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ViaRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CivicoRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CapRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CodiceMinoriOpportunita" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="IdMotivazione" Type="Int32" />
+    <Property Name="CodiceDichiarazioneCittadinanza" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="NonCondanneOk" Type="Boolean" />
+    <Property Name="TrasferimentoSedeOk" Type="Boolean" />
+    <Property Name="TrasferimentoProgettoOk" Type="Boolean" />
+    <Property Name="AltreDichiarazioniOk" Type="Boolean" />
+    <Property Name="IdTitoloStudio" Type="Int32" />
+    <Property Name="PrivacyPresaVisione" Type="Boolean" />
+    <Property Name="PrivacyConsenso" Type="Boolean" />
+    <Property Name="PrecedentiEnte" Type="Boolean" />
+    <Property Name="PrecedentiEnteDescrizione" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PrecedentiAltriEnti" Type="Boolean" />
+    <Property Name="PrecedentiAltriEntiDescrizione" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PrecedentiImpiego" Type="Boolean" />
+    <Property Name="PrecedentiImpiegoDescrizione" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="IdTitoloStudioEsperienze" Type="Int32" />
+    <Property Name="FormazioneDisciplina" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneAnno" Type="Int32" />
+    <Property Name="FormazioneData" Type="DateTime" Precision="0" />
+    <Property Name="FormazioneItalia" Type="Boolean" />
+    <Property Name="FormazioneIstituto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneEnte" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IscrizioneSuperioreAnno" Type="Int32" />
+    <Property Name="IscrizioneSuperioreIstituto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IscrizioneLaureaAnno" Type="Int32" />
+    <Property Name="IscrizioneLaureaCorso" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IscrizioneLaureaIstituto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CorsiEffettuati" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Specializzazioni" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Competenze" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Altro" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FileDomanda" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="DataInvioEmailAnnullamento" Type="DateTime" Precision="3" />
+    <Property Name="NazioneResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ResidenzaEstera" Type="Boolean" />
+    <Property Name="ConfermaResidenza" Type="Boolean" />
+    <Property Name="IndirizzoCompletoResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IdZip" Type="Int32" />
+    <Property Name="DataRichiestaAnnullamento" Type="DateTime" Precision="3" />
+    <Property Name="IdMotivazioneAnnullamento" Type="Int32" />
+    <Property Name="FormazioneAnagraficaDisciplina" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneAnagraficaAnno" Type="Int32" />
+    <Property Name="FormazioneAnagraficaItalia" Type="Boolean" />
+    <Property Name="FormazioneAnagraficaIstituto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneAnagraficaEnte" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DichiarazioneResidenzaOK" Type="Boolean" />
+    <Property Name="DichiarazioneRequisitiGaranziaGiovani" Type="Boolean" />
+    <Property Name="DataPresaInCaricoGaranziaGiovani" Type="DateTime" Precision="0" />
+    <Property Name="LuogoPresaInCaricoGaranziaGiovani" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DataDIDGaranziaGiovani" Type="DateTime" Precision="0" />
+    <Property Name="LuogoDIDGaranziaGiovani" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AlternativaRequisitiGaranziaGiovani" Type="Boolean" />
+    <Property Name="DichiarazioneMinoriOpportunita" Type="Boolean" />
+    <NavigationProperty Name="Progetto" Relationship="DomandeOnlineModel.FK_DomandaProgetto" FromRole="DomandaPartecipazione" ToRole="SUSCN_DOL_PROGETTI_DISPONIBILI" />
+  </EntityType>
+  <EntityType Name="Progetto">
+    <Key>
+      <PropertyRef Name="CodiceProgetto" />
+      <PropertyRef Name="CodiceSede" />
+    </Key>
+    <Property Name="CodiceEnte" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NomeEnte" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Sito" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CodiceProgetto" Type="String" Nullable="false" MaxLength="22" FixedLength="false" Unicode="true" />
+    <Property Name="TitoloProgetto" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TipoProgetto" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="CodiceSede" Type="Int32" Nullable="false" />
+    <Property Name="IndirizzoSede" Type="String" MaxLength="306" FixedLength="false" Unicode="true" />
+    <Property Name="Regione" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Provincia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Comune" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Settore" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Area" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NumeroPostiDisponibili" Type="Int16" />
+    <Property Name="Gruppo" Type="Int32" Nullable="false" />
+    <Property Name="Misure" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="DurataProgettoMesi" Type="Byte" Nullable="false" />
+    <Property Name="NumeroGiovaniMinoriOpportunità" Type="Int16" Nullable="false" />
+    <Property Name="EsteroUE" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="Tutoraggio" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="DataAnnullamento" Type="DateTime" Precision="3" />
+    <Property Name="IDParticolaritàEntità" Type="Int32" />
+    <Property Name="IdProgramma" Type="Int32" />
+    <Property Name="LinkSintesi" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DomandaPartecipazione" Relationship="DomandeOnlineModel.FK_DomandaProgetto" FromRole="SUSCN_DOL_PROGETTI_DISPONIBILI" ToRole="DomandaPartecipazione" />
+    <Property Name="EnteAttuatore" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bando" Relationship="DomandeOnlineModel.FK_GruppoProgetti" FromRole="Progetto" ToRole="SUSCN_DOL_BANDOGRUPPO" />
+  </EntityType>
+  <Association Name="FK_DomandaProgetto">
+    <End Type="DomandeOnlineModel.Progetto" Role="SUSCN_DOL_PROGETTI_DISPONIBILI" Multiplicity="0..1" />
+    <End Type="DomandeOnlineModel.DomandaPartecipazione" Role="DomandaPartecipazione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUSCN_DOL_PROGETTI_DISPONIBILI">
+        <PropertyRef Name="CodiceProgetto" />
+        <PropertyRef Name="CodiceSede" />
+      </Principal>
+      <Dependent Role="DomandaPartecipazione">
+        <PropertyRef Name="CodiceProgettoSelezionato" />
+        <PropertyRef Name="CodiceSedeSelezionata" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Bando">
+    <Key>
+      <PropertyRef Name="Gruppo" />
+    </Key>
+    <Property Name="Gruppo" Type="Int32" Nullable="false" />
+    <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Scadenza" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataScadenza" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataScadenzaGraduatorie" Type="DateTime" Precision="3" />
+    <Property Name="GiorniPostScadenza" Type="Int32" />
+    <Property Name="programmi" Type="Boolean" />
+    <Property Name="DataFineAnnullamento" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Progetti" Relationship="DomandeOnlineModel.FK_GruppoProgetti" FromRole="SUSCN_DOL_BANDOGRUPPO" ToRole="Progetto" />
+  </EntityType>
+  <Association Name="FK_GruppoProgetti">
+    <End Type="DomandeOnlineModel.Bando" Role="SUSCN_DOL_BANDOGRUPPO" Multiplicity="1" />
+    <End Type="DomandeOnlineModel.Progetto" Role="Progetto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUSCN_DOL_BANDOGRUPPO">
+        <PropertyRef Name="Gruppo" />
+      </Principal>
+      <Dependent Role="Progetto">
+        <PropertyRef Name="Gruppo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

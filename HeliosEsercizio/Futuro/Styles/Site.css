@@ -1,0 +1,1445 @@
+﻿
+/* DEFAULTS
+----------------------------------------------------------*/
+
+body   
+{
+    
+    font-size: .80em;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color:#3a4f63;
+    background-color:White;
+}
+
+a:link, a:visited
+{
+    color: #0000C0;
+}
+
+a:hover
+{
+    color: #1d60ff;
+    text-decoration: none;
+}
+
+a:active
+{
+    color: #3a4f63;
+}
+
+p
+{
+    margin-bottom: 1px;
+    line-height: 1.6em;
+	
+}
+p.PLogInADC
+{
+    margin-bottom: 10px;
+    line-height: 1.6em;
+	font-family:Verdana;
+	font-size:1.0em;
+	color:#3a4f63;
+	font-weight:bold;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: 200;
+    margin-bottom: 0px;
+    font-family:Verdana;
+}
+
+h1
+{
+    font-size: 1.6em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    color: #3a4f63;
+    
+}
+
+h2
+{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+h3
+{
+    font-size: 1.2em;
+    color:#3a4f63;
+    
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+h4
+{
+    font-size: 1.1em;
+}
+
+h5, h6
+{
+    font-size: 1em;
+}
+
+.h7
+{
+	 font-size: 0.7em;
+}
+
+/* this rule styles <h1> and <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0px;
+}
+
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+.page
+{
+    width:auto;
+    background-color: #ffffff;
+    /*margin: 0px auto 0px auto;*/
+    border: 1px solid #496077;
+    min-height: 420px;
+    height:auto;
+}
+
+.header {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    /*background: #4b6c9e;*/
+    width: 100%;
+    background: #06c;
+    color:white;
+}
+
+.headerTop {
+    padding:15px;
+}
+
+.it-brand-text {
+    vertical-align: top;
+    padding-top: 10px;
+}
+.headerTop div {
+    display: inline-block;
+}
+
+.header h1
+{
+    font-weight:bold;
+    margin: 0px;
+    padding: 0px 0px 0px 20px;
+    color: #3a4f63;
+    border: none;
+    line-height: 2em;
+    font-size: 2em;
+}
+
+.logoImg {
+    width: 82px;
+    height: 82px;
+    margin-right: 16px;
+}
+
+.LogoTitle {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.LogoSubitle {
+    font-size: 20px;
+}
+
+.main
+{
+    padding: 0px 12px;
+    margin: 8px 8px 8px 8px;
+    min-height: 420px;
+    width:auto;
+}
+
+.divmenuleftMenu
+{
+	
+    /*margin: 12px 2px 2px 2px;*/
+    /*min-height: 420px;*/
+    float: left;
+     /*display:block;*/
+    width:300px;
+    
+}
+.divmenuleftPage
+{
+	 /*margin: 12px 0px 0px 305px;*/
+    /*min-height: 420px;*/
+    /*float: left;*/
+   /*display:block;*/
+   height:auto;
+  
+  
+   
+}
+.leftCol
+{
+    padding: 6px 0px;
+    margin: 12px 8px 8px 8px;
+  
+}
+
+footer {
+    color: #3a4f63;
+    margin: 0px auto;
+    text-align: center;
+    line-height: normal;
+}
+
+/* FORM ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset
+{
+    margin: 1em 0px;
+    padding: 1em;
+    height:auto;
+    width:auto;
+   
+}
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label
+{
+    display: block;
+}
+
+fieldset label.inline 
+{
+    display: inline;
+}
+fieldset.FadcLogIn
+{
+    padding: 1em;
+    border: 2px solid #3a4f63;
+    margin:5% 20% 10% 20%;
+    overflow:hidden;   /*serve per non far apparire le scrollbar in fase di ridimensionamento della pagina*/
+}
+
+fieldset.FDSMenu
+{
+   
+    padding: 1em;
+    border: 2px solid #3a4f63;
+    height:auto;
+    overflow:hidden;
+    
+    
+}
+fieldset.FDSsottoMenu
+{
+    
+    padding: 1em;
+    border: 2px solid #3a4f63;
+    height:auto;
+    overflow:hidden;
+    
+    
+}
+fieldset.ContornoPagina
+{
+    
+    padding: 1em;
+    border: 2px solid #3a4f63;
+    overflow:hidden;
+    
+}
+fieldset.ContornoPaginaScroll
+{
+	
+    min-width: -webkit-min-content;
+    padding: 1em;
+    border: 2px solid #3a4f63;
+    width:97%;
+   
+
+}
+
+div.firefox 
+{
+	overflow:auto;
+}
+
+legend 
+{
+    font-size: 1.1em;
+    padding: 2px 4px 8px 4px;
+    color:#3a4f63;
+}
+
+input.textEntry 
+{
+    width: 420px;
+    border: 1px solid #ccc;
+}
+
+input.passwordEntry 
+{
+    width: 420px;
+    border: 1px solid #ccc;
+}
+
+div.accountInfo
+{
+    width: 42%;
+}
+/* MISC  
+----------------------------------------------------------*/
+
+.clear
+{
+    clear: both;
+}
+
+.title
+{
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+    color:#3a4f63;
+}
+
+.loginDisplay {
+    font-size: 1.2em;
+    color: #3a4f63;
+    float: right;
+    font-weight: bold;
+    padding: 2.0em;
+    padding-right: 1.0em;
+    position: absolute;
+    right: 10px;
+}
+.loginDisplay a {
+    padding-left:5px;
+    padding-right:5px;
+}
+.loginDisplay a:link
+{
+    color: white;
+}
+
+.loginDisplay a:visited
+{
+    color: white;
+}
+
+.loginDisplay a:hover
+{
+    color: white;
+}
+
+.failureNotification
+{
+    font-size: 1.2em;
+    color: Red;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.submitButton
+{
+    text-align: right;
+    padding-right: 10px;
+    background-color:#3a4f63;
+    font-family:Verdana;
+    color:White;
+    font-weight:bold;
+    font-size:1.2em;
+}
+
+label /* label ----------------------------------------------------------*/
+{
+color:#3a4f63;
+font-size:1.0em;
+width:90%;
+vertical-align:middle;
+}
+input[type="text"] /* text box ----------------------------------------------------------*/
+{
+	
+	width:90%;
+    vertical-align:middle;
+}
+select /* combo ----------------------------------------------------------*/
+{
+	height:23px;
+	width:90%;
+    vertical-align:middle;
+}
+
+.banner
+{
+	 background-image:url("/Images/sfondo.png");
+	 width: 100%;
+	 height:70px;
+ 
+}
+/*--------------------------------------------*/
+
+/*------------------LINK PER IL TASTO HOME E LOG OUT--------------------------*/
+.linkHome
+{
+    font-size: 1.1em;
+    display: block;
+    text-align: left;
+    padding: 10px;
+    color: #3a4f63;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+.linkHome a:link
+{
+    color: #3a4f63;
+}
+
+.linkHome a:visited
+{
+    color: #3a4f63;
+}
+
+.linkHome a:hover
+{
+    color: #3a4f63;
+}
+/*--------------------------------------------*/
+
+/*----------------SERVE PER NASCONDERE DEI PEZZI DI CODICE HTML----------------------------*/
+.skip
+{
+	position:absolute;
+	left:0px;
+	top:-500px;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+/*---------------------background-image:url("~\Images\FUTURO-BLU.jpg");-----------------------*/
+div.logo
+{
+	width:65px;
+	height:80px;
+	float:left;
+	
+}
+
+/* TABELLA 
+----------------------STRUTTURA BASE PER UNA TABELLA CON DIV------------------------------------*/
+
+		
+		
+		
+.wrapper 
+{
+    border: 1px solid #3a4f63;
+	display: table;
+    background-color:transparent;
+    width: 707px;
+}
+.wrapper div.row
+{
+	height:40px;
+	display:table-row;
+	background-color:White;
+	width:100%;
+	
+}
+
+.wrapper div.collable ,div.colOggetti,div.collableRidotto,div.colHyperLink,div.panel
+{
+	display:table-column;
+	float:left;
+    font-family: Verdana;
+    font-weight:lighter;
+    vertical-align:middle;
+    font-size:0.9em;
+	
+}
+div.divErrore
+{
+    border-color:#C00000;
+	border-style:solid;
+	border-width:medium;
+}
+.wrapper div.colHyperLink
+{
+    font-weight: bold;
+    line-height:1.6em;
+ 
+}
+.wrapper div.collable
+{	
+    width:21%;
+}
+.wrapper div.colOggetti
+{
+	width:25%;	
+}
+
+.wrapper div.collableRidotto
+{
+    width:20%;
+}
+
+.wrapper div.panel
+{
+	width:100%;
+
+}
+
+.wrapper div.headers
+{
+	display: table-header-group;
+    color:White;
+    text-align:center;
+    background-color:#3a4f63;
+   
+}
+.wrapper div.footers
+
+{
+	display: table-footer-group;
+    font-size:1.4em;
+    font-family: Verdana;
+    font-weight: bold;
+    text-align:left;
+    background-color:#3a4f63;
+    color:White;
+    
+   
+}
+.wrapper div.RigaPulsanti
+{
+	
+	display:table-row;
+	height:auto;
+    font-size:1.0em;
+    font-family: Verdana;
+    font-weight: bold;
+    background-color:white;
+    text-align:right;
+    height:35px;
+   
+ 
+}
+.wrapper div.RigaVuota
+{
+	
+	display:table-row;
+    background-color:White;
+   
+   
+ 
+}
+.wrapper div.RigaVuotaPrint
+{
+	
+	display:table-row;
+    background-color:White;
+	text-align:right;
+   
+ 
+}
+.wrapper div.areaTot
+{
+	
+	display:table-column;
+    height :600px;
+ 
+}
+
+.wrapper div.rowGroup
+{
+	height:40px;
+	display:table-row-group;
+	background-color:White;
+	width:100%;
+	
+}
+/*-------------------FINE STRUTTURA TABBELLA CON DIV-------------------------*/
+
+
+
+
+select /* combo ----------------------------------------------------------*/
+{
+	height:23px;
+}
+
+.AspettoGriglia
+{
+	
+	display:block;
+	position:absolute;
+	
+}
+.aspettofieldset
+{
+	display:block;
+	position:absolute;
+}
+
+/*-------------------aspetto della table a lato del menu di sx-------------------------*/
+.table
+{
+	
+	background-color:#3a4f63;
+	color:White;
+	border-style:solid;
+    border-color:#3a4f63;
+    border-width:1px;
+	font-size: 1.0em;
+}
+/*----------------------------aspetto per la tr------------------------*/
+.tr
+{
+	background-color:White;
+	color:#3a4f63;
+	border-style:solid;
+    border-color:#3a4f63;
+    border-width:1px;
+    font-size: 1.0em;
+}
+/*--------------------------------------------*/
+
+/*----------------link bianchi------------*/
+.linkPageGrid
+{
+    font-size: 1.1em;
+    text-align:center;
+    padding: 10px;
+    color: White;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+.linkPageGrid a:link
+{
+    color: White;
+}
+
+.linkPageGrid a:visited
+{
+    color: White;
+}
+
+.linkPageGrid a:hover
+{
+    color: White;
+}
+/*--------------------------------------------*/
+
+/*---------aspetto per i pulsanti standard---------------------------*/
+.Pulsante
+{
+	background-color:#3a4f63;
+	color:White;
+	border-bottom-style:inset;
+	font-family:Verdana;
+	font-size:1.2em;
+	height:35px;
+	
+}
+.PulsanteGrande
+{
+	background-color:#3a4f63;
+	color:White;
+	border-bottom-style:inset;
+	font-family:Verdana;
+	font-size:1.6em;
+	height:35px;
+	
+}
+.PulsanteMasterApri
+{
+	background-image: url("../Images/Exit_Full_Screen.png");
+	border-bottom-style:inset;
+	font-family:Verdana;
+	font-size:1.2em;
+	background-repeat:no-repeat;
+    border-style:none;
+    cursor:pointer;
+    text-indent:110%;
+    white-space:nowrap;
+    overflow:hidden;
+
+}
+
+.PulsanteMasterChiudi
+{
+	background-image: url("../Images/Full_Screen.png");
+	border-bottom-style:inset;
+	font-family:Verdana;
+	font-size:1.2em;
+	background-repeat:no-repeat;
+    border-style:none;
+    cursor:pointer;
+    text-indent:110%;
+    white-space:nowrap;
+    overflow:hidden;
+}
+	
+/*----------------aspetto per eventuale pulsante di torna indietro--------------------*/	
+.PulsanteUndo
+{
+	background-color:#3a4f63;
+	color:White;
+	border-bottom-style:solid;
+	font-family:Verdana;
+	font-size:2.0em;
+	width:auto;
+	height:auto;
+}
+.PulsanteInforEnte
+{
+	background-image: url("../Images/ente-mini.png");
+	border-bottom-style:inset;
+	font-family:Verdana;
+	font-size:1.2em;
+	background-repeat: no-repeat;
+    border-style: none;
+    cursor:pointer;
+    text-indent: 200%;
+    white-space : nowrap;
+    overflow : hidden;
+    margin-top:2px;
+
+}
+/*-------------------------serve per posizionare un div a sinistra----------------------------*/
+div.aSinistra
+
+{
+	float:left;
+	
+	padding: 1em;
+}
+
+/*------------------serve per una eventuale modal pop up-----------------------------*/
+.modalBackgroundPopUp {
+    background-color: Gray;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    z-index: 999;
+}
+ 
+.modalpopup 
+{
+    background-color:White;
+    padding:6px 6px 6px 6px;
+}
+/*--------------------------------------------------------------------------------------------------*/
+.print 
+{
+	display: block;
+}
+
+
+/* linkStampa --------------serve per dare l'aspetto al link della stampata-------------------------*/
+.linkStampa
+{
+    font-size: 0.8em;
+    display: block;
+    text-align:center;
+    padding: 10px;
+    color: #3a4f63;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+.linkStampa a:link
+{
+    color: #3a4f63;
+}
+
+.linkStampa a:visited
+{
+    color: #3a4f63;
+}
+
+.linkStampa a:hover   
+{
+    color: #3a4f63;
+}
+
+/*--------------------------------------------------------------------------------------------------*/
+
+/* caption --------------serve per mettere una intestazione ad una tabella-------------------------*/
+
+caption {                          
+     color:#3a4f63;
+     font-size: 1.4em;
+     font-weight: bold;
+    
+ } 
+ 
+ .crediti
+ {
+ 	
+ 	 color:#3a4f63;
+     font-size: 1.2em;
+     font-weight: bold;
+     display: block;
+     text-align:center;
+     font-family: Verdana;
+     font-style:italic;
+ }
+ 
+ .fieldsetrasparente
+{
+   margin: 1em 0px;
+    padding: 1em;
+    width:auto;
+    height:auto;
+    overflow:hidden; 
+    border-color:transparent; 
+}
+
+ .fieldsetDatagrid
+{
+   padding: 0em;
+     width:100%;
+    height:auto;
+    overflow:hidden; 
+    border-color:transparent; 
+}
+
+ /*---------------Messaggi info-----------------------------*/
+.msgInfo
+{
+	color:#3a4f63;
+	font-size:1.2em;
+	font-weight: bold;
+	font-variant:small-caps;
+	text-align: center;
+	height:auto;
+}
+
+
+.scritta
+{
+	position:absolute;
+	top: 20px;
+	left: 20px;
+	font-size:1.8em;
+	color:#3a4f63;
+	font-weight:bold;
+	/*-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	filter: alpha(opacity=80);
+	opacity:0.8;*/
+	
+}
+.msgConferma
+{
+    font-size:1.1em;
+    color:#0E3007;
+	font-weight: bold;
+	letter-spacing:0.1em;
+	font-variant:small-caps
+}
+
+.msgErrore
+{
+	color:#C00000;
+	font-size:1.0em;
+	
+}
+
+.msgErroreBig
+{
+	color:#C00000;
+	font-size:1.5em;
+	font-weight:bold;
+}
+
+.msgErroreGrid
+{
+	color:#C00000;
+	font-size:1.0em;
+	white-space:
+}
+
+.stilePass
+{
+font: bold  "Verdana",sans-serif;
+}
+
+div.hideSkiplink
+{
+    background-color:#3a4f63;
+    width:100%;
+}
+
+div.hideSkiplink
+{
+    background-color:#3a4f63;
+    width:100%;
+}
+
+.labelDati
+{
+	color:#3a4f63;
+	font-size:1.1em;
+	font-weight:bold;
+	font-variant:small-caps;
+	text-align: center;
+	height:auto;
+}
+.ddlClass
+{
+    width:90%;
+}
+.textbox 
+{
+    vertical-align:middle;
+}
+.textbox_Maiuscolo
+{
+    width:90%;
+    vertical-align:middle;
+    text-transform:uppercase;
+}
+.label 
+{
+    width:90%;
+    vertical-align:middle;
+}
+ .progressbar {
+  width:300px;
+  height:21px;
+}
+.progressbarlabel {
+  width:300px;
+  height:21px;
+  position:absolute;
+  text-align:center;
+  font-size:small;
+}
+.textboxData
+{
+    width:70px;
+}
+
+.ddl_Autocomplete
+    {  
+    margin : 0px!important;
+    background-color : White;
+    color : windowtext;
+    border : buttonshadow;
+    border-width : 1px;
+    border-style : solid;
+    cursor : 'default';
+    overflow : auto;
+
+     font-size:1.0em;
+    font-family: Verdana;
+    text-align : left; 
+    list-style-type : none;
+    margin-left:0px;
+    padding-left:0px;
+    max-height:150px;
+    width:auto;
+    }
+ .Calendario
+    {
+	visibility:hidden;
+	
+	}
+	.IntestazioneCalendario
+	{
+		text-transform:uppercase;
+	}
+fieldset.ContornoPaginaScrollT  /*classe per contorno FIELDSET Trasparente*/
+{
+    min-width: -webkit-min-content;
+    padding: 1em;
+    border-color:transparent; 
+    width:97%; 
+}
+/*----------------link bianchi------------*/
+.linkPageGridRidotto
+{
+    font-size: 1.0em;
+    text-align:center;
+    padding: 10px;
+    color: White;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+.linkPageGridRidotto a:link
+{
+    color: White;
+}
+
+.linkPageGridRidotto a:visited
+{
+    color: White;
+}
+
+.linkPageGridRidotto a:hover
+{
+    color: White;
+}
+/*--------------------------------------------*/
+
+
+/* TABELLA 
+----------------------STRUTTURA BASE PER UNA TABELLA CON DIV senza contorni------------------------------------*/
+
+		
+		
+		
+.wrapper1 
+{
+    display: table;
+    background-color:transparent;
+    border-style:none;
+   
+   
+}
+.wrapper1 div.row
+{
+	height:40px;
+	display:table-row;
+	background-color:White;
+	width:100%;
+	
+}
+
+.wrapper1 div.collable ,div.colOggetti,div.collableRidotto,div.colHyperLink
+{
+	display:table-column;
+	float:left;
+    font-family: Verdana;
+    font-weight:lighter;
+    vertical-align:middle;
+    font-size:0.9em;
+	
+}
+
+.wrapper1 div.colHyperLink
+{
+    font-weight: bold;
+    line-height:1.6em;
+ 
+}
+.wrapper1 div.collable
+{	
+    width:21%;
+}
+.wrapper1 div.colOggetti
+{
+	width:20%;	
+}
+
+.wrapper1 div.collableRidotto
+{
+    width:20%;
+}
+
+.wrapper1 div.headers
+{
+	display: table-header-group;
+    color:White;
+    text-align:center;
+    background-color:#3a4f63;
+   
+}
+.wrapper1 div.footers
+
+{
+	display: table-footer-group;
+    font-size:1.4em;
+    font-family: Verdana;
+    font-weight: bold;
+    text-align:left;
+    background-color:#3a4f63;
+    color:White;
+    
+   
+}
+.wrapper1 div.RigaPulsanti
+{
+	
+	display:table-row;
+	height:auto;
+    font-size:1.0em;
+    font-family: Verdana;
+    font-weight: bold;
+    background-color:white;
+    text-align:right;
+    height:35px;
+   
+ 
+}
+.wrapper1 div.RigaVuota
+{
+	
+	display:table-row;
+    background-color:White;
+   
+   
+ 
+}
+.wrapper1 div.RigaVuotaPrint
+{
+	
+	display:table-row;
+    background-color:White;
+	text-align:right;
+   
+ 
+}
+.wrapper1 div.areaTot
+{
+	
+	display:table-column;
+    height :600px;
+ 
+}
+
+.wrapper1 div.rowGroup
+{
+	height:40px;
+	display:table-row-group;
+	background-color:White;
+	width:100%;
+	
+}
+/*-------------------FINE STRUTTURA TABELLA CON DIV-------------------------*/
+.datagridImage
+{
+	cursor:pointer;
+	
+}
+.datagridImageDisabled
+{
+	cursor:default;
+}
+
+.Treeview
+{
+	height:auto;
+    font-size:1.0em;
+    font-family: Verdana;
+    background-color:white;
+    text-align:left;
+    color:#3a4f63;
+    cursor:inherit;
+
+
+}
+
+.modalBackground 
+{
+
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color:Gray;
+    background-color: rgba(0, 140, 213, 1);  
+}
+
+
+/* latin-ext */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium Web Light'), local('TitilliumWeb-Light'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Light.woff2') format('woff2'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Light.woff') format('woff'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Light.ttf') format('truetype');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium Web Light'), local('TitilliumWeb-Light'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Light.woff2') format('woff2'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Light.woff') format('woff'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Light.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Regular.woff2') format('woff2'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Regular.woff') format('woff'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Regular.ttf') format('truetype');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Regular.woff2') format('woff2'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Regular.woff') format('woff'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Regular.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Titillium Web SemiBold'), local('TitilliumWeb-SemiBold'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-SemiBold.woff2') format('woff2'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-SemiBold.woff') format('woff'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf') format('truetype');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Titillium Web SemiBold'), local('TitilliumWeb-SemiBold'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-SemiBold.woff2') format('woff2'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-SemiBold.woff') format('woff'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Bold.woff2') format('woff2'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Bold.woff') format('woff'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Bold.ttf') format('truetype');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Bold.woff2') format('woff2'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Bold.woff') format('woff'),
+  url('/bootstrap-italia/dist/fonts/Titillium_Web/TitilliumWeb-Bold.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+.it-footer-main {
+    background-color: #036;
+    color: #fff;
+    font-size: 16px;
+    text-align: left;
+}
+.it-footer-main a,.it-footer-main a:link,.it-footer-main a:hover,.it-footer-main a:visited {
+    color:white
+}
+
+.clearfix .it-brand-wrapper {
+    padding: 25px 0 10px 0;
+}
+.it-footer-main .it-brand-wrapper a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #fff;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-decoration: none;
+}
+.it-footer-main .it-brand-wrapper a .icon {
+    fill: #fff;
+    width: 48px;
+    height: 48px;
+    margin-right: 8px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+.it-footer-main .it-brand-wrapper a .icon {
+    fill: #fff;
+    width: 48px;
+    height: 48px;
+    margin-right: 8px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+.it-footer-main .it-brand-wrapper a h2 {
+    font-size: 1.25em;
+    margin-bottom: 0;
+    font-weight: 600;
+    letter-spacing: unset;
+    line-height: 1.1;
+    font-family: "Titillium Web",Geneva,Tahoma,sans-serif;
+    font-variant: initial;
+}
+.it-footer-main .it-brand-wrapper a h3 {
+    padding-right: 24px;
+    text-align: left;
+    font-size: .889em;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: white;
+    font-family: "Titillium Web",Geneva,Tahoma,sans-serif;
+    font-variant: initial;
+
+}
+.it-footer-main .it-brand-wrapper .it-brand-text {
+    padding-right: 24px;
+}
+
+.it-footer-main, .it-footer-main h4 {
+    font-family: "Titillium Web",Geneva,Tahoma,sans-serif;
+    font-variant: initial;
+}
+
+
+.it-footer-main section {
+    padding: 0 16px;
+}
+.col-footer {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.33333%;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+
+
+.row-footer {
+    padding-left: 35px;
+    padding-right: 35px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+footer h5 + a {
+    margin-left: 8px;
+}
+
+.icon-social {
+    color: white;
+    padding: 8px
+}
+
+.icon.icon-sm {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-white {
+    fill: #fff !important;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+.list-inline-item {
+    display: inline-block;
+}
+.list-inline, .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+footer p {
+    margin-top: 5px;
+}
+
+footer p, footer h1, footer h2, footer h3, footer h4, footer h5 {
+    margin-top: 5px;
+}
+
+footer h4 {
+    font-size: 1.555rem;
+    line-height: 1.428;
+    font-weight: 600;
+}
+
+footer h4 {
+    font-size: 1.333rem;
+    font-weight: 400;
+    letter-spacing: normal;
+}
+
+.boxPrivacy {
+    margin: 25px;
+    padding: 10px;
+    background-color: #fafafa;
+    text-align: justify;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.text-danger {
+    color: red;
+}
+
+menutable td 
+{
+    padding: 3px;
+}
+   
+.vocemenu 
+{
+    border-top: 1px dotted #999;
+}
+
+.vocemenu a, .vocemenu a:visited
+{
+    text-decoration: none !important;
+}
+   
+menutable td.titolo 
+{
+    font-weight: bold;
+}

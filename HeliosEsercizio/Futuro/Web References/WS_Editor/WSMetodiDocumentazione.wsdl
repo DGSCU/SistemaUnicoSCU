@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione">
+      <s:element name="RecuperaTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNomeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecuperaTemplateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecuperaTemplateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strFileBase64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNomeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviTemplateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ScriviTemplateResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerazioneBOX16_BOX19">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdBandoAttivita" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="NomeUtente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerazioneBOX16_BOX19Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerazioneBOX16_BOX19Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Async_InserimentoDocumentiProgetti">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdAttività" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdAttivitaDocumento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Async_InserimentoDocumentiProgettiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Async_InserimentoDocumentiProgettiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Async_COMP_Elaborazione">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdElaborazione" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserNameRichiesta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Async_COMP_ElaborazioneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Async_COMP_ElaborazioneResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerazioneAllegato6_ElencoSedi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdEnteFase" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="NomeUtente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerazioneAllegato6_ElencoSediResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerazioneAllegato6_ElencoSediResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="anyType" nillable="true" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RecuperaTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:RecuperaTemplate" />
+  </wsdl:message>
+  <wsdl:message name="RecuperaTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:RecuperaTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScriviTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:ScriviTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ScriviTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:ScriviTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneBOX16_BOX19SoapIn">
+    <wsdl:part name="parameters" element="tns:GenerazioneBOX16_BOX19" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneBOX16_BOX19SoapOut">
+    <wsdl:part name="parameters" element="tns:GenerazioneBOX16_BOX19Response" />
+  </wsdl:message>
+  <wsdl:message name="Async_InserimentoDocumentiProgettiSoapIn">
+    <wsdl:part name="parameters" element="tns:Async_InserimentoDocumentiProgetti" />
+  </wsdl:message>
+  <wsdl:message name="Async_InserimentoDocumentiProgettiSoapOut">
+    <wsdl:part name="parameters" element="tns:Async_InserimentoDocumentiProgettiResponse" />
+  </wsdl:message>
+  <wsdl:message name="Async_COMP_ElaborazioneSoapIn">
+    <wsdl:part name="parameters" element="tns:Async_COMP_Elaborazione" />
+  </wsdl:message>
+  <wsdl:message name="Async_COMP_ElaborazioneSoapOut">
+    <wsdl:part name="parameters" element="tns:Async_COMP_ElaborazioneResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneAllegato6_ElencoSediSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerazioneAllegato6_ElencoSedi" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneAllegato6_ElencoSediSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerazioneAllegato6_ElencoSediResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecuperaTemplateHttpGetIn">
+    <wsdl:part name="strPath" type="s:string" />
+    <wsdl:part name="strNomeFile" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RecuperaTemplateHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ScriviTemplateHttpGetIn">
+    <wsdl:part name="strPath" type="s:string" />
+    <wsdl:part name="strFileBase64" type="s:string" />
+    <wsdl:part name="strNomeFile" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ScriviTemplateHttpGetOut">
+    <wsdl:part name="Body" element="tns:anyType" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneBOX16_BOX19HttpGetIn">
+    <wsdl:part name="IdBandoAttivita" type="s:string" />
+    <wsdl:part name="NomeUtente" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneBOX16_BOX19HttpGetOut">
+    <wsdl:part name="Body" element="tns:anyType" />
+  </wsdl:message>
+  <wsdl:message name="Async_InserimentoDocumentiProgettiHttpGetIn">
+    <wsdl:part name="IdAttività" type="s:string" />
+    <wsdl:part name="IdAttivitaDocumento" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Async_InserimentoDocumentiProgettiHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Async_COMP_ElaborazioneHttpGetIn">
+    <wsdl:part name="IdElaborazione" type="s:string" />
+    <wsdl:part name="UserNameRichiesta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Async_COMP_ElaborazioneHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneAllegato6_ElencoSediHttpGetIn">
+    <wsdl:part name="IdEnteFase" type="s:string" />
+    <wsdl:part name="NomeUtente" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneAllegato6_ElencoSediHttpGetOut">
+    <wsdl:part name="Body" element="tns:anyType" />
+  </wsdl:message>
+  <wsdl:message name="RecuperaTemplateHttpPostIn">
+    <wsdl:part name="strPath" type="s:string" />
+    <wsdl:part name="strNomeFile" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RecuperaTemplateHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ScriviTemplateHttpPostIn">
+    <wsdl:part name="strPath" type="s:string" />
+    <wsdl:part name="strFileBase64" type="s:string" />
+    <wsdl:part name="strNomeFile" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ScriviTemplateHttpPostOut">
+    <wsdl:part name="Body" element="tns:anyType" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneBOX16_BOX19HttpPostIn">
+    <wsdl:part name="IdBandoAttivita" type="s:string" />
+    <wsdl:part name="NomeUtente" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneBOX16_BOX19HttpPostOut">
+    <wsdl:part name="Body" element="tns:anyType" />
+  </wsdl:message>
+  <wsdl:message name="Async_InserimentoDocumentiProgettiHttpPostIn">
+    <wsdl:part name="IdAttività" type="s:string" />
+    <wsdl:part name="IdAttivitaDocumento" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Async_InserimentoDocumentiProgettiHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Async_COMP_ElaborazioneHttpPostIn">
+    <wsdl:part name="IdElaborazione" type="s:string" />
+    <wsdl:part name="UserNameRichiesta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Async_COMP_ElaborazioneHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneAllegato6_ElencoSediHttpPostIn">
+    <wsdl:part name="IdEnteFase" type="s:string" />
+    <wsdl:part name="NomeUtente" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneAllegato6_ElencoSediHttpPostOut">
+    <wsdl:part name="Body" element="tns:anyType" />
+  </wsdl:message>
+  <wsdl:portType name="WSMetodiDocumentazioneSoap">
+    <wsdl:operation name="RecuperaTemplate">
+      <wsdl:input message="tns:RecuperaTemplateSoapIn" />
+      <wsdl:output message="tns:RecuperaTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <wsdl:input message="tns:ScriviTemplateSoapIn" />
+      <wsdl:output message="tns:ScriviTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <wsdl:input message="tns:GenerazioneBOX16_BOX19SoapIn" />
+      <wsdl:output message="tns:GenerazioneBOX16_BOX19SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <wsdl:input message="tns:Async_InserimentoDocumentiProgettiSoapIn" />
+      <wsdl:output message="tns:Async_InserimentoDocumentiProgettiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Async_COMP_Elaborazione">
+      <wsdl:input message="tns:Async_COMP_ElaborazioneSoapIn" />
+      <wsdl:output message="tns:Async_COMP_ElaborazioneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneAllegato6_ElencoSedi">
+      <wsdl:input message="tns:GenerazioneAllegato6_ElencoSediSoapIn" />
+      <wsdl:output message="tns:GenerazioneAllegato6_ElencoSediSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSMetodiDocumentazioneHttpGet">
+    <wsdl:operation name="RecuperaTemplate">
+      <wsdl:input message="tns:RecuperaTemplateHttpGetIn" />
+      <wsdl:output message="tns:RecuperaTemplateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <wsdl:input message="tns:ScriviTemplateHttpGetIn" />
+      <wsdl:output message="tns:ScriviTemplateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <wsdl:input message="tns:GenerazioneBOX16_BOX19HttpGetIn" />
+      <wsdl:output message="tns:GenerazioneBOX16_BOX19HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <wsdl:input message="tns:Async_InserimentoDocumentiProgettiHttpGetIn" />
+      <wsdl:output message="tns:Async_InserimentoDocumentiProgettiHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Async_COMP_Elaborazione">
+      <wsdl:input message="tns:Async_COMP_ElaborazioneHttpGetIn" />
+      <wsdl:output message="tns:Async_COMP_ElaborazioneHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneAllegato6_ElencoSedi">
+      <wsdl:input message="tns:GenerazioneAllegato6_ElencoSediHttpGetIn" />
+      <wsdl:output message="tns:GenerazioneAllegato6_ElencoSediHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSMetodiDocumentazioneHttpPost">
+    <wsdl:operation name="RecuperaTemplate">
+      <wsdl:input message="tns:RecuperaTemplateHttpPostIn" />
+      <wsdl:output message="tns:RecuperaTemplateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <wsdl:input message="tns:ScriviTemplateHttpPostIn" />
+      <wsdl:output message="tns:ScriviTemplateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <wsdl:input message="tns:GenerazioneBOX16_BOX19HttpPostIn" />
+      <wsdl:output message="tns:GenerazioneBOX16_BOX19HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <wsdl:input message="tns:Async_InserimentoDocumentiProgettiHttpPostIn" />
+      <wsdl:output message="tns:Async_InserimentoDocumentiProgettiHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Async_COMP_Elaborazione">
+      <wsdl:input message="tns:Async_COMP_ElaborazioneHttpPostIn" />
+      <wsdl:output message="tns:Async_COMP_ElaborazioneHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneAllegato6_ElencoSedi">
+      <wsdl:input message="tns:GenerazioneAllegato6_ElencoSediHttpPostIn" />
+      <wsdl:output message="tns:GenerazioneAllegato6_ElencoSediHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSMetodiDocumentazioneSoap" type="tns:WSMetodiDocumentazioneSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RecuperaTemplate">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/RecuperaTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/ScriviTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/GenerazioneBOX16_BOX19" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/Async_InserimentoDocumentiProgetti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_COMP_Elaborazione">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/Async_COMP_Elaborazione" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneAllegato6_ElencoSedi">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/GenerazioneAllegato6_ElencoSedi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSMetodiDocumentazioneSoap12" type="tns:WSMetodiDocumentazioneSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RecuperaTemplate">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/RecuperaTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/ScriviTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/GenerazioneBOX16_BOX19" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/Async_InserimentoDocumentiProgetti" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_COMP_Elaborazione">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/Async_COMP_Elaborazione" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneAllegato6_ElencoSedi">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/GenerazioneAllegato6_ElencoSedi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSMetodiDocumentazioneHttpGet" type="tns:WSMetodiDocumentazioneHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="RecuperaTemplate">
+      <http:operation location="/RecuperaTemplate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <http:operation location="/ScriviTemplate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <http:operation location="/GenerazioneBOX16_BOX19" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <http:operation location="/Async_InserimentoDocumentiProgetti" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_COMP_Elaborazione">
+      <http:operation location="/Async_COMP_Elaborazione" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneAllegato6_ElencoSedi">
+      <http:operation location="/GenerazioneAllegato6_ElencoSedi" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSMetodiDocumentazioneHttpPost" type="tns:WSMetodiDocumentazioneHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="RecuperaTemplate">
+      <http:operation location="/RecuperaTemplate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <http:operation location="/ScriviTemplate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <http:operation location="/GenerazioneBOX16_BOX19" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <http:operation location="/Async_InserimentoDocumentiProgetti" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_COMP_Elaborazione">
+      <http:operation location="/Async_COMP_Elaborazione" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneAllegato6_ElencoSedi">
+      <http:operation location="/GenerazioneAllegato6_ElencoSedi" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSMetodiDocumentazione">
+    <wsdl:port name="WSMetodiDocumentazioneSoap" binding="tns:WSMetodiDocumentazioneSoap">
+      <soap:address location="http://www1/sistemaunicoscn/WSDocumentazione/WSMetodiDocumentazione.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSMetodiDocumentazioneSoap12" binding="tns:WSMetodiDocumentazioneSoap12">
+      <soap12:address location="http://www1/sistemaunicoscn/WSDocumentazione/WSMetodiDocumentazione.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSMetodiDocumentazioneHttpGet" binding="tns:WSMetodiDocumentazioneHttpGet">
+      <http:address location="http://www1/sistemaunicoscn/WSDocumentazione/WSMetodiDocumentazione.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSMetodiDocumentazioneHttpPost" binding="tns:WSMetodiDocumentazioneHttpPost">
+      <http:address location="http://www1/sistemaunicoscn/WSDocumentazione/WSMetodiDocumentazione.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

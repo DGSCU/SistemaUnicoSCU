@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://intranet/WsPostProtocolloCAD/ServiceProt.asmx?wsdl" docRef="http://intranet/WsPostProtocolloCAD/ServiceProt.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://intranet/WsPostProtocolloCAD/ServiceProt.asmx" xmlns:q1="http://intranet.serviziocivile.it" binding="q1:ServiceProtSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://intranet/WsPostProtocolloCAD/ServiceProt.asmx" xmlns:q2="http://intranet.serviziocivile.it" binding="q2:ServiceProtSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

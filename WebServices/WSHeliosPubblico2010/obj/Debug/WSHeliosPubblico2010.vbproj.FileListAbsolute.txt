@@ -1,0 +1,8 @@
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosPubblico2010\bin\WSHeliosPubblico2010.dll
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosPubblico2010\bin\WSHeliosPubblico2010.pdb
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosPubblico2010\bin\WSHeliosPubblico2010.xml
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosPubblico2010\obj\Debug\WSHeliosPubblico2010.Resources.resources
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosPubblico2010\obj\Debug\WSHeliosPubblico2010.vbproj.GenerateResource.Cache
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosPubblico2010\obj\Debug\WSHeliosPubblico2010.dll
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosPubblico2010\obj\Debug\WSHeliosPubblico2010.xml
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosPubblico2010\obj\Debug\WSHeliosPubblico2010.pdb

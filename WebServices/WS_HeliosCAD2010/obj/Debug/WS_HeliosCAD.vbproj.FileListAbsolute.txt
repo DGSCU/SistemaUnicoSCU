@@ -1,0 +1,8 @@
+C:\Lavoro Locale\SORGENTI RIUSO\WS_HeliosCAD2010\obj\Debug\WS_HeliosCAD.vbproj.GenerateResource.Cache
+C:\Lavoro Locale\SORGENTI RIUSO\WS_HeliosCAD2010\bin\WS_HeliosCAD.dll
+C:\Lavoro Locale\SORGENTI RIUSO\WS_HeliosCAD2010\bin\WS_HeliosCAD.pdb
+C:\Lavoro Locale\SORGENTI RIUSO\WS_HeliosCAD2010\bin\WS_HeliosCAD.xml
+C:\Lavoro Locale\SORGENTI RIUSO\WS_HeliosCAD2010\obj\Debug\WS_HeliosCAD.Resources.resources
+C:\Lavoro Locale\SORGENTI RIUSO\WS_HeliosCAD2010\obj\Debug\WS_HeliosCAD.dll
+C:\Lavoro Locale\SORGENTI RIUSO\WS_HeliosCAD2010\obj\Debug\WS_HeliosCAD.xml
+C:\Lavoro Locale\SORGENTI RIUSO\WS_HeliosCAD2010\obj\Debug\WS_HeliosCAD.pdb

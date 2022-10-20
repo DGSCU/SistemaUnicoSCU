@@ -1,0 +1,28 @@
+
+     '''<remarks/>
+        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/getBox", RequestNamespace:="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione", ResponseNamespace:="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
+        Public Function getBox(ByVal IdBandoAtttivita As Integer, ByVal username As String, ByVal nomereport As String) As String
+            Dim results() As Object = Me.Invoke("getBox", New Object() {IdBandoAtttivita, username, nomereport})
+            Return CType(results(0),String)
+        End Function
+
+  '''<remarks/>
+Public Function BeginAsync_InserimentoDocumentiProgetti(ByVal IdAttività As String, ByVal IdAttivitaDocumento As String, ByVal username As String, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+    Return Me.BeginInvoke("Async_InserimentoDocumentiProgetti", New Object() {IdAttività, IdAttivitaDocumento, username}, callback, asyncState)
+End Function
+
+
+'''<remarks/>
+Public Function BeginGenerazioneBOX16_BOX19(ByVal IdBandoAttivita As Integer, ByVal NomeUtente As String, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+    Return Me.BeginInvoke("GenerazioneBOX16_BOX19", New Object() {IdBandoAttivita, NomeUtente}, callback, asyncState)
+End Function
+
+'''<remarks/>
+Public Function BeginGenerazioneAllegato6_ElencoSedi(ByVal IdEnteFase As Integer, ByVal NomeUtente As String, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+	Return Me.BeginInvoke("GenerazioneAllegato6_ElencoSedi", New Object() {IdEnteFase, NomeUtente}, callback, asyncState)
+End Function
+
+'''<remarks/>
+Public Function BeginAsync_COMP_Elaborazione(ByVal IdElaborazione As String, ByVal UserNameRichiesta As String, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+    Return Me.BeginInvoke("Async_COMP_Elaborazione", New Object() {IdElaborazione, UserNameRichiesta}, callback, asyncState)
+End Function

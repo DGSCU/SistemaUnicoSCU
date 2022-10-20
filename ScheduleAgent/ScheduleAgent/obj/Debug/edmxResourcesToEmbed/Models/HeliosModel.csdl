@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HeliosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DomandaPresentata">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="CodiceFiscale" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GruppoBando" Type="Int32" Nullable="false" />
+    <Property Name="DataInserimento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserIdModifica" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="DataModifica" Type="DateTime" Precision="3" />
+    <Property Name="CodiceProgettoSelezionato" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
+    <Property Name="CodiceSedeSelezionata" Type="Int32" />
+    <Property Name="DataPresentazione" Type="DateTime" Precision="3" />
+    <Property Name="DataAnnullamento" Type="DateTime" Precision="3" />
+    <Property Name="NomeFileCV" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Cognome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Genere" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="DataNascita" Type="DateTime" Precision="0" />
+    <Property Name="LuogoNascita" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NazioneNascita" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Cittadinanza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ComuneResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinciaResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ViaResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CivicoResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CapResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IndirizoCompleto" Type="String" MaxLength="1004" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ComuneRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinciaRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ViaRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CivicoRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CapRecapito" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CodiceMinoriOpportunita" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="IdMotivazione" Type="Int32" />
+    <Property Name="Motivazione" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CodiceDichiarazioneCittadinanza" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="NonCondanneOk" Type="Boolean" />
+    <Property Name="TrasferimentoSedeOk" Type="Boolean" />
+    <Property Name="TrasferimentoProgettoOk" Type="Boolean" />
+    <Property Name="AltreDichiarazioniOk" Type="Boolean" />
+    <Property Name="IdTitoloStudio" Type="Int32" />
+    <Property Name="TitoloStudio" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PrivacyPresaVisione" Type="Boolean" />
+    <Property Name="PrivacyConsenso" Type="Boolean" />
+    <Property Name="PrecedentiEnte" Type="Boolean" />
+    <Property Name="PrecedentiEnteDescrizione" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PrecedentiAltriEnti" Type="Boolean" />
+    <Property Name="PrecedentiAltriEntiDescrizione" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PrecedentiImpiego" Type="Boolean" />
+    <Property Name="PrecedentiImpiegoDescrizione" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="IdTitoloStudioEsperienze" Type="Int32" />
+    <Property Name="TitoloStudioEsperienze" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneDisciplina" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneAnno" Type="Int32" />
+    <Property Name="FormazioneData" Type="DateTime" Precision="0" />
+    <Property Name="FormazioneItalia" Type="Boolean" />
+    <Property Name="FormazioneIstituto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneEnte" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IscrizioneSuperioreAnno" Type="Int32" />
+    <Property Name="IscrizioneSuperioreIstituto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IscrizioneLaureaAnno" Type="Int32" />
+    <Property Name="IscrizioneLaureaCorso" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IscrizioneLaureaIstituto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CorsiEffettuati" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Specializzazioni" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Competenze" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Altro" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="DataInizioProtocollazione" Type="DateTime" Precision="3" />
+    <Property Name="DataFineProtocollazione" Type="DateTime" Precision="3" />
+    <Property Name="CODICEPROTOCOLLO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NUMEROPROTOCOLLO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DATAPROTOCOLLO" Type="DateTime" Precision="0" />
+    <Property Name="DataInvioPEC" Type="DateTime" Precision="3" />
+    <Property Name="NazioneResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IndirizzoCompletoResidenza" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ResidenzaEstera" Type="Boolean" />
+    <Property Name="DataInizioProtocollazioneAnnullamento" Type="DateTime" Precision="3" />
+    <Property Name="DataFineProtocollazioneAnnullamento" Type="DateTime" Precision="3" />
+    <Property Name="CODICEPROTOCOLLOAnnullamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NUMEROPROTOCOLLOAnnullamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DATAPROTOCOLLOAnnullamento" Type="DateTime" Precision="0" />
+    <Property Name="DataInvioPECAnnullamento" Type="DateTime" Precision="3" />
+    <Property Name="DataRichiestaAnnullamento" Type="DateTime" Precision="3" />
+    <Property Name="MotivoAnnullamento" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneAnagraficaDisciplina" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneAnagraficaAnno" Type="Int32" />
+    <Property Name="FormazioneAnagraficaItalia" Type="Boolean" />
+    <Property Name="FormazioneAnagraficaIstituto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FormazioneAnagraficaEnte" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DichiarazioneResidenzaOK" Type="Boolean" />
+    <Property Name="DichiarazioneRequisitiGaranziaGiovani" Type="Boolean" />
+    <Property Name="DataPresaInCaricoGaranziaGiovani" Type="DateTime" Precision="0" />
+    <Property Name="LuogoPresaInCaricoGaranziaGiovani" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DataDIDGaranziaGiovani" Type="DateTime" Precision="0" />
+    <Property Name="LuogoDIDGaranziaGiovani" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AlternativaRequisitiGaranziaGiovani" Type="Boolean" />
+    <Property Name="DichiarazioneMinoriOpportunita" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="HeliosContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DomandaPresentata" EntityType="HeliosModel.DomandaPresentata" />
+    <FunctionImport Name="SP_DOL_IMPORTAZIONE_DOMANDE" />
+    <EntitySet Name="Job" EntityType="HeliosModel.Job" />
+    <EntitySet Name="JobSchedule" EntityType="HeliosModel.JobSchedule" />
+    <AssociationSet Name="FK_JobSchedule" Association="HeliosModel.FK_JobSchedule">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="JobSchedule" EntitySet="JobSchedule" />
+    </AssociationSet>
+    <EntitySet Name="JobExecution" EntityType="HeliosModel.JobExecution" />
+    <AssociationSet Name="FK_JobExecution" Association="HeliosModel.FK_JobExecution">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="JobExecution" EntitySet="JobExecution" />
+    </AssociationSet>
+    <EntitySet Name="LogScheduleAgent" EntityType="HeliosModel.LogScheduleAgent" />
+  </EntityContainer>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Descrizione" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pianificazioni" Relationship="HeliosModel.FK_JobSchedule" FromRole="Job" ToRole="JobSchedule" />
+    <NavigationProperty Name="Esecuzioni" Relationship="HeliosModel.FK_JobExecution" FromRole="Job" ToRole="JobExecution" />
+  </EntityType>
+  <EntityType Name="JobSchedule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdJob" Type="Int32" Nullable="false" />
+    <Property Name="OraInizio" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="GiornoSettimana" Type="Int32" />
+    <NavigationProperty Name="Job" Relationship="HeliosModel.FK_JobSchedule" FromRole="JobSchedule" ToRole="Job" />
+  </EntityType>
+  <Association Name="FK_JobSchedule">
+    <End Type="HeliosModel.Job" Role="Job" Multiplicity="1" />
+    <End Type="HeliosModel.JobSchedule" Role="JobSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobSchedule">
+        <PropertyRef Name="IdJob" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="JobExecution">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdJob" Type="Int32" Nullable="false" />
+    <Property Name="DataInizioEsecuzione" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataFineEsecuzione" Type="DateTime" Precision="3" />
+    <Property Name="Esito" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Job" Relationship="HeliosModel.FK_JobExecution" FromRole="JobExecution" ToRole="Job" />
+  </EntityType>
+  <Association Name="FK_JobExecution">
+    <End Type="HeliosModel.Job" Role="Job" Multiplicity="1" />
+    <End Type="HeliosModel.JobExecution" Role="JobExecution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobExecution">
+        <PropertyRef Name="IdJob" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LogScheduleAgent">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Timestamp" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MessageTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Properties" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Errore" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,187 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="SiteNew.master.vb" Inherits="Futuro.SiteNew" %>
+<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="it">
+
+<head runat="server">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Sistema Unico</title>
+
+	<link href="/bootstrap-italia/dist/css/bootstrap-italia.min.css" rel="stylesheet" />
+	<link href="/Styles/SiteNew.css" rel="stylesheet" type="text/css" />
+
+	<asp:ContentPlaceHolder ID="HeadContent" runat="server">
+	</asp:ContentPlaceHolder>
+</head>
+<body>
+	<form runat="server">
+		<header class="it-header-wrapper it-header-sticky">
+			<div class="it-header-slim-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="it-header-slim-wrapper-content">
+								<strong style="color:White"><%=Session("Denominazione")%>&nbsp;&nbsp;<%=Session("txtCodEnte")%></strong>&nbsp;&nbsp;
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="it-nav-wrapper">
+				<div class="it-header-center-wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="it-header-center-content-wrapper">
+									<div class="it-brand-wrapper">
+										<a href="/WfrmMain.aspx">
+											<asp:image runat="server" CssClass="icon" ImageUrl="~/Images/logo_servizio_civile.png" AlternateText="Servizio Civile" ToolTip="Servizio Civile" />
+											<div class="it-brand-text">
+												<span class="LogoTitle">Sistema Unico</span>
+												<br />
+												<span class="LogoSubitle"><%=Session("Sistema")%></span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="it-header-navbar-wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<nav class="navbar navbar-expand-lg has-megamenu">
+									<button aria-controls="nav10" aria-expanded="false" aria-label="Toggle navigation" class="custom-navbar-toggler" data-target="#nav10" type="button">
+										<svg class="icon">
+											<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-burger"></use>
+										</svg>
+									</button>
+									<div class="navbar-collapsable" id="nav10" style="display: none;">
+										<div class="overlay" style="display: none;"></div>
+										<div class="close-div sr-only">
+											<button class="btn close-menu" type="button">
+												<span class="it-close"></span>close
+											</button>
+										</div>
+										<div class="menu-wrapper">
+											<ul class="navbar-nav">
+												<asp:Literal Text="" runat="server" id="txtMenu"/>
+												<li>
+													<asp:LinkButton ID="HplLogOut" AccessKey="2" runat="server" CssClass="nav-link " Text="Esci" ToolTip="Uscita dal sistema"></asp:LinkButton>
+												</li>
+											</ul>
+
+										</div>
+									</div>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="container">
+			<main role="main" class="pb-3">
+				<asp:ContentPlaceHolder ID="MainContent" runat="server">
+				</asp:ContentPlaceHolder>
+			</main>
+		</div>
+
+		<footer class="it-footer">
+			<div class="it-footer-main">
+				<div class="container">
+					<section>
+						<div class="row clearfix">
+							<div class="col-sm-12">
+								<div class="it-brand-wrapper">
+									<a href="#">
+										<asp:image runat="server" CssClass="icon" ImageUrl="~/Images/Logo.png" AlternateText="Repubblica Italiana" ToolTip="Repubblica Italiana" />
+										<div class="it-brand-text">
+											<h2 class="no_toc">Dipartimento per le Politiche Giovanili e il Servizio Civile Universale</h2>
+											<h3 class="no_toc d-none d-md-block">Presidenza del Consiglio dei Ministri</h3>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="py-2 border-white border-top">
+						<div class="row">
+
+							<div class="col-lg-4 col-md-4 pb-4">
+								<h4>Contatti
+								</h4>
+								<p>
+									Via della Ferratella in Laterano, 51<br />
+									00184 Roma
+								</p>
+								<h5>E-mail</h5>
+								<a class="list-item" href="mailto:urp@serviziocivile.it ">urp@serviziocivile.it</a>
+
+								<h6>PEC</h6>
+								<a class="list-item" href="mailto:giovaniserviziocivilie@pec.governo.it">giovanieserviziocivile@pec.governo.it</a>
+
+							</div>
+							<div class="col-lg-4 col-md-4 pb-4">
+								<h4>Assistenza Tecnica
+								</h4>
+								<h5>E-mail</h5>
+								<a class="list-item" href="mailto:heliosweb@serviziocivile.it ">heliosweb@serviziocivile.it</a>
+								<h6>Telefono</h6>
+								<a class="list-item" href="tel:+390667796175">+39 06 67796175</a>
+							</div>
+							<div class="col-lg-4 col-md-4 pb-4">
+								<h4>Seguici su
+								</h4>
+								<ul class="list-inline text-left social">
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="#" target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-designers-italia"></use>
+											</svg>
+											<span class="sr-only">Designers Italia</span>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="#" target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-twitter"></use>
+											</svg>
+											<span class="sr-only">Twitter</span>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="#" target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-medium"></use>
+											</svg>
+											<span class="sr-only">Medium</span>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="#" target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-behance"></use>
+											</svg>
+											<span class="sr-only">Behance</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+		</footer>
+	</form>
+	<script src="/Scripts/jquery/dist/jquery.js"></script>
+	<script src="/bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js"></script>
+</body>
+</html>
+

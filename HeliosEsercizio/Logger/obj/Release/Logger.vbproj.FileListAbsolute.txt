@@ -1,0 +1,10 @@
+C:\temp\HeliosEsercizio\Logger\bin\Release\Logger.dll
+C:\temp\HeliosEsercizio\Logger\bin\Release\Logger.pdb
+C:\temp\HeliosEsercizio\Logger\bin\Release\Logger.xml
+C:\temp\HeliosEsercizio\Logger\bin\Release\Newtonsoft.Json.dll
+C:\temp\HeliosEsercizio\Logger\bin\Release\Newtonsoft.Json.xml
+C:\temp\HeliosEsercizio\Logger\obj\Release\Logger.Resources.resources
+C:\temp\HeliosEsercizio\Logger\obj\Release\Logger.vbproj.GenerateResource.Cache
+C:\temp\HeliosEsercizio\Logger\obj\Release\Logger.dll
+C:\temp\HeliosEsercizio\Logger\obj\Release\Logger.xml
+C:\temp\HeliosEsercizio\Logger\obj\Release\Logger.pdb

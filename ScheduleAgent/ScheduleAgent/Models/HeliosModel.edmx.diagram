@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c5744a4232354724a1c0170070176e4c" Name="Diagram1" ZoomLevel="33">
+        <EntityTypeShape EntityType="HeliosModel.DomandaPresentata" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HeliosModel.Job" Width="1.5" PointX="2.875" PointY="0.75" />
+        <EntityTypeShape EntityType="HeliosModel.JobSchedule" Width="1.5" PointX="5" PointY="0.75" />
+        <AssociationConnector Association="HeliosModel.FK_JobSchedule" />
+        <EntityTypeShape EntityType="HeliosModel.JobExecution" Width="1.5" PointX="2.875" PointY="3.375" />
+        <AssociationConnector Association="HeliosModel.FK_JobExecution" />
+        <EntityTypeShape EntityType="HeliosModel.LogScheduleAgent" Width="1.5" PointX="5" PointY="3.375" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

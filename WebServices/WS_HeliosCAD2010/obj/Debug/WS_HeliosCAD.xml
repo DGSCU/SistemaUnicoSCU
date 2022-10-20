@@ -1,0 +1,49 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+WS_HeliosCAD
+</name>
+</assembly>
+<members>
+<member name="P:WS_HeliosCAD.My.Resources.Resources.ResourceManager">
+	<summary>
+  Restituisce l'istanza di ResourceManager nella cache utilizzata da questa classe.
+</summary>
+</member><member name="P:WS_HeliosCAD.My.Resources.Resources.Culture">
+	<summary>
+  Esegue l'override della proprietà CurrentUICulture del thread corrente per tutte le
+  ricerche di risorse eseguite utilizzando questa classe di risorse fortemente tipizzata.
+</summary>
+</member><member name="T:WS_HeliosCAD.My.Resources.Resources">
+	<summary>
+  Classe di risorse fortemente tipizzata per la ricerca di stringhe localizzate e così via.
+</summary>
+</member><member name="P:WS_HeliosCAD.My.MyWebExtension.Computer">
+	<summary>
+ Restituisce le informazioni sul computer host.
+ </summary>
+</member><member name="P:WS_HeliosCAD.My.MyWebExtension.User">
+	<summary>
+ Restituisce le informazioni per l'utente Web corrente.
+ </summary>
+</member><member name="P:WS_HeliosCAD.My.MyWebExtension.Request">
+	<summary>
+ Restituisce l'oggetto Request.
+ </summary>
+</member><member name="P:WS_HeliosCAD.My.MyWebExtension.Response">
+	<summary>
+ Restituisce l'oggetto Response.
+ </summary>
+</member><member name="P:WS_HeliosCAD.My.MyWebExtension.Log">
+	<summary>
+ Restituisce l'oggetto AspLog.
+ </summary>
+</member><member name="T:WS_HeliosCAD.My.MyWebExtension">
+	<summary>
+ Modulo utilizzato per definire le proprietà disponibili nello spazio dei nomi My per i progetti Web.
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://tempuri.org/WSbox16/wsGetBox16" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://tempuri.org/WSbox16/wsGetBox16" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/WSbox16/wsGetBox16">
+      <s:element name="GeneraFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idBandoAttivita" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeneraFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GeneraFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="GeneraFileSoapIn">
+    <part name="parameters" element="s0:GeneraFile" />
+  </message>
+  <message name="GeneraFileSoapOut">
+    <part name="parameters" element="s0:GeneraFileResponse" />
+  </message>
+  <portType name="wsGetBox16Soap">
+    <operation name="GeneraFile">
+      <input message="s0:GeneraFileSoapIn" />
+      <output message="s0:GeneraFileSoapOut" />
+    </operation>
+  </portType>
+  <binding name="wsGetBox16Soap" type="s0:wsGetBox16Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GeneraFile">
+      <soap:operation soapAction="http://tempuri.org/WSbox16/wsGetBox16/GeneraFile" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="wsGetBox16">
+    <port name="wsGetBox16Soap" binding="s0:wsGetBox16Soap">
+      <soap:address location="http://rmshp6/WSbox16/WSGetBox16.asmx" />
+    </port>
+  </service>
+</definitions>

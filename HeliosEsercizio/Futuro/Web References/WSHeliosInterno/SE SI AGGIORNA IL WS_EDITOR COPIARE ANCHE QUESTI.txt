@@ -1,0 +1,10 @@
+	Dopo 
+	Private Sub OnUploadContrattoVolontarioOperationCompleted
+
+        '''<remarks/> 
+        Public Function BeginGeneraFascicoloVolontari(ByVal NomeUtente As String, ByVal strIdEntita As String, ByVal IntIdLog As Integer, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+            Return Me.BeginInvoke("GeneraFascicoloVolontari", New Object() {NomeUtente, strIdEntita, IntIdLog}, callback, asyncState)
+        End Function
+
+
+

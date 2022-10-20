@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione">
+      <s:element name="RecuperaTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNomeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecuperaTemplateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecuperaTemplateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strFileBase64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNomeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviTemplateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ScriviTemplateResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerazioneBOX16_BOX19">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdBandoAttivita" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="NomeUtente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerazioneBOX16_BOX19Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerazioneBOX16_BOX19Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Async_InserimentoDocumentiProgetti">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdAttività" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdAttivitaDocumento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Async_InserimentoDocumentiProgettiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Async_InserimentoDocumentiProgettiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RecuperaTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:RecuperaTemplate" />
+  </wsdl:message>
+  <wsdl:message name="RecuperaTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:RecuperaTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScriviTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:ScriviTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ScriviTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:ScriviTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneBOX16_BOX19SoapIn">
+    <wsdl:part name="parameters" element="tns:GenerazioneBOX16_BOX19" />
+  </wsdl:message>
+  <wsdl:message name="GenerazioneBOX16_BOX19SoapOut">
+    <wsdl:part name="parameters" element="tns:GenerazioneBOX16_BOX19Response" />
+  </wsdl:message>
+  <wsdl:message name="Async_InserimentoDocumentiProgettiSoapIn">
+    <wsdl:part name="parameters" element="tns:Async_InserimentoDocumentiProgetti" />
+  </wsdl:message>
+  <wsdl:message name="Async_InserimentoDocumentiProgettiSoapOut">
+    <wsdl:part name="parameters" element="tns:Async_InserimentoDocumentiProgettiResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSMetodiDocumentazioneSoap">
+    <wsdl:operation name="RecuperaTemplate">
+      <wsdl:input message="tns:RecuperaTemplateSoapIn" />
+      <wsdl:output message="tns:RecuperaTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <wsdl:input message="tns:ScriviTemplateSoapIn" />
+      <wsdl:output message="tns:ScriviTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <wsdl:input message="tns:GenerazioneBOX16_BOX19SoapIn" />
+      <wsdl:output message="tns:GenerazioneBOX16_BOX19SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <wsdl:input message="tns:Async_InserimentoDocumentiProgettiSoapIn" />
+      <wsdl:output message="tns:Async_InserimentoDocumentiProgettiSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSMetodiDocumentazioneSoap" type="tns:WSMetodiDocumentazioneSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RecuperaTemplate">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/RecuperaTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/ScriviTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/GenerazioneBOX16_BOX19" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <soap:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/Async_InserimentoDocumentiProgetti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSMetodiDocumentazioneSoap12" type="tns:WSMetodiDocumentazioneSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RecuperaTemplate">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/RecuperaTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviTemplate">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/ScriviTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerazioneBOX16_BOX19">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/GenerazioneBOX16_BOX19" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Async_InserimentoDocumentiProgetti">
+      <soap12:operation soapAction="http://tempuri.org/WSDocumentazione/WSMetodiDocumentazione/Async_InserimentoDocumentiProgetti" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSMetodiDocumentazione">
+    <wsdl:port name="WSMetodiDocumentazioneSoap" binding="tns:WSMetodiDocumentazioneSoap">
+      <soap:address location="http://sistemaunicoscn.serviziocivile.it/wsdocumentazione/WSmetodidocumentazione.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSMetodiDocumentazioneSoap12" binding="tns:WSMetodiDocumentazioneSoap12">
+      <soap12:address location="http://sistemaunicoscn.serviziocivile.it/wsdocumentazione/WSmetodidocumentazione.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

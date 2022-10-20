@@ -1,0 +1,230 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+WsHeliosPrivato2010
+</name>
+</assembly>
+<members>
+<member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.#ctor">
+	<remarks/>
+</member><member name="E:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.RecuperaTemplateCompleted">
+	<remarks/>
+</member><member name="E:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.ScriviTemplateCompleted">
+	<remarks/>
+</member><member name="E:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.GenerazioneBOX16_BOX19Completed">
+	<remarks/>
+</member><member name="E:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.Async_InserimentoDocumentiProgettiCompleted">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.RecuperaTemplate(System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.RecuperaTemplateAsync(System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.RecuperaTemplateAsync(System.String,System.String,System.Object)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.ScriviTemplate(System.String,System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.ScriviTemplateAsync(System.String,System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.ScriviTemplateAsync(System.String,System.String,System.String,System.Object)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.GenerazioneBOX16_BOX19(System.Int32,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.GenerazioneBOX16_BOX19Async(System.Int32,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.GenerazioneBOX16_BOX19Async(System.Int32,System.String,System.Object)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.Async_InserimentoDocumentiProgetti(System.String,System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.Async_InserimentoDocumentiProgettiAsync(System.String,System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.Async_InserimentoDocumentiProgettiAsync(System.String,System.String,System.String,System.Object)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione.CancelAsync(System.Object)">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WS_Editor.WSMetodiDocumentazione">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WS_Editor.RecuperaTemplateCompletedEventHandler">
+	<remarks/>
+</member><member name="P:WsHeliosPrivato2010.WS_Editor.RecuperaTemplateCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WS_Editor.RecuperaTemplateCompletedEventArgs">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WS_Editor.ScriviTemplateCompletedEventHandler">
+	<remarks/>
+</member><member name="P:WsHeliosPrivato2010.WS_Editor.ScriviTemplateCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WS_Editor.ScriviTemplateCompletedEventArgs">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WS_Editor.GenerazioneBOX16_BOX19CompletedEventHandler">
+	<remarks/>
+</member><member name="P:WsHeliosPrivato2010.WS_Editor.GenerazioneBOX16_BOX19CompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WS_Editor.GenerazioneBOX16_BOX19CompletedEventArgs">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WS_Editor.Async_InserimentoDocumentiProgettiCompletedEventHandler">
+	<remarks/>
+</member><member name="P:WsHeliosPrivato2010.WS_Editor.Async_InserimentoDocumentiProgettiCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WS_Editor.Async_InserimentoDocumentiProgettiCompletedEventArgs">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosUtility.WSHeliosUtility.#ctor">
+	<remarks/>
+</member><member name="E:WsHeliosPrivato2010.WSHeliosUtility.WSHeliosUtility.DataMatrixToRtfStringCompleted">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosUtility.WSHeliosUtility.DataMatrixToRtfString(System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosUtility.WSHeliosUtility.DataMatrixToRtfStringAsync(System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosUtility.WSHeliosUtility.DataMatrixToRtfStringAsync(System.String,System.Object)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosUtility.WSHeliosUtility.CancelAsync(System.Object)">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosUtility.WSHeliosUtility">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosUtility.DataMatrixToRtfStringCompletedEventHandler">
+	<remarks/>
+</member><member name="P:WsHeliosPrivato2010.WSHeliosUtility.DataMatrixToRtfStringCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosUtility.DataMatrixToRtfStringCompletedEventArgs">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.AsposePDF.#ctor(System.String)">
+	<summary>
+ Crea un nuovo oggetto AsposePDF che rappresenta il file pdf su disco il cui path viene passato come argomento
+ </summary>
+	<param name="filepath">il path del file pdf da aprire</param>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.AsposePDF.#ctor(System.IO.MemoryStream)">
+	<summary>
+ Crea un nuovo oggetto AsposePDF che rappresenta il file pdf contenuto nello stream passato come argomento
+ </summary>
+	<param name="stream"></param>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.AsposePDF.#ctor(System.Byte[])">
+	<summary>
+ Crea un nuovo oggetto AsposePDF che rappresenta il file pdf codificato nell'array di byte passato come argomento
+ </summary>
+	<param name="byteArray"></param>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.AsposePDF.Licensed">
+	<summary>
+ Controlla se la licenza AsposePDF inglobata nella libreria é correntemente valida
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.AsposePDF.Open(System.String)">
+	<summary>
+ Apre un file pdf su disco
+ </summary>
+	<param name="filepath">il path del file pdf su disco</param>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.AsposePDF.Open(System.IO.MemoryStream)">
+	<summary>
+ Apre un file pdf contenuto in un MemoryStream 
+ </summary>
+	<param name="stream"></param>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.AsposePDF.Open(System.Byte[])">
+	<summary>
+ Apre un file pdf contenuto in un array di byte
+ </summary>
+	<param name="byteArray"></param>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.AsposePDF.IsSignedOK">
+	<summary>
+  Controlla se il documento pdf caricato è correttamente firmato. Se ha piu' firme controlla che tutte le firme siano valide
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.AsposePDF.IsSigned">
+	<summary>
+  Controlla se il documento pdf caricato è firmato, cioè se esiste almeno una firma. Non controlla la validità
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:WsHeliosPrivato2010.AsposePDF">
+	<summary>
+ Classe Helper per l'uso semplificato di AsposePDF
+ G. de Nicolellis
+ ''' </summary>
+	<remarks></remarks>
+</member><member name="P:WsHeliosPrivato2010.My.Resources.Resources.ResourceManager">
+	<summary>
+  Restituisce l'istanza di ResourceManager nella cache utilizzata da questa classe.
+</summary>
+</member><member name="P:WsHeliosPrivato2010.My.Resources.Resources.Culture">
+	<summary>
+  Esegue l'override della proprietà CurrentUICulture del thread corrente per tutte le
+  ricerche di risorse eseguite utilizzando questa classe di risorse fortemente tipizzata.
+</summary>
+</member><member name="T:WsHeliosPrivato2010.My.Resources.Resources">
+	<summary>
+  Classe di risorse fortemente tipizzata per la ricerca di stringhe localizzate e così via.
+</summary>
+</member><member name="M:WsHeliosPrivato2010.AsposeWord.HandleMergeImageFieldFromBlob.ImageFieldMerging(Aspose.Words.MailMerging.ImageFieldMergingArgs)">
+	<summary>
+ This is called when mail merge engine encounters Image:XXX merge field in the document.
+ You have a chance to return an Image object, file name or a stream that contains the image.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.AsposeWord.addFieldValue(System.String,System.Object)">
+	<summary>
+	</summary>
+	<param name="field"></param>
+	<param name="fieldvalue"></param>
+	<remarks></remarks>
+</member><member name="T:WsHeliosPrivato2010.AsposeWord">
+	<summary>
+	</summary>
+	<remarks></remarks>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.#ctor">
+	<remarks/>
+</member><member name="E:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.CreaFascicoloIstanzaCompleted">
+	<remarks/>
+</member><member name="E:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.InviaPECCompleted">
+	<remarks/>
+</member><member name="E:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.UploadContrattoVolontarioCompleted">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.CreaFascicoloIstanza(System.Int32,System.Int32)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.CreaFascicoloIstanzaAsync(System.Int32,System.Int32)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.CreaFascicoloIstanzaAsync(System.Int32,System.Int32,System.Object)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.InviaPEC(System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.InviaPECAsync(System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.InviaPECAsync(System.String,System.String,System.Object)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.UploadContrattoVolontario(System.Int32,System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.UploadContrattoVolontarioAsync(System.Int32,System.String,System.String)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.UploadContrattoVolontarioAsync(System.Int32,System.String,System.String,System.Object)">
+	<remarks/>
+</member><member name="M:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno.CancelAsync(System.Object)">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosInterno.HeliosInterno">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosInterno.CreaFascicoloIstanzaCompletedEventHandler">
+	<remarks/>
+</member><member name="P:WsHeliosPrivato2010.WSHeliosInterno.CreaFascicoloIstanzaCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosInterno.CreaFascicoloIstanzaCompletedEventArgs">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosInterno.InviaPECCompletedEventHandler">
+	<remarks/>
+</member><member name="P:WsHeliosPrivato2010.WSHeliosInterno.InviaPECCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosInterno.InviaPECCompletedEventArgs">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosInterno.UploadContrattoVolontarioCompletedEventHandler">
+	<remarks/>
+</member><member name="P:WsHeliosPrivato2010.WSHeliosInterno.UploadContrattoVolontarioCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:WsHeliosPrivato2010.WSHeliosInterno.UploadContrattoVolontarioCompletedEventArgs">
+	<remarks/>
+</member>
+</members>
+</doc>

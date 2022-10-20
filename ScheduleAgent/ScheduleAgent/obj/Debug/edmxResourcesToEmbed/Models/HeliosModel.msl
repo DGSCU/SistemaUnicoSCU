@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HeliosModelStoreContainer" CdmEntityContainer="HeliosContext">
+    <EntitySetMapping Name="DomandaPresentata">
+      <EntityTypeMapping TypeName="HeliosModel.DomandaPresentata">
+        <MappingFragment StoreEntitySet="DOL_DomandePresentate">
+          <ScalarProperty Name="DichiarazioneMinoriOpportunita" ColumnName="DichiarazioneMinoriOpportunita" />
+          <ScalarProperty Name="AlternativaRequisitiGaranziaGiovani" ColumnName="AlternativaRequisitiGaranziaGiovani" />
+          <ScalarProperty Name="LuogoDIDGaranziaGiovani" ColumnName="LuogoDIDGaranziaGiovani" />
+          <ScalarProperty Name="DataDIDGaranziaGiovani" ColumnName="DataDIDGaranziaGiovani" />
+          <ScalarProperty Name="LuogoPresaInCaricoGaranziaGiovani" ColumnName="LuogoPresaInCaricoGaranziaGiovani" />
+          <ScalarProperty Name="DataPresaInCaricoGaranziaGiovani" ColumnName="DataPresaInCaricoGaranziaGiovani" />
+          <ScalarProperty Name="DichiarazioneRequisitiGaranziaGiovani" ColumnName="DichiarazioneRequisitiGaranziaGiovani" />
+          <ScalarProperty Name="DichiarazioneResidenzaOK" ColumnName="DichiarazioneResidenzaOK" />
+          <ScalarProperty Name="FormazioneAnagraficaEnte" ColumnName="FormazioneAnagraficaEnte" />
+          <ScalarProperty Name="FormazioneAnagraficaIstituto" ColumnName="FormazioneAnagraficaIstituto" />
+          <ScalarProperty Name="FormazioneAnagraficaItalia" ColumnName="FormazioneAnagraficaItalia" />
+          <ScalarProperty Name="FormazioneAnagraficaAnno" ColumnName="FormazioneAnagraficaAnno" />
+          <ScalarProperty Name="FormazioneAnagraficaDisciplina" ColumnName="FormazioneAnagraficaDisciplina" />
+          <ScalarProperty Name="MotivoAnnullamento" ColumnName="MotivoAnnullamento" />
+          <ScalarProperty Name="DataRichiestaAnnullamento" ColumnName="DataRichiestaAnnullamento" />
+          <ScalarProperty Name="DataInvioPECAnnullamento" ColumnName="DataInvioPECAnnullamento" />
+          <ScalarProperty Name="DATAPROTOCOLLOAnnullamento" ColumnName="DATAPROTOCOLLOAnnullamento" />
+          <ScalarProperty Name="NUMEROPROTOCOLLOAnnullamento" ColumnName="NUMEROPROTOCOLLOAnnullamento" />
+          <ScalarProperty Name="CODICEPROTOCOLLOAnnullamento" ColumnName="CODICEPROTOCOLLOAnnullamento" />
+          <ScalarProperty Name="DataFineProtocollazioneAnnullamento" ColumnName="DataFineProtocollazioneAnnullamento" />
+          <ScalarProperty Name="DataInizioProtocollazioneAnnullamento" ColumnName="DataInizioProtocollazioneAnnullamento" />
+          <ScalarProperty Name="ResidenzaEstera" ColumnName="ResidenzaEstera" />
+          <ScalarProperty Name="IndirizzoCompletoResidenza" ColumnName="IndirizzoCompletoResidenza" />
+          <ScalarProperty Name="NazioneResidenza" ColumnName="NazioneResidenza" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CodiceFiscale" ColumnName="CodiceFiscale" />
+          <ScalarProperty Name="GruppoBando" ColumnName="GruppoBando" />
+          <ScalarProperty Name="DataInserimento" ColumnName="DataInserimento" />
+          <ScalarProperty Name="UserIdModifica" ColumnName="UserIdModifica" />
+          <ScalarProperty Name="DataModifica" ColumnName="DataModifica" />
+          <ScalarProperty Name="CodiceProgettoSelezionato" ColumnName="CodiceProgettoSelezionato" />
+          <ScalarProperty Name="CodiceSedeSelezionata" ColumnName="CodiceSedeSelezionata" />
+          <ScalarProperty Name="DataPresentazione" ColumnName="DataPresentazione" />
+          <ScalarProperty Name="DataAnnullamento" ColumnName="DataAnnullamento" />
+          <ScalarProperty Name="NomeFileCV" ColumnName="NomeFileCV" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+          <ScalarProperty Name="Genere" ColumnName="Genere" />
+          <ScalarProperty Name="DataNascita" ColumnName="DataNascita" />
+          <ScalarProperty Name="LuogoNascita" ColumnName="LuogoNascita" />
+          <ScalarProperty Name="NazioneNascita" ColumnName="NazioneNascita" />
+          <ScalarProperty Name="Cittadinanza" ColumnName="Cittadinanza" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ComuneResidenza" ColumnName="ComuneResidenza" />
+          <ScalarProperty Name="ProvinciaResidenza" ColumnName="ProvinciaResidenza" />
+          <ScalarProperty Name="ViaResidenza" ColumnName="ViaResidenza" />
+          <ScalarProperty Name="CivicoResidenza" ColumnName="CivicoResidenza" />
+          <ScalarProperty Name="CapResidenza" ColumnName="CapResidenza" />
+          <ScalarProperty Name="IndirizoCompleto" ColumnName="IndirizoCompleto" />
+          <ScalarProperty Name="ComuneRecapito" ColumnName="ComuneRecapito" />
+          <ScalarProperty Name="ProvinciaRecapito" ColumnName="ProvinciaRecapito" />
+          <ScalarProperty Name="ViaRecapito" ColumnName="ViaRecapito" />
+          <ScalarProperty Name="CivicoRecapito" ColumnName="CivicoRecapito" />
+          <ScalarProperty Name="CapRecapito" ColumnName="CapRecapito" />
+          <ScalarProperty Name="CodiceMinoriOpportunita" ColumnName="CodiceMinoriOpportunita" />
+          <ScalarProperty Name="IdMotivazione" ColumnName="IdMotivazione" />
+          <ScalarProperty Name="Motivazione" ColumnName="Motivazione" />
+          <ScalarProperty Name="CodiceDichiarazioneCittadinanza" ColumnName="CodiceDichiarazioneCittadinanza" />
+          <ScalarProperty Name="NonCondanneOk" ColumnName="NonCondanneOk" />
+          <ScalarProperty Name="TrasferimentoSedeOk" ColumnName="TrasferimentoSedeOk" />
+          <ScalarProperty Name="TrasferimentoProgettoOk" ColumnName="TrasferimentoProgettoOk" />
+          <ScalarProperty Name="AltreDichiarazioniOk" ColumnName="AltreDichiarazioniOk" />
+          <ScalarProperty Name="IdTitoloStudio" ColumnName="IdTitoloStudio" />
+          <ScalarProperty Name="TitoloStudio" ColumnName="TitoloStudio" />
+          <ScalarProperty Name="PrivacyPresaVisione" ColumnName="PrivacyPresaVisione" />
+          <ScalarProperty Name="PrivacyConsenso" ColumnName="PrivacyConsenso" />
+          <ScalarProperty Name="PrecedentiEnte" ColumnName="PrecedentiEnte" />
+          <ScalarProperty Name="PrecedentiEnteDescrizione" ColumnName="PrecedentiEnteDescrizione" />
+          <ScalarProperty Name="PrecedentiAltriEnti" ColumnName="PrecedentiAltriEnti" />
+          <ScalarProperty Name="PrecedentiAltriEntiDescrizione" ColumnName="PrecedentiAltriEntiDescrizione" />
+          <ScalarProperty Name="PrecedentiImpiego" ColumnName="PrecedentiImpiego" />
+          <ScalarProperty Name="PrecedentiImpiegoDescrizione" ColumnName="PrecedentiImpiegoDescrizione" />
+          <ScalarProperty Name="IdTitoloStudioEsperienze" ColumnName="IdTitoloStudioEsperienze" />
+          <ScalarProperty Name="TitoloStudioEsperienze" ColumnName="TitoloStudioEsperienze" />
+          <ScalarProperty Name="FormazioneDisciplina" ColumnName="FormazioneDisciplina" />
+          <ScalarProperty Name="FormazioneAnno" ColumnName="FormazioneAnno" />
+          <ScalarProperty Name="FormazioneData" ColumnName="FormazioneData" />
+          <ScalarProperty Name="FormazioneItalia" ColumnName="FormazioneItalia" />
+          <ScalarProperty Name="FormazioneIstituto" ColumnName="FormazioneIstituto" />
+          <ScalarProperty Name="FormazioneEnte" ColumnName="FormazioneEnte" />
+          <ScalarProperty Name="IscrizioneSuperioreAnno" ColumnName="IscrizioneSuperioreAnno" />
+          <ScalarProperty Name="IscrizioneSuperioreIstituto" ColumnName="IscrizioneSuperioreIstituto" />
+          <ScalarProperty Name="IscrizioneLaureaAnno" ColumnName="IscrizioneLaureaAnno" />
+          <ScalarProperty Name="IscrizioneLaureaCorso" ColumnName="IscrizioneLaureaCorso" />
+          <ScalarProperty Name="IscrizioneLaureaIstituto" ColumnName="IscrizioneLaureaIstituto" />
+          <ScalarProperty Name="CorsiEffettuati" ColumnName="CorsiEffettuati" />
+          <ScalarProperty Name="Specializzazioni" ColumnName="Specializzazioni" />
+          <ScalarProperty Name="Competenze" ColumnName="Competenze" />
+          <ScalarProperty Name="Altro" ColumnName="Altro" />
+          <ScalarProperty Name="DataInizioProtocollazione" ColumnName="DataInizioProtocollazione" />
+          <ScalarProperty Name="DataFineProtocollazione" ColumnName="DataFineProtocollazione" />
+          <ScalarProperty Name="CODICEPROTOCOLLO" ColumnName="CODICEPROTOCOLLO" />
+          <ScalarProperty Name="NUMEROPROTOCOLLO" ColumnName="NUMEROPROTOCOLLO" />
+          <ScalarProperty Name="DATAPROTOCOLLO" ColumnName="DATAPROTOCOLLO" />
+          <ScalarProperty Name="DataInvioPEC" ColumnName="DataInvioPEC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_DOL_IMPORTAZIONE_DOMANDE" FunctionName="HeliosModel.Store.SP_DOL_IMPORTAZIONE_DOMANDE" />
+    <EntitySetMapping Name="Job">
+      <EntityTypeMapping TypeName="HeliosModel.Job">
+        <MappingFragment StoreEntitySet="Job">
+          <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobSchedule">
+      <EntityTypeMapping TypeName="HeliosModel.JobSchedule">
+        <MappingFragment StoreEntitySet="JobSchedule">
+          <ScalarProperty Name="GiornoSettimana" ColumnName="GiornoSettimana" />
+          <ScalarProperty Name="OraInizio" ColumnName="OraInizio" />
+          <ScalarProperty Name="IdJob" ColumnName="IdJob" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobExecution">
+      <EntityTypeMapping TypeName="HeliosModel.JobExecution">
+        <MappingFragment StoreEntitySet="JobExecution">
+          <ScalarProperty Name="Esito" ColumnName="Esito" />
+          <ScalarProperty Name="DataFineEsecuzione" ColumnName="DataFineEsecuzione" />
+          <ScalarProperty Name="DataInizioEsecuzione" ColumnName="DataInizioEsecuzione" />
+          <ScalarProperty Name="IdJob" ColumnName="IdJob" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogScheduleAgent">
+      <EntityTypeMapping TypeName="HeliosModel.LogScheduleAgent">
+        <MappingFragment StoreEntitySet="VW_LogScheduleAgent">
+          <ScalarProperty Name="Errore" ColumnName="Errore" />
+          <ScalarProperty Name="Properties" ColumnName="Properties" />
+          <ScalarProperty Name="Exception" ColumnName="Exception" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="MessageTemplate" ColumnName="MessageTemplate" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

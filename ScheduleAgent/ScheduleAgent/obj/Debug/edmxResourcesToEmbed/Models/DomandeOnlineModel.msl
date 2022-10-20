@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DomandeOnlineContextStoreContainer" CdmEntityContainer="DomandeOnlineContext">
+    <EntitySetMapping Name="DomandaPartecipazione">
+      <EntityTypeMapping TypeName="DomandeOnlineModel.DomandaPartecipazione">
+        <MappingFragment StoreEntitySet="DomandaPartecipazione">
+          <ScalarProperty Name="DichiarazioneMinoriOpportunita" ColumnName="DichiarazioneMinoriOpportunita" />
+          <ScalarProperty Name="AlternativaRequisitiGaranziaGiovani" ColumnName="AlternativaRequisitiGaranziaGiovani" />
+          <ScalarProperty Name="LuogoDIDGaranziaGiovani" ColumnName="LuogoDIDGaranziaGiovani" />
+          <ScalarProperty Name="DataDIDGaranziaGiovani" ColumnName="DataDIDGaranziaGiovani" />
+          <ScalarProperty Name="LuogoPresaInCaricoGaranziaGiovani" ColumnName="LuogoPresaInCaricoGaranziaGiovani" />
+          <ScalarProperty Name="DataPresaInCaricoGaranziaGiovani" ColumnName="DataPresaInCaricoGaranziaGiovani" />
+          <ScalarProperty Name="DichiarazioneRequisitiGaranziaGiovani" ColumnName="DichiarazioneRequisitiGaranziaGiovani" />
+          <ScalarProperty Name="DichiarazioneResidenzaOK" ColumnName="DichiarazioneResidenzaOK" />
+          <ScalarProperty Name="FormazioneAnagraficaEnte" ColumnName="FormazioneAnagraficaEnte" />
+          <ScalarProperty Name="FormazioneAnagraficaIstituto" ColumnName="FormazioneAnagraficaIstituto" />
+          <ScalarProperty Name="FormazioneAnagraficaItalia" ColumnName="FormazioneAnagraficaItalia" />
+          <ScalarProperty Name="FormazioneAnagraficaAnno" ColumnName="FormazioneAnagraficaAnno" />
+          <ScalarProperty Name="FormazioneAnagraficaDisciplina" ColumnName="FormazioneAnagraficaDisciplina" />
+          <ScalarProperty Name="IdMotivazioneAnnullamento" ColumnName="IdMotivazioneAnnullamento" />
+          <ScalarProperty Name="DataRichiestaAnnullamento" ColumnName="DataRichiestaAnnullamento" />
+          <ScalarProperty Name="IdZip" ColumnName="IdZip" />
+          <ScalarProperty Name="IndirizzoCompletoResidenza" ColumnName="IndirizzoCompletoResidenza" />
+          <ScalarProperty Name="ConfermaResidenza" ColumnName="ConfermaResidenza" />
+          <ScalarProperty Name="ResidenzaEstera" ColumnName="ResidenzaEstera" />
+          <ScalarProperty Name="NazioneResidenza" ColumnName="NazioneResidenza" />
+          <ScalarProperty Name="DataInvioEmailAnnullamento" ColumnName="DataInvioEmailAnnullamento" />
+          <ScalarProperty Name="FileDomanda" ColumnName="FileDomanda" />
+          <ScalarProperty Name="Altro" ColumnName="Altro" />
+          <ScalarProperty Name="Competenze" ColumnName="Competenze" />
+          <ScalarProperty Name="Specializzazioni" ColumnName="Specializzazioni" />
+          <ScalarProperty Name="CorsiEffettuati" ColumnName="CorsiEffettuati" />
+          <ScalarProperty Name="IscrizioneLaureaIstituto" ColumnName="IscrizioneLaureaIstituto" />
+          <ScalarProperty Name="IscrizioneLaureaCorso" ColumnName="IscrizioneLaureaCorso" />
+          <ScalarProperty Name="IscrizioneLaureaAnno" ColumnName="IscrizioneLaureaAnno" />
+          <ScalarProperty Name="IscrizioneSuperioreIstituto" ColumnName="IscrizioneSuperioreIstituto" />
+          <ScalarProperty Name="IscrizioneSuperioreAnno" ColumnName="IscrizioneSuperioreAnno" />
+          <ScalarProperty Name="FormazioneEnte" ColumnName="FormazioneEnte" />
+          <ScalarProperty Name="FormazioneIstituto" ColumnName="FormazioneIstituto" />
+          <ScalarProperty Name="FormazioneItalia" ColumnName="FormazioneItalia" />
+          <ScalarProperty Name="FormazioneData" ColumnName="FormazioneData" />
+          <ScalarProperty Name="FormazioneAnno" ColumnName="FormazioneAnno" />
+          <ScalarProperty Name="FormazioneDisciplina" ColumnName="FormazioneDisciplina" />
+          <ScalarProperty Name="IdTitoloStudioEsperienze" ColumnName="IdTitoloStudioEsperienze" />
+          <ScalarProperty Name="PrecedentiImpiegoDescrizione" ColumnName="PrecedentiImpiegoDescrizione" />
+          <ScalarProperty Name="PrecedentiImpiego" ColumnName="PrecedentiImpiego" />
+          <ScalarProperty Name="PrecedentiAltriEntiDescrizione" ColumnName="PrecedentiAltriEntiDescrizione" />
+          <ScalarProperty Name="PrecedentiAltriEnti" ColumnName="PrecedentiAltriEnti" />
+          <ScalarProperty Name="PrecedentiEnteDescrizione" ColumnName="PrecedentiEnteDescrizione" />
+          <ScalarProperty Name="PrecedentiEnte" ColumnName="PrecedentiEnte" />
+          <ScalarProperty Name="PrivacyConsenso" ColumnName="PrivacyConsenso" />
+          <ScalarProperty Name="PrivacyPresaVisione" ColumnName="PrivacyPresaVisione" />
+          <ScalarProperty Name="IdTitoloStudio" ColumnName="IdTitoloStudio" />
+          <ScalarProperty Name="AltreDichiarazioniOk" ColumnName="AltreDichiarazioniOk" />
+          <ScalarProperty Name="TrasferimentoProgettoOk" ColumnName="TrasferimentoProgettoOk" />
+          <ScalarProperty Name="TrasferimentoSedeOk" ColumnName="TrasferimentoSedeOk" />
+          <ScalarProperty Name="NonCondanneOk" ColumnName="NonCondanneOk" />
+          <ScalarProperty Name="CodiceDichiarazioneCittadinanza" ColumnName="CodiceDichiarazioneCittadinanza" />
+          <ScalarProperty Name="IdMotivazione" ColumnName="IdMotivazione" />
+          <ScalarProperty Name="CodiceMinoriOpportunita" ColumnName="CodiceMinoriOpportunita" />
+          <ScalarProperty Name="CapRecapito" ColumnName="CapRecapito" />
+          <ScalarProperty Name="CivicoRecapito" ColumnName="CivicoRecapito" />
+          <ScalarProperty Name="ViaRecapito" ColumnName="ViaRecapito" />
+          <ScalarProperty Name="ProvinciaRecapito" ColumnName="ProvinciaRecapito" />
+          <ScalarProperty Name="ComuneRecapito" ColumnName="ComuneRecapito" />
+          <ScalarProperty Name="CapResidenza" ColumnName="CapResidenza" />
+          <ScalarProperty Name="CivicoResidenza" ColumnName="CivicoResidenza" />
+          <ScalarProperty Name="ViaResidenza" ColumnName="ViaResidenza" />
+          <ScalarProperty Name="ProvinciaResidenza" ColumnName="ProvinciaResidenza" />
+          <ScalarProperty Name="ComuneResidenza" ColumnName="ComuneResidenza" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Cittadinanza" ColumnName="Cittadinanza" />
+          <ScalarProperty Name="NazioneNascita" ColumnName="NazioneNascita" />
+          <ScalarProperty Name="LuogoNascita" ColumnName="LuogoNascita" />
+          <ScalarProperty Name="DataNascita" ColumnName="DataNascita" />
+          <ScalarProperty Name="Genere" ColumnName="Genere" />
+          <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="NomeFileCV" ColumnName="NomeFileCV" />
+          <ScalarProperty Name="AllegatoCV" ColumnName="AllegatoCV" />
+          <ScalarProperty Name="DataAnnullamento" ColumnName="DataAnnullamento" />
+          <ScalarProperty Name="DataPresentazione" ColumnName="DataPresentazione" />
+          <ScalarProperty Name="UserIdPresentazione" ColumnName="UserIdPresentazione" />
+          <ScalarProperty Name="CodiceSedeSelezionata" ColumnName="CodiceSedeSelezionata" />
+          <ScalarProperty Name="CodiceProgettoSelezionato" ColumnName="CodiceProgettoSelezionato" />
+          <ScalarProperty Name="DataModifica" ColumnName="DataModifica" />
+          <ScalarProperty Name="UserIdModifica" ColumnName="UserIdModifica" />
+          <ScalarProperty Name="DataInserimento" ColumnName="DataInserimento" />
+          <ScalarProperty Name="UserIdInserimento" ColumnName="UserIdInserimento" />
+          <ScalarProperty Name="GruppoBando" ColumnName="GruppoBando" />
+          <ScalarProperty Name="CodiceFiscale" ColumnName="CodiceFiscale" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_AggiornamentoDati" FunctionName="DomandeOnlineContext.Store.SP_AggiornamentoDati" />
+    <EntitySetMapping Name="SUSCN_DOL_PROGETTI_DISPONIBILI">
+      <EntityTypeMapping TypeName="DomandeOnlineModel.Progetto">
+        <MappingFragment StoreEntitySet="SUSCN_DOL_PROGETTI_DISPONIBILI">
+          <ScalarProperty Name="EnteAttuatore" ColumnName="EnteAttuatore" />
+          <ScalarProperty Name="LinkSintesi" ColumnName="LinkSintesi" />
+          <ScalarProperty Name="IdProgramma" ColumnName="IdProgramma" />
+          <ScalarProperty Name="IDParticolaritàEntità" ColumnName="IDParticolaritàEntità" />
+          <ScalarProperty Name="DataAnnullamento" ColumnName="DataAnnullamento" />
+          <ScalarProperty Name="Tutoraggio" ColumnName="Tutoraggio" />
+          <ScalarProperty Name="EsteroUE" ColumnName="EsteroUE" />
+          <ScalarProperty Name="NumeroGiovaniMinoriOpportunità" ColumnName="NumeroGiovaniMinoriOpportunità" />
+          <ScalarProperty Name="DurataProgettoMesi" ColumnName="DurataProgettoMesi" />
+          <ScalarProperty Name="Misure" ColumnName="Misure" />
+          <ScalarProperty Name="Gruppo" ColumnName="Gruppo" />
+          <ScalarProperty Name="NumeroPostiDisponibili" ColumnName="NumeroPostiDisponibili" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Settore" ColumnName="Settore" />
+          <ScalarProperty Name="Comune" ColumnName="Comune" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Regione" ColumnName="Regione" />
+          <ScalarProperty Name="IndirizzoSede" ColumnName="IndirizzoSede" />
+          <ScalarProperty Name="CodiceSede" ColumnName="CodiceSede" />
+          <ScalarProperty Name="TipoProgetto" ColumnName="TipoProgetto" />
+          <ScalarProperty Name="TitoloProgetto" ColumnName="TitoloProgetto" />
+          <ScalarProperty Name="CodiceProgetto" ColumnName="CodiceProgetto" />
+          <ScalarProperty Name="Sito" ColumnName="Sito" />
+          <ScalarProperty Name="NomeEnte" ColumnName="NomeEnte" />
+          <ScalarProperty Name="CodiceEnte" ColumnName="CodiceEnte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_AnnullaDomanda" FunctionName="DomandeOnlineContext.Store.SP_AnnullaDomanda" />
+    <EntitySetMapping Name="Bando">
+      <EntityTypeMapping TypeName="DomandeOnlineModel.Bando">
+        <MappingFragment StoreEntitySet="SUSCN_DOL_BANDOGRUPPO">
+          <ScalarProperty Name="DataFineAnnullamento" ColumnName="DataFineAnnullamento" />
+          <ScalarProperty Name="programmi" ColumnName="programmi" />
+          <ScalarProperty Name="GiorniPostScadenza" ColumnName="GiorniPostScadenza" />
+          <ScalarProperty Name="DataScadenzaGraduatorie" ColumnName="DataScadenzaGraduatorie" />
+          <ScalarProperty Name="DataScadenza" ColumnName="DataScadenza" />
+          <ScalarProperty Name="Scadenza" ColumnName="Scadenza" />
+          <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+          <ScalarProperty Name="Gruppo" ColumnName="Gruppo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

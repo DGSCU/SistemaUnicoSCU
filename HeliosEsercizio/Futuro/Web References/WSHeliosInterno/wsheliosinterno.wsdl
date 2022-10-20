@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreaFascicoloIstanza">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdBando" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdEnte" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreaFascicoloIstanzaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreaFascicoloIstanzaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InviaPEC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceEnte" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PecDestinatario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InviaPECResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InviaPECResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Recupera_DomandaDOL_Protocollo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Dol_Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Recupera_DomandaDOL_ProtocolloResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Recupera_DomandaDOL_ProtocolloResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadContrattoVolontario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdVol" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="File" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NomeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadContrattoVolontarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadContrattoVolontarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeneraFascicoloVolontari">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strIdEntita" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IntIdLog" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeneraFascicoloVolontariResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GeneraFascicoloVolontariResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreaFascicoloIstanzaSoapIn">
+    <wsdl:part name="parameters" element="tns:CreaFascicoloIstanza" />
+  </wsdl:message>
+  <wsdl:message name="CreaFascicoloIstanzaSoapOut">
+    <wsdl:part name="parameters" element="tns:CreaFascicoloIstanzaResponse" />
+  </wsdl:message>
+  <wsdl:message name="InviaPECSoapIn">
+    <wsdl:part name="parameters" element="tns:InviaPEC" />
+  </wsdl:message>
+  <wsdl:message name="InviaPECSoapOut">
+    <wsdl:part name="parameters" element="tns:InviaPECResponse" />
+  </wsdl:message>
+  <wsdl:message name="Recupera_DomandaDOL_ProtocolloSoapIn">
+    <wsdl:part name="parameters" element="tns:Recupera_DomandaDOL_Protocollo" />
+  </wsdl:message>
+  <wsdl:message name="Recupera_DomandaDOL_ProtocolloSoapOut">
+    <wsdl:part name="parameters" element="tns:Recupera_DomandaDOL_ProtocolloResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadContrattoVolontarioSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadContrattoVolontario" />
+  </wsdl:message>
+  <wsdl:message name="UploadContrattoVolontarioSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadContrattoVolontarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="GeneraFascicoloVolontariSoapIn">
+    <wsdl:part name="parameters" element="tns:GeneraFascicoloVolontari" />
+  </wsdl:message>
+  <wsdl:message name="GeneraFascicoloVolontariSoapOut">
+    <wsdl:part name="parameters" element="tns:GeneraFascicoloVolontariResponse" />
+  </wsdl:message>
+  <wsdl:portType name="HeliosInternoSoap">
+    <wsdl:operation name="CreaFascicoloIstanza">
+      <wsdl:input message="tns:CreaFascicoloIstanzaSoapIn" />
+      <wsdl:output message="tns:CreaFascicoloIstanzaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InviaPEC">
+      <wsdl:input message="tns:InviaPECSoapIn" />
+      <wsdl:output message="tns:InviaPECSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Recupera_DomandaDOL_Protocollo">
+      <wsdl:input message="tns:Recupera_DomandaDOL_ProtocolloSoapIn" />
+      <wsdl:output message="tns:Recupera_DomandaDOL_ProtocolloSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadContrattoVolontario">
+      <wsdl:input message="tns:UploadContrattoVolontarioSoapIn" />
+      <wsdl:output message="tns:UploadContrattoVolontarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GeneraFascicoloVolontari">
+      <wsdl:input message="tns:GeneraFascicoloVolontariSoapIn" />
+      <wsdl:output message="tns:GeneraFascicoloVolontariSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HeliosInternoSoap" type="tns:HeliosInternoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreaFascicoloIstanza">
+      <soap:operation soapAction="http://tempuri.org/CreaFascicoloIstanza" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InviaPEC">
+      <soap:operation soapAction="http://tempuri.org/InviaPEC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Recupera_DomandaDOL_Protocollo">
+      <soap:operation soapAction="http://tempuri.org/Recupera_DomandaDOL_Protocollo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadContrattoVolontario">
+      <soap:operation soapAction="http://tempuri.org/UploadContrattoVolontario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeneraFascicoloVolontari">
+      <soap:operation soapAction="http://tempuri.org/GeneraFascicoloVolontari" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HeliosInternoSoap12" type="tns:HeliosInternoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreaFascicoloIstanza">
+      <soap12:operation soapAction="http://tempuri.org/CreaFascicoloIstanza" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InviaPEC">
+      <soap12:operation soapAction="http://tempuri.org/InviaPEC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Recupera_DomandaDOL_Protocollo">
+      <soap12:operation soapAction="http://tempuri.org/Recupera_DomandaDOL_Protocollo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadContrattoVolontario">
+      <soap12:operation soapAction="http://tempuri.org/UploadContrattoVolontario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeneraFascicoloVolontari">
+      <soap12:operation soapAction="http://tempuri.org/GeneraFascicoloVolontari" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HeliosInterno">
+    <wsdl:port name="HeliosInternoSoap" binding="tns:HeliosInternoSoap">
+      <soap:address location="http://www1/sistemaunicoscn/WSHeliosInterno/wsheliosinterno.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HeliosInternoSoap12" binding="tns:HeliosInternoSoap12">
+      <soap12:address location="http://www1/sistemaunicoscn/WSHeliosInterno/wsheliosinterno.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

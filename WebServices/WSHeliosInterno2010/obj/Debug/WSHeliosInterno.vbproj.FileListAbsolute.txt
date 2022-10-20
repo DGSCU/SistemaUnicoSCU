@@ -1,0 +1,8 @@
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosInterno2010\bin\WSHeliosInterno.dll
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosInterno2010\bin\WSHeliosInterno.pdb
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosInterno2010\bin\WSHeliosInterno.xml
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosInterno2010\obj\Debug\WSHeliosInterno.Resources.resources
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosInterno2010\obj\Debug\WSHeliosInterno.vbproj.GenerateResource.Cache
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosInterno2010\obj\Debug\WSHeliosInterno.dll
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosInterno2010\obj\Debug\WSHeliosInterno.xml
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosInterno2010\obj\Debug\WSHeliosInterno.pdb

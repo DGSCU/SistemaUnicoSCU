@@ -1,0 +1,226 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false"  CodeBehind="Site.master.vb" Inherits="Futuro.Site" %>
+
+<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="it" lang="it">
+<head runat="server">
+ 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="~/Styles/Site.css?v=1.0" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+
+    <form runat="server">
+    <div class="skip">
+    <a href="#Contenuto" accesskey="k"  title="Salta al contenuto">Skip Navigation</a>
+    </div>
+    <div class="page">
+        <div class="header">
+			<div class="headerTop">
+
+				<asp:image runat="server" CssClass="logoImg" ImageUrl="~/Images/logo_servizio_civile.png" AlternateText="Servizio Civile" ToolTip="Servizio Civile" />
+				<div class="it-brand-text">
+					<div id="titolo">
+						<span class="LogoTitle">Sistema Unico</span>
+						<br />
+						<span class="LogoSubitle"><%=Session("Sistema")%></span>
+					</div>
+					<div class="loginDisplay">
+					    <asp:HyperLink ID="HplHome" AccessKey="h" runat="server" ToolTip="Ritorna alla pagina Home" NavigateUrl="~/WfrmMain.aspx">HOME</asp:HyperLink>
+                        <asp:LinkButton ID="HplLogOut" AccessKey="2" runat="server" Style="cursor: pointer" Text="LOGOUT" ToolTip="Uscita dal sistema"></asp:LinkButton>
+					</div>
+
+
+					<%--<asp:HyperLink ID="HplLogOut" AccessKey="2" ToolTip="Uscita dal sistema" runat="server" NavigateUrl="~/LogOn.aspx?out=1"  >LOGOUT</asp:HyperLink>--%>
+				</div>
+			</div>
+            <div class="clear hideSkiplink" style="text-align:center;">
+           
+            &nbsp;
+                <strong style="color:White"><%=Session("Denominazione")%>&nbsp;&nbsp;<%=Session("txtCodEnte")%></strong>&nbsp;&nbsp;
+               
+                <asp:Label id="LblInfoVerifiche" CssClass="skip" runat="server"  AssociatedControlID="imgDettVerifica" Text="Dettaglio Verifica" ForeColor="White" Visible="False"></asp:Label>
+							
+								<asp:image id="imgDettVerifica" CssClass="skip"  AlternateText="Dettaglio Verifica" runat="server" ToolTip="Dettaglio verifica" ImageUrl="Images/dettaglio.gif"
+									 Visible="false"></asp:image>
+               
+               
+                 <asp:Label id="lblInfoEnte"  runat="server" AssociatedControlID="CmdInforEnte" ForeColor="White" ToolTip="Info Ente" Text="INFO ENTE" Visible="False"></asp:Label>
+                 <asp:Button ID="CmdInforEnte" Visible="false" CssClass="PulsanteInforEnte" Text="Informazione Ente"  Width="20px" Height="20px" ToolTip="Info Ente" runat="server" />
+               <div style="text-align:right;float:right">
+               <asp:HyperLink ID="HpCambioSistema" ForeColor="White" Font-Bold="true" AccessKey="h" runat="server" ToolTip="Scelta Sistema" NavigateUrl="~/WfrmSistema.aspx">Cambio Sistema</asp:HyperLink>
+               </div>
+                </div>
+        </div>
+         <div> 
+ 
+        <asp:Button ID="CmdChiudi" CssClass="PulsanteMasterChiudi"  Width="38px" Height="38px" ToolTip="Nascondi Menu" Text="Chiudi"  runat="server"/>
+        <asp:Label ID="lblMasterChiudi" CssClass="bold" runat="server" AssociatedControlID="CmdChiudi" Text="Nascondi Menu"></asp:Label>
+        <asp:Button ID="CmdApri" CssClass="PulsanteMasterApri"  Width="38px" Height="38px" ToolTip="Visualizza Menu" Text="Apri" Visible="false"  runat="server" />
+        <asp:Label ID="lblMasterApri" CssClass="bold" Visible="false" AssociatedControlID="CmdApri" runat="server" Text="Visualizza Menu"></asp:Label>
+         </div>
+         
+        
+                        <div class="divmenuleftMenu" id="menusx" runat="server">
+                         <fieldset class="FDSMenu">
+                        <legend>Menu</legend>
+                       
+                        <p>
+                        <%If Session("Sistema") = "Helios" Then%>
+                        <%--<img alt="Logo Unione Europea" src="Images/Logo-ue_blu_small.png" />
+                            <img alt="Logo Garanzia Giovani" src="Images/logoGaranziaGiovani_small.png" />
+                            <img alt="Logo Presidenza del Consiglio dei Ministri Dipartimento della Gioventù e del Servizio Civile Nazionale" src="Images/logo-presidenza_small.png" />
+                        <%Else%>--%>
+                         <img alt="Logo Dipartimento per le politiche giovanili e il Servizio civile universale" src="Images/logo-presidenza_small.png" />
+                        <%End If%>
+                            
+                        </p>
+<% If Session("IdStatoEnte") = 6 And Session("TipoUtente") = "E" Then%>
+<div id="menuIscrizione" runat="server">
+<a title="Area Iscrizione Enti" class="level1" href="#" >
+			<img src="images/separatoreaiscrizione_helios.png" alt="Area Iscrizione Enti" title="Area Iscrizione Enti" class="icon" /></a>
+<br />
+		<a class="level2" style="padding-left: 1em; text-decoration: none;" href="DettaglioFunzioni.aspx?IdVoceMenu=2">Compilazione/Consultazione domanda</a><br />
+		<% If Left(Session("Utente"), 3) <> "ELA" And Left(Session("Utente"), 3) <> "EDA" Then%>
+        <a class="level2" style="padding-left: 1em; text-decoration: none;" href="WfrmAlbero.aspx?tipologia=Enti&amp;Arrivo=WfrmMain.aspx&amp;VediEnte=1">Presentazione e invio domanda</a>
+        <%End If %>
+
+<br />
+<br />
+
+<a title="Area Utilità" class="level1" href="#" >
+	<img src="images/separatoreutilita_helios.png" alt="Area Utilità" title="Area Utilità" class="icon" /></a>
+<br />
+	<a class="level2" style="padding-left: 1em; text-decoration: none;" href="WfrmManualiUtente.aspx">Manuali Utente</a><br />
+	<a class="level2" style="padding-left: 1em; text-decoration: none;" href="WfrmCapUtility.aspx">Ricerca Cap/Indirizzi</a>
+
+
+
+</div>
+
+<%End If %>
+                            <asp:Menu ID="Menu1" 
+                                runat="server" 
+                                StaticDisplayLevels="10" 
+                                CssClass="miomenu" SkipLinkText="" StaticMenuItemStyle-VerticalPadding="0.2em" >
+
+                                <StaticHoverStyle CssClass="hoverstyle"/>
+                            </asp:Menu>
+                            </fieldset>
+                        </div>                
+             
+                       <div class="divmenuleftPage">
+                       <a id="Contenuto" ></a>
+                            <asp:ContentPlaceHolder  ID="MainContent"  runat="server">
+                           </asp:ContentPlaceHolder>
+                        </div>                
+      
+        <div class="clear hideSkiplink">&nbsp;
+        
+        </div>
+    </div>
+   
+    <div class="footer">
+    <%If Session("Sistema") = "Futuro" Then%>
+        <img alt="Logo Unione Europea" src="Images/Logo-ue_blu_medium.png" />
+        <img alt="Logo Garanzia Giovani" src="Images/logoGaranziaGiovani_medium.png" />
+        <img alt="Logo pon SPAO" src="Images/logo-pon_spao.png" />
+        <img alt="Logo ANPAL" src="Images/logo-anpal.png" />
+        <img alt="Logo Dipartimento per le politiche giovanili e il Servizio civile universale" src="Images/logo-presidenza_medium.png" />
+    <%End If%>
+    </div>
+
+<footer class="it-footer">
+			<div class="it-footer-main">
+				<div class="container">
+					<section>
+						<div class="row clearfix">
+							<div class="col-sm-12">
+								<div class="it-brand-wrapper">
+									<a href="#">
+										<asp:image runat="server" CssClass="icon" ImageUrl="~/Images/Logo.png" AlternateText="Repubblica Italiana" ToolTip="Repubblica Italiana" />
+										<div class="it-brand-text">
+											<h2 class="no_toc">Dipartimento per le Politiche Giovanili e il Servizio Civile Universale</h2>
+											<h3 class="no_toc d-none d-md-block">Presidenza del Consiglio dei Ministri</h3>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</section>
+
+						<div class="row-footer">
+
+							<div class="col-footer">
+								<h4>Contatti
+								</h4>
+								<p>
+									Via della Ferratella in Laterano, 51<br>
+									00184 Roma
+								</p>
+								<h5>E-mail</h5>
+								<a class="list-item" href="mailto:urp@serviziocivile.it ">urp@serviziocivile.it</a>
+
+								<h6>PEC</h6>
+								<a class="list-item" href="mailto:giovaniserviziocivilie@pec.governo.it">giovanieserviziocivile@pec.governo.it</a>
+
+							</div>
+							<div class="col-footer">
+								<h4>Assistenza Tecnica
+								</h4>
+								<h5>E-mail</h5>
+								<a class="list-item" href="mailto:heliosweb@serviziocivile.it ">heliosweb@serviziocivile.it</a>
+								<h6>Telefono</h6>
+								<a class="list-item" href="tel:+390667796175">+39 06 67796175</a>
+							</div>
+							<div class="col-footer">
+								<h4>Seguici su
+								</h4>
+								<ul class="list-inline text-left social">
+									<li class="list-inline-item">
+										<a class="icon-social" href="#" target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-designers-italia"></use>
+											</svg>
+											<span class="sr-only">Designers Italia</span>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="#" target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-twitter"></use>
+											</svg>
+											<span class="sr-only">Twitter</span>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="#" target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-medium"></use>
+											</svg>
+											<span class="sr-only">Medium</span>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a class="p-2 text-white" href="#" target="_blank">
+											<svg class="icon icon-sm icon-white align-top">
+												<use xlink:href="/bootstrap-italia/dist/svg/sprite.svg#it-behance"></use>
+											</svg>
+											<span class="sr-only">Behance</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+				</div>
+			</div>
+
+		</footer>
+
+    </form>
+</body>
+</html>

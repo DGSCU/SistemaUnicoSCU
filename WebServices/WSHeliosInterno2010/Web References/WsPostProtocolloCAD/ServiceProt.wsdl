@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://intranet.serviziocivile.it" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://intranet.serviziocivile.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://intranet.serviziocivile.it">
+      <s:element name="BeginStartPostProtocollo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodDoc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BeginStartPostProtocolloResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BeginStartPostProtocolloResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Spedizioni">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SpedizioniResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SpedizioniResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InviaProtcolloPEC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataprot" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="protcollo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailPEC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InviaProtcolloPECResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InviaProtcolloPECResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BeginStartPostProtocolloSoapIn">
+    <wsdl:part name="parameters" element="tns:BeginStartPostProtocollo" />
+  </wsdl:message>
+  <wsdl:message name="BeginStartPostProtocolloSoapOut">
+    <wsdl:part name="parameters" element="tns:BeginStartPostProtocolloResponse" />
+  </wsdl:message>
+  <wsdl:message name="SpedizioniSoapIn">
+    <wsdl:part name="parameters" element="tns:Spedizioni" />
+  </wsdl:message>
+  <wsdl:message name="SpedizioniSoapOut">
+    <wsdl:part name="parameters" element="tns:SpedizioniResponse" />
+  </wsdl:message>
+  <wsdl:message name="InviaProtcolloPECSoapIn">
+    <wsdl:part name="parameters" element="tns:InviaProtcolloPEC" />
+  </wsdl:message>
+  <wsdl:message name="InviaProtcolloPECSoapOut">
+    <wsdl:part name="parameters" element="tns:InviaProtcolloPECResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceProtSoap">
+    <wsdl:operation name="BeginStartPostProtocollo">
+      <wsdl:input message="tns:BeginStartPostProtocolloSoapIn" />
+      <wsdl:output message="tns:BeginStartPostProtocolloSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Spedizioni">
+      <wsdl:input message="tns:SpedizioniSoapIn" />
+      <wsdl:output message="tns:SpedizioniSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InviaProtcolloPEC">
+      <wsdl:input message="tns:InviaProtcolloPECSoapIn" />
+      <wsdl:output message="tns:InviaProtcolloPECSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceProtSoap" type="tns:ServiceProtSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BeginStartPostProtocollo">
+      <soap:operation soapAction="http://intranet.serviziocivile.it/BeginStartPostProtocollo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Spedizioni">
+      <soap:operation soapAction="http://intranet.serviziocivile.it/Spedizioni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InviaProtcolloPEC">
+      <soap:operation soapAction="http://intranet.serviziocivile.it/InviaProtcolloPEC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceProtSoap12" type="tns:ServiceProtSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BeginStartPostProtocollo">
+      <soap12:operation soapAction="http://intranet.serviziocivile.it/BeginStartPostProtocollo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Spedizioni">
+      <soap12:operation soapAction="http://intranet.serviziocivile.it/Spedizioni" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InviaProtcolloPEC">
+      <soap12:operation soapAction="http://intranet.serviziocivile.it/InviaProtcolloPEC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceProt">
+    <wsdl:port name="ServiceProtSoap" binding="tns:ServiceProtSoap">
+      <soap:address location="http://intranet/WsPostProtocolloCAD/ServiceProt.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceProtSoap12" binding="tns:ServiceProtSoap12">
+      <soap12:address location="http://intranet/WsPostProtocolloCAD/ServiceProt.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,1854 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="RICERCAANAGRAFICHE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDSESSION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEANAGRAFICA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMINATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CITTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROVINCIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CAP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFISCALE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEUNIVOCO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RICERCAANAGRAFICHEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RICERCAANAGRAFICHEResult" type="tns:MULTI_ANAGRAFICA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MULTI_ANAGRAFICA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ELENCO_DOCUMENTI" type="tns:ArrayOfANAGRAFICA_DOCUMENTO_TROVATO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfANAGRAFICA_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ANAGRAFICA_DOCUMENTO_TROVATO" nillable="true" type="tns:ANAGRAFICA_DOCUMENTO_TROVATO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ANAGRAFICA_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CITTA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEANAGRAFICA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="INDIRIZZO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOMINATIVO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PROVINCIA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TIPOLOGIA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CAP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="INDICEANAGRAFICA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDSESSION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEANAGRAFICA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INDICEANAGRAFICAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INDICEANAGRAFICAResult" type="tns:INDICE_ANAGRAFICA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="INDICE_ANAGRAFICA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DATI" type="tns:ANAGRAFICA_DOCUMENTO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ANAGRAFICA_DOCUMENTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AZIENDA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CAP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CITTA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEANAGRAFICA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEFISCALE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEUNIVOCO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DATANASCITA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FAX" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="INDIRIZZO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LUOGONASCITA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOMINATIVO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PARTITAIVA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PROVINCIA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TIPOLOGIA" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREAANAGRAFICA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMINATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOLOGIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="INDIRIZZO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CITTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CAP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROVINCIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FAX" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AZIENDA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LUOGONASCITA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATANASCITA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFISCALE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PARTITAIVA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEUNIVOCO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREAANAGRAFICAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREAANAGRAFICAResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RICERCAFASCICOLI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RIFERIMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TITOLARIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NUMEROFASCICOLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CATEGORIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATAPRATICA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STRUTTURA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RICERCAFASCICOLIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RICERCAFASCICOLIResult" type="tns:MULTI_FASCICOLO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MULTI_FASCICOLO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ELENCO_DOCUMENTI" type="tns:ArrayOfFASCICOLO_DOCUMENTO_TROVATO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFASCICOLO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FASCICOLO_DOCUMENTO_TROVATO" nillable="true" type="tns:FASCICOLO_DOCUMENTO_TROVATO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FASCICOLO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMERO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TITOLARIO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="INDICEFASCICOLO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INDICEFASCICOLOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INDICEFASCICOLOResult" type="tns:INDICE_FASCICOLO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="INDICE_FASCICOLO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DATI" type="tns:FASCICOLO_DOCUMENTO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ELENCO_DOCUMENTI" type="tns:ArrayOfCOLLEGAMENTO_DOCUMENTO_TROVATO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FASCICOLO_DOCUMENTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CATEGORIA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DATAAPERTURA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMERO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RIFERIMENTO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVARESPONSABILE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WEBLINK" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCOLLEGAMENTO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="COLLEGAMENTO_DOCUMENTO_TROVATO" nillable="true" type="tns:COLLEGAMENTO_DOCUMENTO_TROVATO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="COLLEGAMENTO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEDOCUMENTOCOLLEGATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONECOLLEGAMENTO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TIPOCOLLEGAMENTO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FLAGAPERTURA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DETTAGLICOLLEGAMENTO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREAFASCICOLO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RIFERIMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATAAPERTURA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVARESPONSABILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CATEGORIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEDEFAULT" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREAFASCICOLOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREAFASCICOLOResult" type="tns:FASCICOLO_CREATO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FASCICOLO_CREATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMEROFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEDOCUMENTOCOLLEGATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREASOTTOFASCICOLO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RIFERIMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATAAPERTURA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVARESPONSABILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CATEGORIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEDEFAULT" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREASOTTOFASCICOLOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREASOTTOFASCICOLOResult" type="tns:SOTTOFASCICOLO_CREATO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SOTTOFASCICOLO_CREATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TITOLARIO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICESOTTOFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMEROSOTTOFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREAFASCICOLOEXPRESS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RIFERIMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATAAPERTURA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVARESPONSABILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CATEGORIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONEDOCINT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMEFILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BASE64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PATHFULLFILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEDEFAULT" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREAFASCICOLOEXPRESSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREAFASCICOLOEXPRESSResult" type="tns:FASCICOLOEX_CREATO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FASCICOLOEX_CREATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMEROFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEDOCUMENTOCOLLEGATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREASOTTOFASCICOLOEXPRESS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RIFERIMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATAAPERTURA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVARESPONSABILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CATEGORIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONEDOCINT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMEFILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BASE64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PATHFULLFILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEDEFAULT" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREASOTTOFASCICOLOEXPRESSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREASOTTOFASCICOLOEXPRESSResult" type="tns:SOTTOFASCICOLOEX_CREATO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SOTTOFASCICOLOEX_CREATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEDOCUMENTOCOLLEGATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TITOLARIO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICESOTTOFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMEROSOTTOFASCICOLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREAFASCICOLOMULTIPLO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="tns:DATO_MULTI" />
+            <s:element minOccurs="0" maxOccurs="1" name="RIFERIMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATAAPERTURA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVARESPONSABILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CATEGORIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEDEFAULT" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DATO_MULTI">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DATO" type="tns:ArrayOfMULTI_VALORE" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMULTI_VALORE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MULTI_VALORE" nillable="true" type="tns:MULTI_VALORE" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MULTI_VALORE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="VALORE" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREAFASCICOLOMULTIPLOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREAFASCICOLOMULTIPLOResult" type="tns:MULTI_FASCICOLO_CREATO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MULTI_FASCICOLO_CREATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ELENCO_FASCICOLI" type="tns:ArrayOfFASCICOLO_CREATO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFASCICOLO_CREATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FASCICOLO_CREATO" nillable="true" type="tns:FASCICOLO_CREATO" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREACOLLEGAMENTOFASCICOLO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOCOLLEGAMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLOCOLLEGATO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLOCOLLEGATO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FLAGAPERTURA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREACOLLEGAMENTOFASCICOLOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREACOLLEGAMENTOFASCICOLOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREADOCUMENTOINTERNO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMEFILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BASE64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PATHFULLFILE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREADOCUMENTOINTERNOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREADOCUMENTOINTERNOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RESTITUISCIDOCUMENTOINTERNO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEDOCUMENTOINTERNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FLAGBASE64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PATHFULLFILE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RESTITUISCIDOCUMENTOINTERNOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RESTITUISCIDOCUMENTOINTERNOResult" type="tns:INDICE_ALLEGATO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="INDICE_ALLEGATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DATI" type="tns:ALLEGATO_DOCUMENTO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ALLEGATO_DOCUMENTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BASE64" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEALLEGATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOMEFILE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FULLPATHFILE" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RESTITUISCILINKFASCICOLO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEFASCICOLO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RESTITUISCILINKFASCICOLOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RESTITUISCILINKFASCICOLOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RICERCAPROTOCOLLI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ANNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NUMEROPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATAPROTOCOLLAZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CORRISPONDENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OGGETTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ESTREMIPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROTOCOLLORIFERIMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RICERCAPROTOCOLLIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RICERCAPROTOCOLLIResult" type="tns:MULTI_PROTOCOLLO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MULTI_PROTOCOLLO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ELENCO_DOCUMENTI" type="tns:ArrayOfPROTOCOLLO_DOCUMENTO_TROVATO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPROTOCOLLO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PROTOCOLLO_DOCUMENTO_TROVATO" nillable="true" type="tns:PROTOCOLLO_DOCUMENTO_TROVATO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PROTOCOLLO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CORRISPONDENTE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="INDIRIZZO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DATA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMERO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OGGETTO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TIPOPROTOCOLLO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="INDICEPROTOCOLLO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INDICEPROTOCOLLOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INDICEPROTOCOLLOResult" type="tns:INDICE_PROTOCOLLO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="INDICE_PROTOCOLLO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DATI" type="tns:PROTOCOLLO_DOCUMENTO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ELENCO_DOCUMENTI" type="tns:ArrayOfALLEGATO_DOCUMENTO_TROVATO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ELENCO_FASCICOLI" type="tns:ArrayOfFASCICOLO_DOCUMENTO_TROVATO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PROTOCOLLO_DOCUMENTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ANNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICECORRISPONDENTI" type="tns:ArrayOfMULTI_VALORE" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DATAPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DATAESTREMI" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESTREMI" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMEROPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OGGETTO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TIPODOCUMENTO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TIPOPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PROTOCOLLORIFERIMENTO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVARESPONSABILI" type="tns:ArrayOfMULTI_VALORE" />
+          <s:element minOccurs="0" maxOccurs="1" name="WEBLINK" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfALLEGATO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ALLEGATO_DOCUMENTO_TROVATO" nillable="true" type="tns:ALLEGATO_DOCUMENTO_TROVATO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ALLEGATO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEALLEGATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOMEFILE" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREAPROTOCOLLO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ANNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICECORRISPONDENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OGGETTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVARESPONSABILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPODOCUMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ESTREMI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATAESTREMI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROTOCOLLORIFERIMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEDEFAULT" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREAPROTOCOLLOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREAPROTOCOLLOResult" type="tns:PROTOCOLLO_CREATO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PROTOCOLLO_CREATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMEROPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DATAPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEALLEGATO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREAPROTOCOLLOEXPRESS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ANNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEANAGRAFICA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CORRISPONDENTENOMINATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CORRISPONDENTEINDIRIZZO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CORRISPONDENTECITTA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CORRISPONDENTECAP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CORRISPONDENTEPROVINCIA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CORRISPONDENTEAZIENDA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CORRISPONDENTECODICEUNIVOCO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MULTIANAG" type="tns:ANAG_MULTI" />
+            <s:element minOccurs="0" maxOccurs="1" name="OGGETTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVARESPONSABILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPODOCUMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ESTREMI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DATAESTREMI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROTOCOLLORIFERIMENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ALLEGATODESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ALLEGATONOMEFILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ALLEGATOBASE64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ALLEGATOPATHFULLFILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEDEFAULT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOALLEGATO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ANAG_MULTI">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DATO" type="tns:ArrayOfMULTI_ANAG" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMULTI_ANAG">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MULTI_ANAG" nillable="true" type="tns:MULTI_ANAG" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MULTI_ANAG">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NOMINATIVO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="INDIRIZZO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CITTA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CAP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PROVINCIA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AZIENDA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEUNIVOCO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CREAPROTOCOLLOEXPRESSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREAPROTOCOLLOEXPRESSResult" type="tns:PROTOCOLLOEX_CREATO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PROTOCOLLOEX_CREATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NUMEROPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DATAPROTOCOLLO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CODICEALLEGATO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ANNULLAPROTOCOLLO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOTIVAZIONE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ANNULLAPROTOCOLLOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ANNULLAPROTOCOLLOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREAALLEGATO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ANNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NUMEROPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FLAGPRINCIPALE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOMEFILE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BASE64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PATHFULLFILE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CREAALLEGATOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CREAALLEGATOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RESTITUISCIALLEGATO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ANNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEALLEGATO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FLAGBASE64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PATHFULLFILE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RESTITUISCIALLEGATOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RESTITUISCIALLEGATOResult" type="tns:INDICE_ALLEGATO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CANCELLAALLEGATO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ANNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEALLEGATO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CANCELLAALLEGATOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CANCELLAALLEGATOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROTOCOLLOASSEGNAZIONE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOASSEGNAZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOOPERAZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICIUNITAORGANIZZATIVE" type="tns:DATO_MULTI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROTOCOLLOASSEGNAZIONEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PROTOCOLLOASSEGNAZIONEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROTOCOLLOTRASMISSIONE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PROTOCOLLOTRASMISSIONEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PROTOCOLLOTRASMISSIONEResult" type="tns:PROTOCOLLOTRASMISSIONEResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PROTOCOLLOTRASMISSIONEResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="INVIAPROTOCOLLOVIAPEC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEPROTOCOLLO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ACCOUNT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESTINATARI" type="tns:DATO_MULTI" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICEALLEGATI" type="tns:DATO_MULTI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INVIAPROTOCOLLOVIAPECResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INVIAPROTOCOLLOVIAPECResult" type="tns:INVIAPROTOCOLLOVIAPECResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="INVIAPROTOCOLLOVIAPECResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RICERCATITOLARIO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UNITAORGANIZZATIVA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RICERCATITOLARIOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RICERCATITOLARIOResult" type="tns:MULTI_TITOLARIO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MULTI_TITOLARIO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ELENCO_DOCUMENTI" type="tns:ArrayOfTITOLARIO_DOCUMENTO_TROVATO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTITOLARIO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TITOLARIO_DOCUMENTO_TROVATO" nillable="true" type="tns:TITOLARIO_DOCUMENTO_TROVATO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TITOLARIO_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODICETITOLARIO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RICERCAUNITAORGANIZZATIVE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RICERCAUNITAORGANIZZATIVEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RICERCAUNITAORGANIZZATIVEResult" type="tns:MULTI_UNITAORGANIZZATIVA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MULTI_UNITAORGANIZZATIVA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ELENCO_DOCUMENTI" type="tns:ArrayOfUNITAORGANIZZATIVA_DOCUMENTO_TROVATO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfUNITAORGANIZZATIVA_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UNITAORGANIZZATIVA_DOCUMENTO_TROVATO" nillable="true" type="tns:UNITAORGANIZZATIVA_DOCUMENTO_TROVATO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UNITAORGANIZZATIVA_DOCUMENTO_TROVATO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ACRONIMO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TIPO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RESPONSABILE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="INDICEUNITAORGANIZZATIVA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INDICEUNITAORGANIZZATIVAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INDICEUNITAORGANIZZATIVAResult" type="tns:INDICE_UNITAORGANIZZATIVA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="INDICE_UNITAORGANIZZATIVA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DATI" type="tns:ArrayOfUNITAORGANIZZATIVA_DOCUMENTO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfUNITAORGANIZZATIVA_DOCUMENTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UNITAORGANIZZATIVA_DOCUMENTO" nillable="true" type="tns:UNITAORGANIZZATIVA_DOCUMENTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UNITAORGANIZZATIVA_DOCUMENTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ACRONIMO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AREA" type="tns:ArrayOfMULTI_VALORE" />
+          <s:element minOccurs="0" maxOccurs="1" name="COMPONENTI" type="tns:ArrayOfMULTI_VALORE" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIZIONE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DIREZIONE" type="tns:ArrayOfMULTI_VALORE" />
+          <s:element minOccurs="0" maxOccurs="1" name="FACENTEFUNZIONE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LIVELLOSUPERIORE" type="tns:ArrayOfMULTI_VALORE" />
+          <s:element minOccurs="0" maxOccurs="1" name="RESPONSABILE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SEGRETERIA" type="tns:ArrayOfMULTI_VALORE" />
+          <s:element minOccurs="0" maxOccurs="1" name="STATO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TIPO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LISTATIPODOCUMENTO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LISTATIPODOCUMENTOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LISTATIPODOCUMENTOResult" type="tns:RISPOSTA_MULTI_VALORE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RISPOSTA_MULTI_VALORE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="VALORE" type="tns:ArrayOfMULTI_VALORE" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESITO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LISTACATEGORIEFASCICOLI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SESSIONE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LISTACATEGORIEFASCICOLIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LISTACATEGORIEFASCICOLIResult" type="tns:RISPOSTA_MULTI_VALORE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CONVERTIINMULTIVALORE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VALORESINGLE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CONVERTIINMULTIVALOREResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CONVERTIINMULTIVALOREResult" type="tns:DATO_MULTI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RICERCAANAGRAFICHESoapIn">
+    <wsdl:part name="parameters" element="tns:RICERCAANAGRAFICHE" />
+  </wsdl:message>
+  <wsdl:message name="RICERCAANAGRAFICHESoapOut">
+    <wsdl:part name="parameters" element="tns:RICERCAANAGRAFICHEResponse" />
+  </wsdl:message>
+  <wsdl:message name="INDICEANAGRAFICASoapIn">
+    <wsdl:part name="parameters" element="tns:INDICEANAGRAFICA" />
+  </wsdl:message>
+  <wsdl:message name="INDICEANAGRAFICASoapOut">
+    <wsdl:part name="parameters" element="tns:INDICEANAGRAFICAResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREAANAGRAFICASoapIn">
+    <wsdl:part name="parameters" element="tns:CREAANAGRAFICA" />
+  </wsdl:message>
+  <wsdl:message name="CREAANAGRAFICASoapOut">
+    <wsdl:part name="parameters" element="tns:CREAANAGRAFICAResponse" />
+  </wsdl:message>
+  <wsdl:message name="RICERCAFASCICOLISoapIn">
+    <wsdl:part name="parameters" element="tns:RICERCAFASCICOLI" />
+  </wsdl:message>
+  <wsdl:message name="RICERCAFASCICOLISoapOut">
+    <wsdl:part name="parameters" element="tns:RICERCAFASCICOLIResponse" />
+  </wsdl:message>
+  <wsdl:message name="INDICEFASCICOLOSoapIn">
+    <wsdl:part name="parameters" element="tns:INDICEFASCICOLO" />
+  </wsdl:message>
+  <wsdl:message name="INDICEFASCICOLOSoapOut">
+    <wsdl:part name="parameters" element="tns:INDICEFASCICOLOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREAFASCICOLOSoapIn">
+    <wsdl:part name="parameters" element="tns:CREAFASCICOLO" />
+  </wsdl:message>
+  <wsdl:message name="CREAFASCICOLOSoapOut">
+    <wsdl:part name="parameters" element="tns:CREAFASCICOLOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREASOTTOFASCICOLOSoapIn">
+    <wsdl:part name="parameters" element="tns:CREASOTTOFASCICOLO" />
+  </wsdl:message>
+  <wsdl:message name="CREASOTTOFASCICOLOSoapOut">
+    <wsdl:part name="parameters" element="tns:CREASOTTOFASCICOLOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREAFASCICOLOEXPRESSSoapIn">
+    <wsdl:part name="parameters" element="tns:CREAFASCICOLOEXPRESS" />
+  </wsdl:message>
+  <wsdl:message name="CREAFASCICOLOEXPRESSSoapOut">
+    <wsdl:part name="parameters" element="tns:CREAFASCICOLOEXPRESSResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREASOTTOFASCICOLOEXPRESSSoapIn">
+    <wsdl:part name="parameters" element="tns:CREASOTTOFASCICOLOEXPRESS" />
+  </wsdl:message>
+  <wsdl:message name="CREASOTTOFASCICOLOEXPRESSSoapOut">
+    <wsdl:part name="parameters" element="tns:CREASOTTOFASCICOLOEXPRESSResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREAFASCICOLOMULTIPLOSoapIn">
+    <wsdl:part name="parameters" element="tns:CREAFASCICOLOMULTIPLO" />
+  </wsdl:message>
+  <wsdl:message name="CREAFASCICOLOMULTIPLOSoapOut">
+    <wsdl:part name="parameters" element="tns:CREAFASCICOLOMULTIPLOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREACOLLEGAMENTOFASCICOLOSoapIn">
+    <wsdl:part name="parameters" element="tns:CREACOLLEGAMENTOFASCICOLO" />
+  </wsdl:message>
+  <wsdl:message name="CREACOLLEGAMENTOFASCICOLOSoapOut">
+    <wsdl:part name="parameters" element="tns:CREACOLLEGAMENTOFASCICOLOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREADOCUMENTOINTERNOSoapIn">
+    <wsdl:part name="parameters" element="tns:CREADOCUMENTOINTERNO" />
+  </wsdl:message>
+  <wsdl:message name="CREADOCUMENTOINTERNOSoapOut">
+    <wsdl:part name="parameters" element="tns:CREADOCUMENTOINTERNOResponse" />
+  </wsdl:message>
+  <wsdl:message name="RESTITUISCIDOCUMENTOINTERNOSoapIn">
+    <wsdl:part name="parameters" element="tns:RESTITUISCIDOCUMENTOINTERNO" />
+  </wsdl:message>
+  <wsdl:message name="RESTITUISCIDOCUMENTOINTERNOSoapOut">
+    <wsdl:part name="parameters" element="tns:RESTITUISCIDOCUMENTOINTERNOResponse" />
+  </wsdl:message>
+  <wsdl:message name="RESTITUISCILINKFASCICOLOSoapIn">
+    <wsdl:part name="parameters" element="tns:RESTITUISCILINKFASCICOLO" />
+  </wsdl:message>
+  <wsdl:message name="RESTITUISCILINKFASCICOLOSoapOut">
+    <wsdl:part name="parameters" element="tns:RESTITUISCILINKFASCICOLOResponse" />
+  </wsdl:message>
+  <wsdl:message name="RICERCAPROTOCOLLISoapIn">
+    <wsdl:part name="parameters" element="tns:RICERCAPROTOCOLLI" />
+  </wsdl:message>
+  <wsdl:message name="RICERCAPROTOCOLLISoapOut">
+    <wsdl:part name="parameters" element="tns:RICERCAPROTOCOLLIResponse" />
+  </wsdl:message>
+  <wsdl:message name="INDICEPROTOCOLLOSoapIn">
+    <wsdl:part name="parameters" element="tns:INDICEPROTOCOLLO" />
+  </wsdl:message>
+  <wsdl:message name="INDICEPROTOCOLLOSoapOut">
+    <wsdl:part name="parameters" element="tns:INDICEPROTOCOLLOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREAPROTOCOLLOSoapIn">
+    <wsdl:part name="parameters" element="tns:CREAPROTOCOLLO" />
+  </wsdl:message>
+  <wsdl:message name="CREAPROTOCOLLOSoapOut">
+    <wsdl:part name="parameters" element="tns:CREAPROTOCOLLOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREAPROTOCOLLOEXPRESSSoapIn">
+    <wsdl:part name="parameters" element="tns:CREAPROTOCOLLOEXPRESS" />
+  </wsdl:message>
+  <wsdl:message name="CREAPROTOCOLLOEXPRESSSoapOut">
+    <wsdl:part name="parameters" element="tns:CREAPROTOCOLLOEXPRESSResponse" />
+  </wsdl:message>
+  <wsdl:message name="ANNULLAPROTOCOLLOSoapIn">
+    <wsdl:part name="parameters" element="tns:ANNULLAPROTOCOLLO" />
+  </wsdl:message>
+  <wsdl:message name="ANNULLAPROTOCOLLOSoapOut">
+    <wsdl:part name="parameters" element="tns:ANNULLAPROTOCOLLOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CREAALLEGATOSoapIn">
+    <wsdl:part name="parameters" element="tns:CREAALLEGATO" />
+  </wsdl:message>
+  <wsdl:message name="CREAALLEGATOSoapOut">
+    <wsdl:part name="parameters" element="tns:CREAALLEGATOResponse" />
+  </wsdl:message>
+  <wsdl:message name="RESTITUISCIALLEGATOSoapIn">
+    <wsdl:part name="parameters" element="tns:RESTITUISCIALLEGATO" />
+  </wsdl:message>
+  <wsdl:message name="RESTITUISCIALLEGATOSoapOut">
+    <wsdl:part name="parameters" element="tns:RESTITUISCIALLEGATOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CANCELLAALLEGATOSoapIn">
+    <wsdl:part name="parameters" element="tns:CANCELLAALLEGATO" />
+  </wsdl:message>
+  <wsdl:message name="CANCELLAALLEGATOSoapOut">
+    <wsdl:part name="parameters" element="tns:CANCELLAALLEGATOResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROTOCOLLOASSEGNAZIONESoapIn">
+    <wsdl:part name="parameters" element="tns:PROTOCOLLOASSEGNAZIONE" />
+  </wsdl:message>
+  <wsdl:message name="PROTOCOLLOASSEGNAZIONESoapOut">
+    <wsdl:part name="parameters" element="tns:PROTOCOLLOASSEGNAZIONEResponse" />
+  </wsdl:message>
+  <wsdl:message name="PROTOCOLLOTRASMISSIONESoapIn">
+    <wsdl:part name="parameters" element="tns:PROTOCOLLOTRASMISSIONE" />
+  </wsdl:message>
+  <wsdl:message name="PROTOCOLLOTRASMISSIONESoapOut">
+    <wsdl:part name="parameters" element="tns:PROTOCOLLOTRASMISSIONEResponse" />
+  </wsdl:message>
+  <wsdl:message name="INVIAPROTOCOLLOVIAPECSoapIn">
+    <wsdl:part name="parameters" element="tns:INVIAPROTOCOLLOVIAPEC" />
+  </wsdl:message>
+  <wsdl:message name="INVIAPROTOCOLLOVIAPECSoapOut">
+    <wsdl:part name="parameters" element="tns:INVIAPROTOCOLLOVIAPECResponse" />
+  </wsdl:message>
+  <wsdl:message name="RICERCATITOLARIOSoapIn">
+    <wsdl:part name="parameters" element="tns:RICERCATITOLARIO" />
+  </wsdl:message>
+  <wsdl:message name="RICERCATITOLARIOSoapOut">
+    <wsdl:part name="parameters" element="tns:RICERCATITOLARIOResponse" />
+  </wsdl:message>
+  <wsdl:message name="RICERCAUNITAORGANIZZATIVESoapIn">
+    <wsdl:part name="parameters" element="tns:RICERCAUNITAORGANIZZATIVE" />
+  </wsdl:message>
+  <wsdl:message name="RICERCAUNITAORGANIZZATIVESoapOut">
+    <wsdl:part name="parameters" element="tns:RICERCAUNITAORGANIZZATIVEResponse" />
+  </wsdl:message>
+  <wsdl:message name="INDICEUNITAORGANIZZATIVASoapIn">
+    <wsdl:part name="parameters" element="tns:INDICEUNITAORGANIZZATIVA" />
+  </wsdl:message>
+  <wsdl:message name="INDICEUNITAORGANIZZATIVASoapOut">
+    <wsdl:part name="parameters" element="tns:INDICEUNITAORGANIZZATIVAResponse" />
+  </wsdl:message>
+  <wsdl:message name="LISTATIPODOCUMENTOSoapIn">
+    <wsdl:part name="parameters" element="tns:LISTATIPODOCUMENTO" />
+  </wsdl:message>
+  <wsdl:message name="LISTATIPODOCUMENTOSoapOut">
+    <wsdl:part name="parameters" element="tns:LISTATIPODOCUMENTOResponse" />
+  </wsdl:message>
+  <wsdl:message name="LISTACATEGORIEFASCICOLISoapIn">
+    <wsdl:part name="parameters" element="tns:LISTACATEGORIEFASCICOLI" />
+  </wsdl:message>
+  <wsdl:message name="LISTACATEGORIEFASCICOLISoapOut">
+    <wsdl:part name="parameters" element="tns:LISTACATEGORIEFASCICOLIResponse" />
+  </wsdl:message>
+  <wsdl:message name="CONVERTIINMULTIVALORESoapIn">
+    <wsdl:part name="parameters" element="tns:CONVERTIINMULTIVALORE" />
+  </wsdl:message>
+  <wsdl:message name="CONVERTIINMULTIVALORESoapOut">
+    <wsdl:part name="parameters" element="tns:CONVERTIINMULTIVALOREResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SIGED_WSSoap">
+    <wsdl:operation name="RICERCAANAGRAFICHE">
+      <wsdl:input message="tns:RICERCAANAGRAFICHESoapIn" />
+      <wsdl:output message="tns:RICERCAANAGRAFICHESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INDICEANAGRAFICA">
+      <wsdl:input message="tns:INDICEANAGRAFICASoapIn" />
+      <wsdl:output message="tns:INDICEANAGRAFICASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREAANAGRAFICA">
+      <wsdl:input message="tns:CREAANAGRAFICASoapIn" />
+      <wsdl:output message="tns:CREAANAGRAFICASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RICERCAFASCICOLI">
+      <wsdl:input message="tns:RICERCAFASCICOLISoapIn" />
+      <wsdl:output message="tns:RICERCAFASCICOLISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INDICEFASCICOLO">
+      <wsdl:input message="tns:INDICEFASCICOLOSoapIn" />
+      <wsdl:output message="tns:INDICEFASCICOLOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREAFASCICOLO">
+      <wsdl:input message="tns:CREAFASCICOLOSoapIn" />
+      <wsdl:output message="tns:CREAFASCICOLOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREASOTTOFASCICOLO">
+      <wsdl:input message="tns:CREASOTTOFASCICOLOSoapIn" />
+      <wsdl:output message="tns:CREASOTTOFASCICOLOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREAFASCICOLOEXPRESS">
+      <wsdl:input message="tns:CREAFASCICOLOEXPRESSSoapIn" />
+      <wsdl:output message="tns:CREAFASCICOLOEXPRESSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREASOTTOFASCICOLOEXPRESS">
+      <wsdl:input message="tns:CREASOTTOFASCICOLOEXPRESSSoapIn" />
+      <wsdl:output message="tns:CREASOTTOFASCICOLOEXPRESSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREAFASCICOLOMULTIPLO">
+      <wsdl:input message="tns:CREAFASCICOLOMULTIPLOSoapIn" />
+      <wsdl:output message="tns:CREAFASCICOLOMULTIPLOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREACOLLEGAMENTOFASCICOLO">
+      <wsdl:input message="tns:CREACOLLEGAMENTOFASCICOLOSoapIn" />
+      <wsdl:output message="tns:CREACOLLEGAMENTOFASCICOLOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREADOCUMENTOINTERNO">
+      <wsdl:input message="tns:CREADOCUMENTOINTERNOSoapIn" />
+      <wsdl:output message="tns:CREADOCUMENTOINTERNOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RESTITUISCIDOCUMENTOINTERNO">
+      <wsdl:input message="tns:RESTITUISCIDOCUMENTOINTERNOSoapIn" />
+      <wsdl:output message="tns:RESTITUISCIDOCUMENTOINTERNOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RESTITUISCILINKFASCICOLO">
+      <wsdl:input message="tns:RESTITUISCILINKFASCICOLOSoapIn" />
+      <wsdl:output message="tns:RESTITUISCILINKFASCICOLOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RICERCAPROTOCOLLI">
+      <wsdl:input message="tns:RICERCAPROTOCOLLISoapIn" />
+      <wsdl:output message="tns:RICERCAPROTOCOLLISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INDICEPROTOCOLLO">
+      <wsdl:input message="tns:INDICEPROTOCOLLOSoapIn" />
+      <wsdl:output message="tns:INDICEPROTOCOLLOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREAPROTOCOLLO">
+      <wsdl:input message="tns:CREAPROTOCOLLOSoapIn" />
+      <wsdl:output message="tns:CREAPROTOCOLLOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREAPROTOCOLLOEXPRESS">
+      <wsdl:input message="tns:CREAPROTOCOLLOEXPRESSSoapIn" />
+      <wsdl:output message="tns:CREAPROTOCOLLOEXPRESSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ANNULLAPROTOCOLLO">
+      <wsdl:input message="tns:ANNULLAPROTOCOLLOSoapIn" />
+      <wsdl:output message="tns:ANNULLAPROTOCOLLOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CREAALLEGATO">
+      <wsdl:input message="tns:CREAALLEGATOSoapIn" />
+      <wsdl:output message="tns:CREAALLEGATOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RESTITUISCIALLEGATO">
+      <wsdl:input message="tns:RESTITUISCIALLEGATOSoapIn" />
+      <wsdl:output message="tns:RESTITUISCIALLEGATOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CANCELLAALLEGATO">
+      <wsdl:input message="tns:CANCELLAALLEGATOSoapIn" />
+      <wsdl:output message="tns:CANCELLAALLEGATOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROTOCOLLOASSEGNAZIONE">
+      <wsdl:input message="tns:PROTOCOLLOASSEGNAZIONESoapIn" />
+      <wsdl:output message="tns:PROTOCOLLOASSEGNAZIONESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PROTOCOLLOTRASMISSIONE">
+      <wsdl:input message="tns:PROTOCOLLOTRASMISSIONESoapIn" />
+      <wsdl:output message="tns:PROTOCOLLOTRASMISSIONESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INVIAPROTOCOLLOVIAPEC">
+      <wsdl:input message="tns:INVIAPROTOCOLLOVIAPECSoapIn" />
+      <wsdl:output message="tns:INVIAPROTOCOLLOVIAPECSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RICERCATITOLARIO">
+      <wsdl:input message="tns:RICERCATITOLARIOSoapIn" />
+      <wsdl:output message="tns:RICERCATITOLARIOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RICERCAUNITAORGANIZZATIVE">
+      <wsdl:input message="tns:RICERCAUNITAORGANIZZATIVESoapIn" />
+      <wsdl:output message="tns:RICERCAUNITAORGANIZZATIVESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INDICEUNITAORGANIZZATIVA">
+      <wsdl:input message="tns:INDICEUNITAORGANIZZATIVASoapIn" />
+      <wsdl:output message="tns:INDICEUNITAORGANIZZATIVASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LISTATIPODOCUMENTO">
+      <wsdl:input message="tns:LISTATIPODOCUMENTOSoapIn" />
+      <wsdl:output message="tns:LISTATIPODOCUMENTOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LISTACATEGORIEFASCICOLI">
+      <wsdl:input message="tns:LISTACATEGORIEFASCICOLISoapIn" />
+      <wsdl:output message="tns:LISTACATEGORIEFASCICOLISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CONVERTIINMULTIVALORE">
+      <wsdl:input message="tns:CONVERTIINMULTIVALORESoapIn" />
+      <wsdl:output message="tns:CONVERTIINMULTIVALORESoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SIGED_WSSoap" type="tns:SIGED_WSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RICERCAANAGRAFICHE">
+      <soap:operation soapAction="http://tempuri.org/RICERCAANAGRAFICHE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INDICEANAGRAFICA">
+      <soap:operation soapAction="http://tempuri.org/INDICEANAGRAFICA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAANAGRAFICA">
+      <soap:operation soapAction="http://tempuri.org/CREAANAGRAFICA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RICERCAFASCICOLI">
+      <soap:operation soapAction="http://tempuri.org/RICERCAFASCICOLI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INDICEFASCICOLO">
+      <soap:operation soapAction="http://tempuri.org/INDICEFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAFASCICOLO">
+      <soap:operation soapAction="http://tempuri.org/CREAFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREASOTTOFASCICOLO">
+      <soap:operation soapAction="http://tempuri.org/CREASOTTOFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAFASCICOLOEXPRESS">
+      <soap:operation soapAction="http://tempuri.org/CREAFASCICOLOEXPRESS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREASOTTOFASCICOLOEXPRESS">
+      <soap:operation soapAction="http://tempuri.org/CREASOTTOFASCICOLOEXPRESS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAFASCICOLOMULTIPLO">
+      <soap:operation soapAction="http://tempuri.org/CREAFASCICOLOMULTIPLO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREACOLLEGAMENTOFASCICOLO">
+      <soap:operation soapAction="http://tempuri.org/CREACOLLEGAMENTOFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREADOCUMENTOINTERNO">
+      <soap:operation soapAction="http://tempuri.org/CREADOCUMENTOINTERNO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RESTITUISCIDOCUMENTOINTERNO">
+      <soap:operation soapAction="http://tempuri.org/RESTITUISCIDOCUMENTOINTERNO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RESTITUISCILINKFASCICOLO">
+      <soap:operation soapAction="http://tempuri.org/RESTITUISCILINKFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RICERCAPROTOCOLLI">
+      <soap:operation soapAction="http://tempuri.org/RICERCAPROTOCOLLI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INDICEPROTOCOLLO">
+      <soap:operation soapAction="http://tempuri.org/INDICEPROTOCOLLO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAPROTOCOLLO">
+      <soap:operation soapAction="http://tempuri.org/CREAPROTOCOLLO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAPROTOCOLLOEXPRESS">
+      <soap:operation soapAction="http://tempuri.org/CREAPROTOCOLLOEXPRESS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ANNULLAPROTOCOLLO">
+      <soap:operation soapAction="http://tempuri.org/ANNULLAPROTOCOLLO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAALLEGATO">
+      <soap:operation soapAction="http://tempuri.org/CREAALLEGATO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RESTITUISCIALLEGATO">
+      <soap:operation soapAction="http://tempuri.org/RESTITUISCIALLEGATO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CANCELLAALLEGATO">
+      <soap:operation soapAction="http://tempuri.org/CANCELLAALLEGATO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROTOCOLLOASSEGNAZIONE">
+      <soap:operation soapAction="http://tempuri.org/PROTOCOLLOASSEGNAZIONE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROTOCOLLOTRASMISSIONE">
+      <soap:operation soapAction="http://tempuri.org/PROTOCOLLOTRASMISSIONE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INVIAPROTOCOLLOVIAPEC">
+      <soap:operation soapAction="http://tempuri.org/INVIAPROTOCOLLOVIAPEC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RICERCATITOLARIO">
+      <soap:operation soapAction="http://tempuri.org/RICERCATITOLARIO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RICERCAUNITAORGANIZZATIVE">
+      <soap:operation soapAction="http://tempuri.org/RICERCAUNITAORGANIZZATIVE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INDICEUNITAORGANIZZATIVA">
+      <soap:operation soapAction="http://tempuri.org/INDICEUNITAORGANIZZATIVA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LISTATIPODOCUMENTO">
+      <soap:operation soapAction="http://tempuri.org/LISTATIPODOCUMENTO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LISTACATEGORIEFASCICOLI">
+      <soap:operation soapAction="http://tempuri.org/LISTACATEGORIEFASCICOLI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CONVERTIINMULTIVALORE">
+      <soap:operation soapAction="http://tempuri.org/CONVERTIINMULTIVALORE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SIGED_WSSoap12" type="tns:SIGED_WSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RICERCAANAGRAFICHE">
+      <soap12:operation soapAction="http://tempuri.org/RICERCAANAGRAFICHE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INDICEANAGRAFICA">
+      <soap12:operation soapAction="http://tempuri.org/INDICEANAGRAFICA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAANAGRAFICA">
+      <soap12:operation soapAction="http://tempuri.org/CREAANAGRAFICA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RICERCAFASCICOLI">
+      <soap12:operation soapAction="http://tempuri.org/RICERCAFASCICOLI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INDICEFASCICOLO">
+      <soap12:operation soapAction="http://tempuri.org/INDICEFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAFASCICOLO">
+      <soap12:operation soapAction="http://tempuri.org/CREAFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREASOTTOFASCICOLO">
+      <soap12:operation soapAction="http://tempuri.org/CREASOTTOFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAFASCICOLOEXPRESS">
+      <soap12:operation soapAction="http://tempuri.org/CREAFASCICOLOEXPRESS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREASOTTOFASCICOLOEXPRESS">
+      <soap12:operation soapAction="http://tempuri.org/CREASOTTOFASCICOLOEXPRESS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAFASCICOLOMULTIPLO">
+      <soap12:operation soapAction="http://tempuri.org/CREAFASCICOLOMULTIPLO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREACOLLEGAMENTOFASCICOLO">
+      <soap12:operation soapAction="http://tempuri.org/CREACOLLEGAMENTOFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREADOCUMENTOINTERNO">
+      <soap12:operation soapAction="http://tempuri.org/CREADOCUMENTOINTERNO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RESTITUISCIDOCUMENTOINTERNO">
+      <soap12:operation soapAction="http://tempuri.org/RESTITUISCIDOCUMENTOINTERNO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RESTITUISCILINKFASCICOLO">
+      <soap12:operation soapAction="http://tempuri.org/RESTITUISCILINKFASCICOLO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RICERCAPROTOCOLLI">
+      <soap12:operation soapAction="http://tempuri.org/RICERCAPROTOCOLLI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INDICEPROTOCOLLO">
+      <soap12:operation soapAction="http://tempuri.org/INDICEPROTOCOLLO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAPROTOCOLLO">
+      <soap12:operation soapAction="http://tempuri.org/CREAPROTOCOLLO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAPROTOCOLLOEXPRESS">
+      <soap12:operation soapAction="http://tempuri.org/CREAPROTOCOLLOEXPRESS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ANNULLAPROTOCOLLO">
+      <soap12:operation soapAction="http://tempuri.org/ANNULLAPROTOCOLLO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CREAALLEGATO">
+      <soap12:operation soapAction="http://tempuri.org/CREAALLEGATO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RESTITUISCIALLEGATO">
+      <soap12:operation soapAction="http://tempuri.org/RESTITUISCIALLEGATO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CANCELLAALLEGATO">
+      <soap12:operation soapAction="http://tempuri.org/CANCELLAALLEGATO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROTOCOLLOASSEGNAZIONE">
+      <soap12:operation soapAction="http://tempuri.org/PROTOCOLLOASSEGNAZIONE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PROTOCOLLOTRASMISSIONE">
+      <soap12:operation soapAction="http://tempuri.org/PROTOCOLLOTRASMISSIONE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INVIAPROTOCOLLOVIAPEC">
+      <soap12:operation soapAction="http://tempuri.org/INVIAPROTOCOLLOVIAPEC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RICERCATITOLARIO">
+      <soap12:operation soapAction="http://tempuri.org/RICERCATITOLARIO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RICERCAUNITAORGANIZZATIVE">
+      <soap12:operation soapAction="http://tempuri.org/RICERCAUNITAORGANIZZATIVE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INDICEUNITAORGANIZZATIVA">
+      <soap12:operation soapAction="http://tempuri.org/INDICEUNITAORGANIZZATIVA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LISTATIPODOCUMENTO">
+      <soap12:operation soapAction="http://tempuri.org/LISTATIPODOCUMENTO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LISTACATEGORIEFASCICOLI">
+      <soap12:operation soapAction="http://tempuri.org/LISTACATEGORIEFASCICOLI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CONVERTIINMULTIVALORE">
+      <soap12:operation soapAction="http://tempuri.org/CONVERTIINMULTIVALORE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SIGED_WS">
+    <wsdl:port name="SIGED_WSSoap" binding="tns:SIGED_WSSoap">
+      <soap:address location="http://testing2008/WSWL/SIGED_WS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SIGED_WSSoap12" binding="tns:SIGED_WSSoap12">
+      <soap12:address location="http://testing2008/WSWL/SIGED_WS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

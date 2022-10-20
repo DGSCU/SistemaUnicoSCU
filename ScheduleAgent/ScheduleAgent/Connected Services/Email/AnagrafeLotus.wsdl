@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://Intranet/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://Intranet/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://Intranet/">
+      <s:element name="Obiettori">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codicevol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObiettoriResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObiettoriResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnagrafeSiged">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Denominazione" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnagrafeSigedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AnagrafeSigedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnagrafeSigedWs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Denominazione" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnagrafeSigedWsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AnagrafeSigedWsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Volontario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codicevol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VolontarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VolontarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Enti">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codicevol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Denominazione" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EntiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EntiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviDir">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviDirResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ScriviDirResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviDirTest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviDirTestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ScriviDirTestResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pathFile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nomeFile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="byteFile" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScriviFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ScriviFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LeggiFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pathFile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nomeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LeggiFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LeggiFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LeggiFileByte">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pathFile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nomeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LeggiFileByteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LeggiFileByteResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="email">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="indiOri" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="indiDest" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oggetto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="corpo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filetosend" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="produzione" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="CC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="emailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="emailResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFileDoc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdFileDoc" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IDDoc" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Statomod" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sNomeFile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sEstensioneFile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cuser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nuser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bArray" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="hashAray" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="Determina" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFileDocResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateFileDocResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObiettoriSoapIn">
+    <wsdl:part name="parameters" element="tns:Obiettori" />
+  </wsdl:message>
+  <wsdl:message name="ObiettoriSoapOut">
+    <wsdl:part name="parameters" element="tns:ObiettoriResponse" />
+  </wsdl:message>
+  <wsdl:message name="AnagrafeSigedSoapIn">
+    <wsdl:part name="parameters" element="tns:AnagrafeSiged" />
+  </wsdl:message>
+  <wsdl:message name="AnagrafeSigedSoapOut">
+    <wsdl:part name="parameters" element="tns:AnagrafeSigedResponse" />
+  </wsdl:message>
+  <wsdl:message name="AnagrafeSigedWsSoapIn">
+    <wsdl:part name="parameters" element="tns:AnagrafeSigedWs" />
+  </wsdl:message>
+  <wsdl:message name="AnagrafeSigedWsSoapOut">
+    <wsdl:part name="parameters" element="tns:AnagrafeSigedWsResponse" />
+  </wsdl:message>
+  <wsdl:message name="VolontarioSoapIn">
+    <wsdl:part name="parameters" element="tns:Volontario" />
+  </wsdl:message>
+  <wsdl:message name="VolontarioSoapOut">
+    <wsdl:part name="parameters" element="tns:VolontarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EntiSoapIn">
+    <wsdl:part name="parameters" element="tns:Enti" />
+  </wsdl:message>
+  <wsdl:message name="EntiSoapOut">
+    <wsdl:part name="parameters" element="tns:EntiResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScriviDirSoapIn">
+    <wsdl:part name="parameters" element="tns:ScriviDir" />
+  </wsdl:message>
+  <wsdl:message name="ScriviDirSoapOut">
+    <wsdl:part name="parameters" element="tns:ScriviDirResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScriviDirTestSoapIn">
+    <wsdl:part name="parameters" element="tns:ScriviDirTest" />
+  </wsdl:message>
+  <wsdl:message name="ScriviDirTestSoapOut">
+    <wsdl:part name="parameters" element="tns:ScriviDirTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScriviFileSoapIn">
+    <wsdl:part name="parameters" element="tns:ScriviFile" />
+  </wsdl:message>
+  <wsdl:message name="ScriviFileSoapOut">
+    <wsdl:part name="parameters" element="tns:ScriviFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="LeggiFileSoapIn">
+    <wsdl:part name="parameters" element="tns:LeggiFile" />
+  </wsdl:message>
+  <wsdl:message name="LeggiFileSoapOut">
+    <wsdl:part name="parameters" element="tns:LeggiFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="LeggiFileByteSoapIn">
+    <wsdl:part name="parameters" element="tns:LeggiFileByte" />
+  </wsdl:message>
+  <wsdl:message name="LeggiFileByteSoapOut">
+    <wsdl:part name="parameters" element="tns:LeggiFileByteResponse" />
+  </wsdl:message>
+  <wsdl:message name="emailSoapIn">
+    <wsdl:part name="parameters" element="tns:email" />
+  </wsdl:message>
+  <wsdl:message name="emailSoapOut">
+    <wsdl:part name="parameters" element="tns:emailResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFileDocSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFileDoc" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFileDocSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFileDocResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AnagraficaLotusSoap">
+    <wsdl:operation name="Obiettori">
+      <wsdl:input message="tns:ObiettoriSoapIn" />
+      <wsdl:output message="tns:ObiettoriSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AnagrafeSiged">
+      <wsdl:input message="tns:AnagrafeSigedSoapIn" />
+      <wsdl:output message="tns:AnagrafeSigedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AnagrafeSigedWs">
+      <wsdl:input message="tns:AnagrafeSigedWsSoapIn" />
+      <wsdl:output message="tns:AnagrafeSigedWsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Volontario">
+      <wsdl:input message="tns:VolontarioSoapIn" />
+      <wsdl:output message="tns:VolontarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Enti">
+      <wsdl:input message="tns:EntiSoapIn" />
+      <wsdl:output message="tns:EntiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ScriviDir">
+      <wsdl:input message="tns:ScriviDirSoapIn" />
+      <wsdl:output message="tns:ScriviDirSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ScriviDirTest">
+      <wsdl:input message="tns:ScriviDirTestSoapIn" />
+      <wsdl:output message="tns:ScriviDirTestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ScriviFile">
+      <wsdl:input message="tns:ScriviFileSoapIn" />
+      <wsdl:output message="tns:ScriviFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LeggiFile">
+      <wsdl:input message="tns:LeggiFileSoapIn" />
+      <wsdl:output message="tns:LeggiFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LeggiFileByte">
+      <wsdl:input message="tns:LeggiFileByteSoapIn" />
+      <wsdl:output message="tns:LeggiFileByteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="email">
+      <wsdl:input message="tns:emailSoapIn" />
+      <wsdl:output message="tns:emailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFileDoc">
+      <wsdl:input message="tns:UpdateFileDocSoapIn" />
+      <wsdl:output message="tns:UpdateFileDocSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AnagraficaLotusSoap" type="tns:AnagraficaLotusSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Obiettori">
+      <soap:operation soapAction="http://Intranet/Obiettori" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AnagrafeSiged">
+      <soap:operation soapAction="http://Intranet/AnagrafeSiged" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AnagrafeSigedWs">
+      <soap:operation soapAction="http://Intranet/AnagrafeSigedWs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Volontario">
+      <soap:operation soapAction="http://Intranet/Volontario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Enti">
+      <soap:operation soapAction="http://Intranet/Enti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviDir">
+      <soap:operation soapAction="http://Intranet/ScriviDir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviDirTest">
+      <soap:operation soapAction="http://Intranet/ScriviDirTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviFile">
+      <soap:operation soapAction="http://Intranet/ScriviFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeggiFile">
+      <soap:operation soapAction="http://Intranet/LeggiFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeggiFileByte">
+      <soap:operation soapAction="http://Intranet/LeggiFileByte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="email">
+      <soap:operation soapAction="http://Intranet/email" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFileDoc">
+      <soap:operation soapAction="http://Intranet/UpdateFileDoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnagraficaLotusSoap12" type="tns:AnagraficaLotusSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Obiettori">
+      <soap12:operation soapAction="http://Intranet/Obiettori" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AnagrafeSiged">
+      <soap12:operation soapAction="http://Intranet/AnagrafeSiged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AnagrafeSigedWs">
+      <soap12:operation soapAction="http://Intranet/AnagrafeSigedWs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Volontario">
+      <soap12:operation soapAction="http://Intranet/Volontario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Enti">
+      <soap12:operation soapAction="http://Intranet/Enti" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviDir">
+      <soap12:operation soapAction="http://Intranet/ScriviDir" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviDirTest">
+      <soap12:operation soapAction="http://Intranet/ScriviDirTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScriviFile">
+      <soap12:operation soapAction="http://Intranet/ScriviFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeggiFile">
+      <soap12:operation soapAction="http://Intranet/LeggiFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeggiFileByte">
+      <soap12:operation soapAction="http://Intranet/LeggiFileByte" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="email">
+      <soap12:operation soapAction="http://Intranet/email" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFileDoc">
+      <soap12:operation soapAction="http://Intranet/UpdateFileDoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AnagraficaLotus">
+    <wsdl:port name="AnagraficaLotusSoap" binding="tns:AnagraficaLotusSoap">
+      <soap:address location="http://192.168.1.212/WebServiceLotus/AnagrafeLotus.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnagraficaLotusSoap12" binding="tns:AnagraficaLotusSoap12">
+      <soap12:address location="http://192.168.1.212/WebServiceLotus/AnagrafeLotus.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,9 @@
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosUtility2010\bin\WSHeliosUtility.dll
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosUtility2010\bin\WSHeliosUtility.pdb
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosUtility2010\bin\WSHeliosUtility.xml
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosUtility2010\obj\Debug\WSHeliosUtility.vbprojResolveAssemblyReference.cache
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosUtility2010\obj\Debug\WSHeliosUtility.Resources.resources
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosUtility2010\obj\Debug\WSHeliosUtility.vbproj.GenerateResource.Cache
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosUtility2010\obj\Debug\WSHeliosUtility.dll
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosUtility2010\obj\Debug\WSHeliosUtility.xml
+C:\Lavoro Locale\SORGENTI RIUSO\WSHeliosUtility2010\obj\Debug\WSHeliosUtility.pdb

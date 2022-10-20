@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HeliosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DOL_DomandePresentate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CodiceFiscale" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="GruppoBando" Type="int" Nullable="false" />
+    <Property Name="DataInserimento" Type="datetime" Nullable="false" />
+    <Property Name="UserIdModifica" Type="nvarchar" MaxLength="128" />
+    <Property Name="DataModifica" Type="datetime" />
+    <Property Name="CodiceProgettoSelezionato" Type="nvarchar" MaxLength="22" />
+    <Property Name="CodiceSedeSelezionata" Type="int" />
+    <Property Name="DataPresentazione" Type="datetime" />
+    <Property Name="DataAnnullamento" Type="datetime" />
+    <Property Name="NomeFileCV" Type="nvarchar" MaxLength="200" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="100" />
+    <Property Name="Cognome" Type="nvarchar" MaxLength="100" />
+    <Property Name="Genere" Type="nvarchar" MaxLength="7" />
+    <Property Name="DataNascita" Type="date" />
+    <Property Name="LuogoNascita" Type="nvarchar" MaxLength="200" />
+    <Property Name="NazioneNascita" Type="nvarchar" MaxLength="200" />
+    <Property Name="Cittadinanza" Type="nvarchar" MaxLength="200" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="200" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" />
+    <Property Name="ComuneResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProvinciaResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="ViaResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="CivicoResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="CapResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="IndirizoCompleto" Type="nvarchar" MaxLength="1004" Nullable="false" />
+    <Property Name="ComuneRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProvinciaRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="ViaRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="CivicoRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="CapRecapito" Type="nvarchar" MaxLength="200" />
+    <Property Name="CodiceMinoriOpportunita" Type="nvarchar" MaxLength="5" />
+    <Property Name="IdMotivazione" Type="int" />
+    <Property Name="Motivazione" Type="nvarchar" MaxLength="100" />
+    <Property Name="CodiceDichiarazioneCittadinanza" Type="nvarchar" MaxLength="5" />
+    <Property Name="NonCondanneOk" Type="bit" />
+    <Property Name="TrasferimentoSedeOk" Type="bit" />
+    <Property Name="TrasferimentoProgettoOk" Type="bit" />
+    <Property Name="AltreDichiarazioniOk" Type="bit" />
+    <Property Name="IdTitoloStudio" Type="int" />
+    <Property Name="TitoloStudio" Type="nvarchar" MaxLength="100" />
+    <Property Name="PrivacyPresaVisione" Type="bit" />
+    <Property Name="PrivacyConsenso" Type="bit" />
+    <Property Name="PrecedentiEnte" Type="bit" />
+    <Property Name="PrecedentiEnteDescrizione" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PrecedentiAltriEnti" Type="bit" />
+    <Property Name="PrecedentiAltriEntiDescrizione" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PrecedentiImpiego" Type="bit" />
+    <Property Name="PrecedentiImpiegoDescrizione" Type="nvarchar" MaxLength="1000" />
+    <Property Name="IdTitoloStudioEsperienze" Type="int" />
+    <Property Name="TitoloStudioEsperienze" Type="nvarchar" MaxLength="100" />
+    <Property Name="FormazioneDisciplina" Type="nvarchar" MaxLength="200" />
+    <Property Name="FormazioneAnno" Type="int" />
+    <Property Name="FormazioneData" Type="date" />
+    <Property Name="FormazioneItalia" Type="bit" />
+    <Property Name="FormazioneIstituto" Type="nvarchar" MaxLength="200" />
+    <Property Name="FormazioneEnte" Type="nvarchar" MaxLength="200" />
+    <Property Name="IscrizioneSuperioreAnno" Type="int" />
+    <Property Name="IscrizioneSuperioreIstituto" Type="nvarchar" MaxLength="200" />
+    <Property Name="IscrizioneLaureaAnno" Type="int" />
+    <Property Name="IscrizioneLaureaCorso" Type="nvarchar" MaxLength="200" />
+    <Property Name="IscrizioneLaureaIstituto" Type="nvarchar" MaxLength="200" />
+    <Property Name="CorsiEffettuati" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Specializzazioni" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Competenze" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Altro" Type="nvarchar" MaxLength="1000" />
+    <Property Name="DataInizioProtocollazione" Type="datetime" />
+    <Property Name="DataFineProtocollazione" Type="datetime" />
+    <Property Name="CODICEPROTOCOLLO" Type="varchar" MaxLength="50" />
+    <Property Name="NUMEROPROTOCOLLO" Type="varchar" MaxLength="50" />
+    <Property Name="DATAPROTOCOLLO" Type="date" />
+    <Property Name="DataInvioPEC" Type="datetime" />
+    <Property Name="NazioneResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="IndirizzoCompletoResidenza" Type="nvarchar" MaxLength="200" />
+    <Property Name="ResidenzaEstera" Type="bit" />
+    <Property Name="DataInizioProtocollazioneAnnullamento" Type="datetime" />
+    <Property Name="DataFineProtocollazioneAnnullamento" Type="datetime" />
+    <Property Name="CODICEPROTOCOLLOAnnullamento" Type="varchar" MaxLength="50" />
+    <Property Name="NUMEROPROTOCOLLOAnnullamento" Type="varchar" MaxLength="50" />
+    <Property Name="DATAPROTOCOLLOAnnullamento" Type="date" />
+    <Property Name="DataInvioPECAnnullamento" Type="datetime" />
+    <Property Name="DataRichiestaAnnullamento" Type="datetime" />
+    <Property Name="MotivoAnnullamento" Type="nvarchar" MaxLength="100" />
+    <Property Name="FormazioneAnagraficaDisciplina" Type="nvarchar" MaxLength="200" />
+    <Property Name="FormazioneAnagraficaAnno" Type="int" />
+    <Property Name="FormazioneAnagraficaItalia" Type="bit" />
+    <Property Name="FormazioneAnagraficaIstituto" Type="nvarchar" MaxLength="200" />
+    <Property Name="FormazioneAnagraficaEnte" Type="nvarchar" MaxLength="200" />
+    <Property Name="DichiarazioneResidenzaOK" Type="bit" />
+    <Property Name="DichiarazioneRequisitiGaranziaGiovani" Type="bit" />
+    <Property Name="DataPresaInCaricoGaranziaGiovani" Type="date" />
+    <Property Name="LuogoPresaInCaricoGaranziaGiovani" Type="nvarchar" MaxLength="200" />
+    <Property Name="DataDIDGaranziaGiovani" Type="date" />
+    <Property Name="LuogoDIDGaranziaGiovani" Type="nvarchar" MaxLength="200" />
+    <Property Name="AlternativaRequisitiGaranziaGiovani" Type="bit" />
+    <Property Name="DichiarazioneMinoriOpportunita" Type="bit" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Descrizione" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="JobExecution">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdJob" Type="int" Nullable="false" />
+    <Property Name="DataInizioEsecuzione" Type="datetime" Nullable="false" />
+    <Property Name="DataFineEsecuzione" Type="datetime" />
+    <Property Name="Esito" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="JobSchedule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdJob" Type="int" Nullable="false" />
+    <Property Name="OraInizio" Type="time" Precision="7" Nullable="false" />
+    <Property Name="GiornoSettimana" Type="int" />
+  </EntityType>
+  <!--Errori trovati durante la generazione:
+avviso 6002: Nessuna chiave primaria definita per la tabella/visualizzazione 'unscsviluppo.dbo.VW_LogScheduleAgent'. La chiave è stata dedotta e la definizione è stata creata come tabella/visualizzazione di sola lettura.-->
+  <EntityType Name="VW_LogScheduleAgent">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Timestamp" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="MessageTemplate" Type="nvarchar(max)" />
+    <Property Name="Level" Type="nvarchar" MaxLength="128" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+    <Property Name="Exception" Type="nvarchar(max)" />
+    <Property Name="Properties" Type="nvarchar(max)" />
+    <Property Name="Errore" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_JobExecution">
+    <End Role="Job" Type="Self.Job" Multiplicity="1" />
+    <End Role="JobExecution" Type="Self.JobExecution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobExecution">
+        <PropertyRef Name="IdJob" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobSchedule">
+    <End Role="Job" Type="Self.Job" Multiplicity="1" />
+    <End Role="JobSchedule" Type="Self.JobSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobSchedule">
+        <PropertyRef Name="IdJob" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_DOL_IMPORTAZIONE_DOMANDE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="HeliosModelStoreContainer">
+    <EntitySet Name="DOL_DomandePresentate" EntityType="Self.DOL_DomandePresentate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobExecution" EntityType="Self.JobExecution" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobSchedule" EntityType="Self.JobSchedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VW_LogScheduleAgent" EntityType="Self.VW_LogScheduleAgent" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_LogScheduleAgent].[Id] AS [Id], 
+    [VW_LogScheduleAgent].[Message] AS [Message], 
+    [VW_LogScheduleAgent].[MessageTemplate] AS [MessageTemplate], 
+    [VW_LogScheduleAgent].[Level] AS [Level], 
+    [VW_LogScheduleAgent].[Timestamp] AS [Timestamp], 
+    [VW_LogScheduleAgent].[Exception] AS [Exception], 
+    [VW_LogScheduleAgent].[Properties] AS [Properties], 
+    [VW_LogScheduleAgent].[Errore] AS [Errore]
+    FROM [dbo].[VW_LogScheduleAgent] AS [VW_LogScheduleAgent]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_JobExecution" Association="Self.FK_JobExecution">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="JobExecution" EntitySet="JobExecution" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobSchedule" Association="Self.FK_JobSchedule">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="JobSchedule" EntitySet="JobSchedule" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

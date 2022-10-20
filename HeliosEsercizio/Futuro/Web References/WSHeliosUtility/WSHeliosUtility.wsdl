@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="DataMatrixToRtfString">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestoDaConvertire" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataMatrixToRtfStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DataMatrixToRtfStringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DataMatrixToRtfStringSoapIn">
+    <wsdl:part name="parameters" element="tns:DataMatrixToRtfString" />
+  </wsdl:message>
+  <wsdl:message name="DataMatrixToRtfStringSoapOut">
+    <wsdl:part name="parameters" element="tns:DataMatrixToRtfStringResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSHeliosUtilitySoap">
+    <wsdl:operation name="DataMatrixToRtfString">
+      <wsdl:input message="tns:DataMatrixToRtfStringSoapIn" />
+      <wsdl:output message="tns:DataMatrixToRtfStringSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHeliosUtilitySoap" type="tns:WSHeliosUtilitySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DataMatrixToRtfString">
+      <soap:operation soapAction="http://tempuri.org/DataMatrixToRtfString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSHeliosUtilitySoap12" type="tns:WSHeliosUtilitySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DataMatrixToRtfString">
+      <soap12:operation soapAction="http://tempuri.org/DataMatrixToRtfString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSHeliosUtility">
+    <wsdl:port name="WSHeliosUtilitySoap" binding="tns:WSHeliosUtilitySoap">
+      <soap:address location="http://192.168.0.30/WSHeliosUtility/WSHeliosUtility.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSHeliosUtilitySoap12" binding="tns:WSHeliosUtilitySoap12">
+      <soap12:address location="http://192.168.0.30/WSHeliosUtility/WSHeliosUtility.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

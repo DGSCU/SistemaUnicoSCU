@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SWS_NEWSESSION">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FIRSTNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LASTNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PASSWORD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SWS_NEWSESSIONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SWS_NEWSESSIONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SWS_CLOSESESSION">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDSESSION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIRSTNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LASTNAME" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SWS_CLOSESESSIONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SWS_CLOSESESSIONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SWS_RENEWSESSION">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDSESSION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIRSTNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LASTNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PASSWOR" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SWS_RENEWSESSIONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SWS_RENEWSESSIONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SWS_STATUSSESSION">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDSESSION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIRSTNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LASTNAME" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SWS_STATUSSESSIONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SWS_STATUSSESSIONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SWS_NEWSESSIONSoapIn">
+    <wsdl:part name="parameters" element="tns:SWS_NEWSESSION" />
+  </wsdl:message>
+  <wsdl:message name="SWS_NEWSESSIONSoapOut">
+    <wsdl:part name="parameters" element="tns:SWS_NEWSESSIONResponse" />
+  </wsdl:message>
+  <wsdl:message name="SWS_CLOSESESSIONSoapIn">
+    <wsdl:part name="parameters" element="tns:SWS_CLOSESESSION" />
+  </wsdl:message>
+  <wsdl:message name="SWS_CLOSESESSIONSoapOut">
+    <wsdl:part name="parameters" element="tns:SWS_CLOSESESSIONResponse" />
+  </wsdl:message>
+  <wsdl:message name="SWS_RENEWSESSIONSoapIn">
+    <wsdl:part name="parameters" element="tns:SWS_RENEWSESSION" />
+  </wsdl:message>
+  <wsdl:message name="SWS_RENEWSESSIONSoapOut">
+    <wsdl:part name="parameters" element="tns:SWS_RENEWSESSIONResponse" />
+  </wsdl:message>
+  <wsdl:message name="SWS_STATUSSESSIONSoapIn">
+    <wsdl:part name="parameters" element="tns:SWS_STATUSSESSION" />
+  </wsdl:message>
+  <wsdl:message name="SWS_STATUSSESSIONSoapOut">
+    <wsdl:part name="parameters" element="tns:SWS_STATUSSESSIONResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SIGED_AUTHSoap">
+    <wsdl:operation name="SWS_NEWSESSION">
+      <wsdl:input message="tns:SWS_NEWSESSIONSoapIn" />
+      <wsdl:output message="tns:SWS_NEWSESSIONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SWS_CLOSESESSION">
+      <wsdl:input message="tns:SWS_CLOSESESSIONSoapIn" />
+      <wsdl:output message="tns:SWS_CLOSESESSIONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SWS_RENEWSESSION">
+      <wsdl:input message="tns:SWS_RENEWSESSIONSoapIn" />
+      <wsdl:output message="tns:SWS_RENEWSESSIONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SWS_STATUSSESSION">
+      <wsdl:input message="tns:SWS_STATUSSESSIONSoapIn" />
+      <wsdl:output message="tns:SWS_STATUSSESSIONSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SIGED_AUTHSoap" type="tns:SIGED_AUTHSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SWS_NEWSESSION">
+      <soap:operation soapAction="http://tempuri.org/SWS_NEWSESSION" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SWS_CLOSESESSION">
+      <soap:operation soapAction="http://tempuri.org/SWS_CLOSESESSION" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SWS_RENEWSESSION">
+      <soap:operation soapAction="http://tempuri.org/SWS_RENEWSESSION" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SWS_STATUSSESSION">
+      <soap:operation soapAction="http://tempuri.org/SWS_STATUSSESSION" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SIGED_AUTHSoap12" type="tns:SIGED_AUTHSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SWS_NEWSESSION">
+      <soap12:operation soapAction="http://tempuri.org/SWS_NEWSESSION" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SWS_CLOSESESSION">
+      <soap12:operation soapAction="http://tempuri.org/SWS_CLOSESESSION" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SWS_RENEWSESSION">
+      <soap12:operation soapAction="http://tempuri.org/SWS_RENEWSESSION" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SWS_STATUSSESSION">
+      <soap12:operation soapAction="http://tempuri.org/SWS_STATUSSESSION" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SIGED_AUTH">
+    <wsdl:port name="SIGED_AUTHSoap" binding="tns:SIGED_AUTHSoap">
+      <soap:address location="http://testing2008/WSWL/SIGED_AUTH.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SIGED_AUTHSoap12" binding="tns:SIGED_AUTHSoap12">
+      <soap12:address location="http://testing2008/WSWL/SIGED_AUTH.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
