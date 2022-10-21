@@ -1,0 +1,137 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+applicationSuite: SistemaUnicoSCU
+categories:
+  - enterprise-social-networking
+dependsOn:
+  open:
+    - name: Aspose.PDF
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: ''
+    - name: Aspose.Words
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: ''
+    - name: BouncyCastle.Crypto
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: ''
+    - name: Itextsharp
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: ''
+  proprietary:
+    - name: Microsoft SqlServer 2008 R2 / 2017
+      optional: false
+      version: ''
+      versionMax: 2008 R2 / 2017
+      versionMin: 2008 R2 / 2017
+    - name: CrystalReports
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: ''
+    - name: Ionic.Zip
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: ''
+description:
+  it:
+    documentation: 'https://github.com/DGSCU/SistemaUnicoSCU/tree/main/Manuali%20Utente'
+    features:
+      - Registrazione legale rappresentante ente
+      - Gestione dati e documenti ente titolare
+      - Gestione dati e documenti enti accoglienza
+      - Gestione dati e documenti sedi
+      - Gestione struttura organizzativa e sistemi funzionali
+      - Gestione ruoli antimafia
+      - Autocertificazione e consensi
+      - Gestione delegati
+      - Presentazione e invio domanda iscrizione/adeguamento
+    genericName: Web Application
+    localisedName: SistemaUnicoSCU
+    longDescription: |
+      Il “Sistema Unico di SC” è un applicativo web che include due sistemi
+      Helios e Futuro che si occupano di automatizzare rispettivamente le
+      procedure per la gestione degli enti, progetti e volontari di SCU, mentre
+      il secondo supporta tutte le procedure per la gestione dei progetti e
+      volontari relativi al Piano Europeo per la lotta alla disoccupazione
+      giovanile denominato “Garanzia Giovani” nella misura del Servizio Civile.
+
+
+      A corredo è disponibile un'applicazione web per la presentazione della
+      domanda in qualità operatore di servizio civile: “DOL (Domanda On Line)” è
+      un applicativo web per presentare la domanda di partecipazione al Bando di
+      selezione di operatori volontari del Servizio civile universale. La
+      piattaforma, predisposta dal Dipartimento per le Politiche giovanili e il
+      Servizio civile universale d’intesa con tutti i soggetti che costituiscono
+      il “sistema Servizio civile”, consente ai giovani di compilare e inviare
+      la domanda attraverso PC, tablet o smartphone, senza moduli cartacei da
+      riempire, raccomandate da spedire o documenti da consegnare a mano.
+    shortDescription: |-
+      Il “Sistema Unico di SC” è un applicativo web che include due sistemi
+      Helios e Futuro
+developmentStatus: stable
+intendedAudience:
+  countries:
+    - it
+  scope:
+    - government
+it:
+  conforme:
+    gdpr: false
+    lineeGuidaDesign: true
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: false
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: false
+    spid: true
+  riuso:
+    codiceIPA: pcm
+landingURL: 'https://github.com/DGSCU/SistemaUnicoSCU'
+legal:
+  license: AGPL-3.0-only
+  mainCopyrightOwner: |-
+    Dipartimento per le politiche giovanili e il Servizio civile universale
+    (pcm)
+  repoOwner: PCM - DGSCU
+localisation:
+  availableLanguages:
+    - it
+  localisationReady: false
+maintenance:
+  contacts:
+    - email: m.valenti@governo.it
+      name: Dott.ssa Mariangela Valenti
+      phone: '+306677963669'
+    - email: a.franze@governo.it
+      name: Dott.ssa Antonella Franzé
+      phone: '+3906677962749'
+  contractors:
+    - name: Leonardo S.p.a.
+      until: '2023-03-31'
+      website: 'https://www.politichegiovanili.gov.it/'
+  type: internal
+name: 'Sistema Unico Servizio Civile Universale/ DOL (Domanda OnLine) '
+platforms:
+  - web
+releaseDate: '2005-05-31'
+softwareType: standalone/web
+softwareVersion: Ultima versione 2022
+url: 'https://github.com/DGSCU/SistemaUnicoSCU'
+usedBy:
+  - |-
+    Dipartimento per le politiche giovanili e il Servizio civile universale
+    (pcm)
