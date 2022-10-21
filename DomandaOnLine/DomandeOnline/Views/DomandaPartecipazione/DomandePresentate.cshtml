@@ -1,0 +1,64 @@
+﻿@using DomandeOnline.Models
+@model IEnumerable<Domanda>
+@{
+	ViewBag.Title = "Domande Presentate";
+	string errore = TempData["Errore"] as string;
+}
+@if (!string.IsNullOrEmpty(errore))
+{
+	<div class="alert alert-danger alert-dismissible fade in">
+		@Html.Raw(errore)
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+<div class="row">
+	<div class="inlineHeader">
+		<a class="btn btn-info" href="@Url.Action("SelezionaBando", "DomandaPartecipazione")">Torna al bando</a>
+		<h2>Domande presentate</h2>
+	</div>
+</div>
+
+@if (Model == null || Model.Count() == 0)
+{
+	<h3>Non hai presentato nessuna domanda.</h3>
+}
+else
+{
+	<hr />
+	<form action="@Url.Action("Download")" method="post" target="_blank">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Bando</th>
+					<th>DataPresentazione</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (Domanda domanda in Model)
+				{
+					<tr>
+						<td>
+							<div class="buttonColumn" style="font-size:2em">
+								@*Pulsante Seleziona bando*@
+								<button class="btn-link" name="idDomanda" value="@domanda.IdDomanda" type="submit" title="Scarica Domanda">
+									<span class="glyphicon glyphicon-download"></span>
+								</button>
+							</div>
+						</td>
+						<td>
+							@domanda.Bando
+						</td>
+						<td>
+							@domanda.DataPresentazione
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</form>
+
+}
+

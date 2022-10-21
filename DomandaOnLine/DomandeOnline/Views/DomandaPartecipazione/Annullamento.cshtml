@@ -1,0 +1,60 @@
+﻿@using DomandeOnline.Data
+@model DomandaPartecipazione
+@{
+	ViewBag.Title = "Domanda";
+	string errore = TempData["Errore"] as string;
+}
+
+@section scripts{
+	<script type="text/javascript">
+		function Controlli() {
+			elem = $('#cbMotivo');
+			if (elem.val() == "") {
+				$(elem).css("border-color", "red");
+				$(elem).parent().find("small").html("Campo obbligatorio").show();
+				return false;
+			} else {
+				$(elem).parent().removeClass("errorBorder");
+				$(elem).parent().find("small").hide();
+				return true;
+			}
+		}
+
+	</script>
+}
+
+@if (!string.IsNullOrEmpty(errore))
+{
+	<div class="alert alert-danger alert-dismissible fade in">
+		@Html.Raw(errore)
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+
+<h2>Si sta per richiedere l'annullamento della domanda</h2>
+<p>Codice Domanda: @Model.Id</p>
+<p>Data Presentazione: @Model.DataPresentazione</p>
+
+<p>Per presentare una nuova domanda occorre attendere il tempo di elaborazione della richiesta di annullamento (circa 24 ore).</p>
+<form action="@Url.Action("ConfermaAnnullamento")" method="post" onsubmit="return Controlli();">
+	<div class="row">
+		<div class="form-group col-md-4">
+			<label for="cbMotivo">Motivo</label>
+			<select name="idMotivo" id="cbMotivo" class="form-control" onchange="Controlli();">
+				<option></option>
+				@foreach (MotivoAnnullamento ambito in (IEnumerable<MotivoAnnullamento>)ViewData["Motivi"])
+				{
+					<option value="@ambito.Id">@ambito.Descrizione</option>
+				}
+			</select>
+			<small class="form-text text-danger" style="display:none"></small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-4">
+			<button class="btn btn-info" type="submit" >Annulla Domanda</button>
+		</div>
+	</div>
+</form>

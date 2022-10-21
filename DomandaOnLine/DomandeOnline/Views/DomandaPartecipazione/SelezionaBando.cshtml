@@ -1,0 +1,51 @@
+﻿@using DomandeOnline.Data
+@model IEnumerable<Bando>
+@{
+	ViewBag.Title = "Seleziona Bando";
+}
+@if (Model == null || Model.Count() == 0)
+{
+	<h3>Attualmente non è presente nessun bando attivo per la partecipazione al Servizio civile.</h3>
+}
+else
+{
+	<h2>Seleziona Bando</h2>
+	<hr />
+	<h3>Seleziona un bando al quale presentare la domanda di partecipazione</h3>
+	<hr />
+	<form action="@Url.Action("Index")" method="post">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Bando</th>
+					<th>Scadenza</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (Bando bando in Model)
+				{
+					<tr>
+						<td>
+							<div class="buttonColumn">
+								@*Pulsante Seleziona bando*@
+								<button class="btn-link" name="gruppo" value="@bando.Gruppo" type="submit" title="SelezionaBando">
+									<span class="glyphicon glyphicon-ok"></span>
+								</button>
+							</div>
+						</td>
+						<td>
+							@bando.Descrizione
+						</td>
+						<td>
+							@bando.Scadenza
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</form>
+}
+@*<br />
+<a class="btn btn-info" href="@Url.Action("DomandePresentate", "DomandaPartecipazione")">Visualizza domande presentate</a>*@
+

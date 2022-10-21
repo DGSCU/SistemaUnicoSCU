@@ -1,0 +1,55 @@
+﻿@using DomandeOnline.Models
+<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="it-it">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Servizio Civile - @ViewBag.Title</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("Domande Online", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					@if (User.IsInRole(Role.AMMINISTRATORE))
+					{
+						<li>@Html.ActionLink("Gestione Utenti", "Index", "Users")</li>
+					}
+					@if (User.IsInRole(Role.OPERATORE))
+					{
+						<li>@Html.ActionLink("Richieste Credenziali", "ElencoRichieste", "RichiestaCredenziali")</li>
+					}
+					@if (User.IsInRole(Role.UTENTE_SPID)||User.IsInRole(Role.UTENTE_CREDENZIALI))
+					{
+						<li>@Html.ActionLink("Domanda Partecipazione", "Index", "DomandaPartecipazione")</li>
+					}
+				</ul>
+				@Html.Partial("_LoginPartial")
+			</div>
+		</div>
+	</div>
+	<div class="container body-content">
+		@RenderBody()
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	<script src="~/Scripts/global.js"></script>
+	@RenderSection("scripts", required: false)
+	@Html.Partial("_PopUpPartial")
+
+</body>
+</html>

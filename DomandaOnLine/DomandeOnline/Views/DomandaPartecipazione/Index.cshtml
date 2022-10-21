@@ -1,0 +1,139 @@
+﻿@using DomandeOnline.Data
+@model DomandaPartecipazione
+
+@{
+	string errore = (TempData["Errore"] ?? ViewData["Errore"]) as string;
+	string message = (TempData["Message"] ?? ViewData["Message"]) as string;
+	ViewBag.Title = "Domanda di partecipazione";
+}
+@if (!string.IsNullOrEmpty(errore))
+{
+	<div class="alert alert-danger alert-dismissible fade in">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		@Html.Raw(errore)
+	</div>
+}
+@if (!string.IsNullOrEmpty(message))
+{
+	<div class="alert alert-success alert-dismissible fade in">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		@Html.Raw(message)
+	</div>
+}
+<h2>Domanda di partecipazione</h2>
+<p>
+	Per poter presentare la domanda devi completare le tre sezioni. Puoi cominciare da quella che preferisci. Durante la compilazione della seconda e della terza sezione potrai modificare, salvare e controllare i dati. Se hai dubbi consulta la <a href="https://scelgoilserviziocivile.gov.it/media/1179/nuovaguida_dol_bando2022_sca_scd.pdf">guida per la compilazione della domanda</a>
+</p>
+
+<hr>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<a class="btn btn-default btnDomanda" href="@Url.Action("ScegliProgetto")">
+				<div class="row">
+					<div class="col-md-3 col_progetto" style="text-align: left;">
+						<span class="titleButtonDomanda">1 - PROGETTO</span>
+						<div>Scegli il tuo progetto</div>
+					</div>
+					@if (Model.DataModifica != null)
+					{
+						if (Model.Progetto != null)
+						{
+							if (Model.Progetto.DataAnnullamento != null)
+							{
+								<div class="col-md-8 textDomandaEsitoNonCompilato">
+									Progetto Annullato: @Model.Progetto.TitoloProgetto<br />@Model.Progetto.IndirizzoSede @Model.Progetto.Comune (@Model.Progetto.Provincia)
+								</div>
+								<div class="col-md-1 contenutoBtnDomanda"><img src="~/Images/rosso.png" title="Progetto Annullato" alt="Progetto Annullato" class="imgButtonDomanda"></div>
+							}
+							else
+							{
+								<div class="col-md-8 textDomandaEsitoCompilato textDomandaEsitoTransparent">
+									Progetto Selezionato: @Model.Progetto.TitoloProgetto<br />@Model.Progetto.IndirizzoSede @Model.Progetto.Comune (@Model.Progetto.Provincia)
+								</div>
+								<div class="col-md-1 contenutoBtnDomanda"><img src="~/Images/verde.png" alt="Progetto Selezionato" class="imgButtonDomanda"></div>
+							}
+						}
+						else
+						{
+							<div class="col-md-8 textDomandaEsitoNonCompilato">Progetto non selezionato</div>
+							<div class="col-md-1 contenutoBtnDomanda"><img src="~/Images/rosso.png" alt="Progetto non selezionato" class="imgButtonDomanda"></div>
+						}
+					}
+				</div>
+			</a>
+			@if (Model.Progetto != null && Model.Progetto.DataAnnullamento==null)
+			{
+				<a class="textDomandaEsitoCompilato linkDomandaEsito" style="margin-left:200px" href="@Url.Action("Progetto", new { codiceProgetto = Model.Progetto.CodiceProgetto, codiceSede = Model.Progetto.CodiceSede })">
+					Progetto Selezionato: @Model.Progetto.TitoloProgetto<br />@Model.Progetto.IndirizzoSede @Model.Progetto.Comune (@Model.Progetto.Provincia)
+				</a>
+			}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<a class="btn btn-default btnDomanda" href="@Url.Action("DatiAnagrafici")">
+				<div class="row">
+					<div class="col-md-3 col_progetto" style="text-align: left;">
+						<span class="titleButtonDomanda">2 - DATI E DICHIARAZIONI</span>
+						<div>Inserisci i dati e fornisci le dichiarazioni</div>
+					</div>
+					@if (Model.DataModifica != null)
+					{
+						if ((ViewData["DatiAnagraficiOK"] as bool?) ?? false)
+						{
+							<div class="col-md-8 textDomandaEsitoCompilato">Dati e dichiarazioni inserite</div>
+							<div class="col-md-1 contenutoBtnDomanda"><img src="~/Images/verde.png" alt="Dati e dichiarazioni inserite" class="imgButtonDomanda"></div>
+						}
+						else
+						{
+							<div class="col-md-8 textDomandaEsitoNonCompilato">Dati e dichiarazioni incomplete</div>
+							<div class="col-md-1 contenutoBtnDomanda"><img src="~/Images/rosso.png" alt="Dati e dichiarazioni incomplete" class="imgButtonDomanda"></div>
+						}
+					}
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<a class="btn btn-default btnDomanda" href="@Url.Action("DatiEsperienze")">
+				<div class="row">
+					<div class="col-md-3 col_progetto" style="text-align: left;">
+						<span class="titleButtonDomanda">3 - TITOLI ED ESPERIENZE</span>
+						<div>Inserisci i dati e/o allega il curriculum</div>
+					</div>
+					@if (Model.DataModifica != null)
+					{
+						if (!(ViewData["DatiEsperienzeOK"] as bool?) ?? false)
+						{
+							<div class="col-md-8 textDomandaEsitoNonCompilato">Dati incompleti</div>
+							<div class="col-md-1 contenutoBtnDomanda"><img src="~/Images/rosso.png" alt="Dati incompleti" class="imgButtonDomanda"></div>
+						}
+						else if ((ViewData["DatiEsperienzeVuote"] as bool?) ?? false)
+						{
+							<div class="col-md-8 textDomandaEsitoIncompleto">Dati non inseriti o documento non allegato</div>
+							<div class="col-md-1 contenutoBtnDomanda"><img src="~/Images/giallo.png" alt="Dati non inseriti o documento non allegato" class="imgButtonDomanda"></div>
+						}
+						else
+						{
+							<div class="col-md-8 textDomandaEsitoCompilato">Titoli ed esperienze inseriti</div>
+							<div class="col-md-1 contenutoBtnDomanda"><img src="~/Images/verde.png" alt="Titoli ed esperienze inseriti" class="imgButtonDomanda"></div>
+						}
+					}
+				</div>
+			</a>
+		</div>
+	</div>
+	<div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<form action="@Url.Action("Riepilogo")" method="post">
+					<button style="display:inline-block" class="btn btn-info bottom" type="submit">Prosegui per completare</button>
+					<p style="display:inline-block" class="text-danger"><strong>&nbsp; Non hai ancora presentato la domanda</strong></p>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

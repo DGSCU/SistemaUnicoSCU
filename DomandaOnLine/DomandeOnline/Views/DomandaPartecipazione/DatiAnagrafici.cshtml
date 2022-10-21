@@ -1,0 +1,1100 @@
+﻿@using DomandeOnline.Code;
+@using DomandeOnline.Data;
+@using DomandeOnline.Models;
+@model DomandaPartecipazione
+@{
+	ViewBag.Title = "Dati";
+
+	IEnumerable<Nazione> nazioni = ViewData["Nazioni"] as IEnumerable<Nazione>;
+	IEnumerable<Provincia> provincie = ViewData["Provincie"] as IEnumerable<Provincia>;
+	IEnumerable<Comune> comuni = ViewData["Comuni"] as IEnumerable<Comune>;
+	IEnumerable<TitoloStudio> titoliStudio = ViewData["TitoliStudio"] as IEnumerable<TitoloStudio>;
+	IEnumerable<Specializzazione> specializzazioni = ViewData["Specializzazioni"] as IEnumerable<Specializzazione>;
+	DatiAnagraficiInput parametri = ViewData["DatiAnagrafici"] as DatiAnagraficiInput;
+	string errore = TempData["Errore"] as string;
+	ApplicationUser utente = Utils.GetUser(User.Identity.Name);
+	bool? salvato = TempData["Salvato"] as bool?;
+
+}
+
+
+@section scripts{
+	<script>
+		var bassaScolarizzazione = ['-1','1','2'];
+		function Controlli() {
+			var controlloOK = true;
+			$("#frmDati .form-control,.form-check-input,.form-radio,.requiredGroup,button").each(function () {
+				if (!ControllaSingolo(this)) {
+					if (controlloOK) {
+						$(this).focus();
+					}
+					controlloOK = false;
+				}
+			});
+			if (!ControllaPrivacy($("#ckPrivacy").first())) {
+				if (controlloOK) {
+					$("#ckPrivacy").first().focus();
+				}
+				controlloOK = false;
+			}
+			if (!ControllaResidenza($("#cbProvinciaResidenza").first())) {
+				$("#cbProvinciaResidenza").first().focus();
+				controlloOK = false;
+			}
+			if (!ControllaBassaScolarizzazione($("#cbTitoloStudio").first())) {
+				$("#cbTitoloStudio").first().focus();
+				controlloOK = false;
+			}
+
+			return controlloOK;
+		}
+		function ControllaSingolo(elem) {
+			var controlloOK = true;
+			$(elem).removeAttr("style");
+			//$(elem).parent().find("small").hide();
+
+			var emailReg = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+			if ($(elem).attr("type") == 'email' && $(elem).val() && !emailReg.test($(elem).val())) {
+				$(elem).css("border-color", "red");
+				$(elem).parent().find("small").html("Email Non valida").show();
+				controlloOK = false;
+			}
+			if (($(elem).attr("type") == 'checkbox') && $(elem).hasClass("required") && !$(elem).prop("disabled")) {
+				if (!$(elem).prop('checked')) {
+					$(elem).parent().addClass("errorBorder");
+					$(elem).parent().find("small").html("Campo Obbligatorio").show();
+					controlloOK = false;
+				} else {
+					$(elem).parent().removeClass("errorBorder");
+					$(elem).parent().find("small").hide();
+				}
+			}
+			else if (($(elem).attr("type") == 'radio') && $(elem).hasClass("required")) {
+				var elemParent = $(elem).parent().parent()
+				if ($(elem).hasClass("single")) {
+					elemParent = $(elem).parent()
+				}
+				var checked = false;
+				$(elemParent).find("input").each(function () {
+					if ($(this).prop('checked') && $(this).hasClass("required")) {
+						checked = true;
+					}
+				});
+				if (!checked) {
+					$(elemParent).addClass("errorBorder");
+					$(elemParent).find("small").show();
+					controlloOK = false;
+				} else {
+					$(elemParent).removeClass("errorBorder");
+					$(elemParent).find("small").hide();
+				}
+			} else if (($(elem).attr("type") == 'date')) {
+				var date = Date.parse($(elem).val());
+				if (date > new Date()) {
+					controlloOK = false;
+					$(elem).addClass("errorBorder");
+					$(elem).parent().find("small").html("Data successiva alla data odierna").show();
+				} else if ($(elem).hasClass("required") && !$(elem).val()){
+					$(elem).css("border-color", "red");
+					$(elem).parent().find("small").html("Campo obbligatorio").show();
+					controlloOK = false;
+				} else {
+					$(elem).removeClass("errorBorder");
+					$(elem).parent().find("small").hide();
+
+				}
+			}
+			else if ($(elem).hasClass("requiredGroup")) {
+				var elementi = $(elem).find(".form-control[groupControl='" + $(elem).attr("group") + "']");
+				var numeroElementi = elementi.length;
+				var elementiVuoti = 0;
+				elementi.each(function () {
+					if (!$(this).val() && !$(this).prop("readonly")) {
+						elementiVuoti++;
+					}
+				});
+				if (elementiVuoti == 0 || elementiVuoti == numeroElementi) {
+					$(elem).removeClass("errorBorder");
+					$(elem).find("small").hide();
+				} else {
+					elementi.first().focus();
+					$(elem).addClass("errorBorder");
+					$(elem).find("small").html("Campi incompleti").show();
+					controlloOK = false;
+				}
+			}
+			else if ($(elem).is("button") && $(elem).hasClass("required")) {
+				$(elem).parent().addClass("errorBorder");
+				$(elem).parent().find("small").show();
+			}
+			else if ($(elem).hasClass("required") && !$(elem).val() && !$(elem).prop("readonly") && !$(elem).prop("disabled") && $(elem).is(':visible')) {
+				$(elem).css("border-color", "red");
+				$(elem).parent().find("small").html("Campo obbligatorio").show();
+				controlloOK = false;
+			} else if ($(elem).hasClass("required")) {
+				$(elem).parent().find("small").hide();
+			}
+			return controlloOK;
+		}
+
+		@* Mostra o nasconde i campi in funzione se impoastato residenza italiana o estera (Disabilita o abilita anche i controlli) *@
+		function ShowResidenzaEstera(elem) {
+			if ($(elem).val()=="true") {
+				$("#panelResidenzaItalia").hide();
+				$("#panelResidenzaItalia").find(".form-control").removeClass("required");
+				$("#panelResidenzaEstera").show();
+				$("#panelResidenzaEstera").find(".form-control").addClass("required");
+			} else {
+				$("#panelResidenzaItalia").show();
+				$("#panelResidenzaItalia").find(".form-control").addClass("required");
+				$("#panelResidenzaEstera").hide();
+				$("#panelResidenzaEstera").find(".form-control").removeClass("required");
+			}
+		}
+
+		function ControllaResidenza(elem) {
+			if (!$(elem).val()) {
+				return true;
+			}
+			@if (ViewData["ProvinceAmmesse"] != null)
+			{
+				<text>
+					var provinceAmmesse = [@Html.Raw(ViewData["ProvinceAmmesse"])];
+					if (provinceAmmesse.length > 0 && $.inArray($(elem).val(), provinceAmmesse) == -1) {
+						$(elem).css("border-color", "red");
+						$(elem).parent().find("small").html("Provincia non ammessa per il progetto Garanzia Giovani scelto").show();
+						return false;
+					}
+				</text>
+			}
+			@if (ViewData["ProvinceVietate"] !=null) {
+				<text>
+			var provinceVietate = [@Html.Raw(ViewData["ProvinceVietate"])];
+				if (provinceVietate.length > 0 && $.inArray($(elem).val(), provinceVietate) != -1) {
+					$(elem).css("border-color", "red");
+					$(elem).parent().find("small").html("Provincia non ammessa per il progetto Garanzia Giovani scelto").show();
+					return false;
+				}
+				</text>
+			}
+			return true;
+		}
+
+		function ControllaBassaScolarizzazione(elem) {
+			$(elem).removeAttr("style");
+			$(elem).parent().find("small").hide();
+			if (!$(elem).val()) {
+				return true;
+			}
+			@if(Model.Progetto?.IDParticolaritàEntità ==3)
+			{
+			<text>
+			if ($("#rdMinoriOpportunitaOK").prop("checked")) {
+				var idTitoloStudio = $(elem).val();
+					if (!(bassaScolarizzazione.indexOf(idTitoloStudio)>=0)) {
+					$(elem).css("border-color", "red");
+					$(elem).parent().find("small").html("Il titolo di studio non è conforme alla richiesta di minore opportuntà per bassa scolarizzazione").show();
+								return false;
+							}
+						}
+			</text>
+			}
+			return true;
+		}
+
+
+		function ControllaPrivacy(elem) {
+			if ($(elem).prop("checked")) {
+		$(elem).parent().find("small").hide();
+				return true;
+			} else {
+		$(elem).parent().find("small").show();
+				return false;
+			}
+		}
+
+		function CheckTitoloStudio(elem){
+			if ($(elem).val() == '-1' && $(elem).val() == '6') {
+		$(this).removeClass("required").removeAttr("style").parent().find("small").hide();
+			} else {
+		$(this).addClass("required");
+			}
+		}
+
+
+		function CheckAlternativa(elem) {
+			if ($(elem).prop("checked")) {
+				$('#cbDataPresaInCaricoGaranziaGiovaniGiorno').removeClass("required").removeAttr("style");
+				$('#cbDataPresaInCaricoGaranziaGiovaniMese').removeClass("required").removeAttr("style");
+				$('#cbDataPresaInCaricoGaranziaGiovaniAnno').removeClass("required").removeAttr("style");
+				$('#txtLuogoPresaInCaricoGaranziaGiovani').removeClass("required").removeAttr("style").parent().find("small").hide();
+
+			} else {
+				$('#cbDataPresaInCaricoGaranziaGiovaniGiorno').addClass("required");
+				$('#cbDataPresaInCaricoGaranziaGiovaniMese').addClass("required");
+				$('#cbDataPresaInCaricoGaranziaGiovaniAnno').addClass("required");
+				$('#txtLuogoPresaInCaricoGaranziaGiovani').addClass("required");
+				return false;
+			}
+		}
+
+		function submitForm() {
+			ShowLoader();
+			$('#frmDati').submit();
+		};
+
+		function GestisciDisciplina(elem) {
+
+			if ($(elem).val() == "-1" || $(elem).val() == "6") {
+				$('#txtFormazioneDisciplina').val("").attr("readonly", "readonly");
+				$('#cbFormazioneItalia').val("").attr("disabled", "disabled");
+				$('#txtFormazioneAnno').val("").attr("readonly", "readonly");
+				$('#txtFormazioneIstituto').val("").attr("readonly", "readonly");
+				$('#txtFormazioneEnte').val("").attr("readonly", "readonly");
+			} else {
+				$('#txtFormazioneDisciplina').removeAttr("readonly");
+				$('#cbFormazioneItalia').removeAttr("disabled");
+				$('#txtFormazioneAnno').removeAttr("readonly");
+				$('#txtFormazioneIstituto').removeAttr("readonly");
+				$('#txtFormazioneEnte').removeAttr("readonly");
+				if ($(elem).val() == "1" || $(elem).val() == "2") {
+					$('#txtFormazioneDisciplina').val("");
+					$('#txtFormazioneDisciplina').attr("readonly", "readonly");
+				} else {
+					$('#txtFormazioneDisciplina').removeAttr("readonly");
+				}
+			}
+
+		}
+		function GestisciNazioneFormazione(elem) {
+			if ($(elem).val() == "true") {
+		$('#txtFormazioneEnte').val("");
+		$('#divFormazioneEnte').hide();
+			} else {
+		$('#divFormazioneEnte').show();
+			}
+		}
+
+		$(document).ready(function () {
+			/* Nasconde i pulsanti  */
+			$('#pnlRdResidenzaEstera').show();
+			$('#pnlBtnResidenzaEstera').remove();
+					/* Gestisce la visualizzazione dei controlli sulla residenza Italiana/Estero */
+			@if (parametri.ResidenzaEstera ?? false)
+			{
+				<text>ShowResidenzaEstera($("#rdResidenzaEsteraKo").first());</text>
+			}
+			else
+			{
+				<text>ShowResidenzaEstera($("#rdResidenzaEsteraOk").first());</text>
+			}
+			GestisciNazioneFormazione($("#cbFormazioneItalia")[0]);
+			CheckAlternativa($("#ckAlternativaRequisitiGaranziaGiovani")[0]);
+			GestisciDisciplina($("#cbTitoloStudio")[0]);
+
+			@if (salvato == true)
+			{
+				<text>Controlli();</text>
+			}
+		});
+	</script>
+}
+@if (!string.IsNullOrEmpty(errore))
+{
+	<div class="alert alert-danger alert-dismissible fade in">
+		@Html.Raw(errore)
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+<div class="container">
+	<div class="row">
+		<div class="inlineHeader">
+			<a href="@Url.Action("Index")" class="btn btn-info">Torna alla Domanda</a>
+			<h2>Dati e dichiarazioni</h2>
+		</div>
+	</div>
+	<form action="@Url.Action("DatiAnagrafici")" id=frmDati novalidate method="post" enctype="multipart/form-data">
+		<h3>Dati anagrafici</h3>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="txtCognome">Cognome</label>
+				<input type="text" class="form-control" id="txtCognome" value="@utente.Cognome" readonly="readonly" />
+			</div>
+			<div class="form-group col-md-6">
+				<label for="txtNome">Nome</label>
+				<input type="text" class="form-control" id="txtNome" value="@utente.Nome" readonly="readonly" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label for="txtLuogoNascita">Luogo di nascita</label>
+				<input type="text" class="form-control" id="txtLuogoNascita" value="@utente.LuogoNascita" readonly="readonly">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="txtNazioneNascita">Nazione di nascita</label>
+				<input type="text" class="form-control" id="txtNazioneNascita" value="@utente.NazioneNascita" readonly="readonly">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="txtDataNascita">Data di nascita</label>
+				<input type="text" class="form-control" id="txtDataNascita" value="@(utente.DataNascita.HasValue?utente.DataNascita.Value.ToString("dd/MM/yyyy"):"")" readonly="readonly">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="txtCodiceFiscale">Codice fiscale</label>
+				<input type="text" class="form-control" id="txtCodiceFiscale" value="@utente.CodiceFiscale" readonly="readonly">
+			</div>
+			<div class="form-group col-md-6">
+				@if (User.IsInRole(Role.UTENTE_SPID))
+				{
+					<label for="cbCittadinanza" title="cittadinanza">Cittadinanza</label>
+					<select name="IdNazioneCittadinanza" id="cbCittadinanza" class="form-control required" onchange="ControllaSingolo(this)">
+						<option value="" disabled selected>Selezionare la cittadinanza</option>
+						@foreach (Nazione nazione in nazioni)
+						{
+							if (parametri.IdNazioneCittadinanza == nazione.Id)
+							{
+								<option value="@nazione.Id" selected>@nazione.Nome</option>
+							}
+							else
+							{
+								<option value="@nazione.Id">@nazione.Nome</option>
+							}
+						}
+					</select>
+					<small class="form-text text-danger" style="display:none"></small>
+				}
+				else
+				{
+					<label for="txtCittadinanza">Cittadinanza</label>
+					<input type="text" class="form-control" id="txtCittadinanza" value="@utente.Cittadinanza" readonly="readonly">
+				}
+			</div>
+		</div>
+		<h4>Residenza</h4>
+		<div style="display:none;" class="row" id="pnlRdResidenzaEstera">
+			<div class="form-group ">
+				<fieldset>
+					<legend style="display:none">Residenza Italia/Estero</legend>
+					<div class="form-check col-md-3">
+						<input class="form-check-input required" type="radio" id="rdResidenzaEsteraOk" onchange="ShowResidenzaEstera(this)"
+							   name="ResidenzaEstera" value="false" @(parametri.ResidenzaEstera ?? false ? "" : "checked=\"checked\"")>
+						<label class="form-check-label" for="rdResidenzaEsteraOk">
+							Residenza Italia
+						</label>
+					</div>
+					<div class="form-check col-md-3">
+						<input class="form-check-input required" type="radio" id="rdResidenzaEsteraKo" onchange="ShowResidenzaEstera(this)"
+							   name="ResidenzaEstera" value="true" @(parametri.ResidenzaEstera ?? false ? "checked=\"checked\"" : "")>
+						<label class="form-check-label" for="rdResidenzaEsteraKo">
+							Residenza estera
+						</label>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<noscript>
+			<div class="row pnlBtnResidenzaEstera">
+				<div class="form-group col-md-3">
+					<button type="submit" class="btn @(parametri.ResidenzaEstera ?? false ? "btn-default" : "btn-info")"
+							name="ResidenzaEsteraButton" value="false">
+						Residenza Italia
+					</button>
+				</div>
+				<div class="form-group form-check col-md-3">
+					<button type="submit" class="btn @(parametri.ResidenzaEstera ?? false ? "btn-info" : "btn-default")"
+							name="ResidenzaEsteraButton" value="true">
+						Residenza estera
+					</button>
+				</div>
+				@if (!(parametri.ResidenzaEstera ?? false))
+				{
+					<div class="form-group form-check col-md-6">
+						<button type="submit" class="btn btn-info">
+							Carica Comuni
+						</button>
+					</div>
+				}
+			</div>
+		</noscript>
+		<div @((parametri.ResidenzaEstera ?? false) ? "style=display:none;" : "") id="panelResidenzaItalia">
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="cbProvinciaResidenza" title="Provincia residenza">Provincia</label>
+					<select name="ProvinciaResidenza" id="cbProvinciaResidenza" class="form-control required" onchange="ControllaSingolo(this); submitForm();">
+						<option value=""></option>
+						@foreach (Provincia provincia in provincie)
+						{
+							<option value="@provincia.Nome" @(parametri.ProvinciaResidenza == provincia.Nome ? "selected" : "")>@provincia.Nome</option>
+						}
+					</select>
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="cbComuneResidenza" title="Comune residenza">Comune</label>
+					<select name="ComuneResidenza" id="cbComuneResidenza" class="form-control required" onchange="ControllaSingolo(this)">
+						<option value=""></option>
+						@foreach (Comune comune in comuni)
+						{
+							<option value="@comune.Nome" @(parametri.ComuneResidenza == comune.Nome ? "selected" : "")>@comune.Nome</option>
+						}
+					</select>
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="txtVia">Via</label>
+					<input name="ViaResidenza" type="text" class="form-control required" id="txtVia" maxlength="100" placeholder="Inserire la via" onchange="ControllaSingolo(this)" value="@parametri.ViaResidenza">
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="txtNumero">Numero</label>
+					<input name="CivicoResidenza" type="text" class="form-control required" id="txtNumero" maxlength="100"
+						   placeholder="Inserire il numero" onchange="ControllaSingolo(this)" value="@parametri.CivicoResidenza">
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="txtCap">Cap</label>
+					<input name="CapResidenza" type="text" class="form-control required" id="txtCap" maxlength="100"
+						   placeholder="Inserire il cap" onchange="ControllaSingolo(this)" value="@parametri.CapResidenza">
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+			</div>
+		</div>
+		<div @(!(parametri.ResidenzaEstera ?? false) ? "style=display:none;" : "") id="panelResidenzaEstera">
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label for="txtIndirizzoCompleto">Indirizzo completo</label>
+					<input name="ResidenzaIndirizzoCompleto" type="text" class="form-control required" id="txtIndirizzoCompleto" maxlength="100"
+						   placeholder="Inserire l'indirizzo estero completo" onchange="ControllaSingolo(this)" value="@parametri.ResidenzaIndirizzoCompleto">
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="cbNazioneResidenza" title="Nazione residenza">Nazione</label>
+					<select name="NazioneResidenza" id="cbNazioneResidenza" class="form-control required" onchange="ControllaSingolo(this)">
+						<option value=""></option>
+						@foreach (Nazione nazione in nazioni)
+						{
+							if (nazione.CodiceISO2 != Nazione.ITALIA)
+							{
+								<option value="@nazione.Nome" @(parametri.NazioneResidenza == nazione.Nome ? "selected" : "")>@nazione.Nome</option>
+							}
+						}
+					</select>
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+			</div>
+		</div>
+		@if (!(parametri.ConfermaResidenza ?? false))
+		{
+			<div class="row form-group col-md-12">
+				<div class="">
+					<p>I dati presenti sono quelli indicati su SPID. Verifica, modifica e conferma.</p>
+					<button type="submit" class="btn btn-info required" name="Action" value="ConfermaResidenza">Conferma Dati</button>
+					<small class="form-text text-danger" style="display:none;">È necessario confermare i dati</small>
+				</div>
+			</div>
+		}
+		else
+		{
+			<input type="hidden" name="ConfermaResidenza" value="true" />
+		}
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="txtTelefono">Telefono</label>
+				<input type="text" class="form-control" id="txtTelefono" readonly="readonly" value="@utente.Telefono">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="txtEmail">E-mail</label>
+				<input type="text" class="form-control" id="txtEmail" readonly="readonly" value="@utente.Email">
+			</div>
+		</div>
+		<h4>Recapito Comunicazioni</h4>
+		<h5>(Solo se diverso dall’indirizzo di residenza)</h5>
+		<div class="requiredGroup" group="Recapito">
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="txtComuneRecapito">Comune</label>
+					<input name="ComuneRecapito" type="text" class="form-control" groupControl="Recapito" id="txtComuneRecapito" maxlength="100"
+						   placeholder="Inserire il comune" onchange="ControllaSingolo(this)" value="@parametri.ComuneRecapito">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="txtProvinciaRecapito">Provincia</label>
+					<input name="ProvinciaRecapito" type="text" class="form-control" groupControl="Recapito" id="txtProvinciaRecapito" maxlength="100"
+						   placeholder="Inserire la provincia" onchange="ControllaSingolo(this)" value="@parametri.ProvinciaRecapito">
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="txtViaRecapito">Via</label>
+					<input name="ViaRecapito" type="text" class="form-control" groupControl="Recapito" id="txtViaRecapito" maxlength="100"
+						   placeholder="Inserire la via" onchange="ControllaSingolo(this)" value="@parametri.ViaRecapito">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="txtCapRecapito">Cap</label>
+					<input name="CapRecapito" type="text" class="form-control" groupControl="Recapito" id="txtCapRecapito" maxlength="100"
+						   placeholder="Inserire il cap" onchange="ControllaSingolo(this)" value="@parametri.CapRecapito">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="txtNumeroRecapito">Numero</label>
+					<input name="CivicoRecapito" type="text" class="form-control" groupControl="Recapito" id="txtNumeroRecapito" maxlength="100"
+						   placeholder="Inserire il numero" onchange="ControllaSingolo(this)" value="@parametri.CivicoRecapito">
+				</div>
+			</div>
+			<small class="form-text text-danger" style="display:none"></small>
+		</div>
+		<h4>Formazione</h4>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="cbTitoloStudio" title="Titolo di studio">Titolo di studio</label>
+				<select name="IdTitoloStudio" id="cbTitoloStudio" class="form-control required" groupControl="Formazione" onchange="GestisciDisciplina(this); ControllaBassaScolarizzazione(this);">
+					<option value=""></option>
+					@foreach (TitoloStudio titoloStudio in titoliStudio)
+					{
+						if (Model != null && (Model.IdTitoloStudio ?? 0) == titoloStudio.Id)
+						{
+							<option value="@titoloStudio.Id" selected>@titoloStudio.Descrizione</option>
+						}
+						else
+						{
+							<option value="@titoloStudio.Id">@titoloStudio.Descrizione</option>
+						}
+					}
+				</select>
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="txtFormazioneDisciplina">Tipo / Settore / Disciplina</label>
+				<input name="FormazioneAnagraficaDisciplina" type="text" class="form-control required" groupControl="Formazione" id="txtFormazioneDisciplina"
+					   @((Model.IdTitoloStudio == 1 || Model.IdTitoloStudio == 2) ? "readonly='readonly'" : "")
+					   maxlength="200" placeholder="Inserire la disciplina del titolo di studio"
+					   onchange="ControllaSingolo(this)" value="@(Model==null?"":Model.FormazioneAnagraficaDisciplina)">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+
+		</div>
+		<p>Indicare il titolo più elevato posseduto precisando se sia stato conseguito in Italia o all’estero.<br />Ricorda: il titolo di studio conseguito all’estero è valutabile previa dichiarazione di equivalenza a titoli di studio conseguiti in Italia, da parte del Dipartimento, su conforme parere del MIUR; in tal caso vanno compilate le voci: anno di conseguimento, denominazione e sede dell’ istituto che ha rilasciato il titolo, città e paese estero ove ha sede l’istituto</p>
+		<div class="row">
+			<div class="form-group col-md-2">
+				<label for="cbFormazioneItalia">Italia / Estero</label>
+				<select name="FormazioneAnagraficaItalia" id="cbFormazioneItalia" class="form-control required" groupControl="Formazione" onchange="ControllaSingolo(this); GestisciNazioneFormazione(this);">
+					<option value=""></option>
+					<option value="true" @(Model == null ? "" : Model.FormazioneAnagraficaItalia == null ? "" : Model.FormazioneAnagraficaItalia.Value ? "selected" : "")>Italia</option>
+					<option value="false" @(Model == null ? "" : Model.FormazioneAnagraficaItalia == null ? "" : !Model.FormazioneAnagraficaItalia.Value ? "selected" : "")>Estero</option>
+				</select>
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			@*<div class="form-group col-md-2">
+					<label for="txtFormazioneData">Data conseguimento</label>
+					<input name="FormazioneData" type="date" class="form-control" id="txtFormazioneData" placeholder="Inserire la data del titolo di studio" value="@(Model.FormazioneData==null?" ":Model.FormazioneData.Value.ToString(" yyyy-MM-dd"))">
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>*@
+			<div class="form-group col-md-2">
+				<label for="txtFormazioneAnno">Anno conseguimento</label>
+				<input name="FormazioneAnagraficaAnno" type="text" class="form-control required" groupControl="Formazione" id="txtFormazioneAnno" placeholder="Inserire l'anno" value="@Model.FormazioneAnagraficaAnno">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			<div class="form-group col-md-8">
+				<label for="txtFormazioneIstituto">Istituto</label>
+				<input name="FormazioneAnagraficaIstituto" type="text" class="form-control required" groupControl="Formazione" id="txtFormazioneIstituto" maxlength="200" placeholder="Inserire l'Istituto " value="@(Model==null?"":Model.FormazioneAnagraficaIstituto)">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+		@*<div class="row" id="divFormazioneEnte">
+				<div class="form-group col-md-8">
+					<label for="txtFormazioneEnte">Ente che ha adottato il provvedimento</label>
+					<input name="FormazioneAnagraficaEnte" type="text" class="form-control required" groupControl="Formazione"
+						   id="txtFormazioneEnte" maxlength="200" placeholder="Inserire l'Ente che ha adottato il provvedimento"
+						   value="@(Model==null?"":Model.FormazioneAnagraficaEnte)">
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+			</div>*@
+		<small class="form-text text-danger" style="display:none"></small>
+		<h4>Attuale iscrizione scuola secondaria di II grado</h4>
+		<div class="row requiredGroup" group="IscrizioneSuperiore">
+			<div class="form-group col-md-1">
+				<label for="cbIscrizioneSuperioreAnno">Anno</label>
+				<select name="IscrizioneSuperioreAnno" id="cbIscrizioneSuperioreAnno" class="form-control" groupControl="IscrizioneSuperiore">
+					<option value=""></option>
+					@for (int i = 1; i <= 5; i++)
+					{
+						<option value="@i" @(Model.IscrizioneSuperioreAnno == null ? "" : Model.IscrizioneSuperioreAnno.Value == i ? "selected" : "")>@i</option>
+					}
+				</select>
+			</div>
+			<div class="form-group col-md-11">
+				<label for="txtIscrizioneSuperioreIstituto">Istituto</label>
+				<input name="IscrizioneSuperioreIstituto" type="text" class="form-control" groupControl="IscrizioneSuperiore"
+					   id="txtIscrizioneSuperioreIstituto" maxlength="200" placeholder="Inserire l'Istituto superiore a cui si è iscritti" onchange="ControllaSingolo(this)" value="@(Model==null?"":Model.IscrizioneSuperioreIstituto)">
+			</div>
+			<small class="form-text text-danger" style="display:none"></small>
+		</div>
+		<h4>Attuale iscrizione corso di laurea</h4>
+		<div class="row requiredGroup" group="IscrizioneLaurea">
+			<div class="form-group col-md-1">
+				<label for="cbIscrizioneLaureaAnno">Anno</label>
+				<select name="IscrizioneLaureaAnno" id="cbIscrizioneLaureaAnno" class="form-control" groupControl="IscrizioneLaurea">
+					<option value=""></option>
+					@for (int i = 1; i <= 7; i++)
+					{
+						<option value="@i" @(Model.IscrizioneLaureaAnno == null ? "" : Model.IscrizioneLaureaAnno.Value == i ? "selected" : "")>@(i == 7 ? i + "+" : i + "")</option>
+					}
+				</select>
+			</div>
+			<div class="form-group col-md-5">
+				<label for="txtIscrizioneLaureaCorso">Facoltà</label>
+				<input name="IscrizioneLaureaCorso" type="text" class="form-control" groupControl="IscrizioneLaurea" id="txtIscrizioneLaureaCorso" maxlength="200" placeholder="Inserire la facoltà a cui si è iscritti" value="@(Model==null?" ":Model.IscrizioneLaureaCorso)">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="txtIscrizioneLaureaIstituto">Università</label>
+				<input name="IscrizioneLaureaIstituto" type="text" class="form-control" groupControl="IscrizioneLaurea" id="txtIscrizioneLaureaIstituto" maxlength="200" placeholder="Inserire l'università a cui si è iscritti" value="@(Model==null?"":Model.IscrizioneLaureaIstituto)">
+			</div>
+			<small class="form-text text-danger" style="display:none"></small>
+		</div>
+		<hr />
+
+
+		@if (Model != null && Model.Progetto != null)
+		{
+			<div class="inlineHeader">
+				<a href="@Url.Action("Progetto", new { codiceProgetto = Model.Progetto.CodiceProgetto, codiceSede = Model.Progetto.CodiceSede })" title="Visualizza dettagli">
+					<span class="glyphicon glyphicon-search glyphicon-medium"></span>
+				</a>
+				<h3>Progetto</h3>
+
+			</div>
+		}
+		else
+		{
+			<h3>Progetto</h3>
+		}
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtEnte">Ente</label>
+				<input name="ente" type="text" class="form-control" id="txtEnte" readonly="readonly" value="@(Model.Progetto==null?"":Model.Progetto.NomeEnte)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtProgetto">Nome Progetto</label>
+				<input name="progetto" type="text" class="form-control" id="txtProgetto" readonly="readonly" value="@(Model.Progetto==null?"":Model.Progetto.TitoloProgetto)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtSedeEnte">Sede</label>
+				<input name="sedeEnte" type="text" class="form-control" id="txtSedeEnte" readonly="readonly" value="@(Model.Progetto==null?"":$"{Model.Progetto.IndirizzoSede} {Model.Progetto.Comune} ({Model.Progetto.Provincia})")">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="cbMotivazione">Motivazione scelta del servizio civile e/o del progetto</label>
+				<select name="IdMotivazione" id="cbMotivazione" class="form-control required" onchange="ControllaSingolo(this);">
+					<option value=""></option>
+					@foreach (Motivazione motivazione in ViewData["Motivazioni"] as IEnumerable<Motivazione>)
+					{
+						<option value="@motivazione.Id" @(parametri.IdMotivazione == motivazione.Id ? "selected" : "")>@motivazione.Descrizione</option>
+					}
+				</select>
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+
+
+		<hr />
+		<h3>Dichiarazioni</h3>
+		<div class="row">
+			<p class="col-md-12">
+				Ai sensi e per gli effetti delle disposizioni contenute negli artt.
+				<a title="Visualizza Articolo 46 (Si apre in un'altra finestra)" href="https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.progressivo=0&art.idArticolo=46&art.versione=1&art.codiceRedazionale=001G0049&art.dataPubblicazioneGazzetta=2001-02-20&art.idGruppo=14&art.idSottoArticolo1=10&art.idSottoArticolo=1&art.flagTipoArticolo=0#art" target="_blank">
+					46
+				</a>
+				e
+				<a title="Visualizza Articolo 47 (Si apre in un'altra finestra)" href="https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.progressivo=0&art.idArticolo=47&art.versione=1&art.codiceRedazionale=001G0049&art.dataPubblicazioneGazzetta=2001-02-20&art.idGruppo=14&art.idSottoArticolo1=10&art.idSottoArticolo=1&art.flagTipoArticolo=0#art" target="_blank">
+					47
+				</a>
+				del
+				<a title="Visualizza Decreto 445 (Si apre in un'altra finestra)" href="https://www.gazzettaufficiale.it/eli/id/2001/02/20/001G0049/sg" target="_blank">
+					decreto del Presidente della Repubblica 28 dicembre 2000, n° 445
+				</a>
+				e consapevole delle conseguenze derivanti da dichiarazioni mendaci ai sensi dell’
+				<a title="Visualizza Articolo 76 (Si apre in un'altra finestra)" href="https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.progressivo=0&art.idArticolo=76&art.versione=1&art.codiceRedazionale=001G0049&art.dataPubblicazioneGazzetta=2001-02-20&art.idGruppo=22&art.idSottoArticolo1=10&art.idSottoArticolo=1&art.flagTipoArticolo=0#art" target="_blank">
+					art. 76
+				</a>
+				del predetto D.P.R. n° 445/2000, sotto la propria responsabilità fornisco le seguenti dichiarazioni
+			</p>
+		</div>
+
+
+
+		<h4>Requisiti</h4>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="cbDichiarazioneCittadinanza">Dichiarazione Cittadinanza</label>
+				<select name="CodiceDichiarazioneCittadinanza" id="cbDichiarazioneCittadinanza" class="form-control required" onchange="ControllaSingolo(this);">
+					<option value=""></option>
+					<option value="IT" @(parametri.CodiceDichiarazioneCittadinanza == "IT" ? "selected" : "")>Cittadino Italiano</option>
+					<option value="UE" @(parametri.CodiceDichiarazioneCittadinanza == "UE" ? "selected" : "")>Cittadino di altro Paese dell’Unione Europea</option>
+					<option value="NC" @(parametri.CodiceDichiarazioneCittadinanza == "NC" ? "selected" : "")>Cittadino non comunitario regolarmente soggiornante</option>
+				</select>
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<div class="form-check">
+					<input name="NonCondanneOk" type="checkbox" class="form-check-input required" id="ckNonCondanne" onchange="ControllaSingolo(this);"
+						   value="true" @((parametri.NonCondanneOk ?? false) ? "checked=\"checked\"" : "")>
+					<label class="form-check-label" for="ckNonCondanne">Dichiaro</label>
+					<small class="form-text text-danger" style="display:none"></small>
+					<p> di non aver riportato condanna anche non definitiva alla pena della reclusione superiore ad un anno per delitto non colposo ovvero ad una pena della reclusione anche di entità inferiore per un delitto contro la persona o concernente detenzione, uso, porto trasporto, importazione o esportazione illecita di armi o materie esplodenti ovvero per delitti riguardanti l’appartenenza o il favoreggiamento a gruppi eversivi, terroristici, o di criminalità organizzata</p>
+				</div>
+			</div>
+		</div>
+		@if (Model.Progetto?.Programma?.IdTipoGG != null)
+		{
+			<h4>Dichiarazioni Garanzia Giovani</h4>
+			//Controlli Regioni / Provincie
+			<div class="row">
+				<div class="form-group col-md-12">
+					<input name="DichiarazioneResidenzaOK" type="checkbox" class="form-check-input required" id="ckDichiarazioneResidenzaOK" onchange="ControllaSingolo(this);"
+						   value="true" @((Model.DichiarazioneResidenzaOK ?? false) ? "checked=\"checked\"" : "")>
+					<label for="ckDichiarazioneResidenza">Dichiaro</label>
+					<small class="form-text text-danger" style="display:none"></small>
+					<ul id="txtDichiarazioneResidenza">
+						@if (Model.Progetto.Asse1bisDisoccupati)
+						{
+							string regioniAmmesse = string.Join(", ", Model.Progetto.RegioniAmmesse
+								.Select(p => p.Nome).ToList());
+							<li>di risiedere in una delle seguenti regioni: @regioniAmmesse</li>
+							<li>
+								di aver già aderito al Programma Garanzia Giovani attraverso siti dedicati (www.garanziagioani.gov.it, www.anpal.gov.it, o i portali regionali appositamente predisposti)
+							</li>
+						}
+						@if (Model.Progetto.Asse1NEET)
+						{
+							string provinceAmmesse = string.Join(", ", Model.Progetto.ProvinceAmmesse
+								.Select(p => p.Nome).ToList());
+							<li>di risiedere in Italia ma non nella provincia autonoma di @provinceAmmesse</li>
+						}
+					</ul>
+				</div>
+			</div>
+			//Dichiarazioni Requisiti Garanzia Giovani
+			if (Model.Progetto.Asse1NEET)
+			{
+
+				<div class="row">
+					<div class="form-group col-md-12">
+						<input name="DichiarazioneRequisitiGaranziaGiovani" type="checkbox" class="form-check-input required" id="ckDichiarazioneRequisitiGaranziaGiovani" onchange="ControllaSingolo(this);"
+							   value="true" @((Model.DichiarazioneRequisitiGaranziaGiovani ?? false) ? "checked=\"checked\"" : "")>
+						<label for="ckDichiarazioneRequisitiGaranziaGiovani">Dichiaro</label>
+						<small class="form-text text-danger" style="display:none"></small>
+						<ul id="txtDichiarazioneRequisitiGaranziaGiovan">
+							<li>
+								di aver già aderito al Programma Garanzia Giovani attraverso i siti dedicati (www.garanziagioani.gov.it, www.anpal.gov.it, o i portali regionali appositamente predisposti)
+							</li>
+						</ul>
+					</div>
+				</div>
+			}
+			if (Model.Progetto.Asse1bisDisoccupati)
+			{
+				<div class="row">
+					<div class="form-group col-md-12">
+						<strong>Dichiaro di essere disoccupato e di aver effettuato la DID (dichiarazione di immediata disponibilità al lavoro)</strong>
+					</div>
+					<div class="form-group col-md-3 ">
+						<label for="cbDataDIDGaranziaGiovaniGiorno">In data</label>
+						<div class="input-group">
+							<select id="cbDataDIDGaranziaGiovaniGiorno" name="DataDIDGaranziaGiovaniGiorno" class="form-control dategroup required">
+								<option></option>
+								@for (int i = 1; i <= 31; i++)
+								{
+									<option @if (parametri?.DataDIDGaranziaGiovaniErrore ?? false) { if (parametri.DataDIDGaranziaGiovaniGiorno == i) { <text> selected="selected" </text>  } } else if (Model.DataDIDGaranziaGiovani?.Day == i) { <text> selected="selected" </text> }>
+										@i
+									</option>
+								}
+							</select>
+							<select id="cbDataDIDGaranziaGiovaniMese" name="DataDIDGaranziaGiovaniMese" class="form-control dategroup required">
+
+								<option></option>
+								@for (int i = 1; i <= 12; i++)
+								{
+									<option @if (parametri?.DataDIDGaranziaGiovaniErrore ?? false) { if (parametri.DataDIDGaranziaGiovaniMese == i) { <text> selected="selected" </text>  } } else if (Model.DataDIDGaranziaGiovani?.Month == i) { <text> selected="selected" </text> } value="@i">
+										@Utils.GetMese(i)
+									</option>
+								}
+							</select>
+							<select id="cbDataDIDGaranziaGiovaniAnno" name="DataDIDGaranziaGiovaniAnno" class="form-control dategroup required">
+
+								<option></option>
+								@for (int i = DateTime.Today.Year; i >= DateTime.Today.Year - 11; i--)
+								{
+									<option @if (parametri?.DataDIDGaranziaGiovaniErrore ?? false) { if (parametri.DataDIDGaranziaGiovaniAnno == i) { <text> selected="selected" </text>  } } else if (Model.DataDIDGaranziaGiovani?.Year == i) { <text> selected="selected" </text> }>
+										@i
+									</option>
+								}
+							</select>
+						</div>
+						<small class="form-text text-danger" style="display:none"></small>
+					</div>
+
+
+					<div class="form-group col-md-6">
+						<label for="txtLuogoDIDGaranziaGiovani">Rilasciato da</label>
+						<input name="LuogoDIDGaranziaGiovani" type="text"
+							   class="form-control required"
+							   id="txtLuogoDIDGaranziaGiovani" maxlength="200"
+							   placeholder="Inserire l'ente di rlascio"
+							   onchange="ControllaSingolo(this)"
+							   value="@Model.LuogoDIDGaranziaGiovani">
+						<small class="form-text text-danger" style="display:none"></small>
+					</div>
+				</div>
+
+			}
+			<p></p>
+			<div class="row panel panel-default">
+				<div class="form-group col-md-12">
+					<strong>Dichiaro di essere stato preso in carico</strong>
+				</div>
+				<div class="form-group col-md-3 ">
+					<label for="cbDataPresaInCaricoGaranziaGiovaniGiorno">In data</label>
+					<div class="input-group">
+						<select id="cbDataPresaInCaricoGaranziaGiovaniGiorno" name="DataPresaInCaricoGaranziaGiovaniGiorno" class="form-control dategroup required">
+							<option></option>
+							@for (int i = 1; i <= 31; i++)
+							{
+								<option @if (parametri?.DataPresaInCaricoGaranziaGiovaniErrore ?? false) { if (parametri.DataPresaInCaricoGaranziaGiovaniGiorno == i) { <text> selected="selected" </text>  } } else if (Model.DataPresaInCaricoGaranziaGiovani?.Day == i) { <text> selected="selected" </text> }>
+									@i
+								</option>
+							}
+						</select>
+						<select id="cbDataPresaInCaricoGaranziaGiovaniMese" name="DataPresaInCaricoGaranziaGiovaniMese" class="form-control dategroup required">
+
+							<option></option>
+							@for (int i = 1; i <= 12; i++)
+							{
+								<option @if (parametri?.DataPresaInCaricoGaranziaGiovaniErrore ?? false) { if (parametri.DataPresaInCaricoGaranziaGiovaniMese == i) { <text> selected="selected" </text>  } } else if (Model.DataPresaInCaricoGaranziaGiovani?.Month == i) { <text> selected="selected" </text> } value="@i">
+									@Utils.GetMese(i)
+								</option>
+							}
+						</select>
+						<select id="cbDataPresaInCaricoGaranziaGiovaniAnno" name="DataPresaInCaricoGaranziaGiovaniAnno" class="form-control dategroup required">
+
+							<option></option>
+							@for (int i = DateTime.Today.Year; i >= DateTime.Today.Year - 11; i--)
+							{
+								<option @if (parametri?.DataPresaInCaricoGaranziaGiovaniErrore ?? false) { if (parametri.DataPresaInCaricoGaranziaGiovaniAnno == i) { <text> selected="selected" </text>  } } else if (Model.DataPresaInCaricoGaranziaGiovani?.Year == i) { <text> selected="selected" </text> }>
+									@i
+								</option>
+							}
+						</select>
+					</div>
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+
+				<div class="form-group col-md-6">
+					<label for="txtLuogoPresaInCaricoGaranziaGiovani">Presso il centro per l’impiego/servizio accreditato di</label>
+					<input name="LuogoPresaInCaricoGaranziaGiovani" type="text"
+						   class="form-control required"
+						   id="txtLuogoPresaInCaricoGaranziaGiovani" maxlength="200"
+						   placeholder="Inserire il centro per l'impiego/servizio accreditato"
+						   onchange="ControllaSingolo(this)"
+						   value="@Model.LuogoPresaInCaricoGaranziaGiovani">
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+				@if (Model.Progetto.Asse1NEET)
+				{
+					<div class="form-group col-md-12">
+						<input name="AlternativaRequisitiGaranziaGiovani" type="checkbox" class="form-check-input" id="ckAlternativaRequisitiGaranziaGiovani"
+							   value="true" @((Model.AlternativaRequisitiGaranziaGiovani ?? false) ? "checked=\"checked\"" : "") onchange="CheckAlternativa(this);">
+						<label for="ckAlternativaRequisitiGaranziaGiovani">In alternativa dichiaro</label>
+						<small class="form-text text-danger" style="display:none"></small>
+						<ul>
+
+							<li>essere <strong>non occupato;</strong></li>
+							<li>di <strong>non essere inserito in un regolare corso di studi</strong> (secondari superiori, terziari non universitari o universitari);</li>
+							<li>di <strong>non essere inserito in alcun corso di formazione</strong>, compresi quelli di aggiornamento per l’esercizio della professione o per il mantenimento dell’iscrizione ad un Albo o Ordine professionale;</li>
+							<li>di <strong>non essere inserito in percorsi di tirocinio curriculare e/o extracurriculare</strong>, in quanto misura formativa;</li>
+							<li><strong>di impegnarmi a concludere la procedura di presa in carico centralizzata che sarà avviata automaticamente.</strong></li>
+						</ul>
+					</div>
+				}
+				@if (Model.Progetto.Asse1bisDisoccupati)
+				{
+					<div class="form-group col-md-12">
+						<input name="AlternativaRequisitiGaranziaGiovani" type="checkbox" class="form-check-input" id="ckAlternativaRequisitiGaranziaGiovani"
+							   value="true" @((Model.AlternativaRequisitiGaranziaGiovani ?? false) ? "checked=\"checked\"" : "") onchange="CheckAlternativa(this);">
+						<label for="ckAlternativaRequisitiGaranziaGiovani">In alternativa dichiaro</label>
+						<small class="form-text text-danger" style="display:none"></small>
+						<ul>
+							<li>di essere disoccupato</li>
+							<li>di impegnarmi a concludere la procedura di presa in carico centralizzata che sarà avviata automaticamente</li>
+						</ul>
+					</div>
+				}
+			</div>
+		}
+
+		@if (Model.Progetto != null && Model.Progetto.IDParticolaritàEntità.HasValue && Model.Progetto.NumeroGiovaniMinoriOpportunità > 0)
+		{
+			<h4>Dichiarazioni Minori Opportunità</h4>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<fieldset>
+						<legend style="display:none">Dichiaro</legend>
+						<small class="form-text text-danger" style="display:none">Campo obbligatorio</small>
+						<div class="form-check">
+							<input class="form-check-input required @if (Model.Progetto.NumeroGiovaniMinoriOpportunità == Model.Progetto.NumeroPostiDisponibili)
+							{
+								<text>single</text>
+							}" type="radio" name="DichiarazioneMinoriOpportunita" id="rdMinoriOpportunitaOK" onchange="ControllaSingolo(this)"
+								   value="true" @((parametri.DichiarazioneMinoriOpportunita ?? false) ? "checked=\"checked\"" : "")>
+							<label class="form-check-label" for="rdMinoriOpportunitaOK">
+								Dichiaro
+							</label>
+							di voler partecipare ai posti riservati per la tipologia "@(Model.Progetto.MinoreOpportunita?.Descrizione)"
+							@if (Model.Progetto.NumeroGiovaniMinoriOpportunità == Model.Progetto.NumeroPostiDisponibili)
+							{
+								<small class="form-text text-danger" style="display:none">Campo obbligatorio</small>
+							}
+
+
+						</div>
+						<div class="form-check">
+							<input class="form-check-input @if (Model.Progetto.NumeroGiovaniMinoriOpportunità != Model.Progetto.NumeroPostiDisponibili)
+							{
+								<text>required</text>
+							}" type="radio" name="DichiarazioneMinoriOpportunita" id="rdMinoriOpportunitaKO" onchange="ControllaSingolo(this)"
+								   value="false" @(!(parametri.DichiarazioneMinoriOpportunita ?? true) ? "checked=\"checked\"" : "")>
+							<label class="form-check-label" for="rdMinoriOpportunitaKO">
+								Dichiaro
+							</label>
+							di non voler partecipare ai posti riservati per le minori opportunità
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		}
+		<h4>Altre dichiarazioni</h4>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<fieldset>
+					<legend style="display:none">Consenso al trasferimento di sede</legend>
+					<small class="form-text text-danger" style="display:none">Campo obbligatorio</small>
+					<div class="form-check">
+						<input class="form-check-input required" type="radio" name="TrasferimentoSedeOk" id="rdTrasferimentoSedeOk" onchange="ControllaSingolo(this)"
+							   value="true" @((parametri.TrasferimentoSedeOk ?? false) ? "checked=\"checked\"" : "")>
+						<label class="form-check-label" for="rdTrasferimentoSedeOk">
+							Sono disponibile
+						</label>
+					</div>				<div class="form-check">
+						<input class="form-check-input required" type="radio" name="TrasferimentoSedeOk" id="rdTrasferimentoSedeKo" onchange="ControllaSingolo(this)"
+							   value="false" @(!(parametri.TrasferimentoSedeOk ?? true) ? "checked=\"checked\"" : "")>
+						<label class="form-check-label" for="rdTrasferimentoSedeKo">
+							non sono disponibile
+						</label>
+					</div>
+					qualora in seguito alle selezioni effettuate risulti idoneo non selezionato, ad essere assegnato al progetto di servizio civile prescelto anche in posti resi disponibili successivamente al termine delle procedure selettive, a seguito di rinuncia o impedimento da parte dei volontari già avviati al servizio
+				</fieldset>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<fieldset>
+					<legend style="display:none">Consenso al trasferimento di progetto</legend>
+					<small class="form-text text-danger" style="display:none">Campo obbligatorio</small>
+					<div class="form-check">
+						<input class="form-check-input required" type="radio" name="TrasferimentoProgettoOk" id="rdTrasferimentoProgettoOk" onchange="ControllaSingolo(this)"
+							   value="true" @((parametri.TrasferimentoProgettoOk ?? false) ? "checked=\"checked\"" : "")>
+						<label class="form-check-label" for="rdTrasferimentoProgettoOk">
+							Sono disponibile
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input required" type="radio" name="TrasferimentoProgettoOk" id="rdTrasferimentoProgettoKo" onchange="ControllaSingolo(this)"
+							   value="false" @(!(parametri.TrasferimentoProgettoOk ?? true) ? "checked=\"checked\"" : "")>
+						<label class="form-check-label" for="rdTrasferimentoProgettoKo">
+							non sono disponibile
+						</label>
+					</div>
+					qualora in seguito alle selezioni effettuate risulti idoneo non selezionato, ad essere assegnato a qualsiasi altro progetto di servizio civile contenuto nel presente bando presentato dallo stesso ente o da altro ente anche in altre regioni che abbia, al termine delle procedure selettive, posti disponibili o che si siano resi successivamente disponibili al termine delle procedure selettive, a seguito di rinuncia o impedimento da parte dei volontari già avviati al servizio
+				</fieldset>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<div>
+					<input name="AltreDichiarazioniOk" type="checkbox" class="form-check-input required" id="ckAltreDichiarazioni" onchange="ControllaSingolo(this);"
+						   value="true" @((parametri.AltreDichiarazioniOk ?? false) ? "checked=\"checked\"" : "")>
+					<label for="ckAltreDichiarazioni">Dichiaro</label>
+					<small class="form-text text-danger" style="display:none"></small>
+					<div id="txtAltreDichiarazioni">
+						<ul>
+							<li>di aver preso visione del progetto indicato nella domanda e di essere in possesso dei requisiti richiesti dall’ente per l’assegnazione di volontari nel progetto stesso;</li>
+							<li>di essere disponibile a fornire informazioni nell’ambito di indagini e rilevazioni mirate ad approfondire le tematiche relative al servizio civile universale, condotte da soggetti terzi (Università, Istituti e Centri di ricerca, ecc…) su incarico o in collaborazione con il Dipartimento o l'Unione Europea;</li>
+							<li>di provvedere autonomamente alle spese relative al viaggio per il raggiungimento della sede di realizzazione del progetto (dichiarazione da rendere nel solo caso in cui il progetto si svolga in Italia e l’interessato non sia residente, domiciliato o dimorante nel luogo di realizzazione del progetto);</li>
+							@*<li>di non avere in corso con l’ente che realizza il progetto rapporti di lavoro o di collaborazione retribuita a qualunque titolo, ovvero di non avere avuto tali rapporti nell’anno precedente di durata superiore a tre mesi;</li>*@
+							<li>di aver preso visione delle attività previste dal progetto prescelto e di non trovarsi in condizioni che impediscono lo svolgimento delle stesse.</li>
+							<li>di non intrattenere, all’atto della pubblicazione del presente bando, con l’ente titolare del progetto rapporti di lavoro/di collaborazione retribuita a qualunque titolo ovvero di non aver avuto tali rapporti di durata superiore a tre mesi nei 12 mesi precedenti la data di pubblicazione del bando.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtInformativa">Informativa privacy</label>
+				<div rows="5" class="form-control scrollbox" id="txtInformativa">
+					@Html.Partial("Informativa")
+				</div>
+			</div>
+		</div>
+		<p>Per procedere al consenso della privacy occorre leggere l'informativa</p>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<div class="form-check">
+					<input name="PrivacyPresaVisione" type="checkbox" class="form-check-input required" id="ckPrivacyPresaVisione" onchange="ControllaSingolo(this);"
+						   value="true" @((parametri.PrivacyPresaVisione ?? false) ? "checked=\"checked\"" : "")>
+					<label class="form-check-label" for="ckPrivacyPresaVisione">dichiaro di aver letto l’informativa</label>
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<fieldset>
+					<small class="form-text text-danger form-group" style="display:none">il consenso favorevole è necessario per poter presentare la domanda<br /></small>
+					<legend style="display:none">Consenso alla privacy</legend>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input required" type="radio" name="PrivacyConsenso" id="rdPrivacyConsensoOk" onchange="ControllaSingolo(this)"
+							   @((parametri.PrivacyConsenso ?? false) ? "checked=\"checked\"" : "") value="true">
+						<label class="form-check-label" for="rdPrivacyConsensoOk">
+							Do il consenso
+						</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="PrivacyConsenso" id="rdPrivacyConsensoKo" onchange="ControllaSingolo(this)"
+							   value="false" @(!(parametri.PrivacyConsenso ?? true) ? "checked=\"checked\"" : "")>
+						<label class="form-check-label" for="rdPrivacyConsensoKo">
+							non do il consenso
+						</label>
+					</div>
+					al trattamento dei miei dati personali, inclusi quelli considerati come categorie particolari di dati, e alla comunicazione dei miei dati personali a soggetti pubblici e privati per le finalità indicate nell’informativa
+				</fieldset>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-info" name="Action" value="salva">Salva</button>
+		<button type="button" class="btn btn-info" onclick="Controlli();">Controlla</button>
+	</form>
+</div>

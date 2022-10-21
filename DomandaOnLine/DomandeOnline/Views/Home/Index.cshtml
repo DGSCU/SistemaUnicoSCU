@@ -1,0 +1,35 @@
+﻿@{
+	ViewBag.Title = "Servizio Civile - Domande Online";
+}
+@if (!string.IsNullOrEmpty(TempData["Errore"] as String))
+{
+	<div class="alert alert-danger">@TempData["Errore"]</div>
+}
+
+<div class="container">
+	<h2>Servizio civile universale - Domanda On Line</h2>
+	<div class="row form-group" style="margin-left:0%">
+		Benvenuto nella piattaforma per la gestione della Domanda On Line per diventare Operatore volontario di Servizio civile universale. <strong>L’accesso alla piattaforma per i cittadini italiani residenti in Italia o all’estero deve avvenire esclusivamente con SPID, il Sistema Pubblico di Identità Digitale.</strong> I cittadini appartenenti ad altri Paesi dell’Unione Europea o extra Unione Europea regolarmente soggiornanti in Italia, potranno accedere alla piattaforma attraverso apposite credenziali da richiedere al Dipartimento.
+	</div>
+
+	<div class="row form-group" style="margin-left:0%">
+		Per maggiori informazioni <a href="https://www.politichegiovanili.gov.it/media/4gdhxbjx/bando-scd-e-sca-2022_2-agosto2022_dg-signed.pdf" target="_blank" title="Vai alla pagina del bando (Si apre in un'altra finestra)">Vai al Bando</a>
+	</div>
+	<hr />
+	<div class="row form-group">
+		<div class="col-md-6 form-control-static">
+			<a class="btn btn-info" href="https://spid.politichegiovanilieserviziocivile.gov.it/Home/Index?id=2">Accedi con SPID</a>
+		</div>
+		<div class="col-md-6 form-control-static">
+			<a class="btn btn-info" href="@Url.Action("LoginCredenziali","Account")">Accedi con credenziali</a>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-md-6 form-control-static">
+			Se non hai ancora SPID <a href="https://www.spid.gov.it/">vai qui</a>
+		</div>
+		<div class="col-md-6 form-control-static">
+			Se non hai ancora le credenziali <a href="@Url.Action("Index","RichiestaCredenziali")">vai qui</a>
+		</div>
+	</div>
+</div>

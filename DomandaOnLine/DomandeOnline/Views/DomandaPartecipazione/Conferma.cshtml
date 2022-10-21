@@ -1,0 +1,15 @@
+﻿@model DomandeOnline.Data.DomandaPartecipazione
+@{
+	ViewBag.Title = "Conferma";
+}
+<div class="row">
+	<div class="inlineHeader">
+		<a href="@Url.Action("Index")" class="btn btn-info">Torna alla Domanda</a>
+		<h2>Conferma invio domanda</h2>
+	</div>
+</div>
+<hr />
+<p>Attenzione: non hai compilato i campi relativi alle informazioni sugli ulteriori titoli posseduti e sulle esperienze maturate e non hai allegato il curriculum vitae. Pertanto in sede di valutazione della domanda ti verrà attribuito punteggio solo per il titolo di studio dichiarato nella sezione “Dati e Dichiarazioni”.</p>
+<form action="@Url.Action("Riepilogo",new { conferma=true})" method="post">
+	<button class="btn btn-info bottom" type="submit">Conferma</button>
+</form>

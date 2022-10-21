@@ -1,0 +1,84 @@
+﻿@using DomandeOnline.Data
+@{
+    ViewBag.Title = "Conferma Richiesta Credenziali";
+}
+
+@model RichiestaCredenziali
+	<h2>Richiesta inviata</h2>		
+	<div class="container">
+		<p>
+			La richiesta di credenziali è stata effettuata correttamente.
+		</p>
+		<p>
+			La richiesta sarà valutata prima possibile da un funzionario del Dipartimento.
+		</p>
+		<p>
+			Se la richiesta sarà accettata riceverai una mail con le credenziali per accedere alla Domanda On Line. In caso contrario ti verrà inviata una mail con i motivi di non accettazione
+		</p>
+		<hr />
+		<h4>
+			Riepilogo dati inviati:
+		</h4>
+
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Model.Nome" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">Cognome</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Model.Cognome" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">Genere</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Model.Genere.Nome" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">Data di nascita</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Html.DisplayTextFor(x => x.DataNascita)" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">Luogo di nascita</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Model.LuogoNascita" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">Nazione di nascita</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Model.NazioneNascita.Nome" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">Codice fiscale</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Model.CodiceFiscale" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">Cittadinanza</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Model.Cittadinanza.Nome" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">E-mail</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Model.Email" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail3" class="col-sm-2 col-form-label">Telefono</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" value="@Model.Telefono" readonly="readonly">
+			</div>
+		</div>
+	</div>
+

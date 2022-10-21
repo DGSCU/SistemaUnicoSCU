@@ -1,0 +1,140 @@
+﻿@using DomandeOnline.Models
+@using DomandeOnline.Data
+@{
+	ViewBag.Title = "ElencoRichieste";
+	ElencoCredenzialiInput parametri = ViewData["ElencoCredenziali"] as ElencoCredenzialiInput;
+	int pagina = parametri == null ? 1 : parametri.Pagina ?? 1;
+	int numeroPagine = parametri == null ? 1 : parametri.NumeroPagine ?? 1;
+	int numeroElementi = parametri == null ? 1 : parametri.NumeroElementi ?? 1;
+	int elementiPerPagina = parametri == null ? 1 : parametri.ElementiPerPagina ?? 20;
+	int paginaIniziale = pagina - 3;
+	int paginaFinale = pagina + 3;
+	if (paginaIniziale < 1) { paginaIniziale = 1; }
+	if (paginaFinale > numeroPagine) { paginaFinale = numeroPagine; }
+	IEnumerable<StatoRichiestaCredenziali> stati = (IEnumerable<StatoRichiestaCredenziali>)ViewData["Stati"];
+}
+
+@model IEnumerable<RichiestaCredenzialiDto>
+
+<h2>Elenco Richieste</h2>
+<hr />
+<input type="hidden" name="Pagina" value="@pagina" />
+<input type="hidden" name="ElementiPerPagina" value="@elementiPerPagina" />
+<input type="hidden" name="gruppo" value="@TempData["Gruppo"]" />
+<form action="@Url.Action("ElencoRichieste")" method="post">
+	<div class="row">
+		<div class="form-group col-md-4">
+			<label for="txtCognome">Cognome</label>
+			<input name="Cognome" type="text" class="form-control required" id="txtCognome" value="@(parametri==null?"":parametri.Cognome)">
+		</div>
+		<div class="form-group col-md-4">
+			<label for="txtNome">Nome</label>
+			<input name="Nome" type="text" class="form-control required" id="txtNome" value="@(parametri==null?"":parametri.Nome)">
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-4">
+			<label for="txtCodiceProgetto">Codice Fiscale</label>
+			<input name="CodiceFiscale" type="text" class="form-control required" id="txtCodiceProgetto" value="@(parametri==null?"":parametri.CodiceFiscale)">
+		</div>
+		<div class="form-group col-md-4">
+			<label for="cbStato">Stato</label>
+			<select name="IdStato" id="cbStato" class="form-control required">
+				<option value="0">Tutti</option>
+				@foreach (StatoRichiestaCredenziali stato in stati)
+				{
+					if ((parametri == null && stato.Id == StatoRichiestaCredenziali.APERTA) || (parametri != null && (parametri.IdStato ?? StatoRichiestaCredenziali.APERTA) == stato.Id))
+					{
+						<option selected value="@stato.Id">@stato.Nome</option>
+					}
+					else
+					{
+						<option value="@stato.Id">@stato.Nome</option>
+					}
+				}
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-4">
+			<button class="btn btn-info bottom" type="submit">Cerca</button>
+		</div>
+	</div>
+
+	<div style="overflow-x:auto;">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Data Richiesta</th>
+					<th>Stato</th>
+					<th>Nominativo</th>
+					<th>Codice Fiscale</th>
+					<th>Data Nascita</th>
+					<th>Luogo Nascita</th>
+					<th>Nazione Nascita</th>
+					<th>Cittadinanza</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (RichiestaCredenzialiDto richiesta in Model)
+				{
+					<tr>
+						<td>
+							<a href="@Url.Action("Dettaglio",new {Id=richiesta.Id})" title="Visualizza Dettagli">
+								<span class="glyphicon glyphicon-search"></span>
+							</a>
+							<a href="@Url.Action("DownloadAllegato",new {Id=richiesta.Id})" title="Scarica Allegato (Si apre in un'altra finestra)" target="_blank">
+								<span class="glyphicon glyphicon-download"></span>
+							</a>
+						</td>
+						<td>@richiesta.DataRichiesta</td>
+						<td>@richiesta.Stato</td>
+						<td>@richiesta.Cognome @richiesta.Nome</td>
+						<td>@richiesta.CodiceFiscale</td>
+						<td>@(richiesta.DataNascita.HasValue ? richiesta.DataNascita.Value.ToString("dd/MM/yyyy") : "")</td>
+						<td>@richiesta.LuogoNascita</td>
+						<td>@richiesta.NazioneNascita</td>
+						<td>@richiesta.NazioneCittadinanza</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+	@***** PAGINAZIONE *****@
+	<div class="container">
+		<nav class="text-center">
+			<ul class="pagination">
+				@if (pagina == 1)
+				{
+					<li class="page-item disabled"><span class="page-link" href="#">Precedente</span></li>
+				}
+				else
+				{
+					<li class="page-item"><button class="page-link " type="submit" name="nuovaPagina" value="@(pagina-1)">Precedente</button></li>
+				}
+				@for (int i = paginaIniziale; i <= paginaFinale; i++)
+				{
+					if (i == pagina)
+					{
+						<li class="page-item active"><span class="page-link">@i</span></li>
+					}
+					else
+					{
+						<li class="page-item"><button class="page-link " type="submit" name="nuovaPagina" value="@i">@i</button></li>
+					}
+				}
+				@if (pagina >= numeroPagine)
+				{
+					<li class="page-item disabled"><span class="page-link">Successiva</span></li>
+				}
+				else
+				{
+					<li class="page-item"><button class="page-link " type="submit" name="nuovaPagina" value="@(pagina+1)">Successiva</button></li>
+				}
+			</ul>
+		</nav>
+		<div class="text-center">Pagina @pagina di @numeroPagine (@numeroElementi record totali)</div>
+
+	</div>
+</form>

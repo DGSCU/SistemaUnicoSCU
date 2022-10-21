@@ -1,0 +1,61 @@
+﻿@using DomandeOnline.Data
+@model DomandaPartecipazione
+@{
+	ViewBag.Title = "Domanda";
+	string errore = (ViewData["Errore"] as string)?? (TempData["Errore"] as string);
+
+}
+@if (!string.IsNullOrEmpty(errore))
+{
+	<div class="alert alert-danger alert-dismissible fade in">
+		@Html.Raw(errore)
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+@if (Model?.DataPresentazione == null)
+{
+	<a class="btn btn-primary" href="@Url.Action("SelezionaBando")">< Seleziona Bando</a>
+	<h2>Il bando è chiuso. Non è possibile presentare una domanda.</h2>
+}
+else
+{
+	<a class="btn btn-primary" href="@Url.Action("SelezionaBando")">< Seleziona Bando</a>
+	string urlSito = Model.Progetto.Sito;
+	if (!urlSito.Contains("://"))
+	{
+		urlSito = "http://" + urlSito;
+	}
+
+
+	if (Model.DataRichiestaAnnullamento == null)
+	{
+		<h2>Hai presentato la domanda</h2>
+		<p>Codice Domanda: @Model.Id</p>
+		<p>Data Presentazione: @Model.DataPresentazione</p>
+		<p>Per conoscere la data delle selezioni consulta il sito <a href="@urlSito" target="_blank" title="Vai al sito (Si apre in un'altra finestra)">@Model.Progetto.Sito</a></p>
+
+		<p>Puoi scaricare la ricevuta della domanda premendo il seguente pulsante.</p>
+		<form action="@Url.Action("Download",new {idDomanda=Model.Id})" method="post">
+			<button class="btn btn-info" type="submit">Stampa Domanda</button>
+		</form>
+		if(ViewData["Scaduto"] == null)
+		{
+			<hr />
+			<p>Puoi annullare domanda premendo il seguente pulsante.</p>
+			<form action="@Url.Action("Annullamento",new {idDomanda=Model.Id})" method="post">
+				<button class="btn btn-info" type="submit">Annulla Domanda</button>
+			</form>
+		}
+
+	}
+	else
+	{
+		<h2>Hai effettuato richiesta di annullamento della domanda</h2>
+		<p>Codice Domanda: @Model.Id</p>
+		<p>Data Presentazione: @Model.DataPresentazione</p>
+		<p>Data Richiesta Annullamento: @Model.DataRichiestaAnnullamento</p>
+		<p>Motivo Annullamento: @(Model.MotivoAnnullamento?.Descrizione)</p>
+	}
+}

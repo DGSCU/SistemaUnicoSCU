@@ -1,0 +1,611 @@
+﻿@using System.Configuration;
+@using DomandeOnline.Models;
+@using DomandeOnline.Data;
+@model IEnumerable<ProgettoDto>
+@{
+	ViewBag.Title = "Scegli il tuo Progetto";
+
+	/* Gestione paginazione */
+	int pagina = (ViewData["Pagina"] as int?) ?? 1;
+	int numeroPagine = (ViewData["NumeroPagine"] as int?) ?? 1;
+	int numeroElementi = (ViewData["NumeroElementi"] as int?) ?? 1;
+	int elementiPerPagina = (ViewData["ElementiPerPagina"] as int?) ?? 20;
+	DomandaPartecipazione domanda = ViewData["Domanda"] as DomandaPartecipazione;
+	int paginaIniziale = pagina - 5;
+	int paginaFinale = pagina + 5;
+	if (paginaIniziale < 1) { paginaIniziale = 1; }
+	if (paginaFinale > numeroPagine) { paginaFinale = numeroPagine; }
+
+	ScegliProgettoInput parametri = (ScegliProgettoInput)TempData["Parametri"];
+
+	IEnumerable<string> comuni = (IEnumerable<string>)ViewData["Comuni"];
+	IEnumerable<string> provincie = (IEnumerable<string>)ViewData["Provincie"];
+	bool? effettuatoServizioCivile = (bool?)ViewData["EffettuatoServizioCivile"] ?? false;
+	bool? effettuatoGaranziaGiovani = (bool?)ViewData["EffettuatoGaranziaGiovani"] ?? false;
+
+	IEnumerable<string> garanzieGiovani = (IEnumerable<string>)ViewData["GaranzieGiovane"];
+}
+@section Scripts{
+	<script>
+		function GetScroll() {
+			ShowLoader();
+			$("#scrollPosition").val(Math.floor($(window).scrollTop()));
+		};
+		function submitForm() {
+			ShowLoader();
+			$('#frmScegliProgetto').submit();
+		};
+		$(function () {
+			$(window).scrollTop(@ViewData["ScrollTo"]);
+		});
+	</script>
+}
+<div class="row">
+	<div class="inlineHeader">
+		<a href="@Url.Action("Index")" class="btn btn-info">Torna alla Domanda</a>
+		<h2>Scegli il tuo Progetto</h2>
+	</div>
+</div>
+<p>In questa pagina è possibile consultare l’elenco di tutti i progetti disponibili. Se vuoi visualizzare solo alcuni progetti puoi impostare i filtri di ricerca (es. Regione, Ente) altrimenti puoi non digitare alcun campo e attivare la ricerca completa.</p>
+
+<hr />
+<form action="@Url.Action("ScegliProgetto")" onsubmit="return GetScroll();" id=frmScegliProgetto novalidate method="post" enctype="multipart/form-data">
+    <input type="hidden" name="pagina" value="@pagina" />
+    <input type="hidden" name="elementiPerPagina" value="@elementiPerPagina" />
+    <input id="scrollPosition" type="hidden" name="ScrollPosition" />
+    <input type="hidden" name="gruppo" value="@TempData["Gruppo"]" />
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="cbNazione">Nazione</label>
+            <select name="nazione" id="cbNazione" class="form-control required" onchange="submitForm()">
+                <option></option>
+                <option @(parametri.Nazione as string == "Italia" ? "Selected=\"Selected\"" : "")>Italia</option>
+                <option @(parametri.Nazione as string == "Estero" ? "Selected=\"Selected\"" : "")>Estero</option>
+                @foreach (string nazione in (IEnumerable<string>)ViewData["Nazioni"])
+                {
+                    if ((string)parametri.Nazione == nazione)
+                    {
+                        <option selected>@nazione</option>
+                    }
+                    else
+                    {
+                        <option>@nazione</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    @if (parametri.Nazione as string == "Italia" || string.IsNullOrEmpty(parametri.Nazione))
+    {
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="cbRegione">Regione</label>
+                <select name="regione" id="cbRegione" class="form-control" onchange="$('#cbProvincia').val('');$('#cbComune').val('');submitForm()">
+                    <option></option>
+                    @foreach (string regione in (IEnumerable<string>)ViewData["Regioni"])
+                    {
+                        if ((string)parametri.Regione == regione)
+                        {
+                            <option selected>@regione</option>
+                        }
+                        else
+                        {
+                            <option>@regione</option>
+                        }
+                    }
+                </select>
+            </div>
+            @if (provincie.Count() > 0)
+            {
+                <div class="form-group col-md-4">
+                    <label for="cbProvincia">Provincia</label>
+                    <select name="provincia" id="cbProvincia" class="form-control required" onchange="$('#cbComune').val('');submitForm()">
+                        <option></option>
+                        @foreach (string provincia in provincie)
+                        {
+                            if ((string)parametri.Provincia == provincia)
+                            {
+                                <option selected>@provincia</option>
+                            }
+                            else
+                            {
+                                <option>@provincia</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+            }
+            @if (comuni.Count() > 0)
+            {
+                <div class="form-group col-md-4">
+                    <label for="cbComune">Comune</label>
+                    <select name="comune" id="cbComune" class="form-control" onchange="submitForm()">
+                        <option></option>
+                        @foreach (string comune in comuni)
+                        {
+                            if ((string)parametri.Comune == comune)
+                            {
+                                <option selected>@comune</option>
+                            }
+                            else
+                            {
+                                <option>@comune</option>
+                            }
+                        }
+                    </select>
+                </div>
+            }
+
+        </div>
+    }
+
+
+    @*<div class="form-group col-md-4">
+            <label for="cbTipoProgetto">Tipo Progetto</label>
+            <select name="misure" id="cbTipoProgetto" class="form-control" onchange="submitForm()">
+                <option></option>
+                <option value="NO" @(parametri.Misure as string == "NO" ? "Selected=\"Selected\"" : "")>Ordinario</option>
+                <option value="SI" @(parametri.Misure as string == "SI" ? "Selected=\"Selected\"" : "")>Con misure aggiuntive</option>
+            </select>
+        </div>*@
+    @if (true)//(parametri.Misure as string == "SI")
+    {
+        <div class="row">
+
+            <div class="form-group col-md-4">
+                <label for="cbMinori">
+                    Giovani minori opportunità
+                    <a style="font-size:large" target="_blank" href="@ConfigurationManager.AppSettings["LinkMinoriOpportunita"]" title="Vai alla pagina dei progetti con minori opportunità (Si apre in un'altra finestra)'">
+                        <span class="glyphicon glyphicon-question-sign text-primary"></span>
+                    </a>
+                </label>
+                <select name="minori" id="cbMinori" class="form-control" onchange="submitForm()">
+                    <option></option>
+                    <option value="NO" @(parametri.Minori as string == "NO" ? "Selected=\"Selected\"" : "")>No</option>
+                    <option value="SI" @(parametri.Minori as string == "SI" ? "Selected=\"Selected\"" : "")>Sì</option>
+                </select>
+            </div>
+            @if (parametri.Minori == "SI")
+            {
+                <div class="form-group col-md-4">
+                    <label for="cbMinoreOpportunità">Tipologia Minore opportunità</label>
+                    <select name="MinoreOpportunita" id="cbMinoreOpportunità" class="form-control" onchange="submitForm()">
+                        <option></option>
+                        @foreach (MinoreOpportunita minoreOpportunita in (IEnumerable<MinoreOpportunita>)ViewData["MinoriOpportunita"])
+                        {
+                            if (parametri.MinoreOpportunita == minoreOpportunita.IDParticolarità)
+                            {
+                                <option selected value="@minoreOpportunita.IDParticolarità">@minoreOpportunita.Descrizione</option>
+                            }
+                            else
+                            {
+                                <option value="@minoreOpportunita.IDParticolarità">@minoreOpportunita.Descrizione</option>
+                            }
+                        }
+                    </select>
+                </div>
+            }
+        </div>
+        <div class="row">
+
+            @if (parametri.Nazione as string == "Italia" || string.IsNullOrEmpty(parametri.Nazione))
+            {
+                <div class="form-group col-md-4">
+                    @*<label for="cbTipoMisure">Tutoraggio/paesi UE</label>*@
+                    <label for="cbTipoMisure">Tutoraggio</label>
+                    <select name="tipoMisure" id="cbTipoMisure" class="form-control" onchange="submitForm()">
+                        <option></option>
+                        <option value="N" @(parametri.TipoMisure as string == "N" ? "Selected=\"Selected\"" : "")>Nessuna</option>
+                        @*<option value="E" @(parametri.TipoMisure as string == "E" ? "Selected=\"Selected\"" : "")>Paesi UE</option>*@
+                        <option value="T" @(parametri.TipoMisure as string == "T" ? "Selected=\"Selected\"" : "")>Tutoraggio</option>
+                    </select>
+                </div>
+            }
+        </div>
+    }
+    @if (parametri.HasProgrammi)
+    {
+        if (parametri.IdBando == 63)
+        {
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="cbTipologiaProgramma">Tipologia progetto</label>
+                    <select name="TipologiaProgrammaScelta" id="cbTipologiaProgramma" class="form-control" onchange="submitForm()">
+                        @foreach (TipologiaProgramma item in parametri.ListaTipologiaProgramma)
+                        {
+                            <option value="@item.Valore" @(item.IsSelezionato ? "Selected=\"Selected\"" : "")>@item.Descrizione</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        }
+        else
+        {
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="cbServizioCovileDigitale">Servizio Civile Digitale</label>
+                    <select name="IsDigitale" id="cbServizioCovileDigitale" class="form-control" onchange="submitForm()">
+                        <option></option>
+                        <option value="true" @(parametri.IsDigitale == true ? "Selected=\"Selected\"" : "")>Sì</option>
+                        <option value="false" @(parametri.IsDigitale == false ? "Selected=\"Selected\"" : "")>No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                @if (effettuatoGaranziaGiovani ?? false)
+                {
+                    <div class="form-group col-md-4">
+                        <label for="cbMinori">Garanzia Giovani</label>
+                        <select name="GaranziaGiovani" id="cbGaranziaGiovani" class="form-control" onchange="submitForm()">
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                }
+                else if (effettuatoServizioCivile ?? false)
+                {
+                    <div class="form-group col-md-4">
+                        <label for="cbMinori">Garanzia Giovani</label>
+                        <select name="GaranziaGiovani" id="cbGaranziaGiovani" class="form-control" onchange="submitForm()">
+                            <option value="true">Sì</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cbTipoGaranziaGiovani">Tipologia Garanzia Giovani</label>
+                        <select name="TipoGaranziaGiovani" id="cbTipoGaranziaGiovani" class="form-control" onchange="submitForm()">
+                            <option></option>
+                            @foreach (string garanziaGiovane in garanzieGiovani.OrderByDescending(x => x))
+                            {
+                                if (parametri.TipoGaranziaGiovani == garanziaGiovane)
+                                {
+                                    <option selected>@garanziaGiovane</option>
+                                }
+                                else
+                                {
+                                    <option>@garanziaGiovane</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group col-md-4">
+                        <label for="cbMinori">Garanzia Giovani</label>
+                        <select name="GaranziaGiovani" id="cbGaranziaGiovani" class="form-control" onchange="submitForm()">
+                            <option></option>
+                            <option value="false" @(parametri.GaranziaGiovani == false ? "Selected=\"Selected\"" : "")>No</option>
+                            <option value="true" @(parametri.GaranziaGiovani == true ? "Selected=\"Selected\"" : "")>Sì</option>
+                        </select>
+                    </div>
+                    if (parametri.GaranziaGiovani ?? false)
+                    {
+                        <div class="form-group col-md-4">
+                            <label for="cbTipoGaranziaGiovani">Tipologia Asse</label>
+                            <select name="TipoGaranziaGiovani" id="cbTipoGaranziaGiovani" class="form-control" onchange="submitForm()">
+                                <option></option>
+                                @foreach (string garanziaGiovane in garanzieGiovani.OrderByDescending(x => x))
+                                {
+                                    if (parametri.TipoGaranziaGiovani == garanziaGiovane)
+                                    {
+                                        <option selected>@garanziaGiovane</option>
+                                    }
+                                    else
+                                    {
+                                        <option>@garanziaGiovane</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    }
+                }
+            </div>
+
+        }
+
+    }
+
+    <div class="row">
+        <div class="form-group col-md-8">
+            <label for="cbSettore">Settore</label>
+            <select name="settore" id="cbSettore" class="form-control" onchange="submitForm()">
+                <option></option>
+                @foreach (string settore in (IEnumerable
+                <string>
+                    )ViewData["Settori"])
+                {
+                    if ((string)parametri.Settore == settore)
+                    {
+                        <option selected>@settore</option>
+                    }
+                    else
+                    {
+                        <option>@settore</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="cbArea">Area</label>
+            <select name="area" id="cbArea" class="form-control" onchange="submitForm()">
+                <option></option>
+                @foreach (string area in (IEnumerable<string>)ViewData["Aree"])
+                {
+                    if ((string)parametri.Area == area)
+                    {
+                        <option selected>@area</option>
+                    }
+                    else
+                    {
+                        <option>@area</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="txtCodiceEnte">Codice Ente</label>
+            <input name="codiceEnte" type="text" class="form-control required" id="txtCodiceEnte" value="@parametri.CodiceEnte">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="txtNomeEnte">Nome Ente</label>
+            <input name="ente" type="text" class="form-control required" id="txtNomeEnte" value="@parametri.Ente">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="txtCodiceProgetto">Codice Progetto</label>
+            <input name="codiceProgetto" type="text" class="form-control required" id="txtCodiceProgetto" value="@parametri.CodiceProgetto">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="txtNomeProgetto">Nome Progetto</label>
+            <input name="nomeProgetto" type="text" class="form-control required" id="txtNomeProgetto" value="@parametri.NomeProgetto">
+        </div>
+    </div>
+    @if (parametri.HasProgrammi)
+    {
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="txtProgramma">Titolo Programma</label>
+                <input name="Programma" type="text" class="form-control" id="txtProgramma" value="@parametri.Programma">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cbObiettivo">Obiettivo</label>
+                <select name="Obiettivo" id="cbObiettivo" class="form-control" onchange="submitForm()">
+                    <option></option>
+                    @foreach (Obiettivo obiettivo in (IEnumerable<Obiettivo>)ViewData["Obiettivi"])
+                    {
+                        if (parametri.Obiettivo == obiettivo.IdObiettivo)
+                        {
+                            <option selected value="@obiettivo.IdObiettivo">@obiettivo.Descrizione</option>
+                        }
+                        else
+                        {
+                            <option value="@obiettivo.IdObiettivo">@obiettivo.Descrizione</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cbAmbito">Ambito</label>
+                <select name="Ambito" id="cbAmbito" class="form-control" onchange="submitForm()">
+                    <option></option>
+                    @foreach (Ambito ambito in (IEnumerable<Ambito>)ViewData["Ambiti"])
+                    {
+                        if (parametri.Ambito == ambito.IdAmbitoAzione)
+                        {
+                            <option selected value="@ambito.IdAmbitoAzione">@ambito.Descrizione</option>
+                        }
+                        else
+                        {
+                            <option value="@ambito.IdAmbitoAzione">@ambito.Descrizione</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <div class="form-check">
+                @if ((@parametri.SoloPreferiti as bool?) ?? false)
+                {
+                    <input name="soloPreferiti" id="chkPreferiti" type="checkbox" checked="checked" value="true">
+                }
+                else
+                {
+                    <input name="soloPreferiti" id="chkPreferiti" type="checkbox" value="true">
+                }
+                <label for="chkPreferiti">Cerca solo tra i preferiti</label>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-info" type="submit">Cerca</button>
+    <hr />
+
+    @if (Model.Count() == 0)
+    {
+        <h4>Non sono stati trovati progetti che rispondono ai criteri di ricerca impostati</h4>
+    }
+    else
+    {
+        <div class="text-center">Pagina @pagina di @numeroPagine (@numeroElementi progetti trovati)</div>
+        if (numeroPagine > 1)
+        {
+            @***** PAGINAZIONE *****@
+            <div class="container">
+                <nav class="text-center">
+                    <ul class="pagination">
+                        @if (pagina == 1)
+                        {
+                            <li class="page-item disabled"><span class="page-link" href="#">Precedente</span></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><button class="page-link " type="submit" name="nuovaPagina" value="@(pagina-1)">Precedente</button></li>
+                        }
+                        @for (int i = paginaIniziale; i <= paginaFinale; i++)
+                        {
+                            if (i == pagina)
+                            {
+                                <li class="page-item active"><span class="page-link">@i</span></li>
+                            }
+                            else
+                            {
+                                <li class="page-item"><button class="page-link " type="submit" name="nuovaPagina" value="@i">@i</button></li>
+                            }
+                        }
+                        @if (pagina >= numeroPagine)
+                        {
+                            <li class="page-item disabled"><span class="page-link">Successiva</span></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><button class="page-link " type="submit" name="nuovaPagina" value="@(pagina+1)">Successiva</button></li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        }
+        @******* Tabella Risultati *******@
+        <div class="row ">
+            <div class="form-group col-md-2">
+                <strong>Legenda:</strong>
+            </div>
+            <div class="form-group col-md-2">
+                <span class="glyphicon glyphicon-user text-success buttonColumn" title="Garanzia Giovani"></span> Garanzia Giovani
+            </div>
+            <div class="form-group col-md-2">
+                <span class="glyphicon glyphicon-asterisk text-success buttonColumn" title="Minori Opportunità"></span> Minori Opportunità
+            </div>
+        </div>
+        <div style="overflow-x:auto;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Area</th>
+                        <th>Progetto</th>
+                        <th>Ente di riferimento</th>
+                        <th>Ente Attuatore</th>
+                        <th>Comune</th>
+                        <th>Codice Sede</th>
+                        <th>N° Domande</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ProgettoDto progetto in Model)
+                    {
+                        <tr id="row@($"{progetto.CodiceProgetto}_{progetto.CodiceSede}")">
+                            <td>
+                                <div class="buttonColumn">
+                                    @*Pulsante Dettaglio Progetto*@
+                                    <a href="@Url.Action("Progetto", new { codiceProgetto = progetto.CodiceProgetto, codiceSede = progetto.CodiceSede })" title="Visualizza dettagli">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </a>
+                                    @*Pulsante Preferito*@
+                                    @if (progetto.Preferito)
+                                    {
+                                        <button class="btn-link" name="rimuoviPreferito" value="@($"{progetto.CodiceProgetto}_{progetto.CodiceSede}")" type="submit" title="Rimuovi dai preferiti">
+                                            <span class="glyphicon glyphicon-star text-warning"></span>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn-link" name="aggiungiPreferito" value="@($"{progetto.CodiceProgetto}_{progetto.CodiceSede}")" type="submit" title="Aggiungi ai preferiti">
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        </button>
+                                    }
+                                    @*Pulsante Scegli Progetto*@
+                                    @if (progetto.CodiceProgetto == domanda.CodiceProgettoSelezionato && progetto.CodiceSede == domanda.CodiceSedeSelezionata)
+                                    {
+                                        <span class="glyphicon glyphicon-ok text-success" tooltip="Progetto selezionato"></span>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("SelezionaProgetto", new { codiceProgetto = progetto.CodiceProgetto, codiceSede = progetto.CodiceSede })" title="Seleziona il progetto" name="Progetto da selezionare">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                        </a>
+                                    }
+                                    @*Icona Garanzia Giovani*@
+                                    @if (progetto.IdTipoGG.HasValue)
+                                    {
+                                        <span class="glyphicon glyphicon-user text-success" title="Garanzia Giovani"></span>
+                                    }
+                                    @*Icona Minori Opportunità*@
+                                    @if (progetto.NumeroGiovaniMinoriOpportunità > 0)
+                                    {
+                                        <span class="glyphicon glyphicon-asterisk text-success" title="Minori Opportunità"></span>
+                                    }
+                                </div>
+                            </td>
+                            <td>
+                                @progetto.Area
+                            </td>
+                            <td>
+                                @progetto.TitoloProgetto
+                            </td>
+                            <td>
+                                @progetto.NomeEnte
+                            </td>
+                            <td>
+                                @progetto.EnteAttuatore
+                            </td>
+                            <td>
+                                @progetto.Comune
+                            </td>
+                            <td title="@progetto.IndirizzoSede">
+                                @progetto.CodiceSede
+                            </td>
+                            <td>
+                                @progetto.NumeroDomande
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        if (numeroPagine > 1)
+        {
+            @***** PAGINAZIONE *****@
+            <div class="container">
+                <nav class="text-center">
+                    <ul class="pagination">
+                        @if (pagina == 1)
+                        {
+                            <li class="page-item disabled"><span class="page-link" href="#">Precedente</span></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><button class="page-link " type="submit" name="nuovaPagina" value="@(pagina-1)">Precedente</button></li>
+                        }
+                        @for (int i = paginaIniziale; i <= paginaFinale; i++)
+                        {
+                            if (i == pagina)
+                            {
+                                <li class="page-item active"><span class="page-link">@i</span></li>
+                            }
+                            else
+                            {
+                                <li class="page-item"><button class="page-link " type="submit" name="nuovaPagina" value="@i">@i</button></li>
+                            }
+                        }
+                        @if (pagina >= numeroPagine)
+                        {
+                            <li class="page-item disabled"><span class="page-link">Successiva</span></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><button class="page-link " type="submit" name="nuovaPagina" value="@(pagina+1)">Successiva</button></li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        }
+    }
+
+</form>

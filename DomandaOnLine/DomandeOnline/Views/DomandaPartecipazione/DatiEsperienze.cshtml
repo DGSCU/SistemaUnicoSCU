@@ -1,0 +1,613 @@
+﻿@using DomandeOnline.Code;
+@using DomandeOnline.Data;
+@using DomandeOnline.Models;
+@model DomandaPartecipazione
+@{
+    ViewBag.Title = "Dati";
+
+    IEnumerable<TitoloStudio> titoliStudio = ViewData["TitoliStudio"] as IEnumerable<TitoloStudio>;
+    titoliStudio = titoliStudio.Where(x => x.Id > -1 && x.Id != TitoloStudio.ESTERO);
+    IEnumerable<Specializzazione> specializzazioni = ViewData["Specializzazioni"] as IEnumerable<Specializzazione>;
+    DatiEsperienzeInput parametri = ViewData["DatiEsperienze"] as DatiEsperienzeInput;
+    string errore = TempData["Errore"] as string;
+    string message = TempData["Message"] as string;
+    bool? salvato = TempData["Salvato"] as bool?;
+    //ApplicationUser utente = Utils.GetUser(User.Identity.Name);
+    string cognome = ViewData["UserCognome"].ToString();
+    string nome = ViewData["UserNome"].ToString();
+    string codiceFiscale = ViewData["UserCodiceFiscale"].ToString();
+
+    //Indirizzo indirizzo = null;
+
+    //if (User.IsInRole(Role.UTENTE_SPID))
+    //{
+    //	indirizzo = Utils.GetIndirizzo(utente.Indirizzo);
+    //}
+}
+
+
+@section scripts{
+	<script>
+		var bassaScolarizzazione = ['-1', '1', '2'];
+		function Controlli() {
+			var controlloOK = true;
+			$("#frmDati .form-control,.form-check-input,.form-radio,.requiredGroup").each(function () {
+				if (!ControllaSingolo(this)) {
+					if (controlloOK) {
+						$(this).focus();
+					}
+					controlloOK = false;
+				}
+			});
+			if (!ControllaPrivacy($("#ckPrivacy").first())) {
+				controlloOK = false;
+			}
+			if (!ControllaBassaScolarizzazione($("#cbTitoloStudio").first())) {
+				$("#cbTitoloStudio").first().focus();
+				controlloOK = false;
+			}
+			return controlloOK;
+		}
+		function ControllaSingolo(elem) {
+			var controlloOK = true;
+			if ($(elem).hasClass("required") && !$(elem).val()) {
+				$(elem).css("border-color", "red");
+				$(elem).parent().find("small").html("Campo obbligatorio").show();
+				controlloOK = false;
+			}
+			var emailReg = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+			if ($(elem).attr("type") == 'email' && $(elem).val() && !emailReg.test($(elem).val())) {
+				$(elem).css("border-color", "red");
+				$(elem).parent().find("small").html("Email Non valida").show();
+				controlloOK = false;
+			}
+			if (($(elem).attr("type") == 'checkbox') && $(elem).hasClass("required")) {
+				if (!$(elem).prop('checked')) {
+					$(elem).parent().addClass("errorBorder");
+					$(elem).parent().find("small").html("Campo Obbligatorio").show();
+					controlloOK = false;
+				} else {
+					$(elem).parent().removeClass("errorBorder");
+				}
+			}
+			if (($(elem).attr("type") == 'radio') && $(elem).hasClass("required")) {
+				var elemParent = $(elem).parent().parent()
+				var checked = false;
+				$(elemParent).find("input").each(function () {
+					if ($(this).prop('checked')) {
+						checked = true;
+					}
+				});
+				if (!checked) {
+					$(elemParent).addClass("errorBorder");
+					$(elemParent).find("small").html("Campo Obbligatorio").show();
+					controlloOK = false;
+				} else {
+					$(elemParent).removeClass("errorBorder");
+					$(elemParent).find("small").hide();
+				}
+			}
+			if ($(elem).hasClass("requiredIf")) {
+				var checkElem = $('#' + $(elem).attr("requiredElement"))[0];
+				if ($(checkElem).prop('checked') && !$(elem).val()) {
+					$(elem).addClass("errorBorder");
+					$(elem).parent().find("small").html("Campo Obbligatorio").show();
+					controlloOK = false;
+					return;
+				} else {
+					$(elem).removeClass("errorBorder");
+					$(elem).parent().find("small").hide();
+				}
+			}
+			if ($(elem).hasClass("requiredGroup")) {
+				var elementi = $(elem).find(".form-control[groupControl='" + $(elem).attr("group") + "']");
+				var numeroElementi = elementi.length;
+				var elementiVuoti = 0;
+				elementi.each(function () {
+					if (!$(this).val() && !$(this).prop("readonly")) {
+						elementiVuoti++;
+					}
+				});
+				if (elementiVuoti == 0 || elementiVuoti == numeroElementi) {
+					$(elem).removeClass("errorBorder");
+					$(elem).find("small").hide();
+				} else {
+					elementi.first().focus();
+					$(elem).addClass("errorBorder");
+					$(elem).find("small").html("Campi incompleti").show();
+					controlloOK = false;
+					return;
+				}
+			}
+			if (($(elem)[0].localName == "textarea")) {
+				if ($(elem).val().length > $(elem).attr("maxlength")) {
+					$(elem).parent().addClass("errorBorder");
+					$(elem).parent().find("small.text-danger").html("Superati caratteri ammessi").show();
+					controlloOK = false;
+					return;
+				} else {
+					$(elem).parent().removeClass("errorBorder");
+					$(elemParent).find("small").hide();
+				}
+			}
+			return controlloOK;
+		}
+
+
+
+		function ControllaPrivacy(elem) {
+			if ($(elem).prop("checked")) {
+				$(elem).parent().find("small").hide();
+				return true;
+			} else {
+				$(elem).parent().find("small").show();
+				return false;
+			}
+		}
+
+		function GestisciDisciplina(elem) {
+			if ($(elem).val() == "1" || $(elem).val() == "2") {
+				$('#txtFormazioneDisciplina').val("");
+				$('#txtFormazioneDisciplina').attr("readonly", "readonly");
+			} else {
+				$('#txtFormazioneDisciplina').removeAttr("readonly");
+			}
+		}
+		function GestisciNazioneFormazione(elem) {
+			if ($(elem).val() == "true") {
+				$('#txtFormazioneEnte').val("");
+				$('#txtFormazioneEnte').attr("readonly", "readonly");
+			} else {
+				$('#txtFormazioneEnte').removeAttr("readonly");
+			}
+		}
+
+		function ControllaBassaScolarizzazione(elem) {
+			$(elem).removeAttr("style");
+			$(elem).parent().find("small").hide();
+			if (!$(elem).val()) {
+				return true;
+			}
+			@if(Model.Progetto?.IDParticolaritàEntità ==3 && Model.DichiarazioneMinoriOpportunita==true)
+			{
+			<text>
+				var idTitoloStudio = $(elem).val();
+				if (!(bassaScolarizzazione.indexOf(idTitoloStudio)>=0)) {
+					$(elem).css("border-color", "red");
+					$(elem).parent().find("small").html("Il titolo di studio non è conforme alla richiesta di minore opportuntà per bassa scolarizzazione").show();
+					return false;
+				}
+			</text>
+			}
+			return true;
+			}
+
+
+		function DisabilitaCV() {
+			if ($(this).attr("id") == "fileAllegato") return;
+			$("#infoCV").show();
+			$("#btnRimuoviCV").hide();
+			$("#fileAllegato").attr("disabled", "disabled");
+			$("#btnAllegaCV").attr("disabled", "disabled");
+		}
+
+		$(document).ready(function () {
+			$("input").change(DisabilitaCV);
+			$("textarea").change(DisabilitaCV);
+			@if (salvato == true)
+			{
+				<text>Controlli();</text>
+			}
+		});
+	</script>
+}
+@if (!string.IsNullOrEmpty(errore))
+{
+	<div class="alert alert-danger alert-dismissible fade in">
+		@Html.Raw(errore)
+		<a href="#" type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</a>
+	</div>
+}
+@if (!string.IsNullOrEmpty(message))
+{
+	<div class="alert alert-success alert-dismissible fade in">
+		@Html.Raw(message)
+		<a href="#" type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</a>
+	</div>
+}
+
+<div class="container">
+	<div class="row">
+		<div class="inlineHeader">
+			<a href="@Url.Action("Index")" class="btn btn-info">Torna alla Domanda</a>
+			<h2>Titoli ed esperienze</h2>
+		</div>
+	</div>
+	<hr />
+	<p>
+		Per completare la domanda di partecipazione con le informazioni sui titoli posseduti e sulle esperienze maturate puoi scegliere se compilare i campi di seguito riportati oppure allegare il tuo curriculum vitae; puoi anche scegliere entrambe le opzioni. <strong>Se non scegli nessuna delle due opzioni, in sede di valutazione della domanda ti verrà attribuito il punteggio solo per il titolo di studio dichiarato</strong>.
+	</p>
+	<p>
+		Nessun campo è obbligatorio e il sistema accetta anche una compilazione parziale. Tuttavia,  se compili determinati campi, è necessario, di conseguenza, inserire le informazioni ad essi connesse (esempio: se indichi il titolo di studio aggiuntivo, devi compilare anche le voci “Tipo/settore/disciplina”, “Italia/Estero”, “Data conseguimento”, “Istituto”)
+	</p>
+	<hr />
+	<div class="row">
+        <div class="form-group col-md-4">
+            <label for="txtNome">Nome</label>
+            @*<input type="text" class="form-control" id="txtNome" value="@utente.Nome" readonly="readonly" />*@
+            <input type="text" class="form-control" id="txtNome" value="@nome" readonly="readonly" />
+        </div>
+        <div class="form-group col-md-4">
+            <label for="txtCognome">Cognome</label>
+            @*<input type="text" class="form-control" id="txtCognome" value="@utente.Cognome" readonly="readonly" />*@
+            <input type="text" class="form-control" id="txtCognome" value="@cognome" readonly="readonly" />
+        </div>
+        <div class="form-group col-md-4">
+            <label for="txtCodiceFiscale">Codice Fiscale</label>
+            @*<input type="text" class="form-control" id="txtCodiceFiscale" value="@utente.CodiceFiscale" readonly="readonly" />*@
+            <input type="text" class="form-control" id="txtCodiceFiscale" value="@codiceFiscale" readonly="readonly" />
+        </div>
+	</div>
+	<form action="@Url.Action("DatiEsperienze")" id=frmDati novalidate method="post" enctype="multipart/form-data">
+		<p>
+			Ai sensi e per gli effetti delle disposizioni contenute negli artt.
+			<a title="Visualizza Articolo 46 (Si apre in un'altra finestra)" href="https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.progressivo=0&art.idArticolo=46&art.versione=1&art.codiceRedazionale=001G0049&art.dataPubblicazioneGazzetta=2001-02-20&art.idGruppo=14&art.idSottoArticolo1=10&art.idSottoArticolo=1&art.flagTipoArticolo=0#art" target="_blank">
+				46
+			</a>
+			e
+			<a title="Visualizza Articolo 47 (Si apre in un'altra finestra)" href="https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.progressivo=0&art.idArticolo=47&art.versione=1&art.codiceRedazionale=001G0049&art.dataPubblicazioneGazzetta=2001-02-20&art.idGruppo=14&art.idSottoArticolo1=10&art.idSottoArticolo=1&art.flagTipoArticolo=0#art" target="_blank">
+				47
+			</a>
+			del
+			<a title="Visualizza Decreto 445 (Si apre in un'altra finestra)" href="https://www.gazzettaufficiale.it/eli/id/2001/02/20/001G0049/sg" target="_blank">
+				decreto del Presidente della Repubblica 28 dicembre 2000, n° 445
+			</a>
+			e consapevole delle conseguenze derivanti da dichiarazioni mendaci ai sensi dell’
+			<a title="Visualizza Articolo 76 (Si apre in un'altra finestra)" href="https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.progressivo=0&art.idArticolo=76&art.versione=1&art.codiceRedazionale=001G0049&art.dataPubblicazioneGazzetta=2001-02-20&art.idGruppo=22&art.idSottoArticolo1=10&art.idSottoArticolo=1&art.flagTipoArticolo=0#art" target="_blank">
+				art. 76
+			</a>
+			del predetto D.P.R. n° 445/2000, sotto la propria responsabilità fornisco le seguenti dichiarazioni
+
+		</p>
+		<hr />
+		<h3>Formazione</h3>
+		<h4>Attuale Titolo di studio</h4>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="cbTitoloStudioAnagrafica" title="Titolo di studio">Titolo di studio</label>
+				<select id="cbTitoloStudioAnagrafica" disabled class="form-control">
+					<option value=""></option>
+					@foreach (TitoloStudio titoloStudio in titoliStudio)
+					{
+						if (Model != null && (Model.IdTitoloStudio ?? 0) == titoloStudio.Id)
+						{
+							<option value="@titoloStudio.Id" selected>@titoloStudio.Descrizione</option>
+						}
+						else
+						{
+							<option value="@titoloStudio.Id">@titoloStudio.Descrizione</option>
+						}
+					}
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="txtFormazioneAnagraficaDisciplina">Tipo / Settore / Disciplina</label>
+				<input id="txtFormazioneAnagraficaDisciplina" readonly="readonly" class="form-control" value="@Model.FormazioneAnagraficaDisciplina">
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="form-group col-md-2">
+				<label for="cbFormazioneAnagraficaItalia">Italia / Estero</label>
+				<input id="cbFormazioneAnagraficaItalia" readonly="readonly" class="form-control" value="@((Model.FormazioneAnagraficaItalia??false)?"Italia":"Estero")">
+			</div>
+			<div class="form-group col-md-2">
+				<label for="txtFormazioneAnagraficaAnno">Anno conseguimento</label>
+				<input id="txtFormazioneAnagraficaAnno" class="form-control" readonly="readonly" value="@Model.FormazioneAnagraficaAnno">
+			</div>
+			<div class="form-group col-md-8">
+				<label for="txtFormazioneAnagraficaIstituto">Istituto</label>
+				<input id="txtFormazioneAnagraficaIstituto" class="form-control" readonly value="@(Model?.FormazioneAnagraficaIstituto)">
+			</div>
+		</div>
+		@if (!Model?.FormazioneAnagraficaItalia ?? false)
+		{
+			@*<div class="row">
+					<div class="form-group col-md-8">
+						<label for="txtFormazioneAnagraficaEnte">Ente che ha adottato il provvedimento</label>
+						<input readonly class="form-control" id="txtFormazioneAnagraficaEnte" value="@(Model?.FormazioneAnagraficaEnte)">
+					</div>
+				</div>*@
+		}
+		@if (Model.IscrizioneSuperioreAnno.HasValue)
+		{
+			<h4>Attuale iscrizione scuola secondaria di II grado</h4>
+			<div class="row">
+				<div class="form-group col-md-1">
+					<label for="cbIscrizioneSuperioreAnno">Anno</label>
+					<select disabled id="cbIscrizioneSuperioreAnno" class="form-control">
+						<option value=""></option>
+						@for (int i = 1; i <= 5; i++)
+						{
+							<option value="@i" @(Model.IscrizioneSuperioreAnno == null ? "" : Model.IscrizioneSuperioreAnno.Value == i ? "selected" : "")>@i</option>
+						}
+					</select>
+				</div>
+				<div class="form-group col-md-11">
+					<label for="txtIscrizioneSuperioreIstituto">Istituto</label>
+					<input readonly class="form-control" id="txtIscrizioneSuperioreIstituto" value="@(Model?.IscrizioneSuperioreIstituto)">
+				</div>
+			</div>
+		}
+		@if (Model.IscrizioneLaureaAnno.HasValue)
+		{
+			<h4>Attuale iscrizione corso di laurea</h4>
+			<div class="row">
+				<div class="form-group col-md-1">
+					<label for="cbIscrizioneLaureaAnno">Anno</label>
+					<select disabled id="cbIscrizioneLaureaAnno" class="form-control">
+						<option value=""></option>
+						@for (int i = 1; i <= 7; i++)
+						{
+							<option value="@i" @(Model.IscrizioneLaureaAnno == null ? "" : Model.IscrizioneLaureaAnno.Value == i ? "selected" : "")>@(i == 7 ? i + "+" : i + "")</option>
+						}
+					</select>
+				</div>
+				<div class="form-group col-md-5">
+					<label for="txtIscrizioneLaureaCorso">Facoltà</label>
+					<input readonly name="IscrizioneLaureaCorso" class="form-control" id="txtIscrizioneLaureaCorso" value="@(Model == null ? " " : Model.IscrizioneLaureaCorso)">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="txtIscrizioneLaureaIstituto">Università</label>
+					<input readonly class="form-control" id="txtIscrizioneLaureaIstituto" value="@(Model == null ? "" : Model.IscrizioneLaureaIstituto)">
+				</div>
+			</div>
+		}
+		<h4>Ulteriore titolo di studio rispetto a quanto indicato nella sezioni dati anagrafici</h4>
+		<div class="requiredGroup" group="Formazione">
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="cbTitoloStudio" title="Titolo di studio">Titolo di studio</label>
+					<select name="IdTitoloStudio" id="cbTitoloStudio" class="form-control" groupControl="Formazione" onchange="GestisciDisciplina(this); ControllaBassaScolarizzazione(this);">
+						<option value=""></option>
+						@foreach (TitoloStudio titoloStudio in titoliStudio.Where(x => x.Id <= 5))
+						{
+							if (Model != null && (Model.IdTitoloStudioEsperienze ?? 0) == titoloStudio.Id)
+							{
+								<option value="@titoloStudio.Id" selected>@titoloStudio.Descrizione</option>
+							}
+							else
+							{
+								<option value="@titoloStudio.Id">@titoloStudio.Descrizione</option>
+							}
+						}
+					</select>
+					<small class="form-text text-danger" style="display:none"></small>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="txtFormazioneDisciplina">Tipo / Settore / Disciplina</label>
+					<input name="FormazioneDisciplina" type="text" class="form-control" groupControl="Formazione" id="txtFormazioneDisciplina"
+						   @((Model.IdTitoloStudioEsperienze == 1 || Model.IdTitoloStudioEsperienze == 2) ? "readonly='readonly'" : "")
+						   maxlength="200" placeholder="Inserire la disciplina del titolo di studio"
+						   onchange="ControllaSingolo(this)" value="@(Model==null?"":Model.FormazioneDisciplina)">
+				</div>
+			</div>
+			<p>Ulteriore titolo di studio rispetto a quanto indicato nella sezione dati anagrafici.<br />Ricorda: il titolo di studio conseguito all’estero è valutabile previa dichiarazione di equivalenza a titoli di studio conseguiti in Italia, da parte del Dipartimento, su conforme parere del MIUR; in tal caso vanno compilate le voci: anno di conseguimento, denominazione e sede dell’ istituto che ha rilasciato il titolo, città e paese estero ove ha sede l’istituto</p>
+			<div class="row">
+				<div class="form-group col-md-2">
+					<label for="cbFormazioneItalia">Italia / Estero</label>
+					<select name="FormazioneItalia" id="cbFormazioneItalia" class="form-control" groupControl="Formazione" onchange="ControllaSingolo(this); GestisciNazioneFormazione(this);">
+						<option value=""></option>
+						<option value="true" @(Model == null ? "" : Model.FormazioneItalia == null ? "" : Model.FormazioneItalia.Value ? "selected" : "")>Italia</option>
+						<option value="false" @(Model == null ? "" : Model.FormazioneItalia == null ? "" : !Model.FormazioneItalia.Value ? "selected" : "")>Estero</option>
+					</select>
+				</div>
+				@*<div class="form-group col-md-2">
+						<label for="txtFormazioneData">Data conseguimento</label>
+						<input name="FormazioneData" type="date" class="form-control" id="txtFormazioneData" placeholder="Inserire la data del titolo di studio" value="@(Model.FormazioneData==null?" ":Model.FormazioneData.Value.ToString(" yyyy-MM-dd"))">
+						<small class="form-text text-danger" style="display:none"></small>
+					</div>*@
+				<div class="form-group col-md-2">
+					<label for="txtFormazioneAnno">Anno conseguimento</label>
+					<input name="FormazioneAnno" type="text" class="form-control" groupControl="Formazione" id="txtFormazioneAnno" placeholder="Inserire l'anno di conseguimento del titolo di studio" value="@Model.FormazioneAnno">
+				</div>
+				<div class="form-group col-md-8">
+					<label for="txtFormazioneIstituto">Istituto</label>
+					<input name="FormazioneIstituto" type="text" class="form-control" groupControl="Formazione" id="txtFormazioneIstituto" maxlength="200" placeholder="Inserire l'Istituto " value="@(Model==null?"":Model.FormazioneIstituto)">
+				</div>
+			</div>
+			@*<div class="row">
+					<div class="form-group col-md-8">
+						<label for="txtFormazioneEnte">Ente che ha adottato il provvedimento</label>
+						<input name="FormazioneEnte" type="text" class="form-control" groupControl="Formazione"
+							   @(Model == null ? "" : (Model.FormazioneItalia ?? false) ? "readonly=\"readonly\"" : "") id="txtFormazioneEnte" maxlength="200" placeholder="Inserire l'Ente che ha adottato il provvedimento"
+							   value="@(Model==null?"":Model.FormazioneEnte)">
+					</div>
+				</div>*@
+			<small class="form-text text-danger" style="display:none"></small>
+		</div>
+
+		<hr />
+		<h3>Esperienze</h3>
+		<p>Indica solo le esperienze utili alla valutazione e ricordati di indicare sempre tipologia, ente o struttura presso cui hai fatto l’esperienza, anno di riferimento e durata</p>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtCorsiEffettuati">Corsi, tirocini <small>(Massimo 1000 caratteri)</small>&nbsp;<small class="form-text text-danger" style="display:none"></small></label>
+				<textarea name="CorsiEffettuati" type="text" class="form-control" maxlength="1000"
+						  rows="3" id="txtCorsiEffettuati" placeholder="Indicare eventuali corsi, tirocini, applicazioni pratiche effettuate, specificando se è stata rilasciata un’attestazione ">@Model.CorsiEffettuati</textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtSpecializzazioni">Specializzazioni <small>(Massimo 1000 caratteri)</small>&nbsp;<small class="form-text text-danger" style="display:none"></small></label>
+				<textarea name="Specializzazioni" type="text" class="form-control" maxlength="1000"
+						  rows="3" id="txtSpecializzazioni" placeholder="Indica in modo puntuale il possesso di eventuali dottorati di ricerca, master di primo o secondo livello, corsi di perfezionamento scientifico, di specializzazione professionale o di alta formazione permanente">@Model.Specializzazioni</textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtCompetenze">Competenze <small>(Massimo 1000 caratteri)</small>&nbsp;<small class="form-text text-danger" style="display:none"></small></label>
+				<textarea name="Competenze" type="text" class="form-control" maxlength="1000"
+						  rows="3" id="txtCompetenze" placeholder="Indicare competenze linguistiche, tecniche, informatiche, scientifiche, sanitarie, ecc., specificando se comprovate da attestazione">@Model.Competenze</textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtAltro">Altro <small>(Massimo 1000 caratteri)</small>&nbsp;<small class="form-text text-danger" style="display:none"></small></label>
+				<textarea name="Altro" type="text" class="form-control" maxlength="1000"
+						  rows="3" id="txtAltro" placeholder="Inserire ogni altra informazione relativa alla propria esperienza, condizione personale, professionale, ecc. utile ai fini della valutazione dell’Ente">@Model.Altro</textarea>
+			</div>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="form-group col-md-12">
+				<fieldset>
+					<legend style="display:none">Precedenti esperienze verso l'Ente</legend>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="PrecedentiEnte" id="rdPrecedentiEnteOk" onchange="ControllaSingolo(this)"
+							   @(Model == null ? "" : Model.PrecedentiEnte == null ? "" : Model.PrecedentiEnte.Value ? "checked=\"checked\"" : "") value="true">
+						<label class="form-check-label" for="rdPrecedentiEnteOk">
+							Ho avuto
+						</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="PrecedentiEnte" id="rdPrecedentiEnteKo"
+							   value="false" @(Model == null ? "" : Model.PrecedentiEnte == null ? "" : !Model.PrecedentiEnte.Value ? "checked=\"checked\"" : "")>
+						<label class="form-check-label" for="rdPrecedentiEnteKo">
+							NON ho avuto
+						</label>
+					</div>
+					precedenti esperienze presso l’Ente che realizza il progetto
+					<small class="form-text text-danger" style="display:none"></small>
+				</fieldset>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtPrecedentiEnteDescrizione">Tipologia esperienze</label>
+				<small class="form-text text-danger" style="display:none">È necessario fornire le esperienze effettuate</small>
+				<textarea name="PrecedentiEnteDescrizione" type="text" class="form-control requiredIf" requiredElement="rdPrecedentiEnteOk" maxlength="1000" onchange="ControllaSingolo(this)"
+						  rows="3" id="txtPrecedentiEnteDescrizione" placeholder="Specificare la tipologia delle esperienze e la durata delle stesse">@Model.PrecedentiEnteDescrizione</textarea>
+			</div>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="form-group col-md-12">
+				<fieldset>
+					<legend style="display:none">Precedenti esperienze verso altri enti</legend>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="PrecedentiAltriEnti" id="rdPrecedentiAltriEntiOk" onchange="ControllaSingolo(this)"
+							   @(Model == null ? "" : Model.PrecedentiAltriEnti == null ? "" : Model.PrecedentiAltriEnti.Value ? "checked=\"checked\"" : "") value="true">
+						<label class="form-check-label" for="rdPrecedentiAltriEntiOk">
+							Ho avuto
+						</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="PrecedentiAltriEnti" id="rdPrecedentiAltriEntiKo"
+							   value="false" @(Model == null ? "" : Model.PrecedentiAltriEnti == null ? "" : !Model.PrecedentiAltriEnti.Value ? "checked=\"checked\"" : "")>
+						<label class="form-check-label" for="rdPrecedentiAltriEntiKo">
+							NON ho avuto
+						</label>
+					</div>
+					precedenti esperienze presso altri Enti nel settore d’impiego cui il progetto si riferisce
+					<small class="form-text text-danger" style="display:none"></small>
+				</fieldset>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtPrecedentiAltriEntiDescrizione">Tipologia esperienze</label>
+				<small class="form-text text-danger" style="display:none">È necessario fornire le esperienze effettuate</small>
+				<textarea name="PrecedentiAltriEntiDescrizione" type="text" class="form-control requiredIf" requiredElement="rdPrecedentiAltriEntiOk" maxlength="1000" onchange="ControllaSingolo(this)"
+						  rows="3" id="txtPrecedentiAltriEntiDescrizione" placeholder="Specificare la tipologia delle esperienze e la durata delle stesse">@Model.PrecedentiAltriEntiDescrizione</textarea>
+			</div>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="form-group col-md-12">
+				<fieldset>
+					<legend style="display:none">Precedenti impieghi</legend>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="PrecedentiImpiego" id="rdPrecedentiImpiegoOk" onchange="ControllaSingolo(this)"
+							   @(Model == null ? "" : Model.PrecedentiImpiego == null ? "" : Model.PrecedentiImpiego.Value ? "checked=\"checked\"" : "") value="true">
+						<label class="form-check-label" for="rdPrecedentiImpiegoOk">
+							Ho avuto
+						</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="PrecedentiImpiego" id="rdPrecedentiImpiegoKo" onchange="ControllaSingolo(this)"
+							   value="false" @(Model == null ? "" : Model.PrecedentiImpiego == null ? "" : !Model.PrecedentiImpiego.Value ? "checked=\"checked\"" : "")>
+						<label class="form-check-label" for="rdPrecedentiImpiegoKo">
+							NON ho avuto
+						</label>
+					</div>
+					precedenti esperienze in settori d’impiego analoghi a quello cui il progetto si riferisce
+					<small class="form-text text-danger" style="display:none"></small>
+				</fieldset>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtPrecedentiImpiegoDescrizione">Tipologia esperienze</label>
+				<small class="form-text text-danger" style="display:none"></small>
+				<textarea name="PrecedentiImpiegoDescrizione" type="text" class="form-control requiredIf" requiredElement="rdPrecedentiImpiegoOk" maxlength="1000" onchange="ControllaSingolo(this)"
+						  rows="3" id="txtPrecedentiImpiegoDescrizione" placeholder="Specificare la tipologia delle esperienze e la durata delle stesse">@Model.PrecedentiImpiegoDescrizione</textarea>
+			</div>
+		</div>
+		<hr />
+		<button type="submit" class="btn btn-info">Salva</button>
+		<button type="button" class="btn btn-info" onclick="Controlli();">Controlla</button>
+
+	</form>
+	<hr />
+	<h3>Curriculum Vitae</h3>
+	<p>Ai sensi e per gli effetti delle disposizioni contenute negli artt. 46 e 47 del decreto del Presidente della Repubblica 28 dicembre 2000, n° 445 e consapevole delle conseguenze derivanti da dichiarazioni mendaci ai sensi dell’ art. 76 del predetto D.P.R. n° 445/2000, sotto la propria responsabilità allego il mio CV</p>
+	<p class="text-danger" id="infoCV" style="display:none"><strong>Premere "Salva" prima di allegarie il Curriculum Vitae</strong></p>
+	<form action="@Url.Action("AllegaCV")" id=frmAllegato novalidate method="post" enctype="multipart/form-data">
+
+		@if (Model.NomeFileCV != null)
+		{
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="txtNomeFileCV">File Allegato</label>
+					<input type="text" class="form-control" id="txtNomeFileCV" value="@Model.NomeFileCV" readonly="readonly" />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="controlsCV"></label>
+					<div class="form-control-static" id="controlsCV">
+						<button id="btnRimuoviCV" class="btn-link" name="action" value="rimuovi" type="submit" title="Rimuovi allegato">
+							<span class=" glyphicon glyphicon-remove glyphicon-medium text-danger"></span>
+						</button>
+						<a href="@Url.Action("DownloadCV")" target="_blank" title="Scarica Allegato (Si apre in un'altra finestra)">
+							<span class="glyphicon glyphicon-download glyphicon-medium text-success"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		}
+		else
+		{
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="fileAllegato">Allegato</label>
+					<input name="allegato" type="file" accept=".pdf" class="form-control" id="fileAllegato">
+				</div>
+				<div class="form-group col-md-6">
+					<label></label>
+					<p class="form-control-static">È possibile caricare un solo file in formato PDF, con dimensione massima di @ViewData["MaxBytes"]</p>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<button id="btnAllegaCV" type="submit" name="action" value="aggiungi" class="btn btn-info">Allega</button>
+				</div>
+			</div>
+		}
+	</form>
+
+</div>

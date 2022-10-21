@@ -1,0 +1,189 @@
+﻿@using DomandeOnline.Data
+@{
+	ViewBag.Title = "Conferma Richiesta Credenziali";
+	string errore = (string)ViewData["Errore"];
+}
+
+@section scripts{
+	<script>
+		function AccettaRichiesta() {
+			ShowLoader();
+			$.post(
+				'@Url.Action("Accetta")',
+				{
+					id: @Model.Id,
+					note : $("#txtNote").val()
+				}
+			).done(function (data) {
+				HideLoader();
+				if (data.success) {
+					location.reload();
+				} else {
+					alert(data.message);
+				}
+			});
+		}
+
+		function RifiutaRichiesta() {
+			$.post(
+				'@Url.Action("Rifiuta")',
+				{
+					id: @Model.Id,
+					note : $("#txtNote").val()
+				}
+			).done(function (data) {
+				if (data.success) {
+					location.reload();
+				} else {
+					alert(data.message);
+				}
+			});
+		}
+
+		function AnnullaRichiesta() {
+			$.post(
+				'@Url.Action("Annulla")',
+				{
+					id: @Model.Id,
+					note : $("#txtNoteAnnullamento").val()
+				}
+			).done(function (data) {
+				if (data.success) {
+					location.reload();
+				} else {
+					alert(data.message);
+				}
+			});
+		}
+	</script>
+}
+@model RichiestaCredenziali
+
+@if (Model.IdStato == StatoRichiestaCredenziali.ACCETTATA)
+{
+	<div class="alert alert-success">
+		La pratica è stata accettata in data @Model.DataApprovazione.Value.ToString("dd/MM/yyyy") dall'utente @Model.UtenteApprovazione
+	</div>
+}
+@if (Model.IdStato == StatoRichiestaCredenziali.RIFIUTATA)
+{
+	<div class="alert alert-danger">
+		La pratica è stata rifiutata in data @Model.DataApprovazione.Value.ToString("dd/MM/yyyy") dall'utente @Model.UtenteApprovazione
+	</div>
+}
+@if (Model.IdStato == StatoRichiestaCredenziali.ANNULLATA)
+{
+	<div class="alert alert-warning">
+		La pratica è stata annullata in data @Model.DataApprovazione.Value.ToString("dd/MM/yyyy") dall'utente @Model.UtenteApprovazione
+	</div>
+}
+<h2>Dettaglio Richiesta</h2>
+<hr />
+<div class="form-group row">
+	<a class="btn btn-default" href="@Url.Action("DownloadAllegato",new {Id=Model.Id})" title="Scarica Allegato (Si apre in un'altra finestra)" target="_blank">Scarica Allegato</a>
+</div>
+<div class="form-group row ">
+	<label for="txtId" class="col-sm-2 col-form-label">Richiesta N°</label>
+	<div class="col-sm-4">
+		<input id="txtId" type="text" class="form-control" value="@Model.Id" readonly="readonly">
+	</div>
+
+</div>
+<div class="form-group row ">
+	<label for="txtCognome" class="col-sm-2 col-form-label">Cognome</label>
+	<div class="col-sm-4">
+		<input id="txtCognome" type="text" class="form-control" value="@Model.Cognome" readonly="readonly">
+	</div>
+	<label for="txtNome" class="col-sm-2 col-form-label">Nome</label>
+	<div class="col-sm-4">
+		<input id="txtNome" type="text" class="form-control" value="@Model.Nome" readonly="readonly">
+	</div>
+</div>
+<div class="form-group row">
+	<label for="txtGenere" class="col-sm-2 col-form-label">Genere</label>
+	<div class="col-sm-4">
+		<input id="txtGenere" type="text" class="form-control" value="@Model.Genere.Nome" readonly="readonly">
+	</div>
+	<label for="txtDataNascita" class="col-sm-2 col-form-label">Data di nascita</label>
+	<div class="col-sm-4">
+		<input id="txtDataNascita" type="text" class="form-control" value="@(Model.DataNascita.HasValue?Model.DataNascita.Value.ToString("dd/MM/yyyy"):"")" readonly="readonly">
+	</div>
+</div>
+<div class="form-group row">
+	<label for="txtLuogoNascita" class="col-sm-2 col-form-label">Luogo di nascita</label>
+	<div class="col-sm-4">
+		<input id="txtLuogoNascita" type="text" class="form-control" value="@Model.LuogoNascita" readonly="readonly">
+	</div>
+	<label for="txtNazioneNascita" class="col-sm-2 col-form-label">Nazione di nascita</label>
+	<div class="col-sm-4">
+		<input id="txtNazioneNascita" type="text" class="form-control" value="@Model.NazioneNascita.Nome" readonly="readonly">
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="txtCodiceFiscale" class="col-sm-2 col-form-label">Codice fiscale</label>
+	<div class="col-sm-4">
+		<input id="txtCodiceFiscale" type="text" class="form-control" value="@Model.CodiceFiscale" readonly="readonly">
+	</div>
+	<label for="txtCittadinanza" class="col-sm-2 col-form-label">Cittadinanza</label>
+	<div class="col-sm-4">
+		<input id="txtCittadinanza" type="text" class="form-control" value="@Model.Cittadinanza.Nome" readonly="readonly">
+	</div>
+</div>
+<div class="form-group row">
+	<label for="txtEmail" class="col-sm-2 col-form-label">E-mail</label>
+	<div class="col-sm-4">
+		<input id="txtEmail" type="text" class="form-control" value="@Model.Email" readonly="readonly">
+	</div>
+	<label for="txtTelefono" class="col-sm-2 col-form-label">Telefono</label>
+	<div class="col-sm-4">
+		<input id="txtTelefono" type="text" class="form-control" value="@Model.Telefono" readonly="readonly">
+	</div>
+</div>
+@if (Model.IdStato == StatoRichiestaCredenziali.APERTA)
+{
+	<div class="form-group row">
+		<label class="col-md-2 col-form-label" for="txtNote">Note</label>
+		<div class="col-md-10">
+			<textarea class="form-control" name="note" rows="5" draggable="false" id="txtNote"></textarea>
+			<small class="form-text text-danger" style="display:none"></small>
+		</div>
+	</div>
+	<button style="margin-right:20px;" class="btn btn-success" onclick="AccettaRichiesta()" type="button" name="action" value="Accettato">Accetta</button>
+	<button class="btn btn-danger" onclick="RifiutaRichiesta()" type="button" name="action" value="Accettato">Rifiuta</button>
+}
+else
+{
+	<div class="form-group row">
+		<label class="col-md-2 col-form-label" for="txtNoteApprovazione">Note</label>
+		<div class="col-md-10">
+			<textarea class="form-control" name="note" rows="5" draggable="false" id="txtNoteApprovazione" readonly="readonly">@Model.NoteApprovazione</textarea>
+			<small class="form-text text-danger" style="display:none"></small>
+		</div>
+	</div>
+	<hr />
+	if (Model.IdStato == StatoRichiestaCredenziali.ANNULLATA)
+	{
+		<div class="form-group row">
+			<label class="col-md-2 col-form-label" for="txtNoteAnnullamento">Note Annullamento</label>
+			<div class="col-md-10">
+				<textarea class="form-control" name="note" rows="5" draggable="false" id="txtNoteAnnullamento" readonly="readonly">@Model.NoteAnnullamento</textarea>
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="form-group row">
+			<button class="btn btn-danger" onclick="AnnullaRichiesta()" type="button" name="action" value="Accettato">Annulla la richiesta</button>
+		</div>
+		<div class="form-group row">
+			<label class="col-md-2 col-form-label" for="txtNoteAnnullamento">Note Annullamento</label>
+			<div class="col-sm-10">
+				<textarea class="col-md-10 form-control" name="note" rows="5" draggable="false" id="txtNoteAnnullamento"></textarea>
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+	}
+
+}

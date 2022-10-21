@@ -1,0 +1,493 @@
+﻿@using DomandeOnline.Data;
+@model DomandeOnline.Data.DomandaPartecipazione
+@{
+	ViewBag.Title = "Riepilogo";
+	//Layout = "~/Views/Shared/_LayoutStampa.cshtml";
+}
+
+<style>
+	p {
+		text-align: justify;
+		font-size: 15px;
+	}
+
+	.logo {
+		text-align: center;
+		vertical-align: bottom;
+		height: 100px;
+	}
+
+
+
+
+</style>
+<div @(Model.DataPresentazione == null ? "class=sfondoBozza" : "")>
+    <div class="hidePrint">
+        <br />
+        <br />
+    </div>
+    @if (Model.DataPresentazione != null)
+    {
+        <div>Riferimento domanda: @Model.Id</div>
+    }
+    else
+    {
+        <p style="font-size:22pt;text-align:center;"><strong>Bozza non valida per la presentazione</strong></p>
+    }
+
+    @if (Model.GruppoBando == 63)
+    {
+        @* Servizio civile autofinanziato *@
+        if (Model.Progetto.Programma != null && Model.Progetto.Programma.IsAutofinanziato.HasValue && Model.Progetto.Programma.IsAutofinanziato.Value == true)
+        {
+            <div class="text-center">
+                @{
+                    var logoSCU = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/Autofinanziati.png"));
+                }
+                <img class="logoPNRR" alt="PResidenza del Consiglio dei Ministri" src="data:image/png;base64,@Convert.ToBase64String(logoSCU)" />
+            </div>
+        }
+
+        @* Servizio civile digitale *@
+        if (Model.Progetto.Programma != null && Model.Progetto.Programma.IsDigitale.HasValue && Model.Progetto.Programma.IsDigitale.Value == true)
+        {
+            <div class="text-center">
+                @{
+                    var logoSCD = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/Digitale.png"));
+                }
+                <img class="logoPNRR" alt="PResidenza del Consiglio dei Ministri" src="data:image/png;base64,@Convert.ToBase64String(logoSCD)" />
+            </div>
+        }
+
+        @* Servizio civile ambientale *@
+        if (Model.Progetto.Programma != null && Model.Progetto.Programma.IsAmbientale.HasValue && Model.Progetto.Programma.IsAmbientale.Value == true)
+        {
+            <div class="text-center">
+                @{
+                    var logoSCA = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/Ambientale.png"));
+                }
+                <img class="logoPNRR" alt="PResidenza del Consiglio dei Ministri" src="data:image/png;base64,@Convert.ToBase64String(logoSCA)" />
+            </div>
+        }
+    }
+    else
+    {
+        if (Model.Progetto?.Programma?.IdTipoGG != null)
+        {
+            <p></p>
+            <div class="text-center">
+                @{
+                    var logoUE = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/LogoUE.png"));
+                }
+                <img class="logo logoUE" alt="Unione Europea" src="data:image/png;base64,@Convert.ToBase64String(logoUE)" />
+                @{
+                    var logoGG = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/LogoGG.png"));
+                }
+                <img class="logo logoGG" alt="Garanzia Giovani" src="data:image/png;base64,@Convert.ToBase64String(logoGG)" />
+                @{
+                    var logoAnpal = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/LogoAnpal.png"));
+                }
+                <img class="logo logoAnpal" alt="Anpal" src="data:image/png;base64,@Convert.ToBase64String(logoAnpal)" />
+
+                @{
+                    var logoPCM = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/LogoPCM.png"));
+                }
+                <img class="logo logoPCM" alt="PResidenza del Consiglio dei Ministri" src="data:image/png;base64,@Convert.ToBase64String(logoPCM)" />
+                @*@Html.Raw(File.ReadAllText(Server.MapPath("~/Content/Logo-circolare.svg")))*@
+
+            </div>
+
+        }
+        else
+        {
+            <div class="text-center">
+                @{
+                    var logoPNRR = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/LogoPNRR.jpg"));
+                }
+                <img class="logo logoPNRR" alt="PNRR" src="data:image/png;base64,@Convert.ToBase64String(logoPNRR)" />
+            </div>
+
+        }
+        <div class="text-center">
+            @{
+                var bytes = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Content/Logo-circolare.png"));
+            }
+            <img class="logo @if (Model.Progetto?.Programma?.IdTipoGG!=null){<text>logoSC</text>}" alt="Servizio Civile" src="data:image/png;base64,@Convert.ToBase64String(bytes)" />
+            @*@Html.Raw(File.ReadAllText(Server.MapPath("~/Content/Logo-circolare.svg")))*@
+        </div>
+    }
+
+    <br />
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>All'Ente @Model.Progetto.NomeEnte</p>
+            <p>sede di @Model.Progetto.IndirizzoSede @Model.Progetto.Comune (@Model.Progetto.Provincia)</p>
+        </div>
+    </div>
+    <h3 class="text-center">Domanda di partecipazione al Servizio civile universale</h3>
+    <p>@(Model.Genere == "F" ? "La sottoscritta" : "Il sottoscritto"): @Model.Cognome @Model.Nome</p>
+    <h3 class="text-center">CHIEDE</h3>
+    <p>
+        - di essere @(Model.Genere == "F" ? "ammessa" : "ammesso") a prestare servizio civile come @(Model.Genere == "F" ? "operatrice volontaria" : "operatore volontario"), per il progetto @Model.Progetto.TitoloProgetto (codice @Model.Progetto.CodiceProgetto) presso la sede di @Model.Progetto.EnteAttuatore - @Model.Progetto.IndirizzoSede @Model.Progetto.Comune (@Model.Progetto.Provincia) codice sede @Model.Progetto.CodiceSede
+    </p>
+
+    <p>
+        Ai sensi e per gli effetti delle disposizioni contenute negli artt. 46 e 47 del decreto del Presidente della Repubblica 28 dicembre 2000, n° 445 e consapevole delle conseguenze derivanti da dichiarazioni mendaci ai sensi dell’ art. 76 del predetto D.P.R. n° 445/2000, sotto la propria responsabilità fornisce le seguenti dichiarazioni:
+    </p>
+    <h3 class="text-center">DICHIARA</h3>
+    <p>
+        - di essere @(Model.Genere == "F" ? "nata" : "nato") a @Model.LuogoNascita in @Model.NazioneNascita il @Model.DataNascita.Value.ToString("dd/MM/yyyy")
+        di possedere la cittadinanza dello Stato @Model.Cittadinanza
+        Cod. Fisc. @Model.CodiceFiscale
+        e di essere residente
+        @if (Model.ResidenzaEstera ?? false)
+        {
+            <text>in @Model.NazioneResidenza in @Model.IndirizzoCompletoResidenza</text>
+        }
+        else
+        {
+            <text>a @Model.ComuneResidenza (@Model.ProvinciaResidenza) in @Model.ViaResidenza n. @Model.CivicoResidenza cap @Model.CapResidenza</text>
+        }
+        Telefono @Model.Telefono  indirizzo e-mail @Model.Email
+    </p>
+
+    @switch (Model.CodiceMinoriOpportunita)
+    {
+        case "BS":
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>Chiede inoltre di partecipare al progetto per la quota dei posti destinati ai soggetti con Bassa Scolarizzazione</p>
+                </div>
+            </div>
+            break;
+        case "BR":
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>Chiede inoltre di partecipare al progetto per la quota dei posti destinati ai soggetti con Basso Reddito</p>
+                </div>
+            </div>
+            break;
+        case "D":
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>Chiede inoltre di partecipare al progetto per la quota dei posti destinati ai soggetti con Disabilità</p>
+                </div>
+            </div>
+            break;
+    }
+
+    @*<h3 class="text-center">DICHIARA INOLTRE</h3>*@
+
+    @switch (Model.CodiceDichiarazioneCittadinanza)
+    {
+        case "IT":
+            <p>- di essere cittadino Italiano;</p>
+            break;
+        case "UE":
+            <p>- di essere cittadino di altro Paese dell’Unione Europea;</p>
+            break;
+        case "NC":
+            <p>- di essere cittadino non comunitario regolarmente soggiornante;</p>
+            break;
+    }
+
+    <p>- di NON aver riportato condanna anche non definitiva alla pena della reclusione superiore ad un anno per delitto non colposo ovvero ad una pena della reclusione anche di entità inferiore per un delitto contro la persona o concernente detenzione, uso, porto trasporto, importazione o esportazione illecita di armi o materie esplodenti ovvero per delitti riguardanti l’appartenenza o il favoreggiamento a gruppi eversivi, terroristici, o di criminalità organizzata;</p>
+
+
+    @switch (Model.TrasferimentoSedeOk)
+    {
+        case true:
+            <p>- di essere disponibile, qualora in seguito alle selezioni effettuate risulti idoneo non selezionato, ad essere assegnato al progetto di servizio civile prescelto anche in posti resi disponibili successivamente al termine delle procedure selettive, a seguito di rinuncia o impedimento da parte dei volontari già avviati al servizio;</p>
+            break;
+        case false:
+            <p>- di NON essere disponibile, qualora in seguito alle selezioni effettuate risulti idoneo non selezionato, ad essere assegnato al progetto di servizio civile prescelto anche in posti resi disponibili successivamente al termine delle procedure selettive, a seguito di rinuncia o impedimento da parte dei volontari già avviati al servizio;</p>
+            break;
+    }
+
+    @switch (Model.TrasferimentoProgettoOk)
+    {
+        case true:
+            <p>- di essere disponibile, qualora in seguito alle selezioni effettuate risulti idoneo non selezionato, ad essere assegnato a qualsiasi altro progetto di servizio civile contenuto nel presente bando presentato dallo stesso ente o da altro ente anche in altre regioni che abbia, al termine delle procedure selettive, posti disponibili o che si siano resi successivamente disponibili al termine delle procedure selettive, a seguito di rinuncia o impedimento da parte dei volontari già avviati al servizio;</p>
+            break;
+        case false:
+            <p>- di NON essere disponibile, qualora in seguito alle selezioni effettuate risulti idoneo non selezionato, ad essere assegnato a qualsiasi altro progetto di servizio civile contenuto nel presente bando presentato dallo stesso ente o da altro ente anche in altre regioni che abbia, al termine delle procedure selettive, posti disponibili o che si siano resi successivamente disponibili al termine delle procedure selettive, a seguito di rinuncia o impedimento da parte dei volontari già avviati al servizio;</p>
+            break;
+    }
+
+    @if (Model.IdMotivazione != null && Model.IdMotivazione != Motivazione.NON_SO)
+    {
+        <p>- di aver scelto il servizio civile e/o progetto @Model.Motivazione.Descrizione</p>
+    }
+
+    @if (Model.Progetto?.Programma?.IdTipoGG != null)
+    {
+        if (Model.Progetto.ProvinceAmmesse != null)
+        {
+            <p>- di non risiedere nella provincia di Bolzano</p>
+        }
+        if (Model.Progetto.RegioniAmmesse != null)
+        {
+            string regioniAmmesse = string.Join(", ", Model.Progetto.RegioniAmmesse
+                .Select(p => p.Nome).ToList());
+            <p>- di risiedere in una delle seguenti Regioni: @regioniAmmesse</p>
+        }
+        if (Model.Progetto.Asse1NEET || Model.Progetto.Asse1bisDisoccupati)
+        {
+            <p>- di aver già aderito al Programma Garanzia Giovani attraverso siti dedicati (www.garanziagioani.gov.it, www.anpal.gov.it, o i portali regionali appositamente predisposti);</p>
+        }
+        if (Model.Progetto.Asse1bisDisoccupati)
+        {
+            <p>- di essere disoccupato</p>
+            <p>- di aver effettuato la DID (dichiarazione di immediata disponibilità al lavoro) il @(Model.DataDIDGaranziaGiovani?.ToString("dd/MM/yyyy")) rilasciata da @Model.LuogoDIDGaranziaGiovani</p>
+        }
+        if (Model.AlternativaRequisitiGaranziaGiovani == true)
+        {
+            if (Model.Progetto.Asse1NEET)
+            {
+                <p>- di essere non occupato;</p>
+                <p>- di non essere inserito in un regolare corso di studi (secondari superiori, terziari non universitari o universitari);</p>
+                <p>- di non essere inserito in alcun corso di formazione, compresi quelli di aggiornamento per l’esercizio della professione o per il mantenimento dell’iscrizione ad un Albo o Ordine professionale;</p>
+                <p>- di non essere inserito in percorsi di tirocinio curriculare e/o extracurriculare, in quanto misura formativa;</p>
+                <p>- di impegnarsi a concludere la procedura di presa in carico centralizzata che sarà avviata automaticamente.</p>
+            }
+            else
+            {
+                <p>- di essere disoccupato;</p>
+                <p>- di impegnarsi a concludere la procedura di presa in carico centralizzata che sarà avviata automaticamente.</p>
+            }
+        }
+        if (Model.DataPresaInCaricoGaranziaGiovani.HasValue && !string.IsNullOrEmpty(Model.LuogoPresaInCaricoGaranziaGiovani))
+        {
+            <p>- di essere stato preso in carico il @(Model.DataPresaInCaricoGaranziaGiovani?.ToString("dd/MM/yyyy")) presso il centro per l’impiego/servizio accreditato di @Model.LuogoPresaInCaricoGaranziaGiovani</p>
+        }
+
+    }
+
+    @if (Model.Progetto?.IDParticolaritàEntità != null &&
+    Model.Progetto.NumeroGiovaniMinoriOpportunità > 0 &&
+    Model.DichiarazioneMinoriOpportunita.HasValue)
+    {
+        if (Model.DichiarazioneMinoriOpportunita ?? false)
+        {
+            <p>- di voler partecipare ai posti riservati per la tipologia "@(Model.Progetto.MinoreOpportunita?.Descrizione)"</p>
+
+        }
+        else
+        {
+            <p>- di non voler partecipare ai posti riservati per le minori opportunità</p>
+
+        }
+    }
+    <h3 class="text-center pageBreak">DICHIARA INOLTRE</h3>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul>
+                <li>di aver preso visione del progetto indicato nella domanda e di essere in possesso dei requisiti richiesti dall’ente per l’assegnazione di volontari nel progetto stesso;</li>
+                <li>di essere disponibile a fornire informazioni nell’ambito di indagini e rilevazioni mirate ad approfondire le tematiche relative al servizio civile universale, condotte da soggetti terzi (Università, Istituti e Centri di ricerca, ecc…) su incarico o in collaborazione con il Dipartimento o l'Unione Europea;</li>
+                <li>di provvedere autonomamente alle spese relative al viaggio per il raggiungimento della sede di realizzazione del progetto (dichiarazione da rendere nel solo caso in cui il progetto si svolga in Italia e l’interessato non sia residente, domiciliato o dimorante nel luogo di realizzazione del progetto);</li>
+                @*<li>di non avere in corso con l’ente che realizza il progetto rapporti di lavoro o di collaborazione retribuita a qualunque titolo, ovvero di non avere avuto tali rapporti nell’anno precedente di durata superiore a tre mesi;</li>*@
+                <li>di aver preso visione delle attività previste dal progetto prescelto e di non trovarsi in condizioni che impediscono lo svolgimento delle stesse.</li>
+                <li>di non intrattenere, all’atto della pubblicazione del presente bando, con l’ente titolare del progetto rapporti di lavoro/di collaborazione retribuita a qualunque titolo ovvero di non aver avuto tali rapporti di durata superiore a tre mesi nei 12 mesi precedenti la data di pubblicazione del bando.</li>
+            </ul>
+        </div>
+    </div>
+    @if (Model.PrecedentiEnte.HasValue ||
+        Model.PrecedentiAltriEnti.HasValue ||
+        Model.PrecedentiImpiego.HasValue ||
+        Model.TitoloStudioEsperienze != null ||
+        Model.IscrizioneSuperioreAnno != null ||
+        Model.IscrizioneLaureaAnno != null ||
+        !string.IsNullOrEmpty(Model.CorsiEffettuati) ||
+        !string.IsNullOrEmpty(Model.Specializzazioni) ||
+        !string.IsNullOrEmpty(Model.Competenze) ||
+        !string.IsNullOrEmpty(Model.Altro)
+        )
+    {
+        <h3 class="text-center">DICHIARA</h3>
+    }
+    @if (Model.PrecedentiEnte.HasValue)
+    {
+        <p>- di @(Model.PrecedentiEnte.Value ? "" : "NON") aver avuto precedenti esperienze presso l’Ente che realizza il progetto</p>
+        if (Model.PrecedentiEnte.Value)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.PrecedentiEnteDescrizione</p>
+                </div>
+            </div>
+        }
+    }
+
+    @if (Model.PrecedentiAltriEnti.HasValue)
+    {
+        <p>- di @(Model.PrecedentiAltriEnti.Value ? "" : "NON") aver avuto precedenti esperienze presso altri Enti nel settore d’impiego cui il progetto si riferisce</p>
+        if (Model.PrecedentiAltriEnti.Value)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.PrecedentiAltriEntiDescrizione</p>
+                </div>
+            </div>
+        }
+    }
+    @if (Model.PrecedentiImpiego.HasValue)
+    {
+
+        <p>- di @(Model.PrecedentiImpiego.Value ? "" : "NON") aver avuto precedenti esperienze in settori d’impiego analoghi a quello cui il progetto si riferisce</p>
+        if (Model.PrecedentiImpiego.Value)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>@Model.PrecedentiImpiegoDescrizione</p>
+                </div>
+            </div>
+        }
+    }
+
+    @if (Model.TitoloStudio != null)
+    {
+        if (Model.IdTitoloStudio == TitoloStudio.NESSUNO)
+        {
+            <p>
+                - di non possedere un titolo di studio
+            </p>
+        }
+        else if (Model.IdTitoloStudio == TitoloStudio.ESTERO)
+        {
+            <p>
+                - di possedere un titolo di studio conseguito all'estero e non riconosciuto in Italia
+            </p>
+        }
+        else if (Model.FormazioneAnagraficaItalia == true)
+        {
+            <p>
+                - di possedere il seguente titolo di studio conseguito in Italia:
+                @Model.TitoloStudio.Descrizione@(Model.IdTitoloStudio > 2 ? $" in {Model.FormazioneAnagraficaDisciplina}" : ""),
+                rilasciato da "@Model.FormazioneAnagraficaIstituto" nell'anno @Model.FormazioneAnagraficaAnno
+            </p>
+        }
+        else
+        {
+            <p>
+                - di possedere il seguente titolo di studio conseguito all’estero:
+                @Model.TitoloStudio.Descrizione@(Model.IdTitoloStudio > 2 ? $" in {Model.FormazioneAnagraficaDisciplina}" : ""),
+                rilasciata dall’ Istituto/Facoltà @Model.FormazioneAnagraficaIstituto,
+                nell'anno @Model.FormazioneAnagraficaAnno;
+                a tal fine, ne chiede la valutazione, ai fini della formazione della graduatoria di merito del progetto prescelto, impegnandosi ad attivare tempestivamente la procedura di riconoscimento, così come previsto dal bando all’art. 4;
+            </p>
+        }
+    }
+    @if (Model.IscrizioneSuperioreAnno != null)
+    {
+        <p>- di essere iscritto al @Model.IscrizioneSuperioreAnno anno della scuola media superiore @Model.IscrizioneSuperioreIstituto</p>
+    }
+    @if (Model.IscrizioneLaureaAnno != null)
+    {
+        <p>- di essere iscritto al @Model.IscrizioneLaureaAnno anno accademico del corso di laurea in @Model.IscrizioneLaureaCorso presso l’Università @Model.IscrizioneLaureaIstituto</p>
+    }
+    @if (Model.TitoloStudioEsperienze != null)
+    {
+        if (Model.FormazioneItalia == true)
+        {
+            <p>
+                - di possedere il seguente ulteriore titolo di studio conseguito in Italia:
+                @Model.TitoloStudioEsperienze.Descrizione@(Model.IdTitoloStudioEsperienze > 2 ? $" in {Model.FormazioneDisciplina}" : ""),
+                rilasciato da "@Model.FormazioneIstituto" nell'anno @Model.FormazioneAnno
+            </p>
+        }
+        else
+        {
+            <p>
+                - di possedere il seguente ulteriore titolo di studio conseguito all’estero:
+                @Model.TitoloStudioEsperienze.Descrizione@(Model.IdTitoloStudioEsperienze > 2 ? $" in {Model.FormazioneDisciplina}" : ""),
+                rilasciata dall’Istituto/Facoltà "@Model.FormazioneIstituto",
+                nell'anno @Model.FormazioneAnno;
+                a tal fine, ne chiede la valutazione, ai fini della formazione della graduatoria di merito del progetto prescelto, impegnandosi ad attivare tempestivamente la procedura di riconoscimento, così come previsto dal bando all’art. 4;
+            </p>
+        }
+    }
+    @if (!string.IsNullOrEmpty(Model.CorsiEffettuati))
+    {
+        <p>- di aver effettuato i seguenti corsi, tirocini, applicazioni pratiche:</p>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>@Model.CorsiEffettuati</p>
+            </div>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(Model.Specializzazioni))
+    {
+        <p>- di aver conseguito le seguenti specializzazioni:</p>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>@Model.Specializzazioni</p>
+            </div>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(Model.Competenze))
+    {
+        <p>- di avere le seguenti competenze:</p>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>@Model.Competenze</p>
+            </div>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(Model.Altro))
+    {
+        <p> altre informazioni relative alla propria condizione personale, sociale, professionale:</p>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>@Model.Altro</p>
+            </div>
+        </div>
+    }
+
+    @if (Model.ComuneRecapito != null && Model.ComuneRecapito != "")
+    {
+
+        <p>
+            Comunicazioni da inviare a:
+        </p>
+        <p>
+            @Model.ComuneRecapito (@Model.ProvinciaRecapito) in @Model.ViaRecapito n. @Model.CivicoRecapito cap @Model.CapRecapito
+        </p>
+
+    }
+    <p>Dichiara il proprio consenso alla trattazione dei dati personali ai sensi del Regolamento U.E n.679/2016</p>
+    @if (Model.NomeFileCV != null)
+    {
+        <p>Dichiara di aver allegato il curriculum vitae ai sensi e per gli effetti delle disposizioni contenute negli artt. 46 e 47 del decreto del Presidente della Repubblica 28 dicembre 2000, n° 445 e consapevole delle conseguenze derivanti da dichiarazioni mendaci ai sensi dell’ art. 76 del predetto D.P.R. n° 445/2000, sotto la propria responsabilità</p>
+    }
+    <br />
+    <p>La presente documentazione è un riepilogo della domanda presentata digitalmente. Pertanto non deve essere trasmessa o presentata in altro modo.</p>
+    <br />
+    @if (Model.DataPresentazione != null)
+    {
+        <p>Domanda presentata il @Model.DataPresentazione</p>
+    }
+
+</div>
+
+            <form class="hidePrint" action="@Url.Action("Riepilogo")" method="post" target="_blank">
+                <input type="hidden" name="Conferma" value="true" />
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <a href="@Url.Action("Index")" class="btn btn-default">Torna alla domanda</a>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <button type="submit" name="Stampa" value="true" class="btn btn-default" title="Stampa la domanda (Si apre in un'altra finestra)">Stampa</button>
+                    </div>
+                </div>
+
+            </form>
+            <form class="hidePrint" action="@Url.Action("Riepilogo")" onsubmit="ShowLoader();" method="post">
+                <input type="hidden" name="Conferma" value="true" />
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <button type="submit" name="Presenta" value="true" class="btn btn-info">Presenta la domanda</button>
+                    </div>
+                </div>
+            </form>

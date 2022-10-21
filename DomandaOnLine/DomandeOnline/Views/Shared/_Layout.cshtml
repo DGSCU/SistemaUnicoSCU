@@ -1,0 +1,136 @@
+﻿@using DomandeOnline.Models
+@{ 
+	bool isIE = (Request.Browser.Browser == "IE") || (Request.Browser.Browser == "InternetExplorer") || (Request.Browser.Browser == "Safari");
+}
+<!DOCTYPE html>
+<html lang="it-it">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - Domanda On Line</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="navbar-inverse">
+		<header>
+			<div class="container-fluid col-xl-12 col-lg-12 col-md-12 col-sm-12" style="height: 160px;">
+				<div class="navbar-header col-xl-12 col-lg-12 col-md-12 col-sm-12" style="height: 160px;">
+					<button type="button" class="navbar-toggle col-xl-1 col-lg-1 col-md-2 col-sm-1" style="height:100%; padding-top: 2%;" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div id="logo" class="col-xl-2 col-lg-2 col-md-2 col-sm-2" style="height:100%; padding-top: 2%;">
+						<a class="logoScelgoServizio" title="Vai al sito del Servizio Civile (Si apre in un'altra finestra)" href="https://www.serviziocivile.gov.it/" target="_blank"></a>
+					</div>
+					<div id="title" class="col-xl-6 col-lg-7 col-md-7 col-sm-5" style="height:100%; padding-top: 20px; text-align:center;">
+						@*<span id="homeTitle">Domanda Online</span>*@
+						<p id="homeTitle">Bando per la selezione di operatori volontari</p>
+						<p id="homeSubTitle">Servizio civile universale – Domanda on line</p>
+					</div>
+					<div id="logo2" class="col-xl-3 col-lg-3 col-md-3 col-sm-4" style="height:100%; padding-top: 2%;">
+						<a href="http://www.politichegiovanilieserviziocivile.gov.it" title="Vai al sito delle Politiche Giovanili (Si apre in un'altra finestra)" target="_blank"><img src="~/Images/logopolgiov_scu__bianco_small.png" alt="Presidenza del Consiglio dei Ministri" style="float: right;"></a>
+					</div>
+				</div>
+				<div class="navbar-collapse collapse">
+
+					<div class="navigation">
+
+						<nav class="main" @(isIE ? "style=top:-15px;" : "")>
+							<ul>
+								@*<li>
+										<span class="active">
+											@Html.ActionLink("Home", "Index", "Home")
+										</span>
+									</li>*@
+								@if (User.IsInRole(Role.AMMINISTRATORE))
+								{
+									<li>
+										<span id="users">
+											@Html.ActionLink("Gestione Utenti", "Index", "Users")
+										</span>
+									</li>
+								}
+								@if (User.IsInRole(Role.OPERATORE))
+								{
+									<li>
+										<span id="richiestaCredenziali">
+											@Html.ActionLink("Richieste Credenziali", "ElencoRichieste", "RichiestaCredenziali")
+										</span>
+									</li>
+								}
+								@if (User.IsInRole(Role.UTENTE_SPID) || User.IsInRole(Role.UTENTE_CREDENZIALI))
+								{
+									<li>
+										<span id="domandaPartecipazione">
+											@Html.ActionLink("Domanda di partecipazione", "Index", "DomandaPartecipazione")
+										</span>
+									</li>
+								}
+								@if (!User.IsInRole(Role.INTERNO))
+								{
+									<li>
+										<span id="guidaCompilazione">
+											<a href="https://scelgoilserviziocivile.gov.it/media/1179/nuovaguida_dol_bando2022_sca_scd.pdf" target="_blank" title="Apre la guida alla compilazione (Si apre in un'altra finestra)">Guida alla compilazione</a>
+										</span>
+									</li>
+								}
+
+							</ul>
+							@Html.Partial("_LoginPartial")
+						</nav>
+
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+
+	<div class="container body-content">
+		@RenderBody()
+	</div>
+
+	@Scripts.Render("~/bundles/jQuery")
+	@Scripts.Render("~/bundles/bootstrap")
+	<script src="~/Scripts/global.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function () {
+			if (location.href.match(/DomandaPartecipazione/)) {
+				jQuery('span.active').removeClass("active");
+				jQuery("#domandaPartecipazione").addClass("active");
+			}
+
+			if (location.href.match(/RichiestaCredenziali/)) {
+				jQuery('span.active').removeClass("active");
+				jQuery("#richiestaCredenziali").addClass("active");
+			}
+
+			if (location.href.match(/Users/)) {
+				jQuery('span.active').removeClass("active");
+				jQuery("#users").addClass("active");
+			}
+		});
+	</script>
+	@RenderSection("scripts", required: false)
+	@Html.Partial("_PopUpPartial")
+	@*@if (Request.Cookies["CookieAccepted"] == null)
+	{
+		<div class="navbar-fixed-bottom cookiebar" id="cookie-bar">
+			<h2>Usiamo i cookie per migliorare la tua esperienza di fruizione</h2>
+			<h3>Cliccando su qualsiasi link in questa pagina fornisci il tuo consenso all'uso dei cookie</h3>
+			<form action="@Url.Action("AcceptCookies")" method="post">
+				<
+				<button class="btn btn-default" name="accetto" value="true">
+					Acconsento
+				</button>
+				<a href="#" >
+					Maggiori informazioni
+				</a>
+			</form>
+		</div>
+	}*@
+</body>
+</html>

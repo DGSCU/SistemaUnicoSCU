@@ -1,0 +1,237 @@
+﻿@using DomandeOnline.Data
+@model Progetto
+@{
+	ViewBag.Title = "Progetto";
+	string urlSito = Model.Sito;
+	if (!string.IsNullOrEmpty(urlSito) && !urlSito.Contains("://"))
+	{
+		urlSito = "http://" + urlSito;
+	}
+	string urlSintesi = Model.LinkSintesi;
+	if (!string.IsNullOrEmpty(urlSintesi) && !urlSintesi.Contains("://"))
+	{
+		urlSintesi = "http://" + urlSintesi;
+	}
+}
+<div class="row">
+	<div class="inlineHeader">
+		@*<a href="@Url.Action("ScegliProgetto")" class="btn btn-info">Torna ai progetti</a>*@
+		<a href="javascript:history.back()" class="btn btn-info">Torna indietro</a>
+		<h2>Progetto @Model.TitoloProgetto</h2>
+	</div>
+</div>
+<hr />
+<div class="form-group row">
+	<label for="txtProgetto" class="col-md-2 col-form-label">CodiceProgetto</label>
+	<div class="col-md-10">
+		<div id="txtProgetto" class="form-control-multiline">
+			@Model.CodiceProgetto
+		</div>
+	</div>
+</div>
+@*<div class="form-group row">
+		<label for="txtTipoProgetto" class="col-md-2 col-form-label">Tipo Progetto</label>
+		<div class="col-md-10">
+			@if (Model.Misure == "SI")
+			{
+				<div id="txtTipoProgetto" class="form-control-multiline">Con misure aggiuntive</div>
+			}
+			else
+			{
+				<div id="txtTipoProgetto" class="form-control-multiline">Ordinario</div>
+			}
+		</div>
+	</div>*@
+<div class="form-group row">
+	<label for="txtDurataProgetto" class="col-md-2 col-form-label">Durata del Progetto</label>
+	<div class="col-md-10">
+		<div id="txtDurataProgetto" class="form-control-multiline">
+			@Model.DurataProgettoMesi Mesi
+		</div>
+	</div>
+</div>
+@if (Model.Programma?.IsDigitale == true)
+{
+	<div class="form-group row">
+		<label for="txtGaranziaGiovani" class="col-md-2 col-form-label">Servizio Civile Digitale</label>
+		<div class="col-md-10">
+			<div id="txtGaranziaGiovani" class="form-control">
+				Sì
+			</div>
+		</div>
+	</div>
+
+}
+@if (Model.Programma?.IdTipoGG != null)
+{
+	<div class="form-group row">
+		<label for="txtGaranziaGiovani" class="col-md-2 col-form-label">Garanzia Giovani</label>
+		<div class="col-md-10">
+			<div id="txtGaranziaGiovani" class="form-control">
+				@Model.Programma.GaranziaGiovane.Descrizione
+			</div>
+		</div>
+	</div>
+
+}
+@if (Model.Misure == "SI")
+{
+	<div class="form-group row">
+		<label for="txtEsteroUE" class="col-md-2 col-form-label">Estero (UE)</label>
+		<div class="col-md-10">
+			<div id="txtEsteroUE" class="form-control-multiline">
+				@Model.EsteroUE
+			</div>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="txtTutoraggio" class="col-md-2 col-form-label">Tutoraggio</label>
+		<div class="col-md-10">
+			<div id="txtTutoraggio" class="form-control-multiline">
+				@Model.Tutoraggio
+			</div>
+		</div>
+	</div>
+	if (Model.IDParticolaritàEntità.HasValue && Model.NumeroGiovaniMinoriOpportunità > 0)
+	{
+		<div class="form-group row">
+			<label for="txtMinoriOpportuinita" class="col-md-2 col-form-label">Tipologia Minori opportunità</label>
+			<div class="col-md-10">
+				<div id="txtMinoriOpportuinita" class="form-control-multiline">
+					@Model.MinoreOpportunita.Descrizione
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="txtNumeroMinoriOpportuinita" class="col-md-2 col-form-label">N° posti riservati minori opportunità</label>
+			<div class="col-md-10">
+				<div id="txtNumeroMinoriOpportuinita" class="form-control-multiline">
+					@Model.NumeroGiovaniMinoriOpportunità
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="txtNumeroDomandeMinoriOpportuinita" class="col-md-2 col-form-label">N° domande presentate posti riservati minori opportunità</label>
+			<div class="col-md-10">
+				<div id="txtNumeroDomandeMinoriOpportuinita" class="form-control-multiline">
+					@ViewData["numeroMinoriOpportunita"]
+				</div>
+			</div>
+		</div>
+	}
+}
+<div class="form-group row">
+	<label for="txtSettore" class="col-md-2 col-form-label">Settore</label>
+	<div class="col-md-10">
+		<div id="txtSettore" class="form-control-multiline">
+			@Model.Settore - @Model.Area
+		</div>
+	</div>
+</div>
+@if (Model.TipoProgetto == Progetto.Tipo.ITALIA)
+{
+	<div class="form-group row">
+		<label for="txtComune" class="col-md-2 col-form-label">Comune</label>
+		<div class="col-md-10">
+			<div id="txtComune" class="form-control-multiline">
+				@Model.Comune (@Model.Provincia)
+			</div>
+		</div>
+	</div>
+}
+else
+{
+	<div class="form-group row">
+		<label for="txtNazione" class="col-md-2 col-form-label">Nazione</label>
+		<div class="col-md-10">
+			<div id="txtNazione" class="form-control-multiline">
+				@Model.Regione
+			</div>
+		</div>
+	</div>
+}
+<div class="form-group row">
+	<label for="txtEnte" class="col-md-2 col-form-label">Ente di riferimento</label>
+	<div class="col-md-10">
+		<div id="txtEnte" class="form-control-multiline">
+			@Model.NomeEnte
+		</div>
+	</div>
+</div>
+<div class="form-group row">
+	<label for="txtEnte" class="col-md-2 col-form-label">Ente Attuatore</label>
+	<div class="col-md-10">
+		<div id="txtEnte" class="form-control-multiline">
+			@Model.EnteAttuatore
+		</div>
+	</div>
+</div>
+<div class="form-group row">
+	<label for="txtSede" class="col-md-2 col-form-label">Sede</label>
+	<div class="col-md-10">
+		<div id="txtSede" class="form-control-multiline">
+			@Model.CodiceEnte - @Model.IndirizzoSede
+		</div>
+	</div>
+</div>
+<div class="form-group row">
+	<p class="col-md-12">Prima di effettuare la tua scelta leggi le specifiche del progetto sul sito dell’ente e verifica che tu sia in possesso degli “Eventuali requisiti richiesti ai canditati per la partecipazione al progetto oltre quelli richiesti dal decreto legislativo, n. 40 del 6 marzo 2017”</p>
+</div>
+<div class="form-group row">
+	<label for="txtSito" class="col-md-2 col-form-label">Sito</label>
+	<div class="col-md-10">
+		<div id="txtSito" class="form-control-multiline">
+			<a href="@urlSito" target="_blank" title="Vai al sito (Si apre in un'altra finestra)">@Model.Sito</a>
+		</div>
+	</div>
+</div>
+@if (!string.IsNullOrEmpty(urlSintesi))
+{
+	<div class="form-group row">
+		<label for="txtLinkSintesi" class="col-md-2 col-form-label">Scheda di sintesi</label>
+		<div class="col-md-10">
+			<div id="txtLinkSintesi" class="form-control-multiline">
+				<a href="@urlSintesi" target="_blank" title="Vai alla scheda di sintesi (Si apre in un'altra finestra)">Vai alla scheda di sintesi</a>
+			</div>
+		</div>
+	</div>
+}
+<div class="form-group row">
+	<label for="txtNumeroVolontari" class="col-md-2 col-form-label">N° Volontari</label>
+	<div class="col-md-10">
+		<div id="txtNumeroVolontari" class="form-control-multiline">
+			@Model.NumeroPostiDisponibili
+		</div>
+	</div>
+</div>
+@if (Model.Programma != null)
+{
+	<p>Il progetto che stai visualizzando è inserito in un programma più ampio con le seguenti caratteristiche principali</p>
+	<div class="form-group row">
+		<label for="txtProgramma" class="col-md-2 col-form-label">Titolo Programma</label>
+		<div class="col-md-10">
+			<div id="txtProgramma" class="form-control-multiline">
+				@Model.Programma.Titolo
+			</div>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="txtProgramma" class="col-md-2 col-form-label">Obiettivi Programma</label>
+		<div class="col-md-10">
+			@foreach (Obiettivo obiettivo in Model.Programma.Obiettivi)
+			{
+				<div id="txtProgramma" class="form-control-multiline" style="margin-bottom:5pt">
+					@obiettivo.Descrizione
+				</div>
+			}
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="txtProgramma" class="col-md-2 col-form-label">Ambito Programma</label>
+		<div class="col-md-10">
+			<div id="txtProgramma" class="form-control-multiline">
+				@Model.Programma.Ambito.Descrizione
+			</div>
+		</div>
+	</div>
+}

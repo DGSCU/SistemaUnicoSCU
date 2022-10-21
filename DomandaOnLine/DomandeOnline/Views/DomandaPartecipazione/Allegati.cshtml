@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Inserimento Allegati";
+}
+
+<div class="row">
+	<div class="inlineHeader">
+		<a href="@Url.Action("Index")" class="btn btn-info">Torna alla Domanda</a>
+		<h2>Inserimento Allegati</h2>
+	</div>
+</div>
+<hr />
+<form action="@Url.Action("InserisciAllegato")" method="post">
+	<h3>Curriculum Vitae</h3>
+	<div class="row">
+		<div class="form-group col-md-6">
+			<label for="fileCV">Allegato CV</label>
+			<input name="allegatoCV" type="file" class="form-control required" id="fileCV">
+			<small class="form-text text-danger" style="display:none"></small>
+		</div>
+
+	</div>
+
+</form>

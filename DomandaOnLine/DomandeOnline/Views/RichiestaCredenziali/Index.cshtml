@@ -1,0 +1,257 @@
+﻿@using DomandeOnline.Data
+@using DomandeOnline.Models
+@{
+	ViewBag.Title = "Richiesta Credenziali";
+
+	IEnumerable<Nazione> nazioni = ViewData["Nazioni"] as IEnumerable<Nazione>;
+
+
+
+	RichiestaCredenzialiInput parameters = TempData["RichiestaCredenziali"] as RichiestaCredenzialiInput ?? new RichiestaCredenzialiInput();
+	string testoDataNascita = !parameters.DataNascita.HasValue ? "" : parameters.DataNascita.Value.ToString("yyyy-MM-dd");
+	string errore = TempData["Errore"] as string;
+}
+<style>
+</style>
+@section scripts{
+	<script>
+		function Controlli() {
+			var controlloOK = true;
+			$("#frmRichiestaCredenziali .form-control,.form-check-input").each(function () {
+				if (!ControllaSingolo(this)) {
+					if (controlloOK) {
+						$(this).focus();
+					}
+					controlloOK = false;
+				}
+			});
+			if (!ControllaEmail($("#txtEmailRipeti").first())) {
+				$("#txtEmailRipeti").focus();
+				controlloOK = false;
+			}
+			if (!ControllaPrivacy($("#ckPrivacy").first())) {
+				controlloOK = false;
+			}
+
+			return controlloOK;
+		}
+		function ControllaSingolo(elem) {
+			var controlloOK = true;
+			$(elem).removeAttr("style");
+			$(elem).parent().find("small").hide();
+			if ($(elem).hasClass("required") && !$(elem).val()) {
+				$(elem).css("border-color", "red");
+				$(elem).parent().find("small").html("Campo obbligatorio").show();
+				controlloOK = false;
+			}
+			var emailReg = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+			if ($(elem).attr("type") == 'email' && $(elem).val() && !emailReg.test($(elem).val())) {
+				$(elem).css("border-color", "red");
+				$(elem).parent().find("small").html("Email Non valida").show();
+				controlloOK = false;
+			}
+			if (($(elem).attr("type") == 'radio') && $(elem).hasClass("required")) {
+				var elemParent = $(elem).parent().parent()
+				if (!$(elem).prop('checked')) {
+					$(elemParent).addClass("errorBorder");
+					$(elemParent).find("small").html("Campo Obbligatorio").show();
+					controlloOK = false;
+				} else {
+					$(elemParent).removeClass("errorBorder");
+					$(elemParent).find("small").hide();
+				}
+			}
+			return controlloOK;
+		}
+		function ControllaEmail(elem) {
+			if ($(elem).val() != $("#txtEmail").val()) {
+				$(elem).parent().find("small").html("Le e-mails non corrispondono").show();
+				return false;
+			}
+			return true;
+		}
+
+
+		function ControllaPrivacy(elem) {
+			if ($(elem).prop("checked")) {
+				$(elem).parent().find("small").hide();
+				$(elem).parent().removeClass("errorBorder");
+				return true;
+			} else {
+				$(elem).parent().find("small").show();
+				$(elem).parent().addClass("errorBorder");
+				return false;
+			}
+		}
+
+
+		/**/</script>
+}
+@if (!string.IsNullOrEmpty(errore))
+{
+	<div class="alert alert-danger alert-dismissible fade in">
+		@Html.Raw(errore)
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+<p class="container">
+	<h2>Richiesta Credenziali</h2>
+	<form action="@Url.Action("RichiestaCredenziali")" id=frmRichiestaCredenziali onsubmit="return Controlli();" novalidate method="post" enctype="multipart/form-data">
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="txtCognome">Cognome</label>
+				<input name="cognome" type="text" class="form-control required" id="txtCognome" maxlength="100" placeholder="Inserire il cognome" onchange="ControllaSingolo(this)" value="@parameters.Cognome">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="txtNome">Nome</label>
+				<input name="nome" type="text" class="form-control required" id="txtNome" maxlength="100" placeholder="Inserire il nome" onchange="ControllaSingolo(this)" value="@parameters.Nome">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-3">
+				<label for="cbGenere">Genere</label>
+				<select name="codiceGenere" id="cbGenere" class="form-control required" onchange="ControllaSingolo(this)">
+					<option value="" disabled selected>Selezionare il genere</option>
+					@foreach (Genere genere in (IEnumerable<Genere>)ViewData["Generi"])
+					{
+						if ((string)parameters.CodiceGenere == genere.Codice)
+						{
+							<option value="@genere.Codice" selected>@genere.Nome</option>
+						}
+						else
+						{
+							<option value="@genere.Codice">@genere.Nome</option>
+						}
+					}
+
+				</select>
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			<div class="form-group col-md-3">
+				<label for="txtDataNascita">Data di nascita</label>
+				<input name="dataNascita" type="date" class="form-control required" id="txtDataNascita" onchange="ControllaSingolo(this)" value="@testoDataNascita">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="txtLuogoNascita">Luogo di nascita</label>
+				<input name="luogoNascita" type="text" class="form-control required" id="txtLuogoNascita" maxlength="200" placeholder="Inserire il luogo di nascita" onchange="ControllaSingolo(this)" value="@parameters.LuogoNascita">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="cbNazioneNascita">Nazione di nascita</label>
+				<select name="idNazioneNascita" id="cbNazioneNascita" class="form-control required" onchange="ControllaSingolo(this)">
+					<option value="" disabled selected>Selezionare la nazione di nascita</option>
+					@foreach (Nazione nazione in nazioni)
+					{
+						if ((int)(parameters.IdNazioneNascita ?? 0) == nazione.Id)
+						{
+							<option value="@nazione.Id" selected>@nazione.Nome</option>
+						}
+						else
+						{
+							<option value="@nazione.Id">@nazione.Nome</option>
+
+						}
+					}
+				</select>
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="txtCodiceFiscale">Codice fiscale</label>
+				<input name="codiceFiscale" type="text" class="form-control required" id="txtCodiceFiscale" maxlength="30" placeholder="Inserire il codice fiscale" onchange="ControllaSingolo(this)" value="@parameters.CodiceFiscale">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="cbCittadinanza" title="cittadinanza">Cittadinanza</label>
+				<select name="idNazioneCittadinanza" id="cbCittadinanza" class="form-control required" onchange="ControllaSingolo(this)">
+					<option value="" disabled selected>Selezionare la cittadinanza</option>
+					@foreach (Nazione nazione in nazioni)
+					{
+						if ((int)(parameters.IdNazioneCittadinanza ?? 0) == nazione.Id)
+						{
+						<option value="@nazione.Id" selected>@nazione.Nome</option>
+						}
+						else
+						{
+						<option value="@nazione.Id">@nazione.Nome</option>
+						}
+					}
+				</select>
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="txtEmail">E-mail</label>
+				<input name="Email" type="email" class="form-control required" id="txtEmail" maxlength="100" placeholder="Inserire l'email" onchange="ControllaSingolo(this); ControllaEmail(this);" value="@parameters.Email">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="txtEmail">Ripetere E-mail</label>
+				<input name="RipetiEmail" type="text" class="form-control required" id="txtEmailRipeti" maxlength="100" placeholder="Inserire nuovamente l'email" onchange="ControllaSingolo(this)" value="@parameters.RipetiEmail">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="txtTelefono">Telefono</label>
+				<input name="telefono" type="text" class="form-control required" id="txtTelefono" maxlength="20" placeholder="Inserire il numero di telefono" onchange="ControllaSingolo(this)" value="@parameters.Telefono">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="fileAllegato">Documenti allegati</label>
+				<input name="allegato" type="file" accept=".pdf" class="form-control required" id="fileAllegato" onchange="ControllaSingolo(this)">
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="noteAllegato"></label>
+                <div id="noteAllegato" class="form-control-static">
+                    È possibile allegare un solo file e deve essere in formato PDF, con dimensione massima di 20MB. L’unico file deve contenere copia fronte/retro del documento di identità e copia del documento attestante il codice fiscale (in alcuni casi i due documenti possono coincidere). Se sei un cittadino di un Paese extra Unione Europea in attesa di rilascio di permesso di soggiorno, il file deve contenere anche la ricevuta attestante l’avvenuta presentazione della domanda di richiesta del permesso.
+                </div>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="txtInformativa">Informativa</label>
+				<div rows="5" class="form-control scrollbox" id="txtInformativa">
+					@Html.Partial("Informativa")
+				</div>
+			</div>
+		</div>
+		<small>Per procedere al consenso della privacy occorre leggere completamente l'informativa</small>
+		<div class="form-check">
+			<input name="OkPrivacy" onchange="ControllaPrivacy(this)" type="checkbox" class="form-check-input" id="ckPrivacy"
+				   value="true" />
+			<label class="form-check-label" for="ckPrivacy">dichiaro di aver letto l’informativa</label>
+			<small class="form-text text-danger" style="display:none">È necessario fornire il consenso al'informativa</small>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input required" type="radio" name="PrivacyConsenso" id="rdPrivacyConsensoOk" onchange="ControllaSingolo(this)"
+						   @(Model == null ? "" : Model.PrivacyConsenso == null ? "" : Model.PrivacyConsenso.Value ? "checked=\"checked\"" : "") value="true">
+					<label class="form-check-label" for="rdPrivacyConsensoOk">
+						Do il consenso
+					</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="PrivacyConsenso" id="rdPrivacyConsensoKo"
+						   value="false" @(Model == null ? "" : Model.PrivacyConsenso == null ? "" : !Model.PrivacyConsenso.Value ? "checked=\"checked\"" : "")>
+					<label class="form-check-label" for="rdPrivacyConsensoKo">
+						NON do il consenso
+					</label>
+				</div>
+				al trattamento dei miei dati personali, inclusi quelli considerati come categorie particolari di dati, e alla comunicazione dei miei dati personali a soggetti pubblici e privati per le finalità indicate nell’informativa
+				<small class="form-text text-danger" style="display:none"></small>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-default">Invia la Richiesta</button>
+	</form>

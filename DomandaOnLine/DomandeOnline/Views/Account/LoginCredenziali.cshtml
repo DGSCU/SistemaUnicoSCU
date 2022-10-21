@@ -1,0 +1,47 @@
+﻿@using DomandeOnline.Models
+@model LoginViewModel
+@{
+	ViewBag.Title = "Accesso con credenziali";
+}
+@if (!string.IsNullOrEmpty(ViewData["Errore"] as String))
+{
+	<div class="alert alert-danger">@ViewData["Errore"]</div>
+}
+<h2>Accesso al Sistema</h2>
+<div class="row">
+	<div class="col-md-8">
+		<section id="loginForm">
+			<form action="@Url.Action("LoginCredenziali")" method="post" role="form" class="form-horizontal">
+				@Html.AntiForgeryToken()
+				<h3>Accedere al sistema inserendo il codice fiscale e la password</h3>
+				<hr />
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="txtUserName">Codice Fiscale</label>
+					<div class="col-md-10">
+						<input id="txtUserName" class="form-control" type="text" name="userName"
+							placeholder="Inserire il codice fiscale" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="txtPassword">Password</label>
+					<div class="col-md-10">
+						<input id="txtPassword" class="form-control" type="password" name="password" 
+							placeholder="Inserire la password" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<input id="chkRicordami" type="checkbox" name="ricordami" value="true"/>
+						<label for="chkRicordami">Memorizza Account</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<input type="submit" value="Accedi" class="btn btn-default" />
+					</div>
+				</div>
+				@Html.ActionLink("Password dimenticata?", "RecuperoPassword")
+			</form>
+		</section>
+	</div>
+</div>

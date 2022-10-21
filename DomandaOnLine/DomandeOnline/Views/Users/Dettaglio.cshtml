@@ -1,0 +1,75 @@
+﻿@using DomandeOnline.Models
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@model ApplicationUser
+@{
+	ViewBag.Title = "Gestione Utente";
+	IEnumerable<IdentityRole> ruoli = ViewData["Ruoli"] as IEnumerable<IdentityRole>;
+	int numeroRuoli = 0;
+}
+@section scripts{
+
+	<script>
+		function CambiaRuolo(elem) {
+			if ($(elem).prop('checked')) {
+				$.post(
+					'@Url.Action("AddRoleToUser")',
+					{
+						idUtente: '@Model.Id',
+						ruolo: $(elem).val()
+					}
+				).done(function (data) {
+					if (data.success) {
+						location.reload();
+					} else {
+						alert(data.message);
+					}
+				});
+			} else {
+				$.post(
+					'@Url.Action("RemoveRoleToUser")',
+					{
+						idUtente: '@Model.Id',
+						ruolo: $(elem).val()
+					}
+				).done(function (data) {
+					if (data.success) {
+						location.reload();
+					} else {
+						alert(data.message);
+					}
+				});
+			}
+
+		}
+	</script>
+}
+<div class="row">
+	<a class="btn btn-info" href="@Url.Action("Index")">Indietro</a>
+</div>
+<h2>Gestione utente @Model.UserName</h2>
+<hr />
+<h3>Ruoli</h3>
+<div class="container">
+
+	@foreach (IdentityRole ruolo in ruoli)
+	{
+
+		numeroRuoli++;
+	<div class="form-check">
+		@if (Model.Roles.Select(x => x.RoleId).Contains(ruolo.Id))
+		{
+			<input class="form-check-input" type="checkbox" value="@ruolo.Name" onchange="CambiaRuolo(this)" id="chkRuolo_@numeroRuoli" checked="checked"	>
+		}
+		else
+		{
+			<input class="form-check-input" type="checkbox" value="@ruolo.Name" onchange="CambiaRuolo(this)" id="chkRuolo_@numeroRuoli">
+		}
+		<label class="form-check-label" for="chkRuolo_@numeroRuoli">
+			@ruolo.Name
+		</label>
+	</div>
+	}
+
+</div>
+

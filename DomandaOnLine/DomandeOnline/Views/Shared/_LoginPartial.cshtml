@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNet.Identity;
+@using DomandeOnline.Code;
+@using DomandeOnline.Models;
+@using DomandeOnline.Models.Extensions
+@{
+	//ApplicationUser utente = Utils.GetUser(User.Identity.Name);
+	string nomeUtente;
+	if (!User.Identity.IsAuthenticated)
+	{
+		nomeUtente = "";
+	}else if (string.IsNullOrEmpty(User.Identity.GetNome()) && string.IsNullOrEmpty(User.Identity.GetCognome()))
+	{
+		nomeUtente = User.Identity.Name;
+	}
+	else
+	{
+		nomeUtente = $"{User.Identity.GetNome()} {User.Identity.GetCognome()}";
+	}
+}
+@if (Request.IsAuthenticated)
+{
+
+
+		<ul style="float:right;margin-top:-10px">
+			<li class="nolink">
+				<span>
+					<a href="#">Ciao @nomeUtente</a>
+				</span>
+			</li>
+			<li>
+				<span>
+					<a href="@Url.Action("LogOff", "Account")">Disconnetti</a>
+				</span>
+			</li>
+		</ul>
+}
+@*else
+{
+	<ul style="float:right;margin-top:-10px">
+		<li >
+			<span>
+				<a style="padding:0;" href="@Url.Action("LoginInterno", "Account")" title="Accesso interno">
+					<span style="font-size: 0.7em; padding-top: 10px;" class="glyphicon glyphicon-lock"></span>
+				</a>
+			</span>
+</li>
+	</ul>
+}*@
